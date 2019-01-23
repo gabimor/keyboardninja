@@ -3,11 +3,11 @@ import { AppConsumer } from '../components/AppContext'
 
 const Apps = ({apps}) => (
   <Layout>
-      <AppConsumer>
+    <AppConsumer>
       {({ apps }) => (
         apps.map(item => <div key={item.id}>{item.name}</div>)
       )}
-      </AppConsumer>
+    </AppConsumer>
   </Layout>
 )
 export default Apps

@@ -11,6 +11,12 @@ export const shortcuts = [
   { id: 9, appId: 2, appSectionId: 1, action:"zoom in", win:"ctrl+plus", pins:0, comment:"" },
   { id: 10, appId: 2, appSectionId: 1, action:"zoom out", win:"ctrl+-", pins:0, comment:"" },
   { id: 11, appId: 2, appSectionId: 1, action:"reset zoom", win:"ctrl+0", pins:0, comment:"" },
+
+  { id: 12, appId: 3, appSectionId: 1, action:"reset zoom", win:"ctrl+0", pins:0, comment:"" },
+
+  { id: 13, appId: 4, appSectionId: 1, action:"reset zoom", win:"ctrl+0", pins:0, comment:"" },
+
+  { id: 14, appId: 5, appSectionId: 1, action:"reset zoom", win:"ctrl+0", pins:0, comment:"" },
 ]
 
 
