@@ -71,20 +71,13 @@ class AppSearch extends Component {
   }
 }
 
-// const getSuggestionValue = suggestion => suggestion.name
-
 const getSuggestions = (value, apps) => {
   const inputValue =  value.trim().toLowerCase()
   const inputLength = inputValue.length
 
-  return inputLength === 0 ? [] : apps.filter(app =>
-    app.name.toLowerCase().slice(0, inputLength) === inputValue
+  return inputLength < 1 ? [] : apps.filter(app =>
+    app.name.toLowerCase().includes(inputValue)
   )
 } 
 
-// const mapStateToProps = ({apps}) => ({
-//   apps
-// })
-
 export default AppSearch
-// export default connect(mapStateToProps)(AppSearch)
