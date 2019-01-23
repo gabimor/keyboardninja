@@ -1,0 +1,22 @@
+{
+  "name": "kbnext",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^7.0.2",
+    "react": "^16.7.0",
+    "react-autosuggest": "^9.4.2",
+    "react-dom": "^16.7.0",
+    "styled-components": "^4.1.3"
+  }
+}
