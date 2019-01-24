@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color:white;
+    color:black;
     
     text-decoration:none;
   }
