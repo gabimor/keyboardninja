@@ -24,7 +24,7 @@ search results
   * categorized
   * by popularity (flat)
 
-suggest shortcuts form
+suggest shortcuts form  
 suggest app form
 
 apps
