@@ -1,11 +1,5 @@
 # Keyboard ninja
 
-## Goals
-
-* curate all apps keyboard shortcuts
-* show what is most used
-* personalized view of pinned shortcuts 
-
 ## Plan
 
 homepage
@@ -15,12 +9,34 @@ homepage
   * special hell for people
   * the ui disappears
 
-search  
+search results
 
-* search results
+* get data from db
+* show app name in search on arrival from other page/refresh
+* link to suggest form from app category
 * if app not found - suggest add
 * change OS
 * show categorized / by popularity (flat)
+* pin
+
+suggest shortcuts form
+suggest app form
+
+apps
+
+* show by category
+
+general
+
+* hotjar 
+* design
+* populate with apps and shortcuts
+* responsive
+* patreon
+* reporting an error/duplication
+
+## Phase 2
+
 
 add app
 
@@ -45,14 +61,8 @@ add shortcuts
 
 general
 
-* patreon
-* reporting an error/duplication
 * allow change the order of shorcuts
-* SSR
-* SEO
 * spread the word in blogs/groups
-* stats page to count 
-  * apps/categories/sections/shortcuts/pins/users/logins
 
 users
   
@@ -63,21 +73,17 @@ users
 * pin (requires login)
 * my shortcuts/apps
 
-## questions 
-
-* who will add apps/sections
-* allow renaming sections, moving shortcuts between sections, reordering sections
-* add to redux and server at the same time ?
-* one big data object vs foreign key ?
-  * concurrency issues
-  * duplication/misplling issues (ie sections)
-* one root with header/footer
-* blinking styles
+### reference
 
 * https://caniuse.com/
 * https://marksheet.io/
 * https://devhints.io/react/
-* hotjar 
+
+## Goals
+
+* curate all apps keyboard shortcuts
+* show what is most used
+* personalized view of pinned shortcuts 
 
 #### shortcut sheets
 https://www.jetbrains.com/help/resharper/Reference__Keyboard_Shortcuts.html

@@ -11,7 +11,7 @@ export default class extends Component {
       <Layout>
         <AppConsumer>{({ apps }) => (
           apps.map(item =>         
-            <div>
+            <div key={item.id}>
               <Link href={"/?appId=" + item.id} as={"/apps/" + encodeAppName(item.name)}>
                 <a>{item.name}</a>
               </Link>
