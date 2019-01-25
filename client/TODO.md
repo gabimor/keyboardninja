@@ -1,10 +1,8 @@
 # Keyboard ninja
 
-## Plan
-
 homepage
 
-* most searched apps
+* top apps ("121 more" link)
 * quotes
   * special hell for people
   * the ui disappears
@@ -16,8 +14,11 @@ search results
 * link to suggest form from app category
 * if app not found - suggest add
 * change OS
-* show categorized / by popularity (flat)
 * pin
+* show
+  * my pins first
+  * categorized
+  * by popularity (flat)
 
 suggest shortcuts form
 suggest app form
@@ -26,17 +27,25 @@ apps
 
 * show by category
 
+stats
+
+* what people searched
+* heatmaps
+* GA 
+
 general
 
 * hotjar 
+* patreon/buy me a cup of coffee
+* reporting errors/missing/duplications
+* get as many apps and shortcuts as i can for starters
+* spread the word in blogs/groups
 * design
-* populate with apps and shortcuts
-* responsive
-* patreon
-* reporting an error/duplication
+  * make it look good both for rich and poor apps (few shortcuts apps with one section/lots of shortcuts) 
+  * responsive
+
 
 ## Phase 2
-
 
 add app
 
@@ -62,7 +71,6 @@ add shortcuts
 general
 
 * allow change the order of shorcuts
-* spread the word in blogs/groups
 
 users
   
