@@ -7,12 +7,17 @@ homepage
   * special hell for people
   * the ui disappears
 
+search
+
+* solve refocus bug
+* if app not found - suggest add
+
+
 search results
 
 * get data from db
 * show app name in search on arrival from other page/refresh
 * link to suggest form from app category
-* if app not found - suggest add
 * change OS
 * pin
 * show
