@@ -12,7 +12,6 @@ search
 * solve refocus bug
 * if app not found - suggest add
 
-
 search results
 
 * get data from db
