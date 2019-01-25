@@ -12,9 +12,13 @@ const style = {
 }
 
 class AppSearch extends Component {  
-  state = {
-    value: '',
-    suggestions: []    
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      value: props.value,
+      suggestions: []    
+    }
   }
 
   onSuggestionSelected = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {

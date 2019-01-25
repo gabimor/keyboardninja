@@ -13,24 +13,13 @@ const Container = styled.div`
   font-size: 2rem;
 `
 
-const SearchInput = styled.input`
-  color: #171c1d;
-  
-  padding: 0 20px;
-  width: 350px; 
-  background:#eaeaea;
-  margin-left: 20px;  
-  border:0;
-  border-bottom: 1px solid #171c1d ;
-`
-
-function Search({onChange}) {
+function Search({onChange, value}) {
   return (
     <Container>
       <label htmlFor="search">Search App:</label>
       <AppConsumer>
         {({ apps }) => (
-          <AppSearch apps={apps} onSelection={onChange}/>
+          <AppSearch apps={apps} onSelection={onChange} value={value}/>
         )}
       </AppConsumer>
       <OSSelect />

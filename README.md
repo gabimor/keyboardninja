@@ -1,21 +1,17 @@
 # Keyboard ninja
 
 homepage
-
 * top apps ("121 more" link)
 * quotes
   * special hell for people
   * the ui disappears
 
 search
-
 * solve refocus bug
 * if app not found - suggest add
 
 search results
-
 * get data from db
-* show app name in search on arrival from other page/refresh
 * link to suggest form from app category
 * change OS
 * pin
@@ -28,17 +24,14 @@ suggest shortcuts form
 suggest app form
 
 apps
-
 * show by category
 
-stats
-
+stats  
 * what people searched
 * heatmaps
 * GA 
 
-general
-
+general  
 * hotjar 
 * patreon/buy me a cup of coffee
 * reporting errors/missing/duplications
@@ -48,17 +41,14 @@ general
   * make it look good both for rich and poor apps (few shortcuts apps with one section/lots of shortcuts) 
   * responsive
 
-
 ## Phase 2
 
 add app
-
 * name
 * category
 * after save - redirect to add shortcuts
 
 add shortcuts
-
 * search app - "cant find app ? add it"
 * show existing sections, allow add
 * add action/win/osx/comment
@@ -73,11 +63,9 @@ add shortcuts
 * detect duplicates
 
 general
-
 * allow change the order of shorcuts
 
 users
-  
 * login
 * logout
 * signup
