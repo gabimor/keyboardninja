@@ -1,16 +1,18 @@
 const express = require('express')
 const next = require('next')
+const mysql = require('promise-mysql')
 
 const { getAppIdByName } = require('./helpers')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const data = require('./data')
 
 main()
 
 async function main() {
+  const data = await getData()
+
   await app.prepare()
 
   const server = express()
@@ -36,3 +38,26 @@ async function main() {
   })
 }
 
+async function getData() {
+  const conn = await mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '1234',
+    database: 'keyboard_ninja'
+  })
+
+  const shortcuts = await conn.query('select * from shortcuts')
+  const apps = await conn.query('select * from apps')
+  const app_sections = await conn.query('select * from app_sections')
+  const app_categories = await conn.query('select * from app_categories')
+
+  console.log(shortcuts)
+  conn.end();
+
+  return {
+    apps,
+    shortcuts,
+    app_categories,
+    app_sections
+  }
+}

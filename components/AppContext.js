@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { apps, shortcuts, appCategories, appSections } from '../data'
+import { apps, shortcuts, appCategories, appSections } from '../data2'
 
 const AppContext = React.createContext();
 const AppConsumer = AppContext.Consumer;
