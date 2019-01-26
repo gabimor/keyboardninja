@@ -1,24 +1,26 @@
 import { Component } from 'react'
-import Link from 'next/link'
 
 import Layout from '../components/Layout'
-import { AppConsumer } from '../components/AppContext'
-import { encodeAppName } from '../helpers'
+import AppCategory from './apps/AppCategory'
 
 export default class extends Component {    
-  render() {
-    const {apps} = this.props
+  render() {    
+    const appsByCategory = this.props.apps.reduce((acc,currApp) => {
+
+      const categoryName = this.props.appCategories.find(item => item.id === currApp.categoryId).name
+      
+      acc[categoryName] = acc[categoryName] || []
+
+      acc[categoryName].push(currApp)
+      return acc
+    }, {})
+    console.log(appsByCategory)
+
     return (
       <Layout>
-        <AppConsumer>{({ apps }) => (
-          apps.map(item =>         
-            <div key={item.id}>            
-              <Link href={"/?appId=" + item.id} as={"/apps/" + encodeAppName(item.name)}>
-                <a>{item.name}</a>
-              </Link>
-            </div>
-          )
-        )}</AppConsumer>
+          {Object.keys(appsByCategory).map(categoryName => (
+            <AppCategory name={categoryName} apps={appsByCategory[categoryName]}/>
+          ))}
       </Layout>
     )
   }

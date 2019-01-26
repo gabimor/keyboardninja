@@ -16,7 +16,6 @@ export default class MyDocument extends Document {
           {this.props.styleTags}
           <link href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossOrigin="anonymous" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"/>
-          <title>Keyboard Ninja</title>
         </Head>
         <body>
           <Main />

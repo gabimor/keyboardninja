@@ -10,8 +10,6 @@ const handle = app.getRequestHandler()
 main()
 
 async function main() {
-  const data = await getData()
-
   await app.prepare()
 
   const server = express()
@@ -23,7 +21,9 @@ async function main() {
     app.render(req, res, actualPage, queryParams)
   })
 
-  server.get('/data', (req, res) => {
+  server.get('/data', async (req, res) => {
+    const data = await getData()
+
     res.json(data)
   })
 

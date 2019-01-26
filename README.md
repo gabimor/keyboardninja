@@ -46,6 +46,7 @@ add app
 * name
 * category
 * after save - redirect to add shortcuts
+* email - get notified when my app goes live
 
 add shortcuts
 * search app - "cant find app ? add it"
@@ -60,7 +61,8 @@ add shortcuts
   * from the main page -> add a shortcut
   * from the search results ("missing a shortcuts ? add it!") -> leads to partially filled shortcut form
 * detect duplicates
-
+* email - get notified when my app goes live
+* 
 general
 * allow change the order of shorcuts
 
