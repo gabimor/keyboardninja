@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch server.js server.js",
+    "dev2": "set PORT=3001 && node server.js",
     "build": "next build",
     "start": "next start"
   },

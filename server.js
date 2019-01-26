@@ -14,8 +14,9 @@ async function main() {
 
   const server = express()
   
-  server.get('/apps/:name', (req, res) => {
+  server.get('/apps/:name', async (req, res) => {
     const actualPage = "/"
+    const data = await getData()
     const appId = getAppIdByName(req.params.name, data.apps)
     const queryParams = {appId}
     app.render(req, res, actualPage, queryParams)
@@ -31,9 +32,9 @@ async function main() {
     return handle(req, res)
   })
   
-  server.listen(3000, (err) => {
+  server.listen(process.env.PORT, (err) => {
     if (err) throw err
-    console.log('> Ready on http://localhost:3000')
+    console.log('> Ready on http://localhost:' + process.env.PORT)
   })
 }
 

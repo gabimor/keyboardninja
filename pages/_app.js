@@ -6,9 +6,9 @@ import fetch from 'isomorphic-unfetch'
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
-    // TODO: get real url
+    // TODO: set the current domain
     // TODO: this loads on every page render, should load once
-    const baseUrl = 'http://localhost:3000'
+    const baseUrl = 'http://localhost:' + +process.env.PORT
     let pageProps = await fetch(`${baseUrl}/data`).then(res => res.json())
     if (Component.getInitialProps) {
     }  

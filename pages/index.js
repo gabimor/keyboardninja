@@ -20,7 +20,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     
-    let selectedAppId = props.router.query.appId
+    let selectedAppId = props.router.query.appId    
     selectedAppId = selectedAppId ? +selectedAppId : undefined
 
     this.state = {
@@ -74,6 +74,7 @@ class App extends Component {
   render() {    
     const {shownShortcuts, appName} = this.state
     const sectionIds = Object.keys(shownShortcuts)            
+    // console.log(sectionIds.length)
 
     return (      
       <Layout>
