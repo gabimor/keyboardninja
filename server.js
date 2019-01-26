@@ -7,7 +7,6 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-
 main()
 
 async function main() {
@@ -48,16 +47,15 @@ async function getData() {
 
   const shortcuts = await conn.query('select * from shortcuts')
   const apps = await conn.query('select * from apps')
-  const app_sections = await conn.query('select * from app_sections')
-  const app_categories = await conn.query('select * from app_categories')
+  const appSections = await conn.query('select * from app_sections')
+  const appCategories = await conn.query('select * from app_categories')
 
-  console.log(shortcuts)
   conn.end();
 
   return {
     apps,
     shortcuts,
-    app_categories,
-    app_sections
+    appCategories,
+    appSections
   }
 }

@@ -11,7 +11,6 @@ search
 * if app not found - suggest add
 
 search results
-* get data from db
 * link to suggest form from app category
 * change OS
 * pin

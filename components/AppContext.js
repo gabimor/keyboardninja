@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { apps, shortcuts, appCategories, appSections } from '../data2'
 
 const AppContext = React.createContext();
 const AppConsumer = AppContext.Consumer;
@@ -7,15 +6,7 @@ const AppConsumer = AppContext.Consumer;
 class AppProvider extends Component {  
   render() {
     return (
-      <AppContext.Provider
-        value={{
-          apps, shortcuts, appCategories, appSections,
-          growAYearOlder: () =>
-            this.setState({
-              age: this.state.age + 1,
-            }),
-        }}
-      >
+      <AppContext.Provider {...this.props}>
         {this.props.children}
       </AppContext.Provider>
     );

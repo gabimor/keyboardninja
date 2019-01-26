@@ -7,11 +7,12 @@ import { encodeAppName } from '../helpers'
 
 export default class extends Component {    
   render() {
+    const {apps} = this.props
     return (
       <Layout>
         <AppConsumer>{({ apps }) => (
           apps.map(item =>         
-            <div key={item.id}>
+            <div key={item.id}>            
               <Link href={"/?appId=" + item.id} as={"/apps/" + encodeAppName(item.name)}>
                 <a>{item.name}</a>
               </Link>
