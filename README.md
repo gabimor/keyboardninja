@@ -22,9 +22,6 @@ search results
 suggest shortcuts form  
 suggest app form
 
-apps
-* show by category
-
 stats  
 * what people searched
 * heatmaps

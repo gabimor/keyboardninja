@@ -5,6 +5,7 @@ import Router from 'next/router'
 
 import { encodeAppName } from '../helpers'
 import ShortcutsCategory from './home/ShortcutsCategory'
+import TopApps from './home/TopApps'
 import Search from './home/Search'
 import Layout from '../components/Layout'
 
@@ -71,7 +72,7 @@ class App extends Component {
   }
 
   render() {    
-    const {shownShortcuts, selectedAppId, appName} = this.state
+    const {shownShortcuts, appName} = this.state
     const sectionIds = Object.keys(shownShortcuts)            
 
     return (      
@@ -82,10 +83,9 @@ class App extends Component {
               sectionIds.map(key => this.renderShortcutCategory(+key))
             ) : (
               <>
-              <h2>Most Searched Apps</h2>
-              <h2>Apps With Most Shortcuts</h2>
-              <h2>Most Pinned Apps</h2>
-              <h2>Most Pinned Shortcuts</h2>
+              <TopApps name="Most Searched Apps" apps={this.props.mostSearchedApps}/>
+              <TopApps name="Most Pinned Apps" apps={this.props.mostPinnedApps}/>
+              <TopApps name="Apps With Most Shortcuts" apps={this.props.mostShortcutsApps}/>
               </>
           )}
         </ResultsContainer>

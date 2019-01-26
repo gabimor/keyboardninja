@@ -47,8 +47,11 @@ async function getData() {
 
   const shortcuts = await conn.query('select * from shortcuts')
   const apps = await conn.query('select * from apps')
-  const appSections = await conn.query('select * from app_sections')
-  const appCategories = await conn.query('select * from app_categories')
+  const appSections = await conn.query('SELECT * FROM app_sections')
+  const appCategories = await conn.query('SELECT * FROM app_categories')
+  const mostSearchedApps = await conn.query('SELECT * FROM apps LIMIT 5')
+  const mostPinnedApps = await conn.query('SELECT * FROM v_most_pinned_apps LIMIT 5')
+  const mostShortcutsApps = await conn.query('SELECT * FROM v_most_shortcuts_apps LIMIT 5')
 
   conn.end();
 
@@ -56,6 +59,9 @@ async function getData() {
     apps,
     shortcuts,
     appCategories,
-    appSections
+    appSections,
+    mostSearchedApps,
+    mostPinnedApps,
+    mostShortcutsApps
   }
 }
