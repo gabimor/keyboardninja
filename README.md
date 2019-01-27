@@ -1,25 +1,19 @@
 # Keyboard ninja
 
-homepage
-* quotes
-  * special hell for people
-  * the ui disappears
-
 search
 * solve refocus bug
 * if app not found - suggest add
 
 search results
 * link to suggest form from app category
-* change OS
+ * change OS
 * pin
 * show
   * my pins first
   * categorized
   * by popularity (flat)
 
-suggest shortcuts form  
-suggest app form
+add/edit app/sections/shortcuts
 
 stats  
 * what people searched
@@ -28,7 +22,7 @@ stats
 
 general  
 * hotjar 
-* patreon/buy me a cup of coffee
+* patreon/buy me a coffee
 * reporting errors/missing/duplications
 * get as many apps and shortcuts as i can for starters
 * spread the word in blogs/groups

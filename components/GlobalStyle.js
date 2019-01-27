@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
     color:black;
     
     margin:0;
-    font-family:open sans;
+    font-family:open sans, arial;
   }
 
   a {

@@ -16,7 +16,7 @@ class AppSearch extends Component {
     super(props)
 
     this.state = {
-      value: props.value,
+      value: props.value || '',
       suggestions: []    
     }
   }

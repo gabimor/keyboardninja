@@ -7,6 +7,8 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
+process.env.PORT = process.env.PORT || 3000
+
 main()
 
 async function main() {

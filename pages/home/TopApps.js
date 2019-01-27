@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { encodeAppName } from '../../helpers'
 
-export default function AppCategory({name, apps}) {
+export default function TopApps({name, apps}) {
   return (
     <div>
       <h3>{name}</h3>
