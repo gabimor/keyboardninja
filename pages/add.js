@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 import Layout from '../components/Layout'
-import ShortcutForm from './edit/ShortcutForm'
+import ShortcutForm from './add/ShortcutForm'
 
 
 class Edit extends Component {

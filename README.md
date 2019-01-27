@@ -1,19 +1,22 @@
 # Keyboard ninja
 
 search
-* solve refocus bug
 * if app not found - suggest add
+* cant find your favorite shorcuts ? why not share them with the world ?
 
 search results
 * link to suggest form from app category
- * change OS
+* change OS
 * pin
 * show
   * my pins first
   * categorized
   * by popularity (flat)
 
-add/edit app/sections/shortcuts
+add sections/shortcuts
+* here are a few shortcuts examples (demonstrate comment: when text is selected)
+* big add/small list of added ? (cool design)
+* one click to enter 
 
 stats  
 * what people searched
@@ -39,7 +42,6 @@ add app
 * email - get notified when my app goes live
 
 add shortcuts
-* search app - "cant find app ? add it"
 * show existing sections, allow add
 * add action/win/osx/comment
 * add method
@@ -49,10 +51,10 @@ add shortcuts
   * (Ctrl, Alt, Shift, Space, Tab, Windows, Insert, Delete, Esc, F1 ... F12, Enter, Backspace, PageUp.., Home, End, ArrowUp...)
 * accessible
   * from the main page -> add a shortcut
-  * from the search results ("missing a shortcuts ? add it!") -> leads to partially filled shortcut form
-* detect duplicates
+  * from the search results ("missing your favorite shortcut ? add it!") -> leads to partially filled shortcut form
+* i see a mistake form - to fix typos, change sections etc
 * email - get notified when my app goes live
-* 
+
 general
 * allow change the order of shorcuts
 
