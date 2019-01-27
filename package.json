@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch server.js server.js",
-    "dev2": "set PORT=3001 && node server.js",
+    "dev": "set PORT=3000 && nodemon --watch server.js server.js",
     "build": "next build",
     "start": "next start"
   },
@@ -20,6 +19,10 @@
     "react": "^16.7.0",
     "react-autosuggest": "^9.4.2",
     "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.7",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^4.1.3"
   }
 }

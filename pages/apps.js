@@ -1,10 +1,12 @@
 import { Component } from 'react'
+import { connect } from 'react-redux'
 
 import Layout from '../components/Layout'
 import AppCategory from './apps/AppCategory'
 
-export default class extends Component {    
-  render() {    
+class Apps extends Component {    
+
+  render() {       
     const appsByCategory = this.props.apps.reduce((acc,currApp) => {
 
       const categoryName = this.props.appCategories.find(item => item.id === currApp.categoryId).name
@@ -14,7 +16,6 @@ export default class extends Component {
       acc[categoryName].push(currApp)
       return acc
     }, {})
-    console.log(appsByCategory)
 
     return (
       <Layout>
@@ -25,3 +26,10 @@ export default class extends Component {
     )
   }
 }
+
+function mapStateToProps (state) {
+  const { apps, appCategories } = state
+  return { apps, appCategories }
+}
+
+export default connect(mapStateToProps)(Apps)

@@ -8,15 +8,15 @@ export default function AppCategory({name, apps}) {
       <ol>
       { apps.map(item =>
         <li key={item.id}>
-        <Link href={"/?appId=" + item.id} as={"/apps/" + encodeAppName(item.name)}>
+        <Link href={"/searchResults?appId=" + item.id} as={"/apps/" + encodeAppName(item.name)}>
           <a>{item.name}</a>
         </Link>
         </li>
       )}
       </ol>  
       <Link href="/apps">
-          <a>All apps</a>
-        </Link>      
+        <a>All apps</a>
+      </Link>      
     </div>
   )
 }

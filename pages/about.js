@@ -1,3 +1,15 @@
+import { connect } from 'react-redux'
+
 import Layout from '../components/Layout';
 
-export default () => <Layout>About Placeholder</Layout>
+const About = (props) => {  
+  return (<Layout>About Placeholder</Layout>)
+}
+
+function mapStateToProps (state) {
+  const { apps } = state
+  return { apps }
+}
+  
+export default connect(mapStateToProps)(About)
+  

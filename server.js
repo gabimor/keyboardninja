@@ -15,7 +15,7 @@ async function main() {
   const server = express()
   
   server.get('/apps/:name', async (req, res) => {
-    const actualPage = "/"
+    const actualPage = "/searchResults"
     const data = await getData()
     const appId = getAppIdByName(req.params.name, data.apps)
     const queryParams = {appId}

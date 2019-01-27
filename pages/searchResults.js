@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Router, {withRouter} from 'next/router'
 
 import { encodeAppName } from '../helpers'
-import TopApps from './home/TopApps'
+import ShortcutsCategory from './home/ShortcutsCategory'
 import Search from './home/Search'
 import Layout from '../components/Layout'
 
@@ -25,7 +25,8 @@ class App extends Component {
 
     this.state = {
       selectedAppId,
-      appName: this.getAppName(selectedAppId)
+      appName: this.getAppName(selectedAppId),
+      shownShortcuts:this.reduceShortcuts(selectedAppId, props.shortcuts)
     }
 
   }
@@ -37,30 +38,50 @@ class App extends Component {
 
   }
 
+  reduceShortcuts(selectedAppId, shortcuts) {
+    if (!selectedAppId) return {}
+
+    const appShortcuts = shortcuts.filter(item => item.appId === selectedAppId)
+
+    return appShortcuts.reduce((acc, curr) => {
+      if (!acc[curr.appSectionId]) acc[curr.appSectionId] = []
+      acc[curr.appSectionId].push(curr)
+
+      return acc
+    },{})
+  }
+
   getAppName(selectedAppId) {
     if (!selectedAppId) return ''
     return this.props.apps.find(item => item.id === selectedAppId).name
   }
 
   handleSearch(selectedAppId) {    
+    const shownShortcuts = this.reduceShortcuts(selectedAppId, this.props.shortcuts)
     const appName = this.getAppName(selectedAppId)
     Router.push('/?appId=' + selectedAppId, '/apps/' + encodeAppName(appName))
 
-    this.setState({appName})
+    this.setState({shownShortcuts, appName})
   }
 
+  renderShortcutCategory(sectionId) {
+    const sectionTitle = this.props.appSections.find(item => item.id === sectionId).name
+    const {shownShortcuts} = this.state
+
+    return <ShortcutsCategory key={sectionId} shortcuts={shownShortcuts[sectionId]} title={sectionTitle}/>
+  }
 
   render() {    
-    const {appName} = this.state
-    const {mostSearchedApps, mostPinnedApps, mostShortcutsApps} = this.props
+    const {shownShortcuts, appName} = this.state
+    const sectionIds = Object.keys(shownShortcuts)            
 
     return (      
       <Layout>
         <Search onChange={(selectedAppId) => this.handleSearch(selectedAppId)} value={appName}/>
         <ResultsContainer>        
-          <TopApps name="Most Searched Apps" apps={mostSearchedApps}/>
-          <TopApps name="Most Pinned Apps" apps={mostPinnedApps}/>
-          <TopApps name="Apps With Most Shortcuts" apps={mostShortcutsApps}/>
+          {sectionIds.length > 0 && 
+              sectionIds.map(key => this.renderShortcutCategory(+key))
+          }
         </ResultsContainer>
       </Layout>      
     )

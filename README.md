@@ -1,7 +1,6 @@
 # Keyboard ninja
 
 homepage
-* top apps ("121 more" link)
 * quotes
   * special hell for people
   * the ui disappears

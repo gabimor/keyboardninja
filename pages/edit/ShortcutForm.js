@@ -23,7 +23,7 @@ class ShortcutForm extends Component {
   }
 
   hanleAppSelect(appId) {
-    console.log(appId)
+    console.log()
   }
   
   handleChange(e) {    

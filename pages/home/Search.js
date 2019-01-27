@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import OSSelect from '../../components/OSSelect'
 import AppSearch from '../../components/AppSearch'
-import { AppConsumer } from '../../components/AppContext';
+import { connect } from 'react-redux'
 
 const Container = styled.div`
   display:flex;  
@@ -13,18 +13,19 @@ const Container = styled.div`
   font-size: 2rem;
 `
 
-function Search({onChange, value}) {
+function Search({onChange, value, apps}) {  
   return (
     <Container>
       <label htmlFor="search">Search App:</label>
-      <AppConsumer>
-        {({ apps }) => (
-          <AppSearch apps={apps} onSelection={onChange} value={value}/>
-        )}
-      </AppConsumer>
+        <AppSearch apps={apps} onSelection={onChange} value={value}/>
       <OSSelect />
     </Container>
   )
 }
 
-export default Search
+function mapStateToProps (state) {
+  const { apps } = state
+  return { apps }
+}
+
+export default connect(mapStateToProps)(Search)
