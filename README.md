@@ -5,18 +5,8 @@ colors
 old panel: #D9D9D9
 new panel (FA): #f8f9fa
 
-
-
 search
 * if app not found - suggest add
-
-search results
-* change OS
-* pin
-* show
-  * my pins first
-  * categorized
-  * by popularity (flat)
 
 add sections/shortcuts
 * cant find your favorite shorcuts ? why not share them with the world ?
@@ -28,15 +18,22 @@ stats
 
 general  
 * hotjar 
-* patreon/buy me a coffee
-* reporting errors/missing/duplications
 * get as many apps and shortcuts as i can for starters
 * spread the word in blogs/groups
-* design
-  * make it look good both for rich and poor apps (few shortcuts apps with one section/lots of shortcuts) 
-  * responsive
 
 ## Phase 2
+
+* patreon/buy me a coffee
+* reporting errors/missing/duplications
+
+search results
+* change OS
+* pin
+* show
+  * my pins first
+  * categorized
+  * by popularity
+
 
 add app
 * name
@@ -77,7 +74,6 @@ add shortcuts
 * accessible
   * from the main page -> add a shortcut
   * from the search results ("missing your favorite shortcut ? add it!") -> leads to partially filled shortcut form
-* i see a mistake form - to fix typos, change sections etc
 * email - get notified when my app goes live
 
 users
