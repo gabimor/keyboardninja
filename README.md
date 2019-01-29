@@ -1,15 +1,10 @@
 # Keyboard ninja
 
-
-colors
-old panel: #D9D9D9
-new panel (FA): #f8f9fa
-
-search
-* if app not found - suggest add
-
-add sections/shortcuts
-* cant find your favorite shorcuts ? why not share them with the world ?
+domains
+keyninja.me
+kbninja.com
+keyboardninja.me
+keyboard.ninja
 
 stats  
 * what people searched
@@ -20,6 +15,7 @@ general
 * hotjar 
 * get as many apps and shortcuts as i can for starters
 * spread the word in blogs/groups
+* seo - find a pro friend 
 
 ## Phase 2
 
@@ -27,13 +23,12 @@ general
 * reporting errors/missing/duplications
 
 search results
-* change OS
+* OS select
 * pin
-* show
+* show by
   * my pins first
   * categorized
   * by popularity
-
 
 add app
 * name
@@ -52,6 +47,7 @@ users can:
   * add to a section - user
   * edit - report
   * delete - report
+  * special keys - (Ctrl, Alt, Shift, Windows, Insert,Delete, Esc, F1 ... F12, Enter, PageUp, PageDown, Home, End, ArrowUp ... Arrow Right)
 * app
   * add - user
   * rename - me
@@ -62,27 +58,15 @@ users can:
   * delete empty section - them
   * move between sections - report
 
-add shortcuts
-* show existing sections, allow add
-* add method
-  * click and release to enter key
-  * hold key for 1 sec to enter its name
-  * hold key + enter to enter name
-  * toggle text/capture
-  * (Ctrl, Alt, Shift, Windows, Insert,Delete, Esc, F1 ... F12, Enter, PageUp, PageDown, Home, End, ArrowUp ... Arrow Right)
-    * Space, Tab, Esc - long press to enter key
-* accessible
-  * from the main page -> add a shortcut
-  * from the search results ("missing your favorite shortcut ? add it!") -> leads to partially filled shortcut form
-* email - get notified when my app goes live
-
-users
+user system
 * login
 * logout
-* signup
+* signup - email, password
 * forgot my password
-* pin (requires login)
-* my shortcuts/apps
+* requires login
+  * pin
+  * my pinned apps
+  * edit, delete
 
 ### reference
 
