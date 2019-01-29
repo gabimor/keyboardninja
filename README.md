@@ -1,11 +1,16 @@
 # Keyboard ninja
 
+
+colors
+old panel: #D9D9D9
+new panel (FA): #f8f9fa
+
+
+
 search
 * if app not found - suggest add
-* cant find your favorite shorcuts ? why not share them with the world ?
 
 search results
-* link to suggest form from app category
 * change OS
 * pin
 * show
@@ -14,9 +19,7 @@ search results
   * by popularity (flat)
 
 add sections/shortcuts
-* here are a few shortcuts examples (demonstrate comment: when text is selected)
-* big add/small list of added ? (cool design)
-* one click to enter 
+* cant find your favorite shorcuts ? why not share them with the world ?
 
 stats  
 * what people searched
@@ -38,25 +41,44 @@ general
 add app
 * name
 * category
-* after save - redirect to add shortcuts
 * email - get notified when my app goes live
+
+users can:
+* add app - can delete empty apps
+* create section (can delete empty sections)
+* add shortcut to section
+* report
+  * what's wrong ?
+  * suggest a fix
+
+* shortcut
+  * add to a section - user
+  * edit - report
+  * delete - report
+* app
+  * add - user
+  * rename - me
+* section
+  * add - user
+  * reorder shortcut - me
+  * rename section - report
+  * delete empty section - them
+  * move between sections - report
 
 add shortcuts
 * show existing sections, allow add
-* add action/win/osx/comment
 * add method
+  * click and release to enter key
   * hold key for 1 sec to enter its name
   * hold key + enter to enter name
   * toggle text/capture
-  * (Ctrl, Alt, Shift, Space, Tab, Windows, Insert, Delete, Esc, F1 ... F12, Enter, Backspace, PageUp.., Home, End, ArrowUp...)
+  * (Ctrl, Alt, Shift, Windows, Insert,Delete, Esc, F1 ... F12, Enter, PageUp, PageDown, Home, End, ArrowUp ... Arrow Right)
+    * Space, Tab, Esc - long press to enter key
 * accessible
   * from the main page -> add a shortcut
   * from the search results ("missing your favorite shortcut ? add it!") -> leads to partially filled shortcut form
 * i see a mistake form - to fix typos, change sections etc
 * email - get notified when my app goes live
-
-general
-* allow change the order of shorcuts
 
 users
 * login

@@ -1,15 +1,14 @@
 import React, {Component} from 'react'
 
-const toggleKey = "NumLock"
+const LONG_PRESS_DURATION = 600
 
-class ShortcutInput extends Component {
+export default class extends Component {
 
   constructor(props) {
     super(props)
 
     this.state = {
-      value: '',
-      typeMode: true      
+      value: ''    
     }
 
     this.input = React.createRef()
@@ -20,29 +19,45 @@ class ShortcutInput extends Component {
   componentDidMount() {
     this.input.current.onkeyup = this.handleKeyUp.bind(this)  
     this.input.current.onkeydown = this.handleKeyDown.bind(this)
+    this.input.current.onfocus = () => this.setState({value:''})
+  }
+
+  handleLongPress(key) {
+    if (key === "Escape") {
+      this.setState({value:''})
+      this.lastIsLong = true
+    }
+    else if (key === "Enter") {
+      this.input.current.blur()
+    }
   }
 
   handleKeyDown(e) {  
-    if (this.state.typeMode || e.key === toggleKey) return
-    e.preventDefault()
-
+    e.preventDefault()    
     if (e.key !== this.lastKeyDown) {
-      this.setState(state => {
+      this.longPressTimoutId = setTimeout(() => this.handleLongPress(e.key),LONG_PRESS_DURATION)
+      this.lastKeyDown = e.key
+    }
+  }
+
+  handleKeyUp(e) {        
+    e.preventDefault()
+    console.log(this.lastIsLong)
+    if (!this.lastIsLong) {
+      this. setState(state => {
         const addPlus = state.value.slice(-1) !== ' ' && state.value !== ''
         let  value = state.value
         if (addPlus) value += '+'
         value += getKeyName(e.key)
 
         return { value }
-       }
-      )
+      })
     }
-    this.lastKeyDown = e.key
-  }
 
-  handleKeyUp(e) {    
-    if (e.key === toggleKey) this.setState(state => ({typeMode : !state.typeMode}))
-  }  
+    clearTimeout(this.longPressTimoutId)
+    this.lastKeyDown = undefined
+    this.lastIsLong = false
+  }
 
   handleChange(e) {
     this.setState({
@@ -51,13 +66,10 @@ class ShortcutInput extends Component {
   }
 
   render() {
-    const { value, typeMode } = this.state
+    const { value } = this.state
 
     return (
-      <>
-        <input type="text" name="osx" value={value} ref={this.input} onChange={this.handleChange} autoComplete="off"/>
-        {typeMode ? "text" : "capture"}  
-      </>
+      <input type="text" name="osx" value={value} ref={this.input} onChange={this.handleChange} autoComplete="off"/>
     )
   }
 }
@@ -71,6 +83,3 @@ function getKeyName(key) {
   
   return keyNames[key] || key
 }
-
-
-export default ShortcutInput  

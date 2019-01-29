@@ -4,7 +4,7 @@ import Layout from '../components/Layout'
 import ShortcutForm from './add/ShortcutForm'
 
 
-class Edit extends Component {
+class Add extends Component {
 
   render() {
     return (
@@ -15,4 +15,4 @@ class Edit extends Component {
   }
 }
 
-export default Edit
+export default Add
