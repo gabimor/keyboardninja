@@ -1,5 +1,7 @@
 # Keyboard ninja
 
+fonts - source serif pro, segoe UI
+
 stats  
 * what people searched
 * heatmaps
