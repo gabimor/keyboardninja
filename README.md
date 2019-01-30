@@ -1,11 +1,5 @@
 # Keyboard ninja
 
-domains
-keyninja.me
-kbninja.com
-keyboardninja.me
-keyboard.ninja
-
 stats  
 * what people searched
 * heatmaps
@@ -19,6 +13,7 @@ general
 
 ## Phase 2
 
+general
 * patreon/buy me a coffee
 * reporting errors/missing/duplications
 
@@ -74,11 +69,11 @@ user system
 * https://marksheet.io/
 * https://devhints.io/react/
 
-## Goals
-
-* curate all apps keyboard shortcuts
-* show what is most used
-* personalized view of pinned shortcuts 
+### domains
+keyninja.me
+kbninja.com
+keyboardninja.me
+keyboard.ninja
 
 #### shortcut sheets
 https://www.jetbrains.com/help/resharper/Reference__Keyboard_Shortcuts.html
