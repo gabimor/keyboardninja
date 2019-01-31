@@ -2,7 +2,6 @@ const express = require('express')
 const next = require('next')
 const mysql = require('promise-mysql')
 
-const { getAppIdByName } = require('./helpers')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
@@ -15,12 +14,12 @@ async function main() {
   await app.prepare()
 
   const server = express()
-  
+
   server.get('/apps/:name', async (req, res) => {
-    const actualPage = "/searchResults"
+    const actualPage = '/searchResults'
     const data = await getData()
     const appId = getAppIdByName(req.params.name, data.apps)
-    const queryParams = {appId}
+    const queryParams = { appId }
     app.render(req, res, actualPage, queryParams)
   })
 
@@ -33,8 +32,8 @@ async function main() {
   server.get('*', (req, res) => {
     return handle(req, res)
   })
-  
-  server.listen(process.env.PORT, (err) => {
+
+  server.listen(process.env.PORT, err => {
     if (err) throw err
     console.log('> Ready on http://localhost:' + process.env.PORT)
   })
@@ -45,7 +44,7 @@ async function getData() {
     host: 'localhost',
     user: 'root',
     password: '1234',
-    database: 'keyboard_ninja'
+    database: 'keyboard_ninja',
   })
 
   const shortcuts = await conn.query('select * from shortcuts')
@@ -53,10 +52,14 @@ async function getData() {
   const appSections = await conn.query('SELECT * FROM app_sections')
   const appCategories = await conn.query('SELECT * FROM app_categories')
   const mostSearchedApps = await conn.query('SELECT * FROM apps LIMIT 5')
-  const mostPinnedApps = await conn.query('SELECT * FROM v_most_pinned_apps LIMIT 5')
-  const mostShortcutsApps = await conn.query('SELECT * FROM v_most_shortcuts_apps LIMIT 5')
+  const mostPinnedApps = await conn.query(
+    'SELECT * FROM v_most_pinned_apps LIMIT 5'
+  )
+  const mostShortcutsApps = await conn.query(
+    'SELECT * FROM v_most_shortcuts_apps LIMIT 5'
+  )
 
-  conn.end();
+  conn.end()
 
   return {
     apps,
@@ -65,6 +68,15 @@ async function getData() {
     appSections,
     mostSearchedApps,
     mostPinnedApps,
-    mostShortcutsApps
+    mostShortcutsApps,
   }
+}
+
+// TODO: those are also found in client helpers.js, had trouble with storybook when importing from CommonJS helpers.js, changed to ES6 modules
+function getAppIdByName(urlName, apps) {
+  return apps.find(item => encodeAppName(item.name) === urlName).id
+}
+
+function encodeAppName(name) {
+  return name.toLowerCase().replace(new RegExp(' ', 'g'), '-')
 }

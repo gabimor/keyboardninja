@@ -1,14 +1,11 @@
-function encodeAppName(name) {
-    return name.toLowerCase().replace(new RegExp(' ', 'g'), '-');
+export function encodeAppName(name) {
+  return name.toLowerCase().replace(new RegExp(' ', 'g'), '-')
 }
 
-function getAppIdByName(urlName, apps) {
-    return apps.find(item => encodeAppName(item.name) === urlName).id
+export function getAppIdByName(urlName, apps) {
+  return apps.find(item => encodeAppName(item.name) === urlName).id
 }
 
-module.exports = {
-    encodeAppName,
-    getAppIdByName
+export function upperFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
 }
-
-

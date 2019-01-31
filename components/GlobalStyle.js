@@ -1,15 +1,17 @@
 import { createGlobalStyle } from 'styled-components'
 
-export const a = {
-  red1: '',
-  red2: '',
-  red3: '',
-  darkgray1: '',
-  darkgray2: '',
-  darkgray3: '',
-  lightgray1: '',
-  lightgray2: '',
-  lightgray3: '',
+export const colors = {
+  darkRed: '#D1403D',
+  red: '#E86562',
+  lightRed: '#FE9694',
+
+  formBG: '#7F7E80',
+  formInputBG: '#A4A3A6',
+  mainBG: '#2D0605',
+
+  white: '#FFFFFF',
+  panelGray: '#D9D9D9',
+  panelZebra: '#E9E5E5',
 }
 
 export default createGlobalStyle`

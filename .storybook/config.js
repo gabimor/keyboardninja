@@ -1,31 +1,41 @@
-import { configure } from '@storybook/react';
-import { configureViewport } from '@storybook/addon-viewport';
+import { configure } from '@storybook/react'
+import { configureViewport } from '@storybook/addon-viewport'
 
 const newViewports = {
-  kindleFire2: {
-    name: 'Kindle Fire 2',
+  responsive: {
+    name: 'Responsive',
     styles: {
-      width: '600px',
-      height: '963px'
-    }
+      width: '100%',
+      height: '100%',
+    },
+    type: 'desktop',
   },
-  kindleFireHD: {
-    name: 'Kindle Fire HD',
+  iPad: {
+    name: 'iPad',
     styles: {
-      width: '533px',
-      height: '801px'
-    }
-  }
-};
-
-configureViewport({
-  viewports: newViewports
-});
-
-// automatically import all files ending in *.stories.js
-const req = require.context('../stories', true, /.stories.js$/);
-function loadStories() {
-  req.keys().forEach(filename => req(filename));
+      width: '1024px',
+      height: '1366px',
+    },
+  },
+  iPhone: {
+    name: 'iPhone X',
+    styles: {
+      width: '375px',
+      height: '812px',
+    },
+  },
 }
 
-configure(loadStories, module);
+configureViewport({
+  viewports: newViewports,
+})
+
+// automatically import all files ending in *.stories.js
+const pages = require.context('../pages', true, /.stories.js$/)
+const componenets = require.context('../components', true, /.stories.js$/)
+function loadStories() {
+  pages.keys().forEach(filename => pages(filename))
+  componenets.keys().forEach(filename => componenets(filename))
+}
+
+configure(loadStories, module)

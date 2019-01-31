@@ -10,10 +10,20 @@ const Container = styled.header`
 
 export default () => (
   <Container>
-    <Link href="/"><a>Keyboard Ninja</a></Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <Link href="/add"><a>Edit</a></Link> &nbsp;
-    <Link href="/apps"><a>Apps</a></Link> &nbsp;
-    <Link href="/about"><a>About</a></Link>
+    <Link href="/">
+      <a>Keyboard Ninja</a>
+    </Link>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <Link href="/add">
+      <a>Edit</a>
+    </Link>{' '}
+    &nbsp;
+    <Link href="/apps">
+      <a>Apps</a>
+    </Link>{' '}
+    &nbsp;
+    <Link href="/about">
+      <a>About</a>
+    </Link>
   </Container>
 )
-

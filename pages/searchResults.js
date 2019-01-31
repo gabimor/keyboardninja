@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Router, {withRouter} from 'next/router'
 
 import { encodeAppName } from '../helpers'
-import ShortcutsCategory from './home/ShortcutsCategory'
+import ShortcutsList from './searchResults/ShortcutsList'
 import Search from './home/Search'
 import Layout from '../components/Layout'
 
@@ -68,7 +68,7 @@ class App extends Component {
     const sectionTitle = this.props.appSections.find(item => item.id === sectionId).name
     const {shownShortcuts} = this.state
 
-    return <ShortcutsCategory key={sectionId} shortcuts={shownShortcuts[sectionId]} title={sectionTitle}/>
+    return <ShortcutsList key={sectionId} shortcuts={shownShortcuts[sectionId]} title={sectionTitle}/>
   }
 
   render() {    

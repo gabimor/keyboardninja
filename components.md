@@ -4,8 +4,6 @@
     * Nav
       * NavItem
     * OSSelect
-  * Search
-    * SearchInput  
   * Footer
 * Shared
   * CompanyName
@@ -15,6 +13,8 @@
   * ShortcutKey
   * Tooltip
   * Overlay
+  * SearchApp
+    * SearchInput  
 * Home
   * Container
   * TopApps

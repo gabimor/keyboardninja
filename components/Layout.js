@@ -13,7 +13,7 @@ export default ({ children }) => (
   <>
     <GlobalStyle />
     <Header />
-      <MainContainer>{children}</MainContainer>
+    <MainContainer>{children}</MainContainer>
     <Footer />
   </>
 )
