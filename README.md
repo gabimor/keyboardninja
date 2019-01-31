@@ -1,6 +1,9 @@
 # Keyboard ninja
 
 fonts - source serif pro, segoe UI
+* choose fonts
+* paddings, margins
+* popularity / edit mode
 
 stats  
 * what people searched
