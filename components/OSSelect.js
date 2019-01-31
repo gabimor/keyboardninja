@@ -2,18 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
-  margin-left:auto;
+  margin-left: auto;
 
   & i {
-    padding:10px;
+    padding: 10px;
   }
 `
 
-function OSSelect () {
+function OSSelect() {
   return (
     <Container>
-      <i className="fab fa-windows"></i>
-      <i className="fab fa-apple"></i>
+      <i className="fab fa-windows" />
+      <i className="fab fa-apple" />
     </Container>
   )
 }

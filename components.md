@@ -11,8 +11,7 @@
   * CompanyName
   * Link
   * ButtonLink
-  * ButtonPrimary
-  * ButtonSecondary
+  * Button
   * ShortcutKey
   * Tooltip
   * Overlay

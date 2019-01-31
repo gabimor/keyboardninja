@@ -22,18 +22,9 @@ general
 * patreon/buy me a coffee
 * reporting errors/missing/duplications
 
-search results
-* OS select
-* pin
-* show by
-  * my pins first
-  * categorized
-  * by popularity
-
-add app
-* name
-* category
-* email - get notified when my app goes live
+* login actions
+  * pin
+  * edit stuff
 
 users can:
 * add app - can delete empty apps

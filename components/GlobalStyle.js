@@ -1,6 +1,18 @@
-import { createGlobalStyle  } from "styled-components"
+import { createGlobalStyle } from 'styled-components'
 
-const GlobalStyle = createGlobalStyle`
+export const a = {
+  red1: '',
+  red2: '',
+  red3: '',
+  darkgray1: '',
+  darkgray2: '',
+  darkgray3: '',
+  lightgray1: '',
+  lightgray2: '',
+  lightgray3: '',
+}
+
+export default createGlobalStyle`
   * {
     box-sizing: border-box;
   }
@@ -94,4 +106,3 @@ const GlobalStyle = createGlobalStyle`
     background-color: #ddd;
   }
 `
-export default GlobalStyle

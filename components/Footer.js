@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Container = styled.footer`
-  background:#220016;
-  color:white;
-  padding:20px;
-  margin-top:40px;
+  background: #220016;
+  color: white;
+  padding: 20px;
+  margin-top: 40px;
 `
 
 function Footer () { 
@@ -14,6 +14,6 @@ function Footer () {
       Footer text
     </Container>
   )
-}
+} 
 
 export default Footer
