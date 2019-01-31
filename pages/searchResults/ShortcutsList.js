@@ -1,41 +1,55 @@
-import ShortcutItem from './ShortcutItem'
-import styled from 'styled-components'
+import React from "react"
 
+import ShortcutItem from "./ShortcutItem"
+import ListAddMessage from "./ListAddMessage"
+import styled from "styled-components"
+
+import { colors } from "../layout/GlobalStyle"
 const Container = styled.div`
   margin-top: 20px;
-  box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  overflow: hidden;
-  background: white;
-  font-size: 14px;
 `
 
 const Title = styled.header`
-  color: white;
-  background: linear-gradient(#273032, black);
-
-  padding: 10px 20px;
-  font-weight: 700;
+  display:flex;
+  align-items:baseline;
+  color: ${colors.panelZebra};
+  padding-bottom: 7px;
 `
 
-function ShortcutCategory({ title, shortcuts }) {
+const Table = styled.table`
+  width:100%;
+`
+
+
+const TBody = styled.tbody`
+  & td:first-child {
+    padding: 0 10px;
+    text-align: center;
+    max-width:20px;
+  }
+
+  & tr:nth-child(odd) {
+    background: ${colors.panelZebra};
+  }
+`
+
+function ShortcutsList({ title, shortcuts }) {
   return (
     <Container>
-      <Title>{title}</Title>
-      <table style={{ width: '100%' }} cellSpacing={0}>
-        <tbody>
-          {shortcuts.map((shortcut, index) => (
+      <Title>{title} <ListAddMessage listSize={shortcuts.length}/></Title>
+      <Table cellSpacing={0}>
+        <TBody>
+          {shortcuts.map((shortcut) => (
             <ShortcutItem
               key={shortcut.id}
               keys={shortcut.win}
               action={shortcut.action}
-              isDark={index % 2 === 0}
             />
           ))}
-        </tbody>
-      </table>
+        </TBody>
+      </Table>
     </Container>
   )
 }
 
-export default ShortcutCategory
+export default ShortcutsList

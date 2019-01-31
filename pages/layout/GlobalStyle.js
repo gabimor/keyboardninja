@@ -1,17 +1,17 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components"
 
 export const colors = {
-  darkRed: '#D1403D',
-  red: '#E86562',
-  lightRed: '#FE9694',
+  darkRed: "#D1403D",
+  red: "#E86562",
+  lightRed: "#FE9694",
 
-  formBG: '#7F7E80',
-  formInputBG: '#A4A3A6',
-  mainBG: '#2D0605',
+  formBG: "#7F7E80",
+  formInputBG: "#A4A3A6",
+  mainBG: "#2D0605",
 
-  white: '#FFFFFF',
-  panelGray: '#D9D9D9',
-  panelZebra: '#E9E5E5',
+  white: "#FFFFFF",
+  panelGray: "#D9D9D9",
+  panelZebra: "#E9E5E5",
 }
 
 export default createGlobalStyle`
@@ -19,17 +19,9 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    background: #f4f5fa;
-    color:black;
-    
+    background: ${colors.mainBG};    
     margin:0;
     font-family:open sans, arial;
-  }
-
-  a {
-    color:black;
-    
-    text-decoration:none;
   }
   
   input, textarea, select {

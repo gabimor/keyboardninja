@@ -1,27 +1,27 @@
-import { configure } from '@storybook/react'
-import { configureViewport } from '@storybook/addon-viewport'
+import { configure } from "@storybook/react"
+import { configureViewport } from "@storybook/addon-viewport"
 
 const newViewports = {
   responsive: {
-    name: 'Responsive',
+    name: "Responsive",
     styles: {
-      width: '100%',
-      height: '100%',
+      width: "100%",
+      height: "100%",
     },
-    type: 'desktop',
+    type: "desktop",
   },
   iPad: {
-    name: 'iPad',
+    name: "iPad",
     styles: {
-      width: '1024px',
-      height: '1366px',
+      width: "1024px",
+      height: "1366px",
     },
   },
   iPhone: {
-    name: 'iPhone X',
+    name: "iPhone X",
     styles: {
-      width: '375px',
-      height: '812px',
+      width: "375px",
+      height: "812px",
     },
   },
 }
@@ -31,8 +31,8 @@ configureViewport({
 })
 
 // automatically import all files ending in *.stories.js
-const pages = require.context('../pages', true, /.stories.js$/)
-const componenets = require.context('../components', true, /.stories.js$/)
+const pages = require.context("../pages", true, /.stories.js$/)
+const componenets = require.context("../components", true, /.stories.js$/)
 function loadStories() {
   pages.keys().forEach(filename => pages(filename))
   componenets.keys().forEach(filename => componenets(filename))

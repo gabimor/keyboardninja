@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react"
 
-import styled from 'styled-components'
-import { colors } from '../components/GlobalStyle'
+import styled from "styled-components"
+import { colors } from "../pages/layout/GlobalStyle"
 
-const Container = styled('span')`
+const Container = styled("span")`
   display: inline-block;
   background-color: ${colors.red};
   color: ${colors.white};

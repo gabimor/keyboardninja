@@ -1,39 +1,39 @@
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
+import React from "react"
 
-import { upperFirstLetter } from '../../helpers'
-import Shortcut from './Shortcut'
+import styled from "styled-components"
+import PropTypes from "prop-types"
+
+import { upperFirstLetter } from "../../helpers"
+import Shortcut from "./Shortcut"
+import { colors } from "../layout/GlobalStyle"
 
 const Container = styled.tr`
   padding: 10px 30px;
+  background: ${colors.panelGray};
 
-  color: #323639;
+  color: ${colors.mainBG}};
   & td {
-    padding: 8px 20px;
+    padding: 6px 10px;
   }
 `
 
-const Plus = styled('span')`
-  padding: 0 5px;
-`
-
-function ShortcutItem({ action, keys, isDark , isPinned}) {
-  const pinClass = (isPinned ? 'fas' : 'far') + ' fa-star'
-
+function ShortcutItem({ action, keys, isPinned }) {
   return (
-    <Container isDark={isDark}>
+    <Container>
+      <td>
+        <i className="fas fa-thumbtack" />
+      </td>
       <td>{upperFirstLetter(action)}</td>
-      <td><Shortcut keys={keys}/></td>
-      <td style={{ textAlign: 'right' }}>
-        <i className={pinClass} />
+      <td>
+        <Shortcut keys={keys} />
       </td>
     </Container>
   )
 }
 
 ShortcutItem.propTypes = {
-  shortcut: PropTypes.string.isRequired,
-  isDark: PropTypes.bool.isRequired,
+  action: PropTypes.string.isRequired,
+  keys: PropTypes.string.isRequired,
 }
 
 export default ShortcutItem

@@ -1,34 +1,33 @@
-* App
-  * Header
-    * Logo
-    * Nav
-      * NavItem
-    * OSSelect
-  * Footer
-* Shared
-  * CompanyName
-  * Link
-  * ButtonLink
-  * Button
-  * ShortcutKey
-  * Tooltip
-  * Overlay
-  * SearchApp
-    * SearchInput  
-* Home
-  * Container
-  * TopApps
-    * TopAppsItem
-* SearchResults
-  * ViewBy
-  * ShortcutsList
-    * ShortcutItem
-      * Pin
-      * PinsCount
-  * AddContainer
-    * Input
-    * Select
-    * ShortcutInput
-* Apps
-  * Category
-  
+- App
+  - Header
+    - Logo
+    - Nav
+      - NavItem
+    - OSSelect
+  - Footer
+- Shared
+  - CompanyName
+  - Link
+  - ButtonLink
+  - Button
+  - ShortcutKey
+  - Tooltip
+  - Overlay
+  - SearchApp
+    - SearchInput
+- Home
+  - Container
+  - TopApps
+    - TopAppsItem
+- SearchResults
+  - ViewBy
+  - ShortcutsList
+    - ShortcutItem
+      - Pin
+      - PinsCount
+  - AddContainer
+    - Input
+    - Select
+    - ShortcutInput
+- Apps
+  - Category

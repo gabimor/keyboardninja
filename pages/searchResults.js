@@ -1,41 +1,39 @@
-import { Component } from 'react'
-import { connect } from 'react-redux'
+import { Component } from "react"
+import { connect } from "react-redux"
 
-import styled from 'styled-components'
-import Router, {withRouter} from 'next/router'
+import styled from "styled-components"
+import Router, { withRouter } from "next/router"
 
-import { encodeAppName } from '../helpers'
-import ShortcutsList from './searchResults/ShortcutsList'
-import Search from './home/Search'
-import Layout from '../components/Layout'
+import { encodeAppName } from "../helpers"
+import ShortcutsList from "./searchResults/ShortcutsList"
+import Search from "./home/Search"
+import Layout from "./layout/Layout"
 
 const ResultsContainer = styled.div`
   display: grid;
-  grid-gap: 30px 20px;  
-  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+  grid-gap: 30px 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 `
 
 class App extends Component {
-
   constructor(props) {
     super(props)
-    
-    let selectedAppId = props.router.query.appId    
+
+    let selectedAppId = props.router.query.appId
     selectedAppId = selectedAppId ? +selectedAppId : undefined
 
     this.state = {
       selectedAppId,
       appName: this.getAppName(selectedAppId),
-      shownShortcuts:this.reduceShortcuts(selectedAppId, props.shortcuts)
+      shownShortcuts: this.reduceShortcuts(selectedAppId, props.shortcuts),
     }
-
   }
 
   componentDidMount() {
-    Router.events.on('routeChangeComplete', () => {
-      if (!this.props.router.query.appId) this.setState({selectedAppId: undefined, shownShortcuts:{}})
+    Router.events.on("routeChangeComplete", () => {
+      if (!this.props.router.query.appId)
+        this.setState({ selectedAppId: undefined, shownShortcuts: {} })
     })
-
   }
 
   reduceShortcuts(selectedAppId, shortcuts) {
@@ -48,50 +46,61 @@ class App extends Component {
       acc[curr.appSectionId].push(curr)
 
       return acc
-    },{})
+    }, {})
   }
 
   getAppName(selectedAppId) {
-    if (!selectedAppId) return ''
+    if (!selectedAppId) return ""
     return this.props.apps.find(item => item.id === selectedAppId).name
   }
 
-  handleSearch(selectedAppId) {    
-    const shownShortcuts = this.reduceShortcuts(selectedAppId, this.props.shortcuts)
+  handleSearch(selectedAppId) {
+    const shownShortcuts = this.reduceShortcuts(
+      selectedAppId,
+      this.props.shortcuts
+    )
     const appName = this.getAppName(selectedAppId)
-    Router.push('/?appId=' + selectedAppId, '/apps/' + encodeAppName(appName))
+    Router.push("/?appId=" + selectedAppId, "/apps/" + encodeAppName(appName))
 
-    this.setState({shownShortcuts, appName})
+    this.setState({ shownShortcuts, appName })
   }
 
   renderShortcutCategory(sectionId) {
-    const sectionTitle = this.props.appSections.find(item => item.id === sectionId).name
-    const {shownShortcuts} = this.state
+    const sectionTitle = this.props.appSections.find(
+      item => item.id === sectionId
+    ).name
+    const { shownShortcuts } = this.state
 
-    return <ShortcutsList key={sectionId} shortcuts={shownShortcuts[sectionId]} title={sectionTitle}/>
+    return (
+      <ShortcutsList
+        key={sectionId}
+        shortcuts={shownShortcuts[sectionId]}
+        title={sectionTitle}
+      />
+    )
   }
 
-  render() {    
-    const {shownShortcuts, appName} = this.state
-    const sectionIds = Object.keys(shownShortcuts)            
+  render() {
+    const { shownShortcuts, appName } = this.state
+    const sectionIds = Object.keys(shownShortcuts)
 
-    return (      
+    return (
       <Layout>
-        <Search onChange={(selectedAppId) => this.handleSearch(selectedAppId)} value={appName}/>
-        <ResultsContainer>        
-          {sectionIds.length > 0 && 
-              sectionIds.map(key => this.renderShortcutCategory(+key))
-          }
+        <Search
+          onChange={selectedAppId => this.handleSearch(selectedAppId)}
+          value={appName}
+        />
+        <ResultsContainer>
+          {sectionIds.length > 0 &&
+            sectionIds.map(key => this.renderShortcutCategory(+key))}
         </ResultsContainer>
-      </Layout>      
+      </Layout>
     )
   }
 }
 
-
-function mapStateToProps(state) {  
+function mapStateToProps(state) {
   return { ...state }
 }
-
 
 export default connect(mapStateToProps)(withRouter(App))

@@ -1,64 +1,63 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 
-import Autosuggest from 'react-autosuggest'
+import Autosuggest from "react-autosuggest"
 
 const style = {
-  color: '#171c1d',
-    
-  padding: '10px 20px',  
-  background:'#eaeaea',
-  border:0,
-  borderBottom: '1px solid #171c1d'
+  color: "#171c1d",
+
+  padding: "10px 20px",
+  background: "#eaeaea",
+  border: 0,
+  borderBottom: "1px solid #171c1d",
 }
 
-class AppSearch extends Component {  
+class AppSearch extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      value: props.value || '',
-      suggestions: []    
+      value: props.value || "",
+      suggestions: [],
     }
   }
 
-  onSuggestionSelected = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
+  onSuggestionSelected = (
+    event,
+    { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }
+  ) => {
     this.props.onSelection(suggestion.id)
   }
 
   onChange = (event, { newValue }) => {
     this.setState({
-      value: newValue
+      value: newValue,
     })
   }
 
   // Autosuggest will call this function every time you need to update suggestions.
   // You already implemented this logic above, so just use it.
-  onSuggestionsFetchRequested = ({ value }) => {    
+  onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
-      suggestions: getSuggestions(value, this.props.apps)
+      suggestions: getSuggestions(value, this.props.apps),
     })
   }
 
   // Autosuggest will call this function every time you need to clear suggestions.
   onSuggestionsClearRequested = () => {
     this.setState({
-      suggestions: []
+      suggestions: [],
     })
   }
 
-  renderSuggestion = suggestion => (
-    <div>
-      {suggestion.name}
-    </div>
-  )
+  renderSuggestion = suggestion => <div>{suggestion.name}</div>
 
   render() {
-    const { value, suggestions } = this.state;
-    
+    const { value, suggestions } = this.state
+
     const inputProps = {
       value,
       onChange: this.onChange,
-      style
+      style,
     }
 
     return (
@@ -76,12 +75,12 @@ class AppSearch extends Component {
 }
 
 const getSuggestions = (value, apps) => {
-  const inputValue =  value.trim().toLowerCase()
+  const inputValue = value.trim().toLowerCase()
   const inputLength = inputValue.length
 
-  return inputLength < 1 ? [] : apps.filter(app =>
-    app.name.toLowerCase().includes(inputValue)
-  )
-} 
+  return inputLength < 1
+    ? []
+    : apps.filter(app => app.name.toLowerCase().includes(inputValue))
+}
 
 export default AppSearch

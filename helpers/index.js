@@ -1,5 +1,5 @@
 export function encodeAppName(name) {
-  return name.toLowerCase().replace(new RegExp(' ', 'g'), '-')
+  return name.toLowerCase().replace(new RegExp(" ", "g"), "-")
 }
 
 export function getAppIdByName(urlName, apps) {

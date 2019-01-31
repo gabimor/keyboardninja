@@ -1,19 +1,19 @@
-import { Component } from 'react'
-import AppSearch from '../../components/AppSearch'
+import { Component } from "react"
+import AppSearch from "../../components/AppSearch"
 
-import ShortcutInput from './ShortcutInput'
+import ShortcutInput from "./ShortcutInput"
 // import { saveShortcut } from '../../api/shortcuts'
 
 class ShortcutForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      appId: '',
-      categoryId: '',
-      action: '',
-      osx: '',
-      win: '',
-      comment: '',
+      appId: "",
+      categoryId: "",
+      action: "",
+      osx: "",
+      win: "",
+      comment: "",
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -21,8 +21,7 @@ class ShortcutForm extends Component {
     this.hanleAppSelect = this.hanleAppSelect.bind(this)
   }
 
-  hanleAppSelect(appId) {
-  }
+  hanleAppSelect(appId) {}
 
   handleChange(e) {
     this.setState({
@@ -42,7 +41,7 @@ class ShortcutForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <AppSearch
-          apps={[{ id: 1, name: 'one' }]}
+          apps={[{ id: 1, name: "one" }]}
           onChange={this.hanleAppSelect}
         />
         categoryId
@@ -51,7 +50,7 @@ class ShortcutForm extends Component {
           name="categoryId"
           onChange={this.handleChange}
           autoComplete="off"
-        />{' '}
+        />{" "}
         <br />
         action
         <input
@@ -76,7 +75,7 @@ class ShortcutForm extends Component {
           value={comment}
           onChange={this.handleChange}
           autoComplete="off"
-        />{' '}
+        />{" "}
         <br />
         PREVIEW <br />
         <button type="submit">Add</button>

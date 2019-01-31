@@ -1,31 +1,39 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import { colors } from '../../components/GlobalStyle'
+import React from "react"
+import PropTypes from "prop-types"
+import styled from "styled-components"
+import { colors } from "../layout/GlobalStyle"
 
-import ShortcutKey from '../../components/ShortcutKey'
-import { upperFirstLetter } from '../../helpers'
+import ShortcutKey from "../../components/ShortcutKey"
+import { upperFirstLetter } from "../../helpers"
+
+const Container = styled.div`
+  display: inline-flex;
+  font-size: 14px;
+  padding: 2px;
+  color: ${colors.mainBG};
+`
 
 const Plus = styled.span`
-  font-size: 14px;
-  padding:2px;
-  color: ${colors.mainBG};
+  padding: 2px;
 `
 
 const Text = styled.span`
-  font-size: 14px;
-  padding: 4px;
-  color: ${colors.mainBG};
+  padding: 2px 4px 0;
+  font-size: 13px;
 `
 
 export default function Shortcut({ keys }) {
+  return <Container>{renderKeys(keys)}</Container>
+}
+
+function renderKeys(keys) {
   const keysArr = getKeysArr(keys)
   return keysArr.map((item, index) => {
     item = upperFirstLetter(item)
     switch (item) {
-      case '+':
+      case "+":
         return <Plus>+</Plus>
-      case ' ':
+      case " ":
         return <Text>then</Text>
       default:
         return <ShortcutKey key={index}>{item}</ShortcutKey>
@@ -34,19 +42,19 @@ export default function Shortcut({ keys }) {
 }
 
 function getKeysArr(keys) {
-  const spaceSplit = keys.split(' ')
+  const spaceSplit = keys.split(" ")
 
   const arr = []
 
   for (const spaceItem of spaceSplit) {
-    const plusSplit = spaceItem.split('+')
+    const plusSplit = spaceItem.split("+")
 
     for (const plusItem of plusSplit) {
       arr.push(plusItem)
-      arr.push('+')
+      arr.push("+")
     }
     arr.pop()
-    arr.push(' ')
+    arr.push(" ")
   }
 
   arr.pop()
