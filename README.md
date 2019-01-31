@@ -65,6 +65,11 @@ user system
   * my pinned apps
   * edit, delete
 
+## phase 3
+
+* theme pages ("top shortcuts for a web developer")
+* 
+
 ### reference
 
 * https://caniuse.com/
