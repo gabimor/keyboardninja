@@ -71,7 +71,10 @@ user system
 ## phase 3
 
 * theme pages ("top shortcuts for a web developer")
-* 
+* advanced mode
+  * several shortcuts to the same action
+  * text edit the shortcut
+  * support VS code "Ctrl+K V" type shortcuts
 
 ### reference
 

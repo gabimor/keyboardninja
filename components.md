@@ -1,0 +1,35 @@
+* App
+  * Header
+    * Logo
+    * Nav
+      * NavItem
+    * OSSelect
+  * Search
+    * SearchInput  
+  * Footer
+* Shared
+  * CompanyName
+  * Link
+  * ButtonLink
+  * ButtonPrimary
+  * ButtonSecondary
+  * ShortcutKey
+  * Tooltip
+  * Overlay
+* Home
+  * Container
+  * TopApps
+    * TopAppsItem
+* SearchResults
+  * ViewBy
+  * ShortcutsList
+    * ShortcutItem
+      * Pin
+      * PinsCount
+  * AddContainer
+    * Input
+    * Select
+    * ShortcutInput
+* Apps
+  * Category
+  
