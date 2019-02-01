@@ -1,4 +1,5 @@
 - App
+  - Container
   - Header
     - Logo
     - Nav
@@ -14,7 +15,6 @@
   - SearchApp
     - SearchAppInput
 - Home
-  - Container
   - TopApps
     - TopAppsItem
 - SearchResults

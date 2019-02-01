@@ -7,6 +7,7 @@ const Container = styled.ul`
   display: inline-block;
   margin-left: 40px;
   font-size: 20px;
+  font-weight:300;
   list-style:none;  
 
   & li {

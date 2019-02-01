@@ -6,7 +6,7 @@ import Router, { withRouter } from "next/router"
 
 import { encodeAppName } from "../helpers"
 import ShortcutList from "./searchResults/ShortcutList"
-import Search from "./home/Search"
+import SearchBar from "../components/SearchBar"
 import Layout from "./layout/Layout"
 
 const ResultsContainer = styled.div`
@@ -86,7 +86,7 @@ class App extends Component {
 
     return (
       <Layout>
-        <Search
+        <SearchBar
           onChange={selectedAppId => this.handleSearch(selectedAppId)}
           value={appName}
         />

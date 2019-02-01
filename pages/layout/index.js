@@ -22,15 +22,16 @@ export default createGlobalStyle`
   body {
     background: ${colors.mainBG};    
     color: ${colors.white}
-    margin:0;
+    margin: 0;
     font-family: "Roboto", arial;
   }
   
   input, textarea, select {
-    font-size:inherit;
+    font-size: inherit;
+    font-weight: 100;
   }
 
-  input:focus,  textarea:focus,  select:focus,
+  input:focus, textarea:focus, select:focus,
   input:active, textarea:active, select:active {
     outline: 0;
   }
@@ -42,12 +43,12 @@ export default createGlobalStyle`
   }
 
   a {
-    color:${colors.white};
-    text-decoration:none;
+    color: ${colors.white};
+    text-decoration: none;
   }
 
   h1,h2,h3,h4,h5,h6 {
-    margin:0;
+    margin: 0;
     font-weight: normal;
   }
 
@@ -55,17 +56,16 @@ export default createGlobalStyle`
 
   .react-autosuggest__container {
     position: relative;
+    flex-grow:1;
   }
   
   .react-autosuggest__input {
-    width: 350px;
-    // height: 30px;
-    // padding: 10px 20px;
-    // font-family: Helvetica, sans-serif;
-    font-weight: 300;
-    // font-size: 16px;
-    // border: 1px solid #aaa;
-    // border-radius: 4px;
+    width: 100%;
+    background: ${colors.red};
+    font-size: 25px;
+    color: white;
+    padding: 10px 20px;
+    border: none;
   }
   
   .react-autosuggest__input--focused {
@@ -84,16 +84,11 @@ export default createGlobalStyle`
   .react-autosuggest__suggestions-container--open {
     display: block;
     position: absolute;
-    top: 51px;
-    width: 350px;
-    border: 1px solid #aaa;
-    background-color: #fff;
-    font-family: Helvetica, sans-serif;
-    font-weight: 300;
-    font-size: 16px;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    max-height: 100px;
+    width:100%;
+    top: 53px;
+    background-color: ${colors.red};
+    color: ${colors.white};
+    font-size: 25px;
     overflow-y: auto;
     z-index: 2;
   }
@@ -109,7 +104,14 @@ export default createGlobalStyle`
     padding: 10px 20px;
   }
   
+  .react-autosuggest__suggestion--companyName {
+    color: ${colors.panelGray};
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 14px;
+  }
+
   .react-autosuggest__suggestion--highlighted {
-    background-color: #ddd;
+    background: ${colors.lightRed};
   }
 `

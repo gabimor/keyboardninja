@@ -9,6 +9,7 @@ const H1 = styled.h1`
   font-size: 30px;
   display: inline-block;
   cursor: pointer;
+  font-weight:300;
 `
 
 export default function Logo() {

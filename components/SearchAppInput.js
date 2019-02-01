@@ -2,16 +2,26 @@ import React, { Component } from "react"
 
 import Autosuggest from "react-autosuggest"
 
-const style = {
-  color: "#171c1d",
-
-  padding: "10px 20px",
-  background: "#eaeaea",
-  border: 0,
-  borderBottom: "1px solid #171c1d",
+const Suggestion = ({ id, name, companyName }) => {
+  if (id !== -1) {
+    return (
+      <div>
+        {name}
+        <span className="react-autosuggest__suggestion--companyName">
+          {companyName}
+        </span>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        Missing <b>{name}</b> ? select to me add it
+      </div>
+    )
+  }
 }
 
-class AppSearch extends Component {
+class SearchAppInput extends Component {
   constructor(props) {
     super(props)
 
@@ -25,7 +35,11 @@ class AppSearch extends Component {
     event,
     { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }
   ) => {
-    this.props.onSelection(suggestion.id)
+    if (suggestion.id !== -1) {
+      this.props.onSelection(suggestion.id)
+    } else {
+      this.props.onNew(suggestion.name)
+    }
   }
 
   onChange = (event, { newValue }) => {
@@ -49,7 +63,7 @@ class AppSearch extends Component {
     })
   }
 
-  renderSuggestion = suggestion => <div>{suggestion.name}</div>
+  renderSuggestion = suggestion => <Suggestion {...suggestion} />
 
   render() {
     const { value, suggestions } = this.state
@@ -57,7 +71,6 @@ class AppSearch extends Component {
     const inputProps = {
       value,
       onChange: this.onChange,
-      style,
     }
 
     return (
@@ -76,11 +89,16 @@ class AppSearch extends Component {
 
 const getSuggestions = (value, apps) => {
   const inputValue = value.trim().toLowerCase()
-  const inputLength = inputValue.length
 
-  return inputLength < 1
-    ? []
-    : apps.filter(app => app.name.toLowerCase().includes(inputValue))
+  const suggestedApps = apps.filter(
+    app =>
+      app.name.toLowerCase().includes(inputValue) ||
+      app.companyName.toLowerCase().includes(inputValue)
+  )
+
+  return suggestedApps.length > 0
+    ? suggestedApps
+    : [{ id: -1, name: inputValue }]
 }
 
-export default AppSearch
+export default SearchAppInput

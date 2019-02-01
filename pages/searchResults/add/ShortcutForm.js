@@ -1,5 +1,5 @@
 import { Component } from "react"
-import AppSearch from "../../../components/AppSearch"
+import AppSearch from "../../../components/SearchAppInput"
 
 import ShortcutInput from "./ShortcutInput"
 // import { saveShortcut } from '../../api/shortcuts'

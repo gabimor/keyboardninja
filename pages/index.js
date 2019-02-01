@@ -6,8 +6,9 @@ import Router, { withRouter } from "next/router"
 
 import { encodeAppName } from "../helpers"
 import TopApps from "./home/TopApps"
-import Search from "./home/Search"
+import SearchBar from "../components/SearchBar"
 import Layout from "./layout/Layout"
+
 
 const TopAppsContainer = styled.div`
   display: grid;
@@ -34,7 +35,7 @@ class App extends Component {
 
     return (
       <Layout>
-        <Search onChange={selectedAppId => this.handleSearch(selectedAppId)} />
+        <SearchBar onChange={selectedAppId => this.handleSearch(selectedAppId)} />
         <TopAppsContainer>
           <TopApps name="Most Searched Apps" apps={mostSearchedApps} />
           <TopApps name="Most Pinned Apps" apps={mostPinnedApps} />
