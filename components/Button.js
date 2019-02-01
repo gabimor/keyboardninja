@@ -3,7 +3,7 @@ import React from "react"
 import styled from "styled-components"
 import { colors } from "../pages/layout"
 
-const Container = styled("button")`
+const Container = styled.button`
   display: inline-block;
   background-color: ${colors.darkRed};
   color: ${colors.white};
