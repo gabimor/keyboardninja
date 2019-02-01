@@ -11,7 +11,7 @@ export default function AppCategory({ name, apps }) {
             href={"/searchResults?appId=" + item.id}
             as={"/apps/" + encodeAppName(item.name)}
           >
-            <a>{item.name}</a>
+            {item.name}
           </Link>
         </div>
       ))}

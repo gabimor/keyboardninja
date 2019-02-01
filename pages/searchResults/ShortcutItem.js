@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 
 import { upperFirstLetter } from "../../helpers"
 import Shortcut from "./Shortcut"
-import { colors } from "../layout/GlobalStyle"
+import { colors } from "../layout"
 
 const Container = styled.tr`
   padding: 10px 30px;

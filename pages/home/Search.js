@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import OSSelect from "../../components/OSSelect"
 import AppSearch from "../../components/AppSearch"
 import { connect } from "react-redux"
 
@@ -18,7 +17,6 @@ function Search({ onChange, value, apps }) {
     <Container>
       <label htmlFor="search">Search App:</label>
       <AppSearch apps={apps} onSelection={onChange} value={value} />
-      <OSSelect />
     </Container>
   )
 }

@@ -12,14 +12,12 @@ export default function TopApps({ name, apps }) {
               href={"/searchResults?appId=" + item.id}
               as={"/apps/" + encodeAppName(item.name)}
             >
-              <a>{item.name}</a>
+              {item.name}
             </Link>
           </li>
         ))}
       </ol>
-      <Link href="/apps">
-        <a>All apps</a>
-      </Link>
+      <Link href="/apps">All apps</Link>
     </div>
   )
 }

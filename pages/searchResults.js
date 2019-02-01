@@ -5,7 +5,7 @@ import styled from "styled-components"
 import Router, { withRouter } from "next/router"
 
 import { encodeAppName } from "../helpers"
-import ShortcutsList from "./searchResults/ShortcutsList"
+import ShortcutList from "./searchResults/ShortcutList"
 import Search from "./home/Search"
 import Layout from "./layout/Layout"
 
@@ -72,7 +72,7 @@ class App extends Component {
     const { shownShortcuts } = this.state
 
     return (
-      <ShortcutsList
+      <ShortcutList
         key={sectionId}
         shortcuts={shownShortcuts[sectionId]}
         title={sectionTitle}

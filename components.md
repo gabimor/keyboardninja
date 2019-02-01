@@ -1,5 +1,5 @@
 - App
-  - Header
+  - Header 
     - Logo
     - Nav
       - NavItem
@@ -14,14 +14,14 @@
   - Tooltip
   - Overlay
   - SearchApp
-    - SearchInput
+    - SearchAppInput
 - Home
   - Container
   - TopApps
     - TopAppsItem
 - SearchResults
   - ViewBy
-  - ShortcutsList
+  - ShortcutList
     - ShortcutItem
       - Pin
       - PinsCount
@@ -30,4 +30,5 @@
     - Select
     - ShortcutInput
 - Apps
-  - Category
+  - AppList
+  - AppItem

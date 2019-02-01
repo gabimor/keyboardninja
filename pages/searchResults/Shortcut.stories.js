@@ -3,7 +3,7 @@ import React from "react"
 import { storiesOf } from "@storybook/react"
 import { withKnobs, text } from "@storybook/addon-knobs"
 import { host } from "storybook-host"
-import { colors } from "../layout/GlobalStyle"
+import { colors } from "../layout"
 
 import Shortcut from "./Shortcut"
 

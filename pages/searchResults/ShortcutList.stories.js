@@ -4,8 +4,8 @@ import { storiesOf } from "@storybook/react"
 import { withKnobs, text } from "@storybook/addon-knobs"
 import { host } from "storybook-host"
 
-import { colors } from "../layout/GlobalStyle"
-import ShortcutsList from "./ShortcutsList"
+import { colors } from "../layout"
+import ShortcutList from "./ShortcutList"
 
 const shortcutList = [
   { action: "test", win: "ctrl+s", isDark: true },
@@ -15,7 +15,7 @@ const shortcutList = [
   { action: "ipsum dolor sit amet", win: "shift+alt+s", isDark: true },
 ]
 
-storiesOf("ShortcutsList", module)
+storiesOf("ShortcutList", module)
   .addDecorator(
     host({
       align: "top left",
@@ -26,10 +26,10 @@ storiesOf("ShortcutsList", module)
   )
   .addDecorator(withKnobs)
   .add("default", () => (
-    <ShortcutsList title={text("title", "General")} shortcuts={shortcutList} />
+    <ShortcutList title={text("title", "General")} shortcuts={shortcutList} />
   ))
   .add("short list", () => (
-    <ShortcutsList
+    <ShortcutList
       title={text("title", "Shapes")}
       shortcuts={shortcutList.slice(0, 2)}
     />

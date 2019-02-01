@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from "styled-components"
 
 const Container = styled.div`
@@ -8,7 +9,7 @@ const Container = styled.div`
   }
 `
 
-function OSSelect() {
+export default function OSSelect() {
   return (
     <Container>
       <i className="fab fa-windows" />
@@ -16,5 +17,3 @@ function OSSelect() {
     </Container>
   )
 }
-
-export default OSSelect

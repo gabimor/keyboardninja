@@ -1,7 +1,7 @@
 import React from "react"
 
 import styled from "styled-components"
-import { colors } from "../pages/layout/GlobalStyle"
+import { colors } from "../pages/layout"
 
 const Container = styled("span")`
   display: inline-block;

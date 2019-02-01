@@ -4,7 +4,7 @@ import ShortcutItem from "./ShortcutItem"
 import ListAddMessage from "./ListAddMessage"
 import styled from "styled-components"
 
-import { colors } from "../layout/GlobalStyle"
+import { colors } from "../layout"
 const Container = styled.div`
   margin-top: 20px;
 `
@@ -33,7 +33,7 @@ const TBody = styled.tbody`
   }
 `
 
-function ShortcutsList({ title, shortcuts }) {
+function ShortcutList({ title, shortcuts }) {
   return (
     <Container>
       <Title>{title} <ListAddMessage listSize={shortcuts.length}/></Title>
@@ -52,4 +52,4 @@ function ShortcutsList({ title, shortcuts }) {
   )
 }
 
-export default ShortcutsList
+export default ShortcutList

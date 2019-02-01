@@ -20,8 +20,9 @@ export default createGlobalStyle`
   }
   body {
     background: ${colors.mainBG};    
+    color: ${colors.white}
     margin:0;
-    font-family:open sans, arial;
+    font-family: "Open Sans", arial;
   }
   
   input, textarea, select {
@@ -33,6 +34,11 @@ export default createGlobalStyle`
     outline: 0;
   }
   
+  a {
+    color:${colors.lightRed};
+    text-decoration:none;
+  }
+
   h1,h2,h3,h4,h5,h6 {
     margin:0;
     font-weight: normal;
