@@ -1,19 +1,14 @@
 import React from "react"
 
-import styled from "styled-components"
-import Link from "next/link"
-import { colors } from "."
 import Logo from "./Logo"
 import Nav from "./Nav"
+import OSSelect from "./OSSelect";
 
-const Container = styled.div`
-  color: ${colors.white};
-  display:inline-block;
-`
 
 export default () => (
-  <Container>
+  <div>
     <Logo />    
     <Nav/>
-  </Container>
+    <OSSelect os="win"/>    
+  </div>
 )

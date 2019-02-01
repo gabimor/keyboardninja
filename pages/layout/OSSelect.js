@@ -1,19 +1,46 @@
-import React from 'react'
+import React, { Component } from "react"
+import PropTypes from "prop-types"
 import styled from "styled-components"
+import { colors } from "."
 
-const Container = styled.div`
+const Container = styled.span`
   margin-left: auto;
-
-  & i {
-    padding: 10px;
-  }
+  font-size: 30px;
+  cursor: pointer;
 `
 
-export default function OSSelect() {
-  return (
-    <Container>
-      <i className="fab fa-windows" />
-      <i className="fab fa-apple" />
-    </Container>
-  )
+class OSSelect extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      os: props.os,
+    }
+  }
+
+  getColor = os =>
+    os === this.state.os ? colors.white : colors.deactivatedGray
+
+  render() {
+    return (
+      <Container>
+        <i
+          className="fab fa-windows"
+          style={{ color: this.getColor("win") }}
+          onClick={() => this.setState({ os: "win" })}
+        />
+        <i
+          className="fab fa-apple"
+          style={{ color: this.getColor("osx"), paddingLeft:20}}
+          onClick={() => this.setState({ os: "osx" })}
+        />
+      </Container>
+    )
+  }
 }
+
+OSSelect.propTypes = {
+  os: PropTypes.string.isRequired
+}
+
+export default OSSelect

@@ -12,6 +12,7 @@ export const colors = {
   white: "#FFFFFF",
   panelGray: "#D9D9D9",
   panelZebra: "#E9E5E5",
+  deactivatedGray: "#A4A3A6",
 }
 
 export default createGlobalStyle`
@@ -22,7 +23,7 @@ export default createGlobalStyle`
     background: ${colors.mainBG};    
     color: ${colors.white}
     margin:0;
-    font-family: "Open Sans", arial;
+    font-family: "Roboto", arial;
   }
   
   input, textarea, select {
@@ -34,8 +35,14 @@ export default createGlobalStyle`
     outline: 0;
   }
   
+  ul, ul li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
   a {
-    color:${colors.lightRed};
+    color:${colors.white};
     text-decoration:none;
   }
 

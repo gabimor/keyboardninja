@@ -6,22 +6,22 @@ import { colors } from "."
 
 const H1 = styled.h1`
   color: ${colors.white};
-  font-size: 37px;
+  font-size: 30px;
   display: inline-block;
-  cursor:pointer;
+  cursor: pointer;
 `
 
 export default function Logo() {
   return (
     <H1>
       <Link href="/">
-        <span style={{ fontWeigth: 100 }}>
+        <>
           keyboard
           <span style={{ fontWeight: 700 }}>
             ninja<span style={{ color: colors.red, fontSize: "50px" }}>.</span>
             me
           </span>
-        </span>
+        </>
       </Link>
     </H1>
   )

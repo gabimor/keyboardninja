@@ -1,5 +1,5 @@
 - App
-  - Header 
+  - Header
     - Logo
     - Nav
       - NavItem
@@ -7,8 +7,6 @@
   - Footer
 - Shared
   - CompanyName
-  - Link
-  - ButtonLink
   - Button
   - ShortcutKey
   - Tooltip

@@ -3,16 +3,25 @@ import React from "react"
 import styled from "styled-components"
 import Link from "next/link"
 
-const Container = styled.div`
+const Container = styled.ul`
   display: inline-block;
-  margin-left: 30px;
-  font-size: 24px;
+  margin-left: 40px;
+  font-size: 20px;
+  list-style:none;  
+
+  & li {
+    padding-left:20px;
+    display: inline-block;
+  }
 `
 
 export default () => (
   <Container>
-    <Link href="/add">Edit</Link>
-    <Link href="/apps">Apps</Link>
-    <Link href="/about">About</Link>
+    <li>
+      <Link href="/apps">Apps</Link>
+    </li>
+    <li>
+      <Link href="/about">About</Link>
+    </li>
   </Container>
 )
