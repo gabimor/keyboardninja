@@ -6,14 +6,13 @@ import { colors } from "../layout"
 
 import { encodeAppName } from "../../helpers"
 
-
 const Container = styled.div`
   line-height: 20px;
 `
 
 const CategoryName = styled.h3`
-  color:${colors.darkRed};
-  font-weight:600;
+  color: ${colors.darkRed};
+  font-weight: 600;
   border-bottom: solid 1px ${colors.lightRed};
   padding-bottom: 3px;
   margin-bottom: 5px;

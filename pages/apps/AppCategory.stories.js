@@ -10,11 +10,12 @@ const data = [
   { id: 1, name: "XD", companyName: "Adobe" },
   { id: 1, name: "Photoshop", companyName: "Adobe" },
   { id: 1, name: "Lightroom", companyName: "Adobe" },
+  { id: 1, name: "Premiere Pro", companyName: "Adobe" },
 ]
 
-storiesOf("layout", module)
+storiesOf("AppCategory", module)
   .addDecorator(withKnobs)
-  .add("AppCategory", () => (
+  .add("default", () => (
     <Panel>
       <AppCategory name={text("name", "Graphics")} apps={data} />
     </Panel>
