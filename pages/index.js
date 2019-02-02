@@ -5,12 +5,13 @@ import styled from "styled-components"
 import Router, { withRouter } from "next/router"
 
 import { encodeAppName } from "../helpers"
-import TopApps from "./home/TopApps"
+import AppList from "../components/AppList"
 import SearchBar from "../components/SearchBar"
+import Panel from "../components/Panel"
 import Layout from "./layout/Layout"
+import AddForm from "./searchResults/add/AddForm";
 
-
-const TopAppsContainer = styled.div`
+const AppListContainer = styled.div`
   display: grid;
   grid-gap: 30px 20px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -35,12 +36,17 @@ class App extends Component {
 
     return (
       <Layout>
-        <SearchBar onChange={selectedAppId => this.handleSearch(selectedAppId)} />
-        <TopAppsContainer>
-          <TopApps name="Most Searched Apps" apps={mostSearchedApps} />
-          <TopApps name="Most Pinned Apps" apps={mostPinnedApps} />
-          <TopApps name="Apps With Most Shortcuts" apps={mostShortcutsApps} />
-        </TopAppsContainer>
+        <SearchBar
+          onChange={selectedAppId => this.handleSearch(selectedAppId)}
+        />
+        <AddForm/>
+        <Panel>
+          <AppListContainer>
+            <AppList name="Most Searched Apps" apps={mostSearchedApps} />
+            <AppList name="Most Pinned Apps" apps={mostPinnedApps} />
+            <AppList name="Apps With Most Shortcuts" apps={mostShortcutsApps} />
+          </AppListContainer>
+        </Panel>
       </Layout>
     )
   }

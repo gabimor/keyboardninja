@@ -10,6 +10,7 @@ export const colors = {
   mainBG: "#2D0605",
 
   white: "#FFFFFF",
+  lightGray: "#ECECEC",
   panelGray: "#D9D9D9",
   panelZebra: "#E9E5E5",
   deactivatedGray: "#A4A3A6",
@@ -23,12 +24,17 @@ export default createGlobalStyle`
     background: ${colors.mainBG};    
     color: ${colors.white}
     margin: 0;
-    font-family: "Roboto", arial;
+    font-family: "Roboto", arial;    
   }
   
   input, textarea, select {
-    font-size: inherit;
-    font-weight: 100;
+    font-size: inherit;    
+    border:none;
+    padding:6px 0 6px;
+  }
+
+  button {
+    vertical-align:bottom;
   }
 
   input:focus, textarea:focus, select:focus,
@@ -36,10 +42,15 @@ export default createGlobalStyle`
     outline: 0;
   }
   
-  ul, ul li {
-    list-style: none;
+  ul, ul li, ol, ol li {
     margin: 0;
     padding: 0;
+    list-style-position: inside;
+  }
+
+
+  ul, ul li {
+    list-style: none;
   }
 
   a {
@@ -49,6 +60,7 @@ export default createGlobalStyle`
 
   h1,h2,h3,h4,h5,h6 {
     margin: 0;
+    line-height:1em;
     font-weight: normal;
   }
 

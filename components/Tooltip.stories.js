@@ -10,7 +10,7 @@ storiesOf("Tooltip", module)
     <Tooltip>
       {text(
         "text",
-        "enjoy life, live well, love a lot and don't forget to laught"
+        "enjoy life, live well, love a lot and dont forget to laught"
       )}
     </Tooltip>
   ))
