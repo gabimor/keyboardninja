@@ -22,44 +22,66 @@ const Text = styled.span`
   font-size: 13px;
 `
 
-export default function Shortcut({ keys }) {
-  return <Container>{renderKeys(keys)}</Container>
-}
-
-function renderKeys(keys) {
-  const keysArr = getKeysArr(keys)
-  return keysArr.map((item, index) => {
-    item = upperFirstLetter(item)
-    switch (item) {
-      case "+":
-        return <Plus>+</Plus>
-      case " ":
-        return <Text>then</Text>
-      default:
-        return <ShortcutKey key={index}>{item}</ShortcutKey>
-    }
-  })
-}
-
-function getKeysArr(keys) {
-  const spaceSplit = keys.split(" ")
-
-  const arr = []
-
-  for (const spaceItem of spaceSplit) {
-    const plusSplit = spaceItem.split("+")
-
-    for (const plusItem of plusSplit) {
-      arr.push(plusItem)
-      arr.push("+")
-    }
-    arr.pop()
-    arr.push(" ")
+function getKeyName(key) {
+  const keyNames = {
+    Control: "Ctrl",
+    " ": "Space",
+    Escape: "Esc",
   }
 
-  arr.pop()
-  return arr
+  return keyNames[key] || key
 }
+
+function moveKeyFirst(keys, key) {
+  if (keys.includes(key)) {
+    return [key, ...keys.filter(item => item !== key)]
+  } else {
+    return keys
+  }
+}
+
+export default function Shortcut({ keys }) {
+  keys = moveKeyFirst(keys, "Shift")
+  keys = moveKeyFirst(keys, "Alt")
+  keys = moveKeyFirst(keys, "Control")
+
+  return (
+    <Container>
+      {keys.map(key => {
+        key = getKeyName(key)
+        key = upperFirstLetter(key)
+        switch (key) {
+          case "+":
+            return <Plus>+</Plus>
+          case " ":
+            return <Text>then</Text>
+          default:
+            return <ShortcutKey key={key}>{key}</ShortcutKey>
+        }
+      })}
+    </Container>
+  )
+}
+
+// function getKeysArr(keys) {
+//   const spaceSplit = keys.split(" ")
+
+//   const arr = []
+
+//   for (const spaceItem of spaceSplit) {
+//     const plusSplit = spaceItem.split("+")
+
+//     for (const plusItem of plusSplit) {
+//       arr.push(plusItem)
+//       arr.push("+")
+//     }
+//     arr.pop()
+//     arr.push(" ")
+//   }
+
+//   arr.pop()
+//   return arr
+// }
 
 Shortcut.propTypes = {
   keys: PropTypes.array,

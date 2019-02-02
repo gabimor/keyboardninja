@@ -6,7 +6,7 @@ import Shortcut from "../Shortcut"
 
 const Cursor = styled.div`
   border-right: solid 1px ${colors.white};
-  display:inline-block;
+  display: inline-block;
   height: 22px;
 `
 
@@ -14,6 +14,7 @@ const Input = styled.div`
   background: ${colors.formInputBG};
   border: dashed 1px ${colors.panelGray};
   width: 200px;
+  height: 30px;
   padding: 3px 0 3px 5px;
 
   :focus {
@@ -21,87 +22,97 @@ const Input = styled.div`
   }
 `
 
-const LONG_PRESS_DURATION = 600
+// const LONG_PRESS_DURATION = 600
 
 export default class extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      value: "",
+      value: [],
     }
 
     this.input = React.createRef()
-
-    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
     this.input.current.onkeyup = this.handleKeyUp.bind(this)
     this.input.current.onkeydown = this.handleKeyDown.bind(this)
-    this.input.current.onfocus = () => this.setState({ value: "" })
+    this.input.current.onblur = this.handleBlur
+    this.input.current.onfocus = this.handleFocus
   }
 
-  getKeyName(key) {
-    const keyNames = {
-      Control: "Ctrl",
-      " ": "Space",
-      Escape: "Esc",
-    }
-
-    return keyNames[key] || key
+  handleBlur = () => {
+    this.setState({ focus: false })
   }
 
-  handleLongPress(key) {
-    if (key === "Escape") {
-      this.setState({ value: "" })
-      this.lastIsLong = true
-    } else if (key === "Enter") {
-      this.input.current.blur()
-    }
+  handleFocus = () => {
+    this.setState({ focus: true })
   }
+
+  // handleLongPress(key) {
+  //   if (key === "Backspace") {
+  //     this.lastIsLong = true
+  //   }
+  //   // } else if (key === "Tab") {
+  //   //   this.input.current.blur()
+  //   // }
+  // }
 
   handleKeyDown(e) {
     e.preventDefault()
-    if (e.key !== this.lastKeyDown) {
-      this.longPressTimoutId = setTimeout(
-        () => this.handleLongPress(e.key),
-        LONG_PRESS_DURATION
-      )
-      this.lastKeyDown = e.key
-    }
-  }
+    if (e.key === "Tab") return
 
-  handleKeyUp(e) {
-    e.preventDefault()
-    if (!this.lastIsLong) {
+    if (e.key === "Backspace") {
       this.setState(state => {
-        const addPlus = state.value.slice(-1) !== " " && state.value !== ""
-        let value = state.value
-        if (addPlus) value += "+"
-        value += this.getKeyName(e.key)
+        const value = state.value.slice(0, state.value.length - 1)
+
+        return { value }
+      })
+    } else if (!this.state.value.includes(e.key)) {
+      this.setState(state => {
+        const value = [...state.value, e.key]
 
         return { value }
       })
     }
 
-    clearTimeout(this.longPressTimoutId)
-    this.lastKeyDown = undefined
-    this.lastIsLong = false
+    // e.preventDefault()
+    // if (e.key !== this.lastKeyDown) {
+    //   this.longPressTimoutId = setTimeout(
+    //     () => this.handleLongPress(e.key),
+    //     LONG_PRESS_DURATION
+    //   )
+    //   this.lastKeyDown = e.key
+    // }
   }
 
-  handleChange(e) {
-    this.setState({
-      value: e.target.value,
-    })
+  handleKeyUp(e) {
+    // if (this.lastIsLong) return
+    // if (e.key === "Tab") {
+    //   this.input.current.blur()
+    // } else if (e.key === "Backspace") {
+    //   this.setState(state => {
+    //     const value = state.value.slice(0, state.value.length - 1)
+    //     return { value }
+    //   })
+    // } else {
+    //   this.setState(state => {
+    //     const value = [...state.value, this.getKeyName(e.key)]
+    //     return { value }
+    //   })
+    // }
+    // clearTimeout(this.longPressTimoutId)
+    // this.lastKeyDown = undefined
+    // this.lastIsLong = false
   }
 
   render() {
-    const { value } = this.state
-
+    const { value, focus } = this.state
     return (
-      <Input tabIndex={0} ref={this.input} onChange={this.handleChange}>
-        {value && <Shortcut keys={value} />}<Cursor/>
+      <Input tabIndex={0} ref={this.input}>
+        <Shortcut keys={value} />
+        {focus && <Cursor />}
       </Input>
     )
   }
