@@ -1,10 +1,67 @@
 import React, { Component } from "react"
 import styled from "styled-components"
 
+import Select from "react-select"
 import { colors } from "../../layout"
 import ShortcutInput from "./ShortcutInput"
 import Button from "../../../components/Button"
 
+const options = [
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
+]
+
+const colourStyles = {
+  control: (styles, state) => ({
+    ...styles,
+    borderRadius: 0,
+    backgroundColor: state.isFocused
+      ? colors.formInputFocusBG
+      : colors.formInputBG,
+    border: 0,
+    color: colors.white,
+    boxShadow: "none",
+    minHeight: 0,
+  }),
+  container: styles => ({
+    ...styles,
+    display: "inline-block",
+    width: "250px",
+  }),
+  dropdownIndicator: styles => ({
+    ...styles,
+    color: colors.lightGray,
+    padding: "8px 4px 7px",
+  }),
+  placeholder: styles => ({
+    ...styles,
+    color: colors.lightGray,
+  }),
+  input: styles => ({
+    ...styles,
+    color: colors.white,
+  }),
+  singleValue: styles => ({
+    ...styles,
+    color: colors.white,    
+  }),
+  option: (styles, state) => {
+    return {
+      ...styles,
+      background: state.isFocused ? "#c3c3c3" : colors.formInputFocusBG ,
+    }
+  },
+  menu: styles => ({
+    ...styles,
+    backgroundColor: colors.formInputFocusBG,
+    borderRadius: 0,
+  }),
+  menuList: styles => ({
+    ...styles,
+    padding:0
+  }),
+}
 class AddShortcut extends Component {
   constructor({ keys, action, section, category }) {
     super()
@@ -49,7 +106,7 @@ class AddShortcut extends Component {
             />
           </ShortcutContainer>
           <Advanced>
-            Add: <span onClick={() => this.handleAddKey("tab")}>Tab</span> |{" "}
+            <span onClick={() => this.handleAddKey("tab")}>Add Tab</span> |{" "}
             <span onClick={() => this.handleAddKey("BackSpace")}>
               BackSpace
             </span>
@@ -64,14 +121,14 @@ class AddShortcut extends Component {
               autoComplete="off"
             />
             <label>Section</label>
-            <input
-              type="text"
+            <Select
               name="section"
+              value={section}
               onChange={this.handleChange}
-              autoComplete="off"
-              style={{ marginRight: "8px" }}
+              options={options}
+              styles={colourStyles}
             />
-            <Button style={{ marginRight: "8px" }}>Add</Button>
+            <Button style={{ margin: "0 8px" }}>Add</Button>
             <Button secondary={true}>Cancel</Button>
           </RestContainer>
         </InnerContainer>

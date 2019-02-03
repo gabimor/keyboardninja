@@ -2,8 +2,6 @@
 
 ## TODO
 
-- ShortcutInput
-  - allow get/set of value
 - AddShortcut
   - section selection
   - validations
@@ -13,17 +11,21 @@
   - tooltip
 - AddApp
   - validations
+- connect add shortcuts/add app links to forms
 - hover on links
 - hotjar
 - reporting errors/missing/duplications
+- connect everything to the DB
+  - history tables
 
-## Design
+## Backlog
 
 - popularity / edit mode
 
 add shortcut
 
 - when logged in, you get points for adding shortcuts and for getting pinned and show on the leaderboead
+- these shortcuts are waiting to be approved, 5 votes will approve them
 - Ctrl, Alt then Shift
 - special keys - (Ctrl, Alt, Shift, Windows, Insert,Delete, Esc, F1 ... F12, Enter, PageUp, PageDown, Home, End, ArrowUp ... Arrow
 - advanced mode: add Tab, Backspace, free text add, previewed in the textbox

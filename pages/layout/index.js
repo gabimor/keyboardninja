@@ -40,7 +40,7 @@ export default createGlobalStyle`
   }
 
   input {
-    padding: 7px 5px 8px;
+    padding: 8px 5px 8px;
     color: white;
     background: ${colors.formInputBG};
   }
