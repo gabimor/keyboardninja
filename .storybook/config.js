@@ -1,7 +1,7 @@
 import { configure } from "@storybook/react"
 import { configureViewport } from "@storybook/addon-viewport"
 
-const newViewports = {
+const viewports = {
   responsive: {
     name: "Responsive",
     styles: {
@@ -27,7 +27,7 @@ const newViewports = {
 }
 
 configureViewport({
-  viewports: newViewports,
+  viewports,
 })
 
 // automatically import all files ending in *.stories.js

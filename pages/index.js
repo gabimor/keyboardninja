@@ -7,9 +7,9 @@ import Router, { withRouter } from "next/router"
 import { encodeAppName } from "../helpers"
 import AppList from "../components/AppList"
 import SearchBar from "../components/SearchBar"
-import Panel from "../components/Panel"
+import { Panel } from "../components/Panel"
 import Layout from "./layout/Layout"
-import AddForm from "./searchResults/add/AddForm";
+import AddForm from "./searchResults/add/AddForm"
 
 const AppListContainer = styled.div`
   display: grid;
@@ -39,7 +39,7 @@ class App extends Component {
         <SearchBar
           onChange={selectedAppId => this.handleSearch(selectedAppId)}
         />
-        <AddForm/>
+        <AddForm />
         <Panel>
           <AppListContainer>
             <AppList name="Most Searched Apps" apps={mostSearchedApps} />

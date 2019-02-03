@@ -11,6 +11,7 @@ add shortcut
 - when logged in, you get points for adding shortcuts and for getting pinned and show on the leaderboead
 - Ctrl, Alt then Shift
 - special keys - (Ctrl, Alt, Shift, Windows, Insert,Delete, Esc, F1 ... F12, Enter, PageUp, PageDown, Home, End, ArrowUp ... Arrow
+- advanced mode: add Tab, Backspace, free text add, previewed in the textbox
 
 stats
 

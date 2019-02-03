@@ -9,7 +9,6 @@ import { upperFirstLetter } from "../../helpers"
 const Container = styled.div`
   display: inline-flex;
   font-size: 14px;
-  padding: 2px;
   color: ${colors.mainBG};
 `
 
@@ -27,6 +26,8 @@ function getKeyName(key) {
     Control: "Ctrl",
     " ": "Space",
     Escape: "Esc",
+    PageUp: "PgUp",
+    PageDown: "PgDn"
   }
 
   return keyNames[key] || key
@@ -62,26 +63,6 @@ export default function Shortcut({ keys }) {
     </Container>
   )
 }
-
-// function getKeysArr(keys) {
-//   const spaceSplit = keys.split(" ")
-
-//   const arr = []
-
-//   for (const spaceItem of spaceSplit) {
-//     const plusSplit = spaceItem.split("+")
-
-//     for (const plusItem of plusSplit) {
-//       arr.push(plusItem)
-//       arr.push("+")
-//     }
-//     arr.pop()
-//     arr.push(" ")
-//   }
-
-//   arr.pop()
-//   return arr
-// }
 
 Shortcut.propTypes = {
   keys: PropTypes.array,

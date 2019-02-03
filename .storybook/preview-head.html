@@ -26,30 +26,59 @@ deactivatedGray: #A4A3A6, -->
     box-sizing: border-box;
   }
   body {
-    background: #2D0605;
+    background: #2d0605;
     color: white;
     margin: 0;
     font-family: "Roboto", arial;
   }
 
-  input, textarea, select {
+  input,
+  textarea,
+  select {
+    font-family: inherit;
     font-size: inherit;
-    border:none;
-    padding:6px 0 6px;
+    border: none;
   }
 
-  input:focus, textarea:focus, select:focus,
-  input:active, textarea:active, select:active {
+  div:focus,
+  div:active,
+  input:focus,
+  input:active,
+  textarea:focus,
+  textarea:active,
+  select:focus,
+  select:active {
     outline: 0;
   }
 
-  ul, ul li, ol, ol li {
+  input:focus,
+  textarea:focus,
+  select:focus {
+    background: #afadad;
+  }
+
+  input {
+    padding: 7px 5px 8px;
+    color: white;
+    background: #a4a3a6;
+  }
+
+  label {
+    margin-right: 6px;
+    color: #ececec;
+  }
+
+  ul,
+  ul li,
+  ol,
+  ol li {
     margin: 0;
     padding: 0;
     list-style-position: inside;
   }
 
-  ul, ul li {
+  ul,
+  ul li {
     list-style: none;
   }
 
@@ -58,20 +87,25 @@ deactivatedGray: #A4A3A6, -->
     text-decoration: none;
   }
 
-  h1,h2,h3,h4,h5,h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin: 0;
-    line-height:1em;
+    line-height: 1em;
     font-weight: normal;
   }
 
   .react-autosuggest__container {
     position: relative;
-    flex-grow:1;
+    flex-grow: 1;
   }
 
   .react-autosuggest__input {
     width: 100%;
-    background: #E86562;
+    background: #e86562;
     font-size: 25px;
     color: white;
     padding: 10px 20px;
@@ -94,9 +128,9 @@ deactivatedGray: #A4A3A6, -->
   .react-autosuggest__suggestions-container--open {
     display: block;
     position: absolute;
-    width:100%;
+    width: 100%;
     top: 53px;
-    background-color: #E86562;
+    background-color: #e86562;
     color: white;
     font-size: 25px;
     overflow-y: auto;
@@ -115,13 +149,13 @@ deactivatedGray: #A4A3A6, -->
   }
 
   .react-autosuggest__suggestion--companyName {
-    color: #D9D9D9;
+    color: #d9d9d9;
     display: inline-block;
     margin-left: 10px;
     font-size: 14px;
   }
 
   .react-autosuggest__suggestion--highlighted {
-    background: #FE9694;
+    background: #fe9694;
   }
 </style>

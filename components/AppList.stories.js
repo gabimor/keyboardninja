@@ -3,7 +3,7 @@ import React from "react"
 import { storiesOf } from "@storybook/react"
 import { withKnobs } from "@storybook/addon-knobs"
 
-import Panel from "./Panel"
+import { Panel } from "./Panel"
 import AppList from "./AppList"
 
 const apps = [
@@ -22,7 +22,6 @@ storiesOf("AppList", module)
   ))
   .add("ordered", () => (
     <Panel>
-      <AppList name="Most searched apps" apps={apps} isOrdered={true}/>
+      <AppList name="Most searched apps" apps={apps} isOrdered={true} />
     </Panel>
   ))
-

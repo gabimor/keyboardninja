@@ -7,6 +7,7 @@ export const colors = {
 
   formBG: "#7F7E80",
   formInputBG: "#A4A3A6",
+  formInputFocusBG: "#afadad",
   mainBG: "#2D0605",
 
   white: "#FFFFFF",
@@ -28,20 +29,34 @@ export default createGlobalStyle`
   }
   
   input, textarea, select {
-    font-size: inherit;    
-    border:none;
-    padding:6px 0 6px;
+    font-family: inherit;
+    font-size: inherit;
+    border: none;
   }
 
-  button {
-    vertical-align:bottom;
+  input:focus,
+  textarea:focus,
+  select:focus {
+    background: ${colors.formInputFocusBG};
   }
 
-  input:focus, textarea:focus, select:focus,
-  input:active, textarea:active, select:active {
+
+  input:focus, textarea:focus, select:focus, div:focus,
+  input:active, textarea:active, select:active, div:active {
     outline: 0;
   }
+
+  input {
+    padding: 7px 5px 8px;
+    color: white;
+    background: ${colors.formInputBG};
+  }
   
+  label {
+    margin-right: 6px;
+    color: ${colors.lightGray};
+  }
+
   ul, ul li, ol, ol li {
     margin: 0;
     padding: 0;

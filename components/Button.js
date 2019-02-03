@@ -6,7 +6,7 @@ import { colors } from "../pages/layout"
 const style = `
   display: inline-block;
   cursor:pointer;
-  padding: 7px 15px 6px;
+  padding: 9px 15px 7px;
 `
 
 const PrimaryButton = styled.button`
@@ -20,11 +20,16 @@ const PrimaryButton = styled.button`
     background-color: ${colors.red};
     border-color: ${colors.red};
   }
+
+  &:focus {
+    outline: 1;
+    outline-color: ${colors.lightRed};
+  }
 `
 
 const SecondaryButton = styled.button`
   ${style}
-  background:transparent; 
+  background:transparent;
   color: ${colors.lightGray};
   border: 1px solid ${colors.lightGray};
 
@@ -32,8 +37,17 @@ const SecondaryButton = styled.button`
     color: ${colors.white};
     border: 1px solid ${colors.white};
   }
+
+  &:focus {
+    outline: 1;
+    outline-color: ${colors.lightGray};
+  }
 `
 
-export default function Button({ children, secondary }) {
-  return secondary ? <SecondaryButton>{children}</SecondaryButton> : <PrimaryButton>{children}</PrimaryButton>
+export default function Button({ children, secondary, style }) {
+  return secondary ? (
+    <SecondaryButton style={style}>{children}</SecondaryButton>
+  ) : (
+    <PrimaryButton style={style}>{children}</PrimaryButton>
+  )
 }

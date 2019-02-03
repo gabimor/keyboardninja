@@ -1,42 +1,57 @@
 import React, { Component } from "react"
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { colors } from "../../layout"
 
 import Shortcut from "../Shortcut"
 
-const Cursor = styled.div`
-  border-right: solid 1px ${colors.white};
+const Container = styled.div`
   display: inline-block;
-  height: 22px;
+  min-width: 200px;
+  vertical-align: middle;
+`
+
+const blink = keyframes`
+  50% { visibility: hidden; } 
+`
+
+const Cursor = styled.div`
+  border-right: solid 2px ${colors.white};
+  display: inline-block;
+  height: 67%;
+  visibility: ${props => (props.focus ? "visible" : "hidden")};
+  animation-name: ${blink};
+  animation-duration: 0.6s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 `
 
 const Input = styled.div`
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
   background: ${colors.formInputBG};
   border: dashed 1px ${colors.panelGray};
-  width: 200px;
-  height: 30px;
-  padding: 3px 0 3px 5px;
+  height: 34px;
+  padding: 2px 0 1px 5px;
 
   :focus {
-    outline: 0;
+    background: ${colors.formInputFocusBG};
   }
 `
-
-// const LONG_PRESS_DURATION = 600
 
 export default class extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      value: [],
+      keys: props.keys || [],
     }
 
     this.input = React.createRef()
   }
 
   componentDidMount() {
-    this.input.current.onkeyup = this.handleKeyUp.bind(this)
     this.input.current.onkeydown = this.handleKeyDown.bind(this)
     this.input.current.onblur = this.handleBlur
     this.input.current.onfocus = this.handleFocus
@@ -50,70 +65,34 @@ export default class extends Component {
     this.setState({ focus: true })
   }
 
-  // handleLongPress(key) {
-  //   if (key === "Backspace") {
-  //     this.lastIsLong = true
-  //   }
-  //   // } else if (key === "Tab") {
-  //   //   this.input.current.blur()
-  //   // }
-  // }
-
   handleKeyDown(e) {
-    e.preventDefault()
     if (e.key === "Tab") return
+    e.preventDefault()
 
     if (e.key === "Backspace") {
       this.setState(state => {
-        const value = state.value.slice(0, state.value.length - 1)
+        const keys = state.keys.slice(0, state.keys.length - 1)
 
-        return { value }
+        return { keys }
       })
-    } else if (!this.state.value.includes(e.key)) {
+    } else if (!this.state.keys.includes(e.key)) {
       this.setState(state => {
-        const value = [...state.value, e.key]
+        const keys = [...state.keys, e.key]
 
-        return { value }
+        return { keys }
       })
     }
-
-    // e.preventDefault()
-    // if (e.key !== this.lastKeyDown) {
-    //   this.longPressTimoutId = setTimeout(
-    //     () => this.handleLongPress(e.key),
-    //     LONG_PRESS_DURATION
-    //   )
-    //   this.lastKeyDown = e.key
-    // }
-  }
-
-  handleKeyUp(e) {
-    // if (this.lastIsLong) return
-    // if (e.key === "Tab") {
-    //   this.input.current.blur()
-    // } else if (e.key === "Backspace") {
-    //   this.setState(state => {
-    //     const value = state.value.slice(0, state.value.length - 1)
-    //     return { value }
-    //   })
-    // } else {
-    //   this.setState(state => {
-    //     const value = [...state.value, this.getKeyName(e.key)]
-    //     return { value }
-    //   })
-    // }
-    // clearTimeout(this.longPressTimoutId)
-    // this.lastKeyDown = undefined
-    // this.lastIsLong = false
   }
 
   render() {
-    const { value, focus } = this.state
+    const { keys, focus } = this.state
     return (
-      <Input tabIndex={0} ref={this.input}>
-        <Shortcut keys={value} />
-        {focus && <Cursor />}
-      </Input>
+      <Container>
+        <Input tabIndex={0} ref={this.input}>
+          {keys.length > 0 && <Shortcut keys={keys} />}
+          <Cursor focus={focus} />
+        </Input>
+      </Container>
     )
   }
 }

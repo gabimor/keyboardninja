@@ -10,6 +10,6 @@ storiesOf("ShortcutItem", module)
   .add("default", () => (
     <ShortcutItem
       action={text("action", "Select all text")}
-      keys={text("keys", "ctrl+k")}
+      keys={text("keys", ["ctrl","k"])}
     />
   ))

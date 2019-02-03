@@ -9,10 +9,12 @@ const Container = styled("span")`
   color: ${colors.white};
 
   font-size: 14px;
-  padding: 1px 5px 0px;
+  padding: 1px 5px 0;
   border: solid 1px ${colors.darkRed};
   border-radius: 6px;
   margin: 0 2px;
+  min-width: 34px;
+  text-align: center;   
 `
 
 export default function ShortcutKey({ children }) {

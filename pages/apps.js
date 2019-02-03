@@ -2,7 +2,7 @@ import { Component } from "react"
 import { connect } from "react-redux"
 
 import Layout from "./layout/Layout"
-import AppCategory from "./apps/AppCategory"
+import AppList from "../components/AppList"
 
 class Apps extends Component {
   render() {
@@ -20,7 +20,7 @@ class Apps extends Component {
     return (
       <Layout>
         {Object.keys(appsByCategory).map(categoryName => (
-          <AppCategory
+          <AppList
             key={categoryName}
             name={categoryName}
             apps={appsByCategory[categoryName]}

@@ -10,22 +10,21 @@ const Container = styled.div`
 `
 
 const Title = styled.header`
-  display:flex;
-  align-items:baseline;
+  display: flex;
+  align-items: baseline;
   color: ${colors.panelZebra};
   padding-bottom: 7px;
 `
 
 const Table = styled.table`
-  width:100%;
+  width: 100%;
 `
-
 
 const TBody = styled.tbody`
   & td:first-child {
     padding: 0 10px;
     text-align: center;
-    max-width:20px;
+    max-width: 20px;
   }
 
   & tr:nth-child(odd) {
@@ -36,13 +35,15 @@ const TBody = styled.tbody`
 function ShortcutList({ title, shortcuts }) {
   return (
     <Container>
-      <Title>{title} <ListAddMessage listSize={shortcuts.length}/></Title>
+      <Title>
+        {title} <ListAddMessage listSize={shortcuts.length} />
+      </Title>
       <Table cellSpacing={0}>
         <TBody>
-          {shortcuts.map((shortcut) => (
+          {shortcuts.map(shortcut => (
             <ShortcutItem
               key={shortcut.id}
-              keys={shortcut.win}
+              keys={shortcut.keys}
               action={shortcut.action}
             />
           ))}

@@ -1,27 +1,47 @@
 import React, { Component } from "react"
 import styled from "styled-components"
-import { colors } from "../../layout"
 
+import { colors } from "../../layout"
+import { AddPanel } from "../../../components/Panel"
 import ShortcutInput from "./ShortcutInput"
 import Button from "../../../components/Button"
-// import { saveShortcut } from '../../api/shortcuts'
 
-const Container = styled.form`
-  background: ${colors.formBG};
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
+const Container = styled.div`
+  margin-top:12px;
+  display: inline-grid;
+  grid-template-areas:
+    "shortcut rest"
+    "advanced empty";
+  grid-column-gap: 15px;
+`
+
+const RestContainer = styled.div`
+  grid-area: rest;
 
   & input {
-    background: ${colors.formInputBG};      
+    margin-right: 15px;
   }
+`
+
+const ShortcutContainer = styled.div`
+  grid-area: shortcut;
+  min-width: 200px;
+`
+
+const Advanced = styled.div`
+  color: ${colors.panelZebra};
+  grid-area: advanced;
+  padding-top: 3px;
+  text-decoration: underline;
+  text-align: right;
+  font-size: 12px;
 `
 
 class AddForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      categoryId: "",
+      category: "",
       action: "",
       keys: "",
     }
@@ -38,33 +58,41 @@ class AddForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-
-    const { appId, categoryId, action, osx, comment } = this.state
-    // saveShortcut(appId, categoryId, action, osx, comment)
   }
 
   render() {
-    const { action, keys } = this.state
+    const { action } = this.state
     return (
-      <Container onSubmit={this.handleSubmit}>
-        <ShortcutInput name="osx" onChange={this.handleChange} />
-        <input
-          type="text"
-          name="categoryId"
-          onChange={this.handleChange}
-          autoComplete="off"
-        />
-        Action
-        <input
-          type="text"
-          name="action"
-          value={action}
-          onChange={this.handleChange}
-          autoComplete="off"
-        />
-        <Button>Add</Button>
-        <Button secondary={true}>Cancel</Button>
-      </Container>
+      <AddPanel onSubmit={this.handleSubmit}>
+        <h3>Thanks for <b>contributing!</b> Here you go:</h3>
+        <Container>
+          <ShortcutContainer>
+            <label>Shortcut</label>
+            <ShortcutInput onChange={this.handleChange} />
+          </ShortcutContainer>
+          <Advanced>Advanced</Advanced>
+          <RestContainer>
+            <label>Action</label>
+            <input
+              type="text"
+              name="action"
+              value={action}
+              onChange={this.handleChange}
+              autoComplete="off"
+            />
+            <label>Section</label>
+            <input
+              type="text"
+              name="section"
+              onChange={this.handleChange}
+              autoComplete="off"
+              style={{ marginRight: "8px" }}
+            />
+            <Button style={{ marginRight: "8px" }}>Add</Button>
+            <Button secondary={true}>Cancel</Button>
+          </RestContainer>
+        </Container>
+      </AddPanel>
     )
   }
 }
