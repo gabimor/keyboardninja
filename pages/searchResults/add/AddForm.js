@@ -7,7 +7,7 @@ import ShortcutInput from "./ShortcutInput"
 import Button from "../../../components/Button"
 
 const Container = styled.div`
-  margin-top:12px;
+  margin-top: 12px;
   display: inline-grid;
   grid-template-areas:
     "shortcut rest"
@@ -64,7 +64,9 @@ class AddForm extends Component {
     const { action } = this.state
     return (
       <AddPanel onSubmit={this.handleSubmit}>
-        <h3>Thanks for <b>contributing!</b> Here you go:</h3>
+        <h3>
+          Thanks for <b>contributing!</b> Here you go:
+        </h3>
         <Container>
           <ShortcutContainer>
             <label>Shortcut</label>

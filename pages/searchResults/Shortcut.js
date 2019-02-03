@@ -21,18 +21,6 @@ const Text = styled.span`
   font-size: 13px;
 `
 
-function getKeyName(key) {
-  const keyNames = {
-    Control: "Ctrl",
-    " ": "Space",
-    Escape: "Esc",
-    PageUp: "PgUp",
-    PageDown: "PgDn"
-  }
-
-  return keyNames[key] || key
-}
-
 function moveKeyFirst(keys, key) {
   if (keys.includes(key)) {
     return [key, ...keys.filter(item => item !== key)]
@@ -41,15 +29,25 @@ function moveKeyFirst(keys, key) {
   }
 }
 
+function addPlus(keys) {
+  const result = []
+  for (let i = 0; i < keys.length; i++) {
+    result.push(keys[i])
+    if (keys[i] && keys[i] !== " " && keys[i + 1] && keys[i + 1] !== " ") {
+      result.push("+")
+    }
+  }
+  return result
+}
+
 export default function Shortcut({ keys }) {
   keys = moveKeyFirst(keys, "Shift")
   keys = moveKeyFirst(keys, "Alt")
-  keys = moveKeyFirst(keys, "Control")
-
+  keys = moveKeyFirst(keys, "Ctrl")
+  keys = addPlus(keys)
   return (
     <Container>
       {keys.map(key => {
-        key = getKeyName(key)
         key = upperFirstLetter(key)
         switch (key) {
           case "+":

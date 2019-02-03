@@ -39,6 +39,17 @@ const Input = styled.div`
     background: ${colors.formInputFocusBG};
   }
 `
+function getKeyName(key) {
+  const keyNames = {
+    Control: "Ctrl",
+    " ": "Space",
+    Escape: "Esc",
+    PageUp: "PgUp",
+    PageDown: "PgDn",
+  }
+
+  return keyNames[key] || key
+}
 
 export default class extends Component {
   constructor(props) {
@@ -77,7 +88,7 @@ export default class extends Component {
       })
     } else if (!this.state.keys.includes(e.key)) {
       this.setState(state => {
-        const keys = [...state.keys, e.key]
+        const keys = [...state.keys, getKeyName(e.key)]
 
         return { keys }
       })
