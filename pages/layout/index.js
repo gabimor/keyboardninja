@@ -34,13 +34,6 @@ export default createGlobalStyle`
     border: none;
   }
 
-  input:focus,
-  textarea:focus,
-  select:focus {
-    background: ${colors.formInputFocusBG};
-  }
-
-
   input:focus, textarea:focus, select:focus, div:focus,
   input:active, textarea:active, select:active, div:active {
     outline: 0;

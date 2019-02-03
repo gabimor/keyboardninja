@@ -5,9 +5,7 @@ import { colors } from "../../layout"
 import Shortcut from "../Shortcut"
 
 const Container = styled.div`
-  display: inline-block;
-  min-width: 200px;
-  vertical-align: middle;
+  flex-grow: 1;
 `
 
 const blink = keyframes`
@@ -43,6 +41,7 @@ function getKeyName(key) {
   const keyNames = {
     Control: "Ctrl",
     " ": "Space",
+    "+": "Plus",
     Escape: "Esc",
     PageUp: "PgUp",
     PageDown: "PgDn",
@@ -80,15 +79,17 @@ export default class extends Component {
     if (e.key === "Tab") return
     e.preventDefault()
 
-    if (e.key === "Backspace") {
+    const key = getKeyName(e.key)
+
+    if (key === "Backspace") {
       this.setState(state => {
         const keys = state.keys.slice(0, state.keys.length - 1)
 
         return { keys }
       })
-    } else if (!this.state.keys.includes(e.key)) {
+    } else if (!this.state.keys.includes(key)) {
       this.setState(state => {
-        const keys = [...state.keys, getKeyName(e.key)]
+        const keys = [...state.keys, key]
 
         return { keys }
       })

@@ -47,15 +47,27 @@ export default function Shortcut({ keys }) {
   keys = addPlus(keys)
   return (
     <Container>
-      {keys.map(key => {
+      {keys.map((key, index) => {
         key = upperFirstLetter(key)
         switch (key) {
           case "+":
-            return <Plus>+</Plus>
+            return <Plus key={index}>+</Plus>
           case " ":
-            return <Text>then</Text>
+            return <Text key={index}>then</Text>
+          case "Plus":
+            return <ShortcutKey key={index}>+</ShortcutKey>
+          case "ArrowUp":
+            return <ShortcutKey key={index}><i class="fas fa-long-arrow-alt-up"></i></ShortcutKey>
+          case "ArrowDown":
+            return <ShortcutKey key={index}><i class="fas fa-long-arrow-alt-down"></i></ShortcutKey>
+          case "ArrowLeft":
+            return <ShortcutKey key={index}><i class="fas fa-long-arrow-alt-left"></i></ShortcutKey>
+          case "ArrowRight":
+            return <ShortcutKey key={index}><i class="fas fa-long-arrow-alt-right"></i></ShortcutKey>
+          case "Meta":
+            return <ShortcutKey key={index}><i class="fab fa-windows"></i></ShortcutKey>
           default:
-            return <ShortcutKey key={key}>{key}</ShortcutKey>
+            return <ShortcutKey key={index}>{key}</ShortcutKey>
         }
       })}
     </Container>

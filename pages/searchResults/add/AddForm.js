@@ -13,6 +13,14 @@ const Container = styled.div`
     "shortcut rest"
     "advanced empty";
   grid-column-gap: 15px;
+  min-width:1000px;
+
+  & input:focus,
+  & textarea:focus,
+  & select:focus {
+    background: #afadad;
+  }
+
 `
 
 const RestContainer = styled.div`
@@ -25,7 +33,9 @@ const RestContainer = styled.div`
 
 const ShortcutContainer = styled.div`
   grid-area: shortcut;
-  min-width: 200px;
+  display: inline-flex;
+  align-items: center;
+  min-width:200px;
 `
 
 const Advanced = styled.div`
