@@ -1,9 +1,25 @@
 # Keyboard ninja
 
-fonts - source serif pro, segoe UI
+## TODO
 
-- choose fonts
-- paddings, margins
+- ShortcutInput
+  - allow get/set of value
+- AddForm
+  - section selection
+  - validations
+  - edit mode
+  - add Tab, Backspace
+  - handle add, cancel
+  - overlay
+  - tooltip
+- AddApp
+  - validations
+- hover on links
+- hotjar
+- reporting errors/missing/duplications
+
+## Design
+
 - popularity / edit mode
 
 add shortcut
@@ -28,10 +44,7 @@ general
 
 ## Phase 2
 
-general
-
 - patreon/buy me a coffee
-- reporting errors/missing/duplications
 
 - login actions
   - pin
@@ -51,7 +64,6 @@ users can:
   - add to a section - user
   - edit - report
   - delete - report
-    Right)
 - app
   - add - user
   - rename - me

@@ -1,24 +1,36 @@
-import { Component } from "react"
 import { connect } from "react-redux"
+
+import styled from "styled-components"
+import { colors } from "./layout"
 
 import Layout from "./layout/Layout"
 import AppList from "../components/AppList"
+import SearchBar from "../components/SearchBar"
 
-class Apps extends Component {
-  render() {
-    const appsByCategory = this.props.apps.reduce((acc, currApp) => {
-      const categoryName = this.props.appCategories.find(
-        item => item.id === currApp.categoryId
-      ).name
+const Container = styled.div`
+  padding: 20px 30px;
+  background: ${colors.panelGray};
+  display: grid;
+  grid-gap: 30px 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+`
 
-      acc[categoryName] = acc[categoryName] || []
+function Apps({ apps, appCategories }) {
+  const appsByCategory = apps.reduce((acc, currApp) => {
+    const categoryName = appCategories.find(
+      item => item.id === currApp.categoryId
+    ).name
 
-      acc[categoryName].push(currApp)
-      return acc
-    }, {})
+    acc[categoryName] = acc[categoryName] || []
 
-    return (
-      <Layout>
+    acc[categoryName].push(currApp)
+    return acc
+  }, {})
+
+  return (
+    <Layout>
+      <SearchBar onChange={selectedAppId => this.handleSearch(selectedAppId)} />
+      <Container>
         {Object.keys(appsByCategory).map(categoryName => (
           <AppList
             key={categoryName}
@@ -26,9 +38,9 @@ class Apps extends Component {
             apps={appsByCategory[categoryName]}
           />
         ))}
-      </Layout>
-    )
-  }
+      </Container>
+    </Layout>
+  )
 }
 
 function mapStateToProps(state) {

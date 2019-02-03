@@ -3,7 +3,7 @@ import React from "react"
 import { storiesOf } from "@storybook/react"
 import { withKnobs } from "@storybook/addon-knobs"
 
-import { Panel } from "./Panel"
+import { colors } from "../pages/layout"
 import AppList from "./AppList"
 
 const apps = [
@@ -15,13 +15,8 @@ const apps = [
 
 storiesOf("AppList", module)
   .addDecorator(withKnobs)
-  .add("unordered", () => (
-    <Panel>
-      <AppList name="Graphics" apps={apps} />
-    </Panel>
-  ))
+  .addDecorator(story => <div style={{background:colors.panelGray}}>{story()}</div>)
+  .add("unordered", () => <AppList name="Graphics" apps={apps} />)
   .add("ordered", () => (
-    <Panel>
-      <AppList name="Most searched apps" apps={apps} isOrdered={true} />
-    </Panel>
+    <AppList name="Most searched apps" apps={apps} isOrdered={true} />
   ))

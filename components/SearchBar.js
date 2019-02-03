@@ -9,6 +9,7 @@ const Container = styled.div`
   display: flex;
   background: ${colors.darkRed};
   padding: 20px 30px;
+  margin-bottom:30px;
 `
 
 const Label = styled.label`

@@ -40,7 +40,7 @@ function addPlus(keys) {
   return result
 }
 
-export default function Shortcut({ keys }) {
+export default function Shortcut({ keys }) {    
   keys = moveKeyFirst(keys, "Shift")
   keys = moveKeyFirst(keys, "Alt")
   keys = moveKeyFirst(keys, "Ctrl")

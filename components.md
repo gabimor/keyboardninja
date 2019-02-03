@@ -1,7 +1,0 @@
-- SearchResults
-  - ViewBy
-  - PinsCount
-  - AddContainer
-    - Input
-    - Select
-    - ShortcutInput

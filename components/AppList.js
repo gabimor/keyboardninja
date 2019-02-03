@@ -19,16 +19,15 @@ const Header = styled.h3`
 `
 const Li = styled.li`
   color: ${colors.darkRed};
-  list-style: ${props => props.isOrdered ? "ordered" : "none"}
+  list-style: ${props => (props.isOrdered ? "ordered" : "none")};
 `
-
 
 const AppName = styled.span`
   color: ${colors.mainBG};
   cursor: pointer;
   display: inline-block;
   margin-right: 6px;
-  margin-left: ${props => props.isOrdered ? "3px" : 0};
+  margin-left: ${props => (props.isOrdered ? "3px" : 0)};
 `
 
 export default function AppList({ name, apps, isOrdered = false }) {
@@ -42,7 +41,9 @@ export default function AppList({ name, apps, isOrdered = false }) {
               href={"/searchResults?appId=" + app.id}
               as={"/apps/" + encodeAppName(app.name)}
             >
-              <AppName isOrdered={isOrdered}>{app.name}</AppName>
+              <a>
+                <AppName isOrdered={isOrdered}>{app.name}</AppName>
+              </a>
             </Link>
             <CompanyName>{app.companyName}</CompanyName>
           </Li>

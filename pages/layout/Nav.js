@@ -7,11 +7,11 @@ const Container = styled.ul`
   display: inline-block;
   margin-left: 40px;
   font-size: 20px;
-  font-weight:300;
-  list-style:none;  
+  font-weight: 300;
+  list-style: none;
 
   & li {
-    padding-left:20px;
+    padding-left: 20px;
     display: inline-block;
   }
 `
@@ -19,10 +19,14 @@ const Container = styled.ul`
 export default () => (
   <Container>
     <li>
-      <Link href="/apps">Apps</Link>
+      <Link href="/apps">
+        <a>Apps</a>
+      </Link>
     </li>
     <li>
-      <Link href="/about">About</Link>
+      <Link href="/about">
+        <a>About</a>
+      </Link>
     </li>
   </Container>
 )

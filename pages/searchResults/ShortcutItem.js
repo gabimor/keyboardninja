@@ -33,7 +33,7 @@ function ShortcutItem({ action, keys, isPinned }) {
 
 ShortcutItem.propTypes = {
   action: PropTypes.string.isRequired,
-  keys: PropTypes.string.isRequired,
+  keys: PropTypes.array.isRequired,
 }
 
 export default ShortcutItem

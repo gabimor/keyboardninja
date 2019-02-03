@@ -43,9 +43,9 @@ function ShortcutList({ title, shortcuts }) {
           {shortcuts.map(shortcut => (
             <ShortcutItem
               key={shortcut.id}
-              keys={shortcut.keys}
+              keys={shortcut.win.split("+")}
               action={shortcut.action}
-            />
+            />            
           ))}
         </TBody>
       </Table>
