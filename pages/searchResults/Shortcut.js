@@ -41,9 +41,9 @@ function addPlus(keys) {
 }
 
 export default function Shortcut({ keys }) {    
-  keys = moveKeyFirst(keys, "Shift")
-  keys = moveKeyFirst(keys, "Alt")
-  keys = moveKeyFirst(keys, "Ctrl")
+  keys = moveKeyFirst(keys, "shift")
+  keys = moveKeyFirst(keys, "alt")
+  keys = moveKeyFirst(keys, "ctrl")
   keys = addPlus(keys)
   return (
     <Container>
@@ -54,17 +54,17 @@ export default function Shortcut({ keys }) {
             return <Plus key={index}>+</Plus>
           case " ":
             return <Text key={index}>then</Text>
-          case "Plus":
+          case "plus":
             return <ShortcutKey key={index}>+</ShortcutKey>
-          case "ArrowUp":
+          case "arrowup":
             return <ShortcutKey key={index}><i class="fas fa-long-arrow-alt-up"></i></ShortcutKey>
-          case "ArrowDown":
+          case "arrowdown":
             return <ShortcutKey key={index}><i class="fas fa-long-arrow-alt-down"></i></ShortcutKey>
-          case "ArrowLeft":
+          case "arrowleft":
             return <ShortcutKey key={index}><i class="fas fa-long-arrow-alt-left"></i></ShortcutKey>
-          case "ArrowRight":
+          case "arrowright":
             return <ShortcutKey key={index}><i class="fas fa-long-arrow-alt-right"></i></ShortcutKey>
-          case "Meta":
+          case "meta":
             return <ShortcutKey key={index}><i class="fab fa-windows"></i></ShortcutKey>
           default:
             return <ShortcutKey key={index}>{key}</ShortcutKey>

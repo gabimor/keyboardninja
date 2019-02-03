@@ -9,7 +9,7 @@ import AppList from "../components/AppList"
 import SearchBar from "../components/SearchBar"
 import Layout from "./layout/Layout"
 import { colors } from "./layout"
-import AddForm from "./searchResults/add/AddForm"
+import AddShortcut from "./searchResults/addShortcut/AddShortcut"
 
 const AppListContainer = styled.div`
   padding: 20px 30px;
@@ -41,7 +41,7 @@ class App extends Component {
         <SearchBar
           onChange={selectedAppId => this.handleSearch(selectedAppId)}
         />
-        <AddForm />
+        <AddShortcut />
         <AppListContainer>
           <AppList
             name="Most searched apps"

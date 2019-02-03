@@ -4,11 +4,10 @@
 
 - ShortcutInput
   - allow get/set of value
-- AddForm
+- AddShortcut
   - section selection
   - validations
   - edit mode
-  - add Tab, Backspace
   - handle add, cancel
   - overlay
   - tooltip
