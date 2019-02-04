@@ -39,7 +39,7 @@ export default class extends Component {
     inputElm.onkeydown = this.handleKeyDown.bind(this)
     inputElm.onblur = this.handleBlur
     inputElm.onfocus = this.handleFocus
-    this.props.causeFocus(inputElm)
+    if (this.props.causeFocus) this.props.causeFocus(inputElm)
   }
 
   handleBlur = () => {
@@ -54,7 +54,7 @@ export default class extends Component {
     if (!this.state.keys.includes(key.toLowerCase())) {
       this.setState(state => {
         const keys = [...state.keys, key]
-        this.props.onChange(keys)
+        if (this.props.onChange) this.props.onChange(keys)
         return { keys }
       })
     }
@@ -63,7 +63,7 @@ export default class extends Component {
   deleteKey() {
     this.setState(state => {
       const keys = state.keys.slice(0, state.keys.length - 1)
-      this.props.onChange(keys)
+      if (this.props.onChange) this.props.onChange(keys)
       return { keys }
     })
   }

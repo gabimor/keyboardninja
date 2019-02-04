@@ -1,5 +1,8 @@
-import { configure } from "@storybook/react"
+import React from "react"
+import { configure, addDecorator } from "@storybook/react"
 import { configureViewport } from "@storybook/addon-viewport"
+
+import Theme from "../pages/layout"
 
 const viewports = {
   responsive: {
@@ -29,6 +32,14 @@ const viewports = {
 configureViewport({
   viewports,
 })
+
+// global decorator to add theme
+addDecorator(story => (
+  <>
+    <Theme />
+    {story()}
+  </>
+))
 
 // automatically import all files ending in *.stories.js
 const pages = require.context("../pages", true, /.stories.js$/)
