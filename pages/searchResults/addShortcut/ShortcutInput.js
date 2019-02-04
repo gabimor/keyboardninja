@@ -120,8 +120,8 @@ const Input = styled.div`
   width: 100%;
   align-items: center;
   background: ${colors.formInputBG};
-  border: dashed 1px ${colors.panelGray};
-  height: 34px;
+  border: dashed 1px ${colors.lightGray};
+  height: 35px;
   padding: 2px 7px 1px 7px;
 
   :focus {

@@ -6,7 +6,7 @@ import { colors } from "../pages/layout"
 const style = `
   display: inline-block;
   cursor:pointer;
-  padding: 9px 15px 8px;
+  padding: 8px 15px 7px;
   vertical-align:top;
 `
 

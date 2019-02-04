@@ -3,7 +3,6 @@
 ## TODO
 
 - AddShortcut
-  - validations
   - overlay
   - tooltip
 - AddApp

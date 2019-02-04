@@ -15,7 +15,12 @@ const sections = [
 storiesOf("AddShortcut", module)
   .addDecorator(withKnobs)
   .add("empty", () => (
-    <AddShortcut keys={[]} onAdd={action("add")} onCancel={action("cancel")} />
+    <AddShortcut
+      keys={[]}
+      sections={[sections[0]]}
+      onAdd={action("add")}
+      onCancel={action("cancel")}
+    />
   ))
   .add("with values", () => (
     <AddShortcut

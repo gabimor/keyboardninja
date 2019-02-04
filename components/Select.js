@@ -17,7 +17,7 @@ const colourStyles = {
   container: styles => ({
     ...styles,
     display: "inline-block",
-    width: "250px",
+    width: "100%",
   }),
   control: (styles, state) => ({
     ...styles,
