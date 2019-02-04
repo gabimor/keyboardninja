@@ -4,14 +4,10 @@
 
 - AddShortcut
   - validations
-  - edit mode
-  - handle add, cancel
   - overlay
   - tooltip
 - AddApp
   - validations
-- search results
-  - empty app component
 - apps
   - grid
 - responsive work

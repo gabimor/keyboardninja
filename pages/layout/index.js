@@ -26,9 +26,10 @@ export default createGlobalStyle`
     color: ${colors.white}
     margin: 0;
     font-family: "Roboto", arial;    
+    font-size: 16px;
   }
   
-  input, textarea, select {
+  input, textarea, select, button {
     font-family: inherit;
     font-size: inherit;
     border: none;
