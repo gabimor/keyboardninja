@@ -6,10 +6,13 @@
   - overlay
   - tooltip
 - AddApp
-  - validations
+  - check duplicates
+- search results
+  - table to grid
 - apps
   - grid
 - responsive work
+- emotion.sh
 - connect add shortcuts/add app links to forms
 - hover on links
 - hotjar & GA
@@ -23,6 +26,7 @@
 
 add shortcut
 
+- things I approved cannot be changed, only suggested?
 - pinning each keyboard shortcut one at a time allows you to slowly cover shortcut ground on your tool and keep track of what you know
 - when logged in, you get points for adding shortcuts and for getting pinned and show on the leaderboead
 - these shortcuts are waiting to be approved, 5 votes will approve them

@@ -14,7 +14,7 @@ class AddShortcut extends Component {
       action,
       section,
       keys,
-      addCliced: false,
+      addClicked: false,
     }
   }
 
@@ -46,9 +46,11 @@ class AddShortcut extends Component {
   handleAdd = () => {
     this.setState({ addClicked: true })
 
-    const { keys, action, section } = this.state
+    if (keys.length > 0 && action && section) {
+      const { keys, action, section } = this.state
 
-    this.props.onAdd(keys, action, section)
+      this.props.onAdd(keys, action, section)
+    }
   }
 
   render() {
