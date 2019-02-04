@@ -7,28 +7,26 @@ import Button from "../../components/Button"
 const Container = styled.div`
   background: ${colors.panelGray};
   color: ${colors.mainBG};
-  text-align:center;
-  padding:60px 0;
+  text-align: center;
+  padding: 60px 0;
 `
 
 const H2 = styled.h2`
-  margin-bottom:7px;
+  margin-bottom: 7px;
 `
 
 const H3 = styled.h3`
-  margin-bottom:13px;
-  font-weight:300;
+  margin-bottom: 13px;
+  font-weight: 300;
 `
 
 export default function EmptyAppMessage({ onClick }) {
   return (
     <Container>
       <H2>
-        <b>Woohoo</b> it's a fresh one!
+        <b> Woohoo</b> it's a fresh one!
       </H2>
-      <H3>
-        There are no shortcuts here yet
-      </H3>
+      <H3>There are no shortcuts here yet...</H3>
       <Button onClick={onClick}>Add Some?</Button>
     </Container>
   )
