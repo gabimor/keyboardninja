@@ -3,7 +3,6 @@
 ## TODO
 
 - AddShortcut
-  - section selection
   - validations
   - edit mode
   - handle add, cancel
@@ -11,9 +10,14 @@
   - tooltip
 - AddApp
   - validations
+- search results
+  - empty app component
+- apps
+  - grid
+- responsive work
 - connect add shortcuts/add app links to forms
 - hover on links
-- hotjar
+- hotjar & GA
 - reporting errors/missing/duplications
 - connect everything to the DB
   - history tables
@@ -24,6 +28,7 @@
 
 add shortcut
 
+- pinning each keyboard shortcut one at a time allows you to slowly cover shortcut ground on your tool and keep track of what you know
 - when logged in, you get points for adding shortcuts and for getting pinned and show on the leaderboead
 - these shortcuts are waiting to be approved, 5 votes will approve them
 - Ctrl, Alt then Shift
@@ -33,8 +38,6 @@ add shortcut
 stats
 
 - what people searched
-- heatmaps
-- GA
 
 general
 

@@ -26,17 +26,20 @@ export default class extends Component {
     }
 
     this.input = React.createRef()
+    
   }
 
   componentWillReceiveProps({ keys }) {
     this.setState({ keys })
-    this.input.current.focus()
   }
 
   componentDidMount() {
-    this.input.current.onkeydown = this.handleKeyDown.bind(this)
-    this.input.current.onblur = this.handleBlur
-    this.input.current.onfocus = this.handleFocus
+    const inputElm = this.input.current
+
+    inputElm.onkeydown = this.handleKeyDown.bind(this)
+    inputElm.onblur = this.handleBlur
+    inputElm.onfocus = this.handleFocus
+    this.props.causeFocus(inputElm)
   }
 
   handleBlur = () => {
@@ -119,7 +122,7 @@ const Input = styled.div`
   background: ${colors.formInputBG};
   border: dashed 1px ${colors.panelGray};
   height: 34px;
-  padding: 2px 0 1px 5px;
+  padding: 2px 7px 1px 7px;
 
   :focus {
     background: ${colors.formInputFocusBG};

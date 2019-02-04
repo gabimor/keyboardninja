@@ -45,10 +45,10 @@ const SecondaryButton = styled.button`
   }
 `
 
-export default function Button({ children, secondary, style }) {
+export default function Button({ children, secondary, style, onClick}) {
   return secondary ? (
-    <SecondaryButton style={style}>{children}</SecondaryButton>
+    <SecondaryButton style={style} onClick={onClick}>{children}</SecondaryButton>
   ) : (
-    <PrimaryButton style={style}>{children}</PrimaryButton>
+    <PrimaryButton style={style} onClick={onClick}>{children}</PrimaryButton>
   )
 }

@@ -1,16 +1,10 @@
 import React, { Component } from "react"
 import styled from "styled-components"
 
-import Select from "react-select"
+import Creatable from "react-select/lib/Creatable"
 import { colors } from "../../layout"
 import ShortcutInput from "./ShortcutInput"
 import Button from "../../../components/Button"
-
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-]
 
 const colourStyles = {
   control: (styles, state) => ({
@@ -44,12 +38,12 @@ const colourStyles = {
   }),
   singleValue: styles => ({
     ...styles,
-    color: colors.white,    
+    color: colors.white,
   }),
   option: (styles, state) => {
     return {
       ...styles,
-      background: state.isFocused ? "#c3c3c3" : colors.formInputFocusBG ,
+      background: state.isFocused ? "#c3c3c3" : colors.formInputFocusBG,
     }
   },
   menu: styles => ({
@@ -59,7 +53,7 @@ const colourStyles = {
   }),
   menuList: styles => ({
     ...styles,
-    padding:0
+    padding: 0,
   }),
 }
 class AddShortcut extends Component {
@@ -83,14 +77,24 @@ class AddShortcut extends Component {
     if (!this.state.keys.includes(key)) {
       this.setState(state => ({ keys: [...state.keys, key] }))
     }
+    this.shortcutInputElm.focus()
   }
 
   handleSubmit = e => {
     e.preventDefault()
   }
 
+  handleSectionChange = ({ value, label }) => {
+    this.setState({ section: { value, label } })
+  }
+
+  handleActionChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
   render() {
-    const { action, keys, section, category } = this.state
+    const { action, keys, section } = this.state
+    const { sections, onAdd, onCancel } = this.props
     return (
       <Container onSubmit={this.handleSubmit}>
         <h3>
@@ -101,6 +105,7 @@ class AddShortcut extends Component {
             <label>Shortcut</label>
             <ShortcutInput
               name="keys"
+              causeFocus={elm => this.shortcutInputElm = elm}
               onChange={this.handleKeysChange}
               keys={keys}
             />
@@ -117,19 +122,26 @@ class AddShortcut extends Component {
               type="text"
               name="action"
               value={action}
-              onChange={this.handleChange}
+              onChange={this.handleActionChange}
               autoComplete="off"
             />
             <label>Section</label>
-            <Select
+            <Creatable
               name="section"
               value={section}
-              onChange={this.handleChange}
-              options={options}
+              onChange={this.handleSectionChange}
+              options={sections}
               styles={colourStyles}
             />
-            <Button style={{ margin: "0 8px" }}>Add</Button>
-            <Button secondary={true}>Cancel</Button>
+            <Button
+              onClick={() => onAdd(this.state)}
+              style={{ margin: "0 8px" }}
+            >
+              Add
+            </Button>
+            <Button onClick={() => onCancel()} secondary={true}>
+              Cancel
+            </Button>
           </RestContainer>
         </InnerContainer>
       </Container>

@@ -13,7 +13,7 @@ const Container = styled.div`
 `
 
 const Plus = styled.span`
-  padding: 2px;
+  padding: 1px 2px;
 `
 
 const Text = styled.span`
