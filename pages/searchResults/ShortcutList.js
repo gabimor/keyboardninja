@@ -8,7 +8,7 @@ import { colors } from "../layout"
 
 export default function ShortcutList({ title, shortcuts, onAddShortcut }) {
   return (
-    <Container>
+    <div>
       <Title>
         {title}
         <ListAddMessage
@@ -21,19 +21,15 @@ export default function ShortcutList({ title, shortcuts, onAddShortcut }) {
           {shortcuts.map(shortcut => (
             <ShortcutItem
               key={shortcut.id}
-              keys={shortcut.keys}
+              keys={shortcut.win.split("+")}
               action={shortcut.action}
             />
           ))}
         </TBody>
       </Table>
-    </Container>
+    </div>
   )
 }
-
-const Container = styled.div`
-  margin-top: 20px;
-`
 
 const Title = styled.header`
   display: flex;

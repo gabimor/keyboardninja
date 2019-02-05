@@ -25,7 +25,7 @@ function addPlus(keys) {
   return result
 }
 
-export default function Shortcut({ keys }) {    
+export default function Shortcut({ keys }) {
   keys = moveKeyFirst(keys, "shift")
   keys = moveKeyFirst(keys, "alt")
   keys = moveKeyFirst(keys, "ctrl")
@@ -42,15 +42,35 @@ export default function Shortcut({ keys }) {
           case "plus":
             return <ShortcutKey key={index}>+</ShortcutKey>
           case "arrowup":
-            return <ShortcutKey key={index}><i class="fas fa-long-arrow-alt-up"></i></ShortcutKey>
+            return (
+              <ShortcutKey key={index}>
+                <i class="fas fa-long-arrow-alt-up" />
+              </ShortcutKey>
+            )
           case "arrowdown":
-            return <ShortcutKey key={index}><i class="fas fa-long-arrow-alt-down"></i></ShortcutKey>
+            return (
+              <ShortcutKey key={index}>
+                <i class="fas fa-long-arrow-alt-down" />
+              </ShortcutKey>
+            )
           case "arrowleft":
-            return <ShortcutKey key={index}><i class="fas fa-long-arrow-alt-left"></i></ShortcutKey>
+            return (
+              <ShortcutKey key={index}>
+                <i class="fas fa-long-arrow-alt-left" />
+              </ShortcutKey>
+            )
           case "arrowright":
-            return <ShortcutKey key={index}><i class="fas fa-long-arrow-alt-right"></i></ShortcutKey>
+            return (
+              <ShortcutKey key={index}>
+                <i class="fas fa-long-arrow-alt-right" />
+              </ShortcutKey>
+            )
           case "meta":
-            return <ShortcutKey key={index}><i class="fab fa-windows"></i></ShortcutKey>
+            return (
+              <ShortcutKey key={index}>
+                <i class="fab fa-windows" />
+              </ShortcutKey>
+            )
           default:
             return <ShortcutKey key={index}>{key}</ShortcutKey>
         }

@@ -6,11 +6,11 @@ import { withKnobs, text } from "@storybook/addon-knobs"
 import ShortcutList from "./ShortcutList"
 
 const shortcutList = [
-  { action: "test", keys: ["ctrl", "s"], isDark: true },
-  { action: "Lorem ipsum dolor sit amet", keys: ["ctrl", "s"], isDark: false },
-  { action: "psum dolor sit amet", keys: ["ctrl", "~"], isDark: true },
-  { action: "dolor sit amet", keys: ["alt", "s"], isDark: false },
-  { action: "ipsum dolor sit amet", keys: ["alt", "shift", "s"], isDark: true },
+  { action: "test", win: "ctrl+s", isDark: true },
+  { action: "Lorem ipsum dolor sit amet", win: "ctrl+s", isDark: false },
+  { action: "psum dolor sit amet", win: "ctrl+~", isDark: true },
+  { action: "dolor sit amet", win: "alt+s", isDark: false },
+  { action: "ipsum dolor sit amet", win: "alt+shift+s", isDark: true },
 ]
 
 storiesOf("ShortcutList", module)
