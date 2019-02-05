@@ -6,6 +6,29 @@ import CompanyName from "./CompanyName"
 import { colors } from "../pages/layout"
 import { encodeAppName } from "../helpers"
 
+export default function AppList({ name, apps, isOrdered = false }) {
+  return (
+    <Container>
+      <Header>{name}</Header>
+      <ol>
+        {apps.map(app => (
+          <Li key={app.id} isOrdered={isOrdered}>
+            <Link
+              href={"/searchResults?appId=" + app.id}
+              as={"/apps/" + encodeAppName(app.name)}
+            >
+              <a>
+                <AppName isOrdered={isOrdered}>{app.name}</AppName>
+              </a>
+            </Link>
+            <CompanyName>{app.companyName}</CompanyName>
+          </Li>
+        ))}
+      </ol>
+    </Container>
+  )
+}
+
 const Container = styled.div`
   line-height: 22px;
 `
@@ -29,26 +52,3 @@ const AppName = styled.span`
   margin-right: 6px;
   margin-left: ${props => (props.isOrdered ? "3px" : 0)};
 `
-
-export default function AppList({ name, apps, isOrdered = false}) {
-  return (
-    <Container>
-      <Header>{name}</Header>
-      <ol>
-        {apps.map(app => (
-          <Li key={app.id} isOrdered={isOrdered}>
-            <Link
-              href={"/searchResults?appId=" + app.id}
-              as={"/apps/" + encodeAppName(app.name)}
-            >
-              <a>
-                <AppName isOrdered={isOrdered}>{app.name}</AppName>
-              </a>
-            </Link>
-            <CompanyName>{app.companyName}</CompanyName>
-          </Li>
-        ))}
-      </ol>
-    </Container>
-  )
-}

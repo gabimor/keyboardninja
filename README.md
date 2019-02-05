@@ -10,6 +10,7 @@
   - check duplicates
 - responsive work
 - hover on links
+- nextjs documentation: module: false - turn off code splitting
 
 ## Backlog
 

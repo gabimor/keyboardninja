@@ -10,7 +10,7 @@ const Container = styled.span`
   margin-left: auto;
 `
 
-export default function Shortcut({ listSize, onAdd }) {
+export default function Shortcut({ listSize, onAddShortcut }) {
   let message = ""
 
   if (listSize < 3) {
@@ -22,14 +22,14 @@ export default function Shortcut({ listSize, onAdd }) {
     return (
       <Container>
         {message}
-        <ButtonLink onClick={onAdd}>add some shortcuts ?</ButtonLink>
+        <ButtonLink onClick={onAddShortcut}>add some shortcuts ?</ButtonLink>
       </Container>
     )
   } else {
     return (
       <Container>
         Missing your favorite shortcuts? why not&nbsp;
-        <ButtonLink onClick={onAdd}>add them ?</ButtonLink>
+        <ButtonLink onClick={onAddShortcut}>add them ?</ButtonLink>
       </Container>
     )
   }

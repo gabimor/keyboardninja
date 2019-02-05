@@ -19,6 +19,10 @@ class AddShortcut extends Component {
     }
   }
 
+  componentDidMount() {
+    this.shortcutInputElm.focus()
+  }
+
   handleKeysChange = keys => {
     this.setState({
       keys,

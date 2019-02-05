@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 
 import styled from "styled-components"
 import Router, { withRouter } from "next/router"
+import { actionTypes } from "../store"
 
 import { encodeAppName } from "../helpers"
 import ShortcutList from "./searchResults/ShortcutList"
@@ -67,6 +68,11 @@ class App extends Component {
     this.setState({ shownShortcuts, appName })
   }
 
+  handleAddShortcut = title => {
+    this.props.doSetOverlay(true)
+    this.props.doAddShortcut(title)
+  }
+
   renderShortcutCategory(sectionId) {
     const sectionTitle = this.props.appSections.find(
       item => item.id === sectionId
@@ -78,6 +84,7 @@ class App extends Component {
         key={sectionId}
         shortcuts={shownShortcuts[sectionId]}
         title={sectionTitle}
+        onAddShortcut={this.handleAddShortcut}
       />
     )
   }
@@ -93,7 +100,7 @@ class App extends Component {
           onChange={selectedAppId => this.handleSearch(selectedAppId)}
           value={appName}
         />
-        {addShortcut && <AddShortcut />}        
+        {addShortcut && <AddShortcut />}
         {addApp && <AddApp name={addApp} />}
         <ResultsContainer>
           {sectionIds.length > 0 &&
@@ -108,4 +115,16 @@ function mapStateToProps(state) {
   return { ...state }
 }
 
-export default connect(mapStateToProps)(withRouter(App))
+const mapDispatchToProps = dispatch => ({
+  doAddShortcut() {
+    dispatch({ type: actionTypes.ADD_SHORTCUT })
+  },
+  doSetOverlay(value) {
+    dispatch({ type: actionTypes.SET_OVERLAY, value })
+  },
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(App))
