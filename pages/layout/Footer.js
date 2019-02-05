@@ -7,11 +7,7 @@ const Container = styled.footer`
 `
 
 function Footer() {
-  return (
-    <Container>
-      &lt;3 to Zohar for helping to select the beautiful colors
-    </Container>
-  )
+  return <Container />
 }
 
 export default Footer

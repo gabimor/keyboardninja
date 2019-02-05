@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import styled from "styled-components"
 import { connect } from "react-redux"
 
+import { actionTypes } from "../store"
 import { colors } from "../pages/layout"
 import SearchAppInput from "./SearchAppInput"
 
@@ -9,7 +10,7 @@ const Container = styled.div`
   display: flex;
   background: ${colors.darkRed};
   padding: 20px 30px;
-  margin-bottom:30px;
+  margin-bottom: 30px;
 `
 
 const Label = styled.label`
@@ -17,10 +18,10 @@ const Label = styled.label`
   color: ${colors.panelZebra};
   font-weight: 300;
   font-size: 20px;
-  `
+`
 
-class Search extends Component {
-  onNew = name => alert(name)
+class SearchBar extends Component {
+  onNew = name => this.props.addApp(name)
 
   render() {
     const { onChange, value, apps } = this.props
@@ -43,5 +44,15 @@ function mapStateToProps(state) {
   const { apps } = state
   return { apps }
 }
+function mapDispatchToProps(dispatch) {
+  return {
+    addApp(name) {
+      dispatch({ type: actionTypes.ADD_APP, name })
+    },
+  }
+}
 
-export default connect(mapStateToProps)(Search)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchBar)

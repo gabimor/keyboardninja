@@ -12,6 +12,16 @@ class AddApp extends Component {
       company,
       addClicked: false,
     }
+
+    this.nameInput = React.createRef()
+  }
+
+  componentDidMount() {
+    this.nameInput.current.focus()
+  }
+
+  componentWillReceiveProps({ name }) {
+    this.setState({ name })
   }
 
   handleSubmit = e => {
@@ -27,7 +37,7 @@ class AddApp extends Component {
 
     if (name) {
       const { name, comapny } = this.state
-      
+
       this.props.onAdd(name, comapny)
     }
   }
@@ -37,9 +47,7 @@ class AddApp extends Component {
     const { onCancel } = this.props
     return (
       <Container onSubmit={this.handleSubmit}>
-        <h3>
-          Thanks for <b>contributing!</b> Here you go:
-        </h3>
+        <h3>Suggest a new app:</h3>
         <InnerContainer>
           {addClicked && !name && (
             <NameMessage>Please enter the app name</NameMessage>
@@ -51,6 +59,7 @@ class AddApp extends Component {
             value={name}
             onChange={this.handleChange}
             autoComplete="off"
+            ref={this.nameInput}
           />
           <CompanyLabel>Company</CompanyLabel>
           <CompanyInput

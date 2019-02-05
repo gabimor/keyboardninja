@@ -9,36 +9,18 @@ const exampleInitialState = {
 }
 
 export const actionTypes = {
-  TICK: "TICK",
-  INCREMENT: "INCREMENT",
-  DECREMENT: "DECREMENT",
-  RESET: "RESET",
   ADD_SHORTCUT: "ADD_SHORTCUT",
+  ADD_APP: "ADD_APP",
   SET_OVERLAY: "SET_OVERLAY",
 }
 
 // REDUCERS
 export const reducer = (state = exampleInitialState, action) => {
   switch (action.type) {
-    case actionTypes.TICK:
-      return Object.assign({}, state, {
-        lastUpdate: action.ts,
-        light: !!action.light,
-      })
-    case actionTypes.INCREMENT:
-      return Object.assign({}, state, {
-        count: state.count + 1,
-      })
-    case actionTypes.DECREMENT:
-      return Object.assign({}, state, {
-        count: state.count - 1,
-      })
-    case actionTypes.RESET:
-      return Object.assign({}, state, {
-        count: exampleInitialState.count,
-      })
     case actionTypes.ADD_SHORTCUT:
       return { ...state, addShortcut: true }
+    case actionTypes.ADD_APP:
+      return { ...state, addApp: action.name }
     case actionTypes.SET_OVERLAY:
       return { ...state, overlay: action.value }
     default:

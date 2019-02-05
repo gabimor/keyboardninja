@@ -2,20 +2,16 @@
 
 ## TODO
 
-- AddShortcut
-  - overlay
-  - tooltip
-- AddApp
-  - check duplicates
-- search results
-  - table to grid
-- responsive work
-- connect add shortcuts/add app links to forms
-- hover on links
-- hotjar & GA
-- reporting errors/missing/duplications
 - connect everything to the DB
   - history tables
+- AddShortcut
+  - show tooltip once
+- AddApp
+  - check duplicates
+- responsive work
+****- hover on links
+- hotjar & GA
+- reporting errors/missing/duplications
 
 ## Backlog
 
