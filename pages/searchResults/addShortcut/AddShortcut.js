@@ -19,6 +19,10 @@ class AddShortcut extends Component {
     }
   }
 
+  componentDidMount() {
+    this.shortcutInputElm.focus()
+  }
+
   handleKeysChange = keys => {
     this.setState({
       keys,
@@ -47,9 +51,9 @@ class AddShortcut extends Component {
   handleAdd = () => {
     this.setState({ addClicked: true })
 
-    if (keys.length > 0 && action && section) {
-      const { keys, action, section } = this.state
+    const { keys, action, section } = this.state
 
+    if (keys && keys.length > 0 && action && section) {
       this.props.onAdd(keys, action, section)
     }
   }
@@ -77,7 +81,7 @@ class AddShortcut extends Component {
               Click your shortcut keys one at a time
               <br />
               Use <b>BackSpace</b> to delete a key
-              <br /> Use <b>Tab</b> to move on              
+              <br /> Use <b>Tab</b> to move on
             </Tooltip>
           </ShortcutContainer>
           <Advanced>
@@ -133,6 +137,8 @@ const Container = styled.div`
   padding: 16px 30px 3px 30px;
   margin-bottom: 30px;
   background: ${colors.formBG};
+  position: relative;
+  z-index: 10;
 `
 
 const InnerContainer = styled.div`

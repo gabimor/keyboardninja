@@ -13,6 +13,8 @@ export const actionTypes = {
   INCREMENT: "INCREMENT",
   DECREMENT: "DECREMENT",
   RESET: "RESET",
+  ADD_SHORTCUT: "ADD_SHORTCUT",
+  SET_OVERLAY: "SET_OVERLAY",
 }
 
 // REDUCERS
@@ -35,6 +37,10 @@ export const reducer = (state = exampleInitialState, action) => {
       return Object.assign({}, state, {
         count: exampleInitialState.count,
       })
+    case actionTypes.ADD_SHORTCUT:
+      return { ...state, addShortcut: true }
+    case actionTypes.SET_OVERLAY:
+      return { ...state, overlay: action.value }
     default:
       return state
   }

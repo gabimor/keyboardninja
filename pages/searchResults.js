@@ -7,6 +7,7 @@ import Router, { withRouter } from "next/router"
 import { encodeAppName } from "../helpers"
 import ShortcutList from "./searchResults/ShortcutList"
 import SearchBar from "../components/SearchBar"
+import AddShortcut from "./searchResults/addShortcut/AddShortcut"
 import Layout from "./layout/Layout"
 
 const ResultsContainer = styled.div`
@@ -82,6 +83,7 @@ class App extends Component {
 
   render() {
     const { shownShortcuts, appName } = this.state
+    const { addShortcut } = this.props
     const sectionIds = Object.keys(shownShortcuts)
 
     return (
@@ -90,6 +92,7 @@ class App extends Component {
           onChange={selectedAppId => this.handleSearch(selectedAppId)}
           value={appName}
         />
+        {addShortcut && <AddShortcut />}
         <ResultsContainer>
           {sectionIds.length > 0 &&
             sectionIds.map(key => this.renderShortcutCategory(+key))}

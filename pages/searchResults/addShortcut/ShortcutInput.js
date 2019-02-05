@@ -87,7 +87,7 @@ export default class extends Component {
     return (
       <Container>
         <Input tabIndex={0} ref={this.input}>
-          {keys.length > 0 && <Shortcut keys={keys} />}
+          {keys && keys.length > 0 && <Shortcut keys={keys} />}
           <Cursor focus={focus} />
         </Input>
       </Container>

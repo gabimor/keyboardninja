@@ -40,8 +40,7 @@ class App extends Component {
       <Layout>
         <SearchBar
           onChange={selectedAppId => this.handleSearch(selectedAppId)}
-        />
-        <AddShortcut />
+        />        
         <AppListContainer>
           <AppList
             name="Most searched apps"

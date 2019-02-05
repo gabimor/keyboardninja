@@ -9,10 +9,7 @@
   - check duplicates
 - search results
   - table to grid
-- apps
-  - grid
 - responsive work
-- emotion.sh
 - connect add shortcuts/add app links to forms
 - hover on links
 - hotjar & GA
@@ -22,7 +19,7 @@
 
 ## Backlog
 
-- popularity / edit mode
+- emotion.sh
 
 add shortcut
 

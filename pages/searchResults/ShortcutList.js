@@ -1,8 +1,10 @@
 import React from "react"
+import { connect } from "react-redux"
 
 import ShortcutItem from "./ShortcutItem"
 import ListAddMessage from "./ListAddMessage"
 import styled from "styled-components"
+import { actionTypes } from "../../store"
 
 import { colors } from "../layout"
 const Container = styled.div`
@@ -32,11 +34,18 @@ const TBody = styled.tbody`
   }
 `
 
-function ShortcutList({ title, shortcuts }) {
+function ShortcutList({ title, shortcuts, setOverlay, addShortcut }) {
   return (
     <Container>
       <Title>
-        {title} <ListAddMessage listSize={shortcuts.length} />
+        {title}
+        <ListAddMessage
+          listSize={shortcuts.length}
+          onAdd={() => {
+            setOverlay(true)
+            addShortcut(title)
+          }}
+        />
       </Title>
       <Table cellSpacing={0}>
         <TBody>
@@ -45,7 +54,7 @@ function ShortcutList({ title, shortcuts }) {
               key={shortcut.id}
               keys={shortcut.win.split("+")}
               action={shortcut.action}
-            />            
+            />
           ))}
         </TBody>
       </Table>
@@ -53,4 +62,16 @@ function ShortcutList({ title, shortcuts }) {
   )
 }
 
-export default ShortcutList
+const mapDispatchToProps = dispatch => ({
+  addShortcut() {
+    dispatch({ type: actionTypes.ADD_SHORTCUT })
+  },
+  setOverlay(value) {
+    dispatch({ type: actionTypes.SET_OVERLAY, value })
+  },
+})
+
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(ShortcutList)
