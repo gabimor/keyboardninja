@@ -9,9 +9,7 @@
 - AddApp
   - check duplicates
 - responsive work
-****- hover on links
-- hotjar & GA
-- reporting errors/missing/duplications
+- hover on links
 
 ## Backlog
 
