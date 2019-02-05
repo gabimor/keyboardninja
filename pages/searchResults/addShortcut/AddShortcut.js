@@ -5,6 +5,7 @@ import { colors } from "../../layout"
 import ShortcutInput from "./ShortcutInput"
 import Select from "../../../components/Select"
 import Button from "../../../components/Button"
+import Tooltip from "../../../components/Tooltip"
 
 class AddShortcut extends Component {
   constructor({ keys, action, section, category }) {
@@ -72,6 +73,12 @@ class AddShortcut extends Component {
               onChange={this.handleKeysChange}
               keys={keys}
             />
+            <Tooltip style={{ position: "absolute", top: 60, width: 250 }}>
+              Click your shortcut keys one at a time
+              <br />
+              Use <b>BackSpace</b> to delete a key
+              <br /> Use <b>Tab</b> to move on              
+            </Tooltip>
           </ShortcutContainer>
           <Advanced>
             <span onClick={() => this.handleAddKey("tab")}>Add Tab</span> |{" "}
@@ -146,6 +153,7 @@ const InnerContainer = styled.div`
 
 const ShortcutContainer = styled.div`
   grid-area: 2/2/2/2;
+  position: relative;
 `
 
 const ActionInput = styled.input`
@@ -156,6 +164,7 @@ const ActionInput = styled.input`
 
 const SectionContainer = styled.div`
   grid-area: 2/6/2/6;
+  position: relative;
 `
 
 const ShortcutMessage = styled.div`

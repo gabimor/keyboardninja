@@ -30,7 +30,7 @@ const AppName = styled.span`
   margin-left: ${props => (props.isOrdered ? "3px" : 0)};
 `
 
-export default function AppList({ name, apps, isOrdered = false }) {
+export default function AppList({ name, apps, isOrdered = false}) {
   return (
     <Container>
       <Header>{name}</Header>

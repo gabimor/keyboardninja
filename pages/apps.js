@@ -10,9 +10,13 @@ import SearchBar from "../components/SearchBar"
 const Container = styled.div`
   padding: 20px 30px;
   background: ${colors.panelGray};
-  display: grid;
-  grid-gap: 30px 20px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  columns: 4;
+  column-gap: 50px;
+  > div {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 30px;
+  }
 `
 
 function Apps({ apps, appCategories }) {
