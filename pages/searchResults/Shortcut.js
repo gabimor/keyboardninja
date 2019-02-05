@@ -6,21 +6,6 @@ import { colors } from "../layout"
 import ShortcutKey from "../../components/ShortcutKey"
 import { upperFirstLetter } from "../../helpers"
 
-const Container = styled.div`
-  display: inline-flex;
-  font-size: 14px;
-  color: ${colors.mainBG};
-`
-
-const Plus = styled.span`
-  padding: 1px 2px;
-`
-
-const Text = styled.span`
-  padding: 2px 4px 0;
-  font-size: 13px;
-`
-
 function moveKeyFirst(keys, key) {
   if (keys.includes(key)) {
     return [key, ...keys.filter(item => item !== key)]
@@ -77,3 +62,18 @@ export default function Shortcut({ keys }) {
 Shortcut.propTypes = {
   keys: PropTypes.array,
 }
+
+const Container = styled.div`
+  display: inline-flex;
+  font-size: 14px;
+  color: ${colors.mainBG};
+`
+
+const Plus = styled.span`
+  padding: 1px 2px;
+`
+
+const Text = styled.span`
+  padding: 2px 4px 0;
+  font-size: 13px;
+`

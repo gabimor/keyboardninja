@@ -7,16 +7,11 @@ import { actionTypes } from "../store"
 
 import { encodeAppName } from "../helpers"
 import ShortcutList from "./searchResults/ShortcutList"
+import EmptyAppMessage from "./searchResults/EmptyAppMessage"
 import SearchBar from "../components/SearchBar"
 import AddShortcut from "./searchResults/addShortcut/AddShortcut"
 import AddApp from "./searchResults/AddApp"
 import Layout from "./layout/Layout"
-
-const ResultsContainer = styled.div`
-  display: grid;
-  grid-gap: 30px 20px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-`
 
 class App extends Component {
   constructor(props) {
@@ -103,8 +98,11 @@ class App extends Component {
         {addShortcut && <AddShortcut />}
         {addApp && <AddApp name={addApp} />}
         <ResultsContainer>
-          {sectionIds.length > 0 &&
-            sectionIds.map(key => this.renderShortcutCategory(+key))}
+          {sectionIds.length > 0 ? (
+            sectionIds.map(key => this.renderShortcutCategory(+key))
+          ) : (
+            <EmptyAppMessage onClick={this.handleAddShortcut} />
+          )}
         </ResultsContainer>
       </Layout>
     )
@@ -128,3 +126,9 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withRouter(App))
+
+const ResultsContainer = styled.div`
+  display: grid;
+  grid-gap: 30px 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+`

@@ -7,18 +7,6 @@ import Layout from "./layout/Layout"
 import AppList from "../components/AppList"
 import SearchBar from "../components/SearchBar"
 
-const Container = styled.div`
-  padding: 20px 30px;
-  background: ${colors.panelGray};
-  columns: 4;
-  column-gap: 50px;
-  > div {
-    display: inline-block;
-    width: 100%;
-    margin-bottom: 30px;
-  }
-`
-
 function Apps({ apps, appCategories }) {
   const appsByCategory = apps.reduce((acc, currApp) => {
     const categoryName = appCategories.find(
@@ -53,3 +41,15 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(Apps)
+
+const Container = styled.div`
+  padding: 20px 30px;
+  background: ${colors.panelGray};
+  columns: 4;
+  column-gap: 50px;
+  > div {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+`

@@ -5,6 +5,32 @@ import ListAddMessage from "./ListAddMessage"
 import styled from "styled-components"
 
 import { colors } from "../layout"
+
+export default function ShortcutList({ title, shortcuts, onAddShortcut }) {
+  return (
+    <Container>
+      <Title>
+        {title}
+        <ListAddMessage
+          listSize={shortcuts.length}
+          onAddShortcut={() => onAddShortcut(title)}
+        />
+      </Title>
+      <Table cellSpacing={0}>
+        <TBody>
+          {shortcuts.map(shortcut => (
+            <ShortcutItem
+              key={shortcut.id}
+              keys={shortcut.keys}
+              action={shortcut.action}
+            />
+          ))}
+        </TBody>
+      </Table>
+    </Container>
+  )
+}
+
 const Container = styled.div`
   margin-top: 20px;
 `
@@ -31,28 +57,3 @@ const TBody = styled.tbody`
     background: ${colors.panelZebra};
   }
 `
-
-export default function ShortcutList({ title, shortcuts, onAddShortcut }) {
-  return (
-    <Container>
-      <Title>
-        {title}
-        <ListAddMessage
-          listSize={shortcuts.length}
-          onAddShortcut={() => onAddShortcut(title)}
-        />
-      </Title>
-      <Table cellSpacing={0}>
-        <TBody>
-          {shortcuts.map(shortcut => (
-            <ShortcutItem
-              key={shortcut.id}
-              keys={shortcut.win.split("+")}
-              action={shortcut.action}
-            />
-          ))}
-        </TBody>
-      </Table>
-    </Container>
-  )
-}

@@ -2,12 +2,17 @@
 
 ## TODO
 
-- connect everything to the DB
-  - history tables
+- OSSelect
+  - detect client os
 - AddShortcut
   - show tooltip once
 - AddApp
   - check duplicates
+- server
+  - server hangs on `/apps/non-existing-app`
+  - drop the `/app` in `/apps/visual-studio-code`
+  - connect everything to the DB
+    - history tables
 - responsive work
 - hover on links
 - nextjs documentation: module: false - turn off code splitting

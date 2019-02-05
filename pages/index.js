@@ -61,7 +61,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state) {  
   return { ...state }
 }
 

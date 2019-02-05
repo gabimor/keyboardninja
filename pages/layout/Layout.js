@@ -6,11 +6,6 @@ import Footer from "./Footer"
 import Theme from "."
 import Overlay from "./Overlay"
 
-const Container = styled.div`
-  max-width: 1160px;
-  margin: 0 auto;
-`
-
 function Layout({ children, overlay }) {
   return (
     <>
@@ -29,3 +24,8 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(Layout)
+
+const Container = styled.div`
+  max-width: 1160px;
+  margin: 0 auto;
+`

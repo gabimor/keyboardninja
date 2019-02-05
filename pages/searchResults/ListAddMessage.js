@@ -4,12 +4,6 @@ import styled from "styled-components"
 import { colors } from "../layout"
 import ButtonLink from "../../components/ButtonLink"
 
-const Container = styled.span`
-  color: ${colors.panelZebra};
-  font-size: 13px;
-  margin-left: auto;
-`
-
 export default function Shortcut({ listSize, onAddShortcut }) {
   let message = ""
 
@@ -38,3 +32,9 @@ export default function Shortcut({ listSize, onAddShortcut }) {
 Shortcut.propTypes = {
   listSize: PropTypes.number,
 }
+
+const Container = styled.span`
+  color: ${colors.panelZebra};
+  font-size: 13px;
+  margin-left: auto;
+`

@@ -7,16 +7,6 @@ import { upperFirstLetter } from "../../helpers"
 import Shortcut from "./Shortcut"
 import { colors } from "../layout"
 
-const Container = styled.tr`
-  padding: 10px 30px;
-  background: ${colors.panelGray};
-
-  color: ${colors.mainBG}};
-  & td {
-    padding: 6px 10px;
-  }
-`
-
 function ShortcutItem({ action, keys, isPinned }) {
   return (
     <Container>
@@ -37,3 +27,13 @@ ShortcutItem.propTypes = {
 }
 
 export default ShortcutItem
+
+const Container = styled.tr`
+  padding: 10px 30px;
+  background: ${colors.panelGray};
+
+  color: ${colors.mainBG}};
+  & td {
+    padding: 6px 10px;
+  }
+`

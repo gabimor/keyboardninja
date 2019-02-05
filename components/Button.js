@@ -3,6 +3,18 @@ import React from "react"
 import styled from "styled-components"
 import { colors } from "../pages/layout"
 
+export default function Button({ children, secondary, style, onClick }) {
+  return secondary ? (
+    <SecondaryButton style={style} onClick={onClick}>
+      {children}
+    </SecondaryButton>
+  ) : (
+    <PrimaryButton style={style} onClick={onClick}>
+      {children}
+    </PrimaryButton>
+  )
+}
+
 const style = `
   display: inline-block;
   cursor:pointer;
@@ -44,11 +56,3 @@ const SecondaryButton = styled.button`
     outline-color: ${colors.lightGray};
   }
 `
-
-export default function Button({ children, secondary, style, onClick}) {
-  return secondary ? (
-    <SecondaryButton style={style} onClick={onClick}>{children}</SecondaryButton>
-  ) : (
-    <PrimaryButton style={style} onClick={onClick}>{children}</PrimaryButton>
-  )
-}

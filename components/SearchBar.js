@@ -6,20 +6,6 @@ import { actionTypes } from "../store"
 import { colors } from "../pages/layout"
 import SearchAppInput from "./SearchAppInput"
 
-const Container = styled.div`
-  display: flex;
-  background: ${colors.darkRed};
-  padding: 20px 30px;
-  margin-bottom: 30px;
-`
-
-const Label = styled.label`
-  padding: 11px 15px 0 0;
-  color: ${colors.panelZebra};
-  font-weight: 300;
-  font-size: 20px;
-`
-
 class SearchBar extends Component {
   onNew = name => this.props.addApp(name)
 
@@ -56,3 +42,17 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(SearchBar)
+
+const Container = styled.div`
+  display: flex;
+  background: ${colors.darkRed};
+  padding: 20px 30px;
+  margin-bottom: 30px;
+`
+
+const Label = styled.label`
+  padding: 11px 15px 0 0;
+  color: ${colors.panelZebra};
+  font-weight: 300;
+  font-size: 20px;
+`

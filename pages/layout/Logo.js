@@ -3,14 +3,6 @@ import React from "react"
 import styled from "styled-components"
 import { colors } from "."
 
-const H1 = styled.h1`
-  color: ${colors.white};
-  font-size: 30px;
-  display: inline-block;
-  cursor: pointer;
-  font-weight: 300;
-`
-
 export default function Logo() {
   return (
     <H1>
@@ -22,3 +14,11 @@ export default function Logo() {
     </H1>
   )
 }
+
+const H1 = styled.h1`
+  color: ${colors.white};
+  font-size: 30px;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 300;
+`
