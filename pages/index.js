@@ -9,6 +9,7 @@ import AppList from "../components/AppList"
 import SearchBar from "../components/SearchBar"
 import Layout from "./layout/Layout"
 import { colors } from "./layout"
+import { appUrlPrefix } from "../helpers"
 
 const AppListContainer = styled.div`
   padding: 20px 30px;
@@ -28,7 +29,7 @@ class App extends Component {
     const appName = this.getAppName(selectedAppId)
     Router.push(
       "/searchResults?appId=" + selectedAppId,
-      "/apps/" + encodeAppName(appName)
+      appUrlPrefix + encodeAppName(appName)
     )
   }
 
@@ -38,7 +39,7 @@ class App extends Component {
       <Layout>
         <SearchBar
           onChange={selectedAppId => this.handleSearch(selectedAppId)}
-        />        
+        />
         <AppListContainer>
           <AppList
             name="Most searched apps"
@@ -61,7 +62,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {  
+function mapStateToProps(state) {
   return { ...state }
 }
 

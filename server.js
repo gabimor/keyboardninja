@@ -15,22 +15,34 @@ async function main() {
 
   const server = express()
 
-  server.get("/apps/:name", async (req, res) => {
-    const actualPage = "/searchResults"
-    const data = await getData()
-    const appId = getAppIdByName(req.params.name, data.apps)
-    const queryParams = { appId }
-    app.render(req, res, actualPage, queryParams)
-  })
-
-  server.get("/data", async (req, res) => {
+  server.get("/api/data", async (req, res) => {
     const data = await getData()
 
     res.json(data)
   })
 
-  server.get("*", (req, res) => {
+  server.get("/apps", (req, res) => {
     return handle(req, res)
+  })
+
+  server.get("/about", (req, res) => {
+    return handle(req, res)
+  })
+
+  server.get("/:name", async (req, res) => {
+    const actualPage = "/searchResults"
+    const data = await getData()
+    const appId = getAppIdByName(req.params.name, data.apps)
+    if (!appId) {
+      app.render(req, res, "/404")
+    } else {
+      const queryParams = { appId }
+      app.render(req, res, actualPage, queryParams)
+    }
+  })
+
+  server.get("*", (req, res) => {
+    app.render(req, res, "/404")
   })
 
   server.listen(process.env.PORT, err => {
@@ -74,7 +86,8 @@ async function getData() {
 
 // TODO: those are also found in client helpers.js, had trouble with storybook when importing from CommonJS helpers.js, changed to ES6 modules
 function getAppIdByName(urlName, apps) {
-  return apps.find(item => encodeAppName(item.name) === urlName).id
+  const app = apps.find(item => encodeAppName(item.name) === urlName)
+  return app && app.id
 }
 
 function encodeAppName(name) {

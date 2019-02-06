@@ -2,17 +2,10 @@
 
 ## TODO
 
-- turn into a index.js only app instead of handling search on all pages
-- OSSelect
-  - store os in cookie, load server side
+### Alpha
+
 - AddShortcut
-  - show tooltip once
   - select "general" section by default
-  - cursor pointer on tab/backspace
-  - enter on any field should submit
-- search
-  - focus on search on load, stay focused on selection
-  - "enter" on field = suggest add
 - server
   - server hangs on `/apps/non-existing-app`
   - drop the `/app` in `/apps/visual-studio-code`
@@ -21,7 +14,17 @@
 - responsive work
   - mobile menu
   - cross browser checks
-- hover on links
+- favicon
+
+### Low priority
+
+- OSSelect
+  - store os in cookie, load server side
+- add forms
+  - enter on any field should submit
+- search
+  - focus on search on load, stay focused on selection
+  - "enter" on field = suggest add
 
 ## Backlog
 

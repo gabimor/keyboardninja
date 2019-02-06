@@ -6,7 +6,7 @@ import Layout from "./layout/Layout"
 const About = props => {
   return (
     <Layout>
-      <SearchBar onChange={selectedAppId => this.handleSearch(selectedAppId)} />
+      {/* <SearchBar onChange={selectedAppId => this.handleSearch(selectedAppId)} /> */}
     </Layout>
   )
 }

@@ -6,6 +6,10 @@ import ShortcutInput from "./ShortcutInput"
 import Select from "../../../components/Select"
 import Button from "../../../components/Button"
 import Tooltip from "../../../components/Tooltip"
+import {
+  setTooltipShown,
+  wasTooltipShown,
+} from "./../../../helpers/localStorage"
 
 class AddShortcut extends Component {
   constructor({ keys, action, section, category }) {
@@ -21,6 +25,7 @@ class AddShortcut extends Component {
 
   componentDidMount() {
     this.shortcutInputElm.focus()
+    this.setState({ wasShortcutTooltipShown: wasTooltipShown("addShortcut") })
   }
 
   handleKeysChange = keys => {
@@ -44,6 +49,13 @@ class AddShortcut extends Component {
     this.setState({ section: { value, label } })
   }
 
+  handleShortcutInputBlur = () => {
+    if (!this.state.wasShortcutTooltipShown) {
+      this.setState({ wasShortcutTooltipShown: true })
+      setTooltipShown("addShortcut")
+    }
+  }
+
   handleActionChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -59,7 +71,14 @@ class AddShortcut extends Component {
   }
 
   render() {
-    const { keys, action, section, addClicked } = this.state
+    const {
+      keys,
+      action,
+      section,
+      addClicked,
+      wasShortcutTooltipShown,
+    } = this.state
+
     const { sections, onCancel } = this.props
     return (
       <Container onSubmit={this.handleSubmit}>
@@ -76,19 +95,22 @@ class AddShortcut extends Component {
               causeFocus={elm => (this.shortcutInputElm = elm)}
               onChange={this.handleKeysChange}
               keys={keys}
+              onBlur={this.handleShortcutInputBlur}
             />
-            <Tooltip style={{ position: "absolute", top: 60, width: 250 }}>
-              Click your shortcut keys one at a time
-              <br />
-              Use <b>BackSpace</b> to delete a key
-              <br /> Use <b>Tab</b> to move on
-            </Tooltip>
+            {!wasShortcutTooltipShown && (
+              <Tooltip style={{ position: "absolute", top: 60, width: 250 }}>
+                Click your shortcut keys one at a time
+                <br />
+                Use <b>BackSpace</b> to delete a key
+                <br /> Use <b>Tab</b> to move on
+              </Tooltip>
+            )}
           </ShortcutContainer>
           <Advanced>
-            <span onClick={() => this.handleAddKey("tab")}>Add Tab</span> |{" "}
-            <span onClick={() => this.handleAddKey("BackSpace")}>
+            <ButtonLink onClick={() => this.handleAddKey("tab")}>Add Tab</ButtonLink> |{" "}
+            <ButtonLink onClick={() => this.handleAddKey("BackSpace")}>
               BackSpace
-            </span>
+            </ButtonLink>
           </Advanced>
           {addClicked && !action && (
             <ActionMessage>Please enter the action</ActionMessage>
@@ -195,6 +217,15 @@ const ButtonContainer = styled.div`
 const ShortcutLabel = styled.div`
   grid-area: 2/1/2/1;
   text-align: right;
+`
+
+const ButtonLink = styled.a`
+  color: ${colors.lightGray};
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    color: ${colors.white};
+  }
 `
 
 const ActionLabel = styled.div`

@@ -1,3 +1,5 @@
+export const appUrlPrefix = "/"
+
 export function encodeAppName(name) {
   return name.toLowerCase().replace(new RegExp(" ", "g"), "-")
 }
@@ -14,3 +16,4 @@ export function getClientOS() {
   const isWin = navigator.platform.toLowerCase().includes("win")
   return isWin ? "win" : "osx"
 }
+

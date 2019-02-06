@@ -5,7 +5,7 @@ import styled from "styled-components"
 import Router, { withRouter } from "next/router"
 import { actionTypes } from "../store"
 
-import { encodeAppName } from "../helpers"
+import { encodeAppName, appUrlPrefix } from "../helpers"
 import ShortcutList from "./searchResults/ShortcutList"
 import EmptyAppMessage from "./searchResults/EmptyAppMessage"
 import SearchBar from "../components/SearchBar"
@@ -52,15 +52,19 @@ class App extends Component {
     return this.props.apps.find(item => item.id === selectedAppId).name
   }
 
+  // TODO: merge with similar functions on other pages
   handleSearch(selectedAppId) {
     const shownShortcuts = this.reduceShortcuts(
       selectedAppId,
       this.props.shortcuts
     )
-    const appName = this.getAppName(selectedAppId)
-    Router.push("/?appId=" + selectedAppId, "/apps/" + encodeAppName(appName))
-
     this.setState({ shownShortcuts, appName })
+
+    const appName = this.getAppName(selectedAppId)
+    Router.push(
+      "/searchResults?appId=" + selectedAppId,
+      appUrlPrefix + encodeAppName(appName)
+    )
   }
 
   handleAddShortcut = title => {}
@@ -99,6 +103,7 @@ class App extends Component {
         />
         {addShortcut && (
           <AddShortcut
+            keys={[]}
             onAdd={this.handleAddShortcut}
             onCancel={doCancelSuggestShortcut}
           />

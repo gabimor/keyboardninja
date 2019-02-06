@@ -2,33 +2,26 @@ import React, { Component } from "react"
 
 import Autosuggest from "react-autosuggest"
 
-const Suggestion = ({ id, name, companyName }) => {
-  if (id !== -1) {
-    return (
-      <div>
-        {name}
-        <span className="react-autosuggest__suggestion--companyName">
-          {companyName}
-        </span>
-      </div>
-    )
-  } else {
-    return (
-      <div>
-        Missing <b>{name}</b> ? suggest adding it
-      </div>
-    )
-  }
-}
-
 class SearchAppInput extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       value: props.value || "",
-      suggestions: [],
+      suggestions: props.apps,
     }
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      // TODO: do something better than this hack
+      const { value } = this.state
+      const autoSuggestInput = document.querySelector(
+        ".react-autosuggest__input"
+      )
+      autoSuggestInput.focus()
+      autoSuggestInput.setSelectionRange(0, value.length)
+    }, 0)
   }
 
   onSuggestionSelected = (
@@ -40,9 +33,13 @@ class SearchAppInput extends Component {
     } else {
       this.props.onNew(suggestion.name)
     }
+
+    console.log(2)
+    this.show = false
   }
 
   onChange = (event, { newValue }) => {
+    this.show = true
     this.setState({
       value: newValue,
     })
@@ -63,6 +60,10 @@ class SearchAppInput extends Component {
     })
   }
 
+  shouldRenderSuggestions = newValue => {
+    return this.show && newValue.length > 1
+  }
+
   renderSuggestion = suggestion => <Suggestion {...suggestion} />
 
   render() {
@@ -81,7 +82,10 @@ class SearchAppInput extends Component {
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         getSuggestionValue={suggestion => suggestion.name}
         renderSuggestion={this.renderSuggestion}
+        focusInputOnSuggestionClick={true}
+        shouldRenderSuggestions={this.shouldRenderSuggestions}
         inputProps={inputProps}
+        id="mainsearch"
       />
     )
   }
@@ -97,6 +101,25 @@ const getSuggestions = (value, apps) => {
   )
 
   return suggestedApps.length > 0 ? suggestedApps : [{ id: -1, name: value }]
+}
+
+const Suggestion = ({ id, name, companyName }) => {
+  if (id !== -1) {
+    return (
+      <div>
+        {name}
+        <span className="react-autosuggest__suggestion--companyName">
+          {companyName}
+        </span>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        Missing <b>{name}</b> ? suggest adding it
+      </div>
+    )
+  }
 }
 
 export default SearchAppInput

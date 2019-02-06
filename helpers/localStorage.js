@@ -1,9 +1,9 @@
-export function getShortcutTooltip() {
-  return !!localStorage.getItem("tooltips.shortcut")
+export function wasTooltipShown(tooltip) {
+  return !!localStorage.getItem("tooltips." + tooltip)
 }
 
-export function setShortcutTooltip() {
-  localStorage.set("tooltips.shortcut", "true")
+export function setTooltipShown(tooltip) {
+  localStorage.setItem("tooltips." + tooltip, "true")
 }
 
 export function loadOS() {

@@ -13,7 +13,7 @@ class MyApp extends App {
     if (isServer) {
       // const baseUrl = 'http://localhost:' + +process.env.PORT
       const baseUrl = "http://localhost:3000"
-      let pageProps = await fetch(`${baseUrl}/data`).then(res => res.json())
+      let pageProps = await fetch(`${baseUrl}/api/data`).then(res => res.json())
       return { ...pageProps }
     }
   }

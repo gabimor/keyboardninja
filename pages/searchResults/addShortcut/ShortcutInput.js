@@ -26,7 +26,6 @@ export default class extends Component {
     }
 
     this.input = React.createRef()
-    
   }
 
   componentWillReceiveProps({ keys }) {
@@ -44,6 +43,7 @@ export default class extends Component {
 
   handleBlur = () => {
     this.setState({ focus: false })
+    if (this.props.onBlur) this.props.onBlur()
   }
 
   handleFocus = () => {
@@ -76,7 +76,7 @@ export default class extends Component {
 
     if (key === "backspace") {
       this.deleteKey()
-    } else {
+    } else {      
       this.addKey(key)
     }
   }

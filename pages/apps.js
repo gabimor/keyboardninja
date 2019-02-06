@@ -21,7 +21,7 @@ function Apps({ apps, appCategories }) {
 
   return (
     <Layout>
-      <SearchBar onChange={selectedAppId => this.handleSearch(selectedAppId)} />
+      {/* <SearchBar onChange={selectedAppId => this.handleSearch(selectedAppId)} /> */}
       <Container>
         {Object.keys(appsByCategory).map(categoryName => (
           <AppList

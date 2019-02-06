@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 import CompanyName from "./CompanyName"
 import { colors } from "../pages/layout"
-import { encodeAppName } from "../helpers"
+import { encodeAppName, appUrlPrefix } from "../helpers"
 
 export default function AppList({ name, apps, isOrdered = false }) {
   return (
@@ -15,7 +15,7 @@ export default function AppList({ name, apps, isOrdered = false }) {
           <Li key={app.id} isOrdered={isOrdered}>
             <Link
               href={"/searchResults?appId=" + app.id}
-              as={"/apps/" + encodeAppName(app.name)}
+              as={appUrlPrefix + encodeAppName(app.name)}
             >
               <a>
                 <AppName isOrdered={isOrdered}>{app.name}</AppName>
@@ -51,4 +51,7 @@ const AppName = styled.span`
   display: inline-block;
   margin-right: 6px;
   margin-left: ${props => (props.isOrdered ? "3px" : 0)};
+  &:hover {
+    color: ${colors.formBG};
+  }
 `
