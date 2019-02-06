@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 import styled from "styled-components"
 import { colors } from "../pages/layout"
@@ -13,6 +14,10 @@ export default function Button({ children, secondary, style, onClick }) {
       {children}
     </PrimaryButton>
   )
+}
+
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired
 }
 
 const style = `

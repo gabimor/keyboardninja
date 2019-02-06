@@ -20,7 +20,7 @@ export default () => (
 
 const Container = styled.ul`
   display: inline-block;
-  margin-left: 40px;
+  margin-left: 20px;
   font-size: 20px;
   font-weight: 300;
   list-style: none;

@@ -8,7 +8,7 @@ import Logo from "./Logo"
 import Nav from "./Nav"
 import OSSelect from "./OSSelect"
 
-function Header({ os = "win", doSetOS }) {
+function Header({ os, doSetOS }) {
   return (
     <Container>
       <Link href="/">
@@ -23,8 +23,8 @@ function Header({ os = "win", doSetOS }) {
 }
 
 function mapStateToProps(state) {
-  const { os } = state
-  return { os }
+  // const { os } = state
+  // return { os }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -43,5 +43,5 @@ export default connect(
 const Container = styled.div`
   display: flex;
   align-items: baseline;
-  padding: 26px 36px 104px 30px;
+  padding: 26px 36px 36px 30px;
 `

@@ -2,26 +2,27 @@ import { createStore, applyMiddleware } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 import thunkMiddleware from "redux-thunk"
 
-const exampleInitialState = {
-  os: "win",
-}
+const exampleInitialState = {}
 
 export const actionTypes = {
-  ADD_SHORTCUT: "ADD_SHORTCUT",
-  ADD_APP: "ADD_APP",
-  SET_OVERLAY: "SET_OVERLAY",
+  CANCEL_SUGGEST_SHORTCUT: "CANCEL_SUGGEST_SHORTCUT",
+  CANCEL_SUGGEST_APP: "CANCEL_SUGGEST_APP",
+  SUGGEST_SHORTCUT: "SUGGEST_SHORTCUT",
+  SUGGEST_APP: "SUGGEST_APP",
   SET_OS: "SET_OS",
 }
 
 // REDUCERS
 export const reducer = (state = exampleInitialState, action) => {
   switch (action.type) {
-    case actionTypes.ADD_SHORTCUT:
-      return { ...state, addShortcut: true }
-    case actionTypes.ADD_APP:
+    case actionTypes.SUGGEST_SHORTCUT:
+      return { ...state, addShortcut: true, overlay: true }
+    case actionTypes.CANCEL_SUGGEST_SHORTCUT:
+      return { ...state, addShortcut: false, overlay: false }
+    case actionTypes.SUGGEST_APP:
       return { ...state, addApp: action.name }
-    case actionTypes.SET_OVERLAY:
-      return { ...state, overlay: action.value }
+    case actionTypes.CANCEL_SUGGEST_APP:
+      return { ...state, addApp: false }
     case actionTypes.SET_OS:
       return { ...state, os: action.os }
     default:

@@ -63,10 +63,7 @@ class App extends Component {
     this.setState({ shownShortcuts, appName })
   }
 
-  handleAddShortcut = title => {
-    this.props.doSetOverlay(true)
-    this.props.doAddShortcut(title)
-  }
+  handleAddShortcut = title => {}
 
   renderShortcutCategory(sectionId) {
     const sectionTitle = this.props.appSections.find(
@@ -79,29 +76,39 @@ class App extends Component {
         key={sectionId}
         shortcuts={shownShortcuts[sectionId]}
         title={sectionTitle}
-        onAddShortcut={this.handleAddShortcut}
+        onAddShortcut={this.props.doSuggestShortcut}
       />
     )
   }
 
   render() {
     const { shownShortcuts, appName } = this.state
-    const { addShortcut, addApp } = this.props
+    const {
+      addShortcut,
+      addApp,
+      doSuggestShortcut,
+      doCancelSuggestShortcut,
+      doCancelSuggestApp,
+    } = this.props
     const sectionIds = Object.keys(shownShortcuts)
-
     return (
       <Layout>
         <SearchBar
           onChange={selectedAppId => this.handleSearch(selectedAppId)}
           value={appName}
         />
-        {addShortcut && <AddShortcut />}
-        {addApp && <AddApp name={addApp} />}
+        {addShortcut && (
+          <AddShortcut
+            onAdd={this.handleAddShortcut}
+            onCancel={doCancelSuggestShortcut}
+          />
+        )}
+        {addApp && <AddApp name={addApp} onCancel={doCancelSuggestApp} />}
         <ResultsContainer>
           {sectionIds.length > 0 ? (
             sectionIds.map(key => this.renderShortcutCategory(+key))
           ) : (
-            <EmptyAppMessage onClick={this.handleAddShortcut} />
+            <EmptyAppMessage onClick={doSuggestShortcut} />
           )}
         </ResultsContainer>
       </Layout>
@@ -114,11 +121,14 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  doAddShortcut() {
-    dispatch({ type: actionTypes.ADD_SHORTCUT })
+  doSuggestShortcut() {
+    dispatch({ type: actionTypes.SUGGEST_SHORTCUT })
   },
-  doSetOverlay(value) {
-    dispatch({ type: actionTypes.SET_OVERLAY, value })
+  doCancelSuggestShortcut() {
+    dispatch({ type: actionTypes.CANCEL_SUGGEST_SHORTCUT })
+  },
+  doCancelSuggestApp() {
+    dispatch({ type: actionTypes.CANCEL_SUGGEST_APP })
   },
 })
 

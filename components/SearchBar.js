@@ -7,7 +7,7 @@ import { colors } from "../pages/layout"
 import SearchAppInput from "./SearchAppInput"
 
 class SearchBar extends Component {
-  onNew = name => this.props.addApp(name)
+  onNew = name => this.props.suggestApp(name)
 
   render() {
     const { onChange, value, apps } = this.props
@@ -32,8 +32,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    addApp(name) {
-      dispatch({ type: actionTypes.ADD_APP, name })
+    suggestApp(name) {
+      dispatch({ type: actionTypes.SUGGEST_APP, name })
     },
   }
 }

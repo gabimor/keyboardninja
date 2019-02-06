@@ -6,6 +6,10 @@
   - detect client os
 - AddShortcut
   - show tooltip once
+  - select "general" section by default
+  - cursor pointer on tab/backspace
+  - enter on any field should submit
+- turn into a index.js only app instead of handling search on all pages
 - AddApp
   - check duplicates
 - server
@@ -14,6 +18,8 @@
   - connect everything to the DB
     - history tables
 - responsive work
+  - mobile menu
+  - cross browser checks
 - hover on links
 - nextjs documentation: module: false - turn off code splitting
 

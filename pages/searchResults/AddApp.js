@@ -73,7 +73,7 @@ class AddApp extends Component {
             <Button onClick={this.handleAdd} style={{ margin: "0 8px" }}>
               Add
             </Button>
-            <Button onClick={() => onCancel()} secondary={true}>
+            <Button onClick={onCancel} secondary={true}>
               Cancel
             </Button>
           </ButtonContainer>

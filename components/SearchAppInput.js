@@ -15,7 +15,7 @@ const Suggestion = ({ id, name, companyName }) => {
   } else {
     return (
       <div>
-        Missing <b>{name}</b> ? select to me add it
+        Missing <b>{name}</b> ? suggest adding it
       </div>
     )
   }
@@ -96,9 +96,7 @@ const getSuggestions = (value, apps) => {
       app.companyName.toLowerCase().includes(inputValue)
   )
 
-  return suggestedApps.length > 0
-    ? suggestedApps
-    : [{ id: -1, name: inputValue }]
+  return suggestedApps.length > 0 ? suggestedApps : [{ id: -1, name: value }]
 }
 
 export default SearchAppInput

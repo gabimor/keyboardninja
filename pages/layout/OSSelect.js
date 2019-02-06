@@ -3,22 +3,37 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 import { colors } from "."
 
+import { loadOS, saveOS } from "../../helpers/localStorage"
+import { getClientOS } from "../../helpers"
+
 class OSSelect extends Component {
   constructor(props) {
-    super(props)
+    super()
 
-    this.state = {
-      os: props.os,
+    this.state = {}
+  }
+
+  componentDidMount() {
+    if (!this.state.os) {
+      let os = loadOS()
+      if (!os) {
+        os = getClientOS()
+        saveOS(os)
+      }
+      this.setState({ os })
     }
   }
 
   handleSelect(os) {
     this.setState({ os })
+    saveOS(os)
     this.props.onSelect(os)
   }
 
   getColor = os =>
-    os === this.state.os ? colors.white : colors.deactivatedGray
+    this.state.os && os === this.state.os
+      ? colors.white
+      : colors.deactivatedGray
 
   render() {
     return (
@@ -37,11 +52,6 @@ class OSSelect extends Component {
     )
   }
 }
-
-OSSelect.propTypes = {
-  os: PropTypes.string.isRequired,
-}
-
 export default OSSelect
 
 const Container = styled.span`

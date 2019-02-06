@@ -28,4 +28,5 @@ export default connect(mapStateToProps)(Layout)
 const Container = styled.div`
   max-width: 1160px;
   margin: 0 auto;
+  padding: 0 30px;
 `
