@@ -2,16 +2,17 @@
 
 ## TODO
 
+- turn into a index.js only app instead of handling search on all pages
 - OSSelect
-  - detect client os
+  - store os in cookie, load server side
 - AddShortcut
   - show tooltip once
   - select "general" section by default
   - cursor pointer on tab/backspace
   - enter on any field should submit
-- turn into a index.js only app instead of handling search on all pages
-- AddApp
-  - check duplicates
+- search
+  - focus on search on load, stay focused on selection
+  - "enter" on field = suggest add
 - server
   - server hangs on `/apps/non-existing-app`
   - drop the `/app` in `/apps/visual-studio-code`
@@ -21,7 +22,6 @@
   - mobile menu
   - cross browser checks
 - hover on links
-- nextjs documentation: module: false - turn off code splitting
 
 ## Backlog
 
