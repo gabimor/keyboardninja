@@ -16,6 +16,7 @@ const About = () => {
 }
 
 const Header = styled.h1`
+  font-size:40px;
   color: ${colors.red};
   margin: 100px 0 10px;
 `

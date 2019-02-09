@@ -13,6 +13,8 @@ import AddShortcut from "./searchResults/addShortcut/AddShortcut"
 import AddApp from "./searchResults/AddApp"
 import Layout from "./layout/Layout"
 
+const sections = [{ value: 1, label: "General" }]
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -104,6 +106,9 @@ class App extends Component {
         {addShortcut && (
           <AddShortcut
             keys={[]}
+            section={sections[0]}
+            action={""}
+            sections={sections}
             onAdd={this.handleAddShortcut}
             onCancel={doCancelSuggestShortcut}
           />

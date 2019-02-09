@@ -21,11 +21,15 @@ async function main() {
     res.json(data)
   })
 
-  server.get("/apps", (req, res) => {
+  server.get("/apps", (req, res) => {    
     return handle(req, res)
   })
 
   server.get("/about", (req, res) => {
+    return handle(req, res)
+  })
+
+  server.get("/", (req, res) => {
     return handle(req, res)
   })
 
@@ -41,7 +45,7 @@ async function main() {
     }
   })
 
-  server.get("*", (req, res) => {
+  server.get("*", (req, res) => {    
     app.render(req, res, "/404")
   })
 

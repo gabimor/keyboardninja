@@ -1,14 +1,32 @@
 # Keyboard ninja
 
+## tagline
+
+- a ninja community for keyboard shortcuts
+- Every app, every shortcut, the best ones first
+- Every app, every shortcut, find the best ones
+- Discover shortcuts, see what everybody’s using
+- Learn your shortcuts, see what others are using
+- Every app shortcuts, by ninjas for ninjas
+- Every app shortcuts, by importance
+-
+
+## Checkout
+
+https://www.producthunt.com/
+https://github.com/michelvanheest/shortcuts-design-data/issues/12
+https://varnish-cache.org/intro/index.html#intro
+https://nomadlist.com/
+https://tylermcginnis.com/react-router-server-rendering/
+https://egghead.io/lessons/javascript-redux-updating-data-on-the-server
+
 ## TODO
 
 ### Alpha
 
 - AddShortcut
-  - select "general" section by default
+  - allow add sections
 - server
-  - server hangs on `/apps/non-existing-app`
-  - drop the `/app` in `/apps/visual-studio-code`
   - connect everything to the DB
     - history tables
 - responsive work

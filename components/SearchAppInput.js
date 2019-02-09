@@ -61,7 +61,7 @@ class SearchAppInput extends Component {
   }
 
   shouldRenderSuggestions = newValue => {
-    return this.show && newValue.length > 1
+    return this.show && newValue.length > 0
   }
 
   renderSuggestion = suggestion => <Suggestion {...suggestion} />
