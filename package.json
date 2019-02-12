@@ -41,6 +41,7 @@
     "babel-loader": "^8.0.5",
     "eslint": "^5.12.1",
     "eslint-plugin-react": "^7.12.4",
+    "jsdom": "^13.2.0",
     "storybook-host": "^5.0.3"
   }
 }
