@@ -11,6 +11,17 @@
 - Every app shortcuts, by importance
 -
 
+# places to post
+- digital nomads israel
+- react israel
+- geektime (PR)
+- uzi
+- sound groups
+- product hunt
+- my facebook
+- class slack
+- friends: ami, ori, roni, ariel, yoni, uzi
+- 
 ## Checkout
 
 https://www.producthunt.com/

@@ -1,9 +1,7 @@
 https://shortcuts.design/ - 12
 http://www.livekeyboardshortcuts.com/ableton-live-9-keyboard-shortcuts.html 
 
-
 ## Code
-
 VS code - https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
 visual studio - https://docs.microsoft.com/en-us/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio?view=vs-2017
 notepad++ - http://docs.notepad-plus-plus.org/index.php/Keyboard_And_Mouse_Shortcuts
@@ -24,22 +22,6 @@ ipython/jupyter
 emacs
 rstudio
 rubymine
-
-# Music
-
-Logic Pro X - http://www.logicprokeycommands.com/logic-pro-x-key-commands/
-Pro Tools - http://www.protoolskeyboardshortcuts.com/pro-tools-2018-keyboard-shortcuts/
-Studio One - 
-Ableton Live
-Cubase Pro
-Propellerhead Reason
-FL Studio
-Cockos Reaper
-Bitwig Studio
-MOTU Digital Performer
-Mixcraft Pro Studio
-GarageBand
-Sonar
 
 # Design
 
@@ -66,6 +48,22 @@ Firefox - https://support.mozilla.org/en-US/kb/keyboard-shortcuts-perform-firefo
 Safary - https://support.apple.com/en-il/guide/safari/keyboard-and-other-shortcuts-cpsh003/mac
 Edge
 Opera
+
+# Music
+
+Logic Pro X - http://www.logicprokeycommands.com/logic-pro-x-key-commands/
+Pro Tools - http://www.protoolskeyboardshortcuts.com/pro-tools-2018-keyboard-shortcuts/
+Studio One - 
+Ableton Live
+Cubase Pro
+Propellerhead Reason
+FL Studio
+Cockos Reaper
+Bitwig Studio
+MOTU Digital Performer
+Mixcraft Pro Studio
+GarageBand
+Sonar
 
 ## Photo, Video, CGI
 
