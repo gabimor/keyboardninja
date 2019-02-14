@@ -77,13 +77,12 @@ Maya - https://www.autodesk.com/shortcuts/maya
 
 Windows - https://shortcuts.design/toolspage-windows.html
 OSX - https://shortcuts.design/toolspage-macos.html
-Ubunu
 
 # Websites
 
 Youtube - https://support.google.com/youtube/answer/7631406?hl=en
 Gmail - https://support.google.com/mail/answer/6594?co=GENIE.Platform%3DDesktop&hl=en
 Google Calander - https://support.google.com/calendar/answer/37034?hl=en
-Google Spreadsheet - https://support.google.com/docs/answer/181110?co=GENIE.Platform%3DDesktop&hl=en
+Google sheets - https://support.google.com/docs/answer/181110?co=GENIE.Platform%3DDesktop&hl=en
 Google Docs - https://support.google.com/docs/answer/179738?co=GENIE.Platform%3DDesktop&hl=en
 Google slides - https://support.google.com/docs/answer/1696717?co=GENIE.Platform%3DDesktop&hl=en

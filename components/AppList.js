@@ -2,11 +2,10 @@ import React from "react"
 import Link from "next/link"
 import styled from "styled-components"
 
-import CompanyName from "./CompanyName"
 import { colors } from "../pages/layout"
 import { encodeAppName, appUrlPrefix } from "../helpers"
 
-export default function AppList({ name, apps, isOrdered = false }) {
+export default function AppList({ name, apps }) {
   return (
     <Container>
       <Header>{name}</Header>
@@ -21,7 +20,6 @@ export default function AppList({ name, apps, isOrdered = false }) {
                 <AppName isOrdered={isOrdered}>{app.name}</AppName>
               </a>
             </Link>
-            <CompanyName>{app.companyName}</CompanyName>
           </Li>
         ))}
       </ol>
