@@ -22,6 +22,7 @@ ipython/jupyter
 emacs
 rstudio
 rubymine
+visio - https://support.office.com/en-us/article/keyboard-shortcuts-for-visio-ee952f31-7e3e-4564-8116-f3ecbb733cc1
 
 # Design
 

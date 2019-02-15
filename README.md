@@ -9,7 +9,8 @@
 - Learn your shortcuts, see what others are using
 - Every app shortcuts, by ninjas for ninjas
 - Every app shortcuts, by importance
--
+- Every app's shortcuts
+- Discover, save, share your shortcuts
 
 # places to post
 - digital nomads israel
