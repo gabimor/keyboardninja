@@ -8,7 +8,7 @@ export default function Logo() {
     <H1>
       keyboard
       <span style={{ fontWeight: 700 }}>
-        ninja<span style={{ color: colors.red, fontSize: "50px" }}>.</span>
+        ninja<Dot>.</Dot>
         me
       </span>
     </H1>
@@ -17,8 +17,13 @@ export default function Logo() {
 
 const H1 = styled.h1`
   color: ${colors.white};
-  font-size: 30px;
+  font-size: 25px;
   display: inline-block;
   cursor: pointer;
   font-weight: 300;
+`
+
+const Dot = styled.span`
+  color: ${colors.red};
+  font-size: 1.35em;
 `

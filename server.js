@@ -1,6 +1,8 @@
 const express = require("express")
 const next = require("next")
 const mysql = require("promise-mysql")
+const MongoClient = require("mongodb").MongoClient
+const url = "mongodb://localhost:27017/keyboardninja"
 
 const dev = process.env.NODE_ENV !== "production"
 const app = next({ dev })
@@ -22,10 +24,19 @@ async function main() {
   })
 
   server.get("/api/apps", async (req, res) => {
-    // const data = await getData()
-    // res.json(data)
+    const client = await MongoClient.connect(url, {
+      useNewUrlParser: true,
+    })
+
+    const db = client.db("keyboardninja")
+    const apps = await db
+      .collection("apps")
+      .find()
+      .toArray()
+    client.close()
+    res.json(apps)
   })
-  
+
   server.get("/", (req, res) => {
     return handle(req, res)
   })

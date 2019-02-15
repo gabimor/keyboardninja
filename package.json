@@ -7,7 +7,7 @@
     "dev": "set PORT=3000 && nodemon --watch server.js server.js",
     "build": "next build",
     "start": "set NODE_ENV=production && node server.js",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -s ./static",
     "build-storybook": "build-storybook"
   },
   "keywords": [],
@@ -17,6 +17,7 @@
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "express": "^4.16.4",
     "isomorphic-unfetch": "^3.0.0",
+    "mongodb": "^3.1.13",
     "next": "^7.0.2",
     "promise-mysql": "^3.3.1",
     "react": "^16.7.0",

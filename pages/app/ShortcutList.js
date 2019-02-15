@@ -29,12 +29,14 @@ export default function ShortcutList({ title, shortcuts }) {
 const Title = styled.header`
   display: flex;
   align-items: baseline;
-  color: ${colors.panelZebra};
+  color: ${colors.softText};
   padding-bottom: 7px;
+  text-transform: uppercase;
 `
 
 const Table = styled.table`
   width: 100%;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
 `
 
 const TBody = styled.tbody`

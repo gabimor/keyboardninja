@@ -11,9 +11,11 @@ function Layout({ children, overlay }) {
     <>
       <Theme />
       {overlay && <Overlay />}
-      <Header />
-      <Container>{children}</Container>
-      <Footer />
+      <Container>
+        <Header />
+        <div>{children}</div>
+        <Footer />
+      </Container>
     </>
   )
 }

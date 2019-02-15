@@ -3,20 +3,49 @@ import React from "react"
 import { storiesOf } from "@storybook/react"
 import { withKnobs } from "@storybook/addon-knobs"
 
-import { colors } from "../pages/layout"
 import AppList from "./AppList"
 
 const apps = [
-  { id: 1, name: "Visual Studio Code", companyName: "Microsoft" },
-  { id: 2, name: "Visual Studio", companyName: "Microsoft" },
-  { id: 3, name: "Photoshop", companyName: "Adobe" },
-  { id: 4, name: "XD", companyName: "Adobe" },
+  {
+    id: 1,
+    name: "Visual Studio Code",
+    companyName: "Microsoft",
+    imageUrl: "logos/vscode.png",
+  },
+  {
+    id: 2,
+    name: "Visual Studio",
+    companyName: "Microsoft",
+    imageUrl: "logos/visualstudio.png",
+  },
+  {
+    id: 3,
+    name: "Photoshop",
+    companyName: "Adobe",
+    imageUrl: "logos/photoshop.png",
+  },
+  { id: 4, name: "XD", companyName: "Adobe", imageUrl: "logos/xd.png" },
+  {
+    id: 5,
+    name: "Visual Studio Code",
+    companyName: "Microsoft",
+    imageUrl: "logos/vscode.png",
+  },
+  {
+    id: 6,
+    name: "Visual Studio",
+    companyName: "Microsoft",
+    imageUrl: "logos/visualstudio.png",
+  },
+  {
+    id: 7,
+    name: "Photoshop",
+    companyName: "Adobe",
+    imageUrl: "logos/photoshop.png",
+  },
+  { id: 8, name: "XD", companyName: "Adobe", imageUrl: "logos/xd.png" },
 ]
 
 storiesOf("AppList", module)
   .addDecorator(withKnobs)
-  .addDecorator(story => <div style={{background:colors.panel}}>{story()}</div>)
-  .add("unordered", () => <AppList name="Graphics" apps={apps} />)
-  .add("ordered", () => (
-    <AppList name="Most searched apps" apps={apps} isOrdered={true} />
-  ))
+  .add("default", () => <AppList name="Graphics" apps={apps} />)

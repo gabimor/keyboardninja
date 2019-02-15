@@ -9,8 +9,15 @@ import AppList from "../components/AppList"
 import Layout from "./layout/Layout"
 import { colors } from "./layout"
 import { appUrlPrefix } from "../helpers"
+import "isomorphic-unfetch"
 
 class App extends Component {
+  static async getInitialProps({ req }) {
+    const res = await fetch("http://localhost:3000/api/apps")
+    const apps = await res.json()
+    return { apps }
+  }
+
   getAppName(selectedAppId) {
     if (!selectedAppId) return ""
     return this.props.apps.find(item => item.id === selectedAppId).name
@@ -25,48 +32,46 @@ class App extends Component {
   }
 
   getAppsByCategory() {
-    // const appsByCategory = apps.reduce((acc, currApp) => {
-    //   const categoryName = appCategories.find(
-    //     item => item.id === currApp.categoryId
-    //   ).name
-    //   acc[categoryName] = acc[categoryName] || []
-    //   acc[categoryName].push(currApp)
-    //   return acc
-    // }, {})
+    return this.props.apps.reduce((acc, currApp) => {
+      if (!acc[currApp.category]) {
+        acc[currApp.category] = []
+      }
+
+      acc[currApp.category].push(currApp)
+      return acc
+    }, {})
   }
 
   render() {
-    const { mostSearchedApps, mostPinnedApps, mostShortcutsApps } = this.props
+    const appsByCategory = this.getAppsByCategory()
+    console.log(appsByCategory)
     return (
       <Layout>
-        <Hero>Discover, save, share you <b>shortcuts</b></Hero>
+        <Hero>
+          Discover, save, share your <b>shortcuts</b>
+        </Hero>
+        {Object.keys(appsByCategory).map(category => (
+          <AppList name={category} apps={appsByCategory[category]} />
+        ))}
       </Layout>
     )
   }
 }
 
-const AppListContainer = styled.div`
-  padding: 20px 30px;
-  background: ${colors.panel};
-  display: grid;
-  grid-gap: 30px 20px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-`
-
 const Hero = styled.h1`
   color: ${colors.white};
-  font-size: 50px;
-  margin:50px 0 10px 0;
-  text-align:center;
-  font-weight:300;
+  font-size: 40px;
+  margin: 120px 0 165px 0;
+  text-align: center;
+  font-weight: 300;
 
   & b {
-    font-weight:500;
+    font-weight: 500;
   }
 `
 
-function mapStateToProps(state) {
-  return { ...state }
+function mapStateToProps({ apps }) {
+  return { apps2: apps }
 }
 
 export default connect(mapStateToProps)(withRouter(App))

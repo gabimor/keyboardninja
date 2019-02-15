@@ -20,8 +20,8 @@ function Header() {
 
 export default Header
 
-const Container = styled.div`
+const Container = styled.header`
   display: flex;
   align-items: baseline;
-  padding: 26px 36px 36px 30px;
+  padding-top: 10px;
 `

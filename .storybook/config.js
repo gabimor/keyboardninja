@@ -35,10 +35,10 @@ configureViewport({
 
 // global decorator to add theme
 addDecorator(story => (
-  <>
+  <div style={{ padding: 40 }}>
     <Theme />
     {story()}
-  </>
+  </div>
 ))
 
 // automatically import all files ending in *.stories.js

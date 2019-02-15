@@ -4,52 +4,43 @@ import styled from "styled-components"
 
 import { colors } from "../pages/layout"
 import { encodeAppName, appUrlPrefix } from "../helpers"
+import App from "./App"
 
 export default function AppList({ name, apps }) {
   return (
     <Container>
       <Header>{name}</Header>
-      <ol>
+      <InnerContainer>
         {apps.map(app => (
-          <Li key={app.id} isOrdered={isOrdered}>
-            <Link
-              href={"/searchResults?appId=" + app.id}
-              as={appUrlPrefix + encodeAppName(app.name)}
-            >
-              <a>
-                <AppName isOrdered={isOrdered}>{app.name}</AppName>
-              </a>
-            </Link>
-          </Li>
+          <Link
+            href={"/searchResults?appId=" + app.id}
+            as={appUrlPrefix + encodeAppName(app.name)}
+          >
+            <a key={app.id}>
+              <App imageUrl={app.imageUrl} name={app.name} />
+            </a>
+          </Link>
         ))}
-      </ol>
+      </InnerContainer>
     </Container>
   )
 }
 
+const InnerContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  background: ${colors.panelZebra};
+`
+
 const Container = styled.div`
-  line-height: 22px;
+  margin-bottom: 60px;
 `
 
 const Header = styled.h3`
-  color: ${colors.darkRed};
-  font-weight: 500;
-  border-bottom: solid 1px ${colors.lightRed};
-  padding-bottom: 3px;
-  margin-bottom: 10px;
-`
-const Li = styled.li`
-  color: ${colors.darkRed};
-  list-style: ${props => (props.isOrdered ? "ordered" : "none")};
-`
-
-const AppName = styled.span`
-  color: ${colors.mainBG};
-  cursor: pointer;
-  display: inline-block;
-  margin-right: 6px;
-  margin-left: ${props => (props.isOrdered ? "3px" : 0)};
-  &:hover {
-    color: ${colors.formBG};
-  }
+  color: ${colors.softText};
+  font-weight: 300;
+  font-size:16px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
 `

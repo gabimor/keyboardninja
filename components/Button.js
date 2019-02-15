@@ -17,14 +17,16 @@ export default function Button({ children, secondary, style, onClick }) {
 }
 
 Button.propTypes = {
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func,
 }
 
 const style = `
   display: inline-block;
   cursor:pointer;
-  padding: 8px 15px 7px;
-  vertical-align:top;
+  color: ${colors.softText};
+  padding: 8px 15px;
+  border-radius: 4px;
+  line-height: 100%;
 `
 
 const PrimaryButton = styled.button`
@@ -36,12 +38,6 @@ const PrimaryButton = styled.button`
 
   &:hover {
     background-color: ${colors.red};
-    border-color: ${colors.red};
-  }
-
-  &:focus {
-    outline: 1;
-    outline-color: ${colors.lightRed};
   }
 `
 
@@ -52,12 +48,6 @@ const SecondaryButton = styled.button`
   border: 1px solid ${colors.lightGray};
 
   &:hover {
-    color: ${colors.white};
-    border: 1px solid ${colors.white};
-  }
-
-  &:focus {
-    outline: 1;
-    outline-color: ${colors.lightGray};
+    background: ${colors.labelText};
   }
 `
