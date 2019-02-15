@@ -6,17 +6,18 @@ import PropTypes from "prop-types"
 import { upperFirstLetter } from "../../helpers"
 import Shortcut from "./Shortcut"
 import { colors } from "../layout"
+import Pin from "./Pin"
 
-function ShortcutItem({ action, keys, isPinned }) {
+function ShortcutItem({ action, keys, pins, isPinned }) {
   return (
     <Container>
-      <td>
-        <i className="fas fa-thumbtack" />
-      </td>
+      <PinContainer>
+        <Pin isPinned={isPinned} count={pins} />
+      </PinContainer>
       <td>{upperFirstLetter(action)}</td>
-      <td>
+      <KeysContainer>
         <Shortcut keys={keys} />
-      </td>
+      </KeysContainer>
     </Container>
   )
 }
@@ -29,11 +30,17 @@ ShortcutItem.propTypes = {
 export default ShortcutItem
 
 const Container = styled.tr`
-  padding: 10px 30px;
-  background: ${colors.panelGray};
+  background: ${colors.panel};
+  font-weight: 300;
+`
 
-  color: ${colors.mainBG}};
-  & td {
-    padding: 6px 10px;
-  }
+const PinContainer = styled.td`
+  width: 1%;
+  text-align: center;
+  padding: 6px 18px 6px 18px;
+`
+
+const KeysContainer = styled.td`
+  width: 1%;
+  padding-right: 13px;
 `

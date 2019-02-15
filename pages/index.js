@@ -39,8 +39,7 @@ class App extends Component {
     const { mostSearchedApps, mostPinnedApps, mostShortcutsApps } = this.props
     return (
       <Layout>
-        <Hero>Every app's shortcuts</Hero>
-        <HeroSub>ordered by popularity</HeroSub>
+        <Hero>Discover, save, share you <b>shortcuts</b></Hero>
       </Layout>
     )
   }
@@ -48,7 +47,7 @@ class App extends Component {
 
 const AppListContainer = styled.div`
   padding: 20px 30px;
-  background: ${colors.panelGray};
+  background: ${colors.panel};
   display: grid;
   grid-gap: 30px 20px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -56,17 +55,14 @@ const AppListContainer = styled.div`
 
 const Hero = styled.h1`
   color: ${colors.white};
-  font-size: 40px;
+  font-size: 50px;
   margin:50px 0 10px 0;
   text-align:center;
-  font-weight:bold;
-`
-
-const HeroSub = styled.h2`
-  color: ${colors.white};
-  font-size: 30px;
-  text-align:center;
   font-weight:300;
+
+  & b {
+    font-weight:500;
+  }
 `
 
 function mapStateToProps(state) {

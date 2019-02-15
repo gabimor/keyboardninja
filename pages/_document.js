@@ -48,12 +48,8 @@ export default class MyDocument extends Document {
             crossOrigin="anonymous"
             rel="stylesheet"
           />
-          <link
-            href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-            rel="stylesheet"
-          />
-        </Head>
-        <body>
+          <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">        </Head>
+        <body>  
           <Main />
           <NextScript />
           {/* <div dangerouslySetInnerHTML={{ __html: hotjar + googleAnalytics }} /> */}

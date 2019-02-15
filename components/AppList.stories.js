@@ -15,7 +15,7 @@ const apps = [
 
 storiesOf("AppList", module)
   .addDecorator(withKnobs)
-  .addDecorator(story => <div style={{background:colors.panelGray}}>{story()}</div>)
+  .addDecorator(story => <div style={{background:colors.panel}}>{story()}</div>)
   .add("unordered", () => <AppList name="Graphics" apps={apps} />)
   .add("ordered", () => (
     <AppList name="Most searched apps" apps={apps} isOrdered={true} />

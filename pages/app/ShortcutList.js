@@ -1,28 +1,23 @@
 import React from "react"
 
 import ShortcutItem from "./ShortcutItem"
-import ListAddMessage from "./ListAddMessage"
 import styled from "styled-components"
 
 import { colors } from "../layout"
 
-export default function ShortcutList({ title, shortcuts, onAddShortcut }) {
+export default function ShortcutList({ title, shortcuts }) {
   return (
     <div>
-      <Title>
-        {title}
-        <ListAddMessage
-          listSize={shortcuts.length}
-          onAddShortcut={() => onAddShortcut(title)}
-        />
-      </Title>
+      <Title>{title}</Title>
       <Table cellSpacing={0}>
         <TBody>
           {shortcuts.map(shortcut => (
             <ShortcutItem
               key={shortcut.id}
-              keys={shortcut.win.split("+")}
+              keys={shortcut.keys.split("+")}
               action={shortcut.action}
+              pins={shortcut.pins}
+              isPinned={shortcut.isPinned}
             />
           ))}
         </TBody>
@@ -43,12 +38,6 @@ const Table = styled.table`
 `
 
 const TBody = styled.tbody`
-  & td:first-child {
-    padding: 0 10px;
-    text-align: center;
-    max-width: 20px;
-  }
-
   & tr:nth-child(odd) {
     background: ${colors.panelZebra};
   }

@@ -32,8 +32,8 @@ class OSSelect extends Component {
 
   getColor = os =>
     this.state.os && os === this.state.os
-      ? colors.white
-      : colors.deactivatedGray
+      ? colors.softText
+      : colors.mutedIcon
 
   render() {
     return (

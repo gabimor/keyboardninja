@@ -5,16 +5,24 @@ export const colors = {
   red: "#E86562",
   lightRed: "#FE9694",
 
-  formBG: "#7F7E80",
-  formInputBG: "#A4A3A6",
-  formInputFocusBG: "#afadad",
-  mainBG: "#2D0605",
+  mainBG1: "#442323",
+  mainBG2: "#270505",
+
+  mutedIcon: "#5A5A5A",
+  softText: "#E9E5E5",
+  labelText: "#9D8B8B", // pinBorder
+  pin: "#A4A3A6",
+  pinSelected: "#FFD46F",
+  pinSelectedBorder: "#A57E26",
+  // formBG: "#7F7E80",
+  // formInputBG: "#A4A3A6",
+  // formInputFocusBG: "#afadad",
 
   white: "#FFFFFF",
+  black: "#000000",
   lightGray: "#ECECEC",
-  panelGray: "#D9D9D9",
-  panelZebra: "#E9E5E5",
-  deactivatedGray: "#A4A3A6",
+  panel: "#453A3A",
+  panelZebra: "#2C2525",
 }
 
 export default createGlobalStyle`
@@ -22,10 +30,11 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    background: ${colors.mainBG};    
+    background: linear-gradient(${colors.mainBG1}, ${colors.mainBG2});
+    min-height:100vh;
     color: ${colors.white}
     margin: 0;
-    font-family: "Roboto", arial;    
+    font-family: "IBM Plex Sans", sans-serif;
     font-size: 16px;
   }
   
@@ -126,7 +135,7 @@ export default createGlobalStyle`
   }
   
   .react-autosuggest__suggestion--companyName {
-    color: ${colors.panelGray};
+    color: ${colors.panel};
     display: inline-block;
     margin-left: 10px;
     font-size: 14px;

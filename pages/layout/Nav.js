@@ -20,10 +20,10 @@ export default () => (
 
 const Container = styled.ul`
   display: inline-block;
-  margin-left: 20px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 300;
   list-style: none;
+  margin-left: auto;
 
   & li {
     padding-left: 20px;
