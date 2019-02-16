@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components"
 export const colors = {
   darkRed: "#D1403D",
   red: "#E86562",
+  textRed: "#d1b4b4",
 
   mainBG1: "#442323",
   mainBG2: "#270505",
@@ -27,11 +28,11 @@ export default createGlobalStyle`
   }
   html {
     height:100%;
+    background-color: ${colors.mainBG2};
   }
 
   body {
-    // background-image: linear-gradient(${colors.mainBG1}, ${colors.mainBG2});
-    background-color: ${colors.mainBG2};
+    background-image: linear-gradient(${colors.mainBG1}, ${colors.mainBG2});
     color: ${colors.white}
     margin: 0;
     font-family: "IBM Plex Sans", sans-serif;

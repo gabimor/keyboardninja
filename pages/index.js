@@ -13,9 +13,9 @@ import "isomorphic-unfetch"
 
 class App extends Component {
   static async getInitialProps({ req }) {
-    const res = await fetch("http://localhost:3000/api/apps")
-    const apps = await res.json()
-    return { apps }
+    const res = await fetch("http://localhost:3000/api/app_categories")
+    const appCategories = await res.json()
+    return { appCategories }
   }
 
   getAppName(selectedAppId) {
@@ -31,27 +31,15 @@ class App extends Component {
     )
   }
 
-  getAppsByCategory() {
-    return this.props.apps.reduce((acc, currApp) => {
-      if (!acc[currApp.category]) {
-        acc[currApp.category] = []
-      }
-
-      acc[currApp.category].push(currApp)
-      return acc
-    }, {})
-  }
-
   render() {
-    const appsByCategory = this.getAppsByCategory()
-    console.log(appsByCategory)
+    const { appCategories } = this.props
     return (
       <Layout>
         <Hero>
           Discover, save, share your <b>shortcuts</b>
         </Hero>
-        {Object.keys(appsByCategory).map(category => (
-          <AppList name={category} apps={appsByCategory[category]} />
+        {appCategories.map(category => (
+          <AppList name={category.name} apps={category.apps} />
         ))}
       </Layout>
     )

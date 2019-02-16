@@ -23,14 +23,14 @@ async function main() {
     res.json(data)
   })
 
-  server.get("/api/apps", async (req, res) => {
+  server.get("/api/app_categories", async (req, res) => {
     const client = await MongoClient.connect(url, {
       useNewUrlParser: true,
     })
 
     const db = client.db("keyboardninja")
     const apps = await db
-      .collection("apps")
+      .collection("app_categories")
       .find()
       .toArray()
     client.close()
