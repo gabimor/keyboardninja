@@ -72,7 +72,7 @@ keysSelector: td:nth-child(2)
 # XML (Text) Editor
 # XML Schema Designer
 # See also
----Visual Studio,Microsoft,visualstudio.png,win
+---5c6fc0dd53624e2cf83ae466,Visual Studio,Microsoft,visualstudio.png,win,
 # Analyze
 Analyze.NavigateBackward (-) Shift+Alt+3
 Analyze.NavigateForward (-) Shift+Alt+4
