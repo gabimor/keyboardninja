@@ -18,18 +18,18 @@ class App extends Component {
     return { appCategories }
   }
 
-  getAppName(selectedAppId) {
-    if (!selectedAppId) return ""
-    return this.props.apps.find(item => item.id === selectedAppId).name
-  }
+  // getAppName(selectedAppId) {
+  //   if (!selectedAppId) return ""
+  //   return this.props.apps.find(item => item.id === selectedAppId).name
+  // }
 
-  handleSearch(selectedAppId) {
-    const appName = this.getAppName(selectedAppId)
-    Router.push(
-      "/searchResults?appId=" + selectedAppId,
-      appUrlPrefix + encodeAppName(appName)
-    )
-  }
+  // handleSearch(selectedAppId) {
+  //   const appName = this.getAppName(selectedAppId)
+  //   Router.push(
+  //     "/app?id=" + selectedAppId,
+  //     appUrlPrefix + encodeAppName(appName)
+  //   )
+  // }
 
   render() {
     const { appCategories } = this.props

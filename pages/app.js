@@ -6,29 +6,36 @@ import Router, { withRouter } from "next/router"
 import { actionTypes } from "../store"
 
 import { encodeAppName, appUrlPrefix } from "../helpers"
-import ShortcutList from "./searchResults/ShortcutList"
+import ShortcutList from "./app/ShortcutList"
 import Layout from "./layout/Layout"
 
 class App extends Component {
+  static async getInitialProps({ query }) {
+    const { id } = query
+    const res = await fetch(`http://localhost:3000/api/apps/${id}`)
+    const app = await res.json()
+    return { app }
+  }
+
   constructor(props) {
     super(props)
 
-    let selectedAppId = props.router.query.appId
-    selectedAppId = selectedAppId ? +selectedAppId : undefined
+    // let selectedAppId = props.router.query.appId
+    // selectedAppId = selectedAppId ? +selectedAppId : undefined
 
-    this.state = {
-      selectedAppId,
-      appName: this.getAppName(selectedAppId),
-      shownShortcuts: this.reduceShortcuts(selectedAppId, props.shortcuts),
-    }
+    // this.state = {
+    //   selectedAppId,
+    //   appName: this.getAppName(selectedAppId),
+    //   shownShortcuts: this.reduceShortcuts(selectedAppId, props.shortcuts),
+    // }
   }
 
-  componentDidMount() {
-    Router.events.on("routeChangeComplete", () => {
-      if (!this.props.router.query.appId)
-        this.setState({ selectedAppId: undefined, shownShortcuts: {} })
-    })
-  }
+  // componentDidMount() {
+  //   Router.events.on("routeChangeComplete", () => {
+  //     if (!this.props.router.query.appId)
+  //       this.setState({ selectedAppId: undefined, shownShortcuts: {} })
+  //   })
+  // }
 
   reduceShortcuts(selectedAppId, shortcuts) {
     if (!selectedAppId) return {}
@@ -43,10 +50,10 @@ class App extends Component {
     }, {})
   }
 
-  getAppName(selectedAppId) {
-    if (!selectedAppId) return ""
-    return this.props.apps.find(item => item.id === selectedAppId).name
-  }
+  // getAppName(selectedAppId) {
+  //   if (!selectedAppId) return ""
+  //   return this.props.apps.find(item => item.id === selectedAppId).name
+  // }
 
   renderShortcutCategory(sectionId) {
     const sectionTitle = this.props.appSections.find(
@@ -65,13 +72,14 @@ class App extends Component {
   }
 
   render() {
-    const { shownShortcuts, appName } = this.state
+    console.log(this.props)
+    // const { shownShortcuts } = this.state
     //const { doSuggestShortcut } = this.props
-    const sectionIds = Object.keys(shownShortcuts)
+    // const sectionIds = Object.keys(shownShortcuts)
     return (
       <Layout>
         <ResultsContainer>
-          {sectionIds.map(key => this.renderShortcutCategory(+key))}
+          {/* {sectionIds.map(key => this.renderShortcutCategory(+key))} */}
         </ResultsContainer>
       </Layout>
     )

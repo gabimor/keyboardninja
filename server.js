@@ -1,7 +1,8 @@
 const express = require("express")
 const next = require("next")
 const mysql = require("promise-mysql")
-const MongoClient = require("mongodb").MongoClient
+const mongodb = require("mongodb")
+const MongoClient = mongodb.MongoClient
 const url = "mongodb://localhost:27017/keyboardninja"
 
 const dev = process.env.NODE_ENV !== "production"
@@ -17,10 +18,26 @@ async function main() {
 
   const server = express()
 
-  server.get("/api/data", async (req, res) => {
-    const data = await getData()
+  server.get("/api/apps/:id", async (req, res) => {
+    const client = await MongoClient.connect(url, {
+      useNewUrlParser: true,
+    })
 
-    res.json(data)
+    const id = "5c6716e4ad58d167f43a0c84"
+
+    const db = client.db("keyboardninja")
+
+    const appCategory = await db
+      .collection("apps")
+      .find({ "apps._id": new mongodb.ObjectId(id) })
+      .toArray()
+
+    const appData = appCategory[0].apps.find(
+      e => e._id.toString() === id
+    )
+
+    client.close()
+    res.json(appData)
   })
 
   server.get("/api/app_categories", async (req, res) => {
@@ -30,7 +47,7 @@ async function main() {
 
     const db = client.db("keyboardninja")
     const apps = await db
-      .collection("app_categories")
+      .collection("apps")
       .find()
       .toArray()
     client.close()
@@ -42,15 +59,36 @@ async function main() {
   })
 
   server.get("/:name", async (req, res) => {
-    const actualPage = "/searchResults"
-    const data = await getData()
-    const appId = getAppIdByName(req.params.name, data.apps)
-    if (!appId) {
-      app.render(req, res, "/404")
-    } else {
-      const queryParams = { appId }
-      app.render(req, res, actualPage, queryParams)
-    }
+    const client = await MongoClient.connect(url, {
+      useNewUrlParser: true,
+    })
+
+    const id = "5c6716e4ad58d167f43a0c84"
+    const db = client.db("keyboardninja")
+
+    const appCategory = await db
+      .collection("apps")
+      .find({ "apps._id": new mongodb.ObjectId(id) })
+      .toArray()
+
+    const appData = appCategory[0].apps.find(
+      e => e._id.toString() === id
+    )
+    client.close()
+    const actualPage = "/app"
+    const queryParams = { id }
+    app.render(req, res, actualPage, queryParams)
+
+    // const actualPage = "/app"
+    // const data = await getData()
+    // const id = getAppIdByName(req.params.name, data.apps)
+    // if (!id) {
+
+    //   app.render(req, res, "/404")
+    // } else {
+    //   const queryParams = { id }
+    //   app.render(req, res, actualPage, queryParams)
+    // }
   })
 
   server.get("*", (req, res) => {

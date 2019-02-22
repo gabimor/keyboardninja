@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 import { colors } from "../pages/layout"
 import { encodeAppName, appUrlPrefix } from "../helpers"
-import App from "./App"
+import App from "./AppItem"
 
 export default function AppList({ name, apps }) {
   return (
@@ -13,10 +13,10 @@ export default function AppList({ name, apps }) {
       <InnerContainer>
         {apps.map(app => (
           <Link
-            href={"/searchResults?appId=" + app.id}
+            href={"/app?id=" + app._id}
             as={appUrlPrefix + encodeAppName(app.name)}
           >
-            <a key={app.id}>
+            <a key={app._id}>
               <App imageUrl={app.imageUrl} name={app.name} />
             </a>
           </Link>
@@ -40,7 +40,7 @@ const Container = styled.div`
 const Header = styled.h3`
   color: ${colors.softText};
   font-weight: 300;
-  font-size:16px;
+  font-size: 16px;
   margin-bottom: 15px;
   text-transform: uppercase;
 `

@@ -1,7 +1,8 @@
 https://shortcuts.design/ - 12
-http://www.livekeyboardshortcuts.com/ableton-live-9-keyboard-shortcuts.html 
+http://www.livekeyboardshortcuts.com/ableton-live-9-keyboard-shortcuts.html
 
 ## Code
+
 VS code - https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
 visual studio - https://docs.microsoft.com/en-us/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio?view=vs-2017
 notepad++ - http://docs.notepad-plus-plus.org/index.php/Keyboard_And_Mouse_Shortcuts
@@ -18,11 +19,11 @@ netbeans - https://netbeans.org/project_downloads/usersguide/shortcuts-80.pdf
 webstorm - https://resources.jetbrains.com/storage/products/webstorm/docs/WebStorm_ReferenceCard.pdf
 chrome devtools - https://developers.google.com/web/tools/chrome-devtools/shortcuts
 firefox devtools - https://developer.mozilla.org/en-US/docs/Tools/Keyboard_shortcuts
-ipython/jupyter 
+ipython/jupyter
 emacs
 rstudio
 rubymine
-visio - https://support.office.com/en-us/article/keyboard-shortcuts-for-visio-ee952f31-7e3e-4564-8116-f3ecbb733cc1
+textmate
 
 # Design
 
@@ -32,7 +33,7 @@ Illustrator - https://helpx.adobe.com/il_en/illustrator/using/default-keyboard-s
 InDesign - https://shortcuts.design/toolspage-adobeindesign.html
 XD - https://shortcuts.design/toolspage-adobexd.html
 Sketch - https://shortcuts.design/toolspage-sketch.html
-Dreamweaver - 
+Dreamweaver -
 CorelDraw
 
 ## Office
@@ -41,6 +42,7 @@ word - https://support.office.com/en-us/article/keyboard-shortcuts-for-microsoft
 excel - https://support.office.com/en-us/article/keyboard-shortcuts-in-excel-for-windows-1798d9d5-842a-42b8-9c99-9b7213f0040f#PickTab=Newer_versions
 access - https://support.office.com/en-us/article/keyboard-shortcuts-for-access-70a673e4-4f7b-4300-b8e5-3320fa6606e2
 powerpoint - https://support.office.com/en-us/article/use-keyboard-shortcuts-to-create-powerpoint-presentations-ebb3d20e-dcd4-444f-a38e-bb5c5ed180f4
+visio - https://support.office.com/en-us/article/keyboard-shortcuts-for-visio-ee952f31-7e3e-4564-8116-f3ecbb733cc1
 
 ## browsers
 
@@ -50,11 +52,27 @@ Safary - https://support.apple.com/en-il/guide/safari/keyboard-and-other-shortcu
 Edge
 Opera
 
+# OS
+
+Windows - https://shortcuts.design/toolspage-windows.html
+OSX - https://shortcuts.design/toolspage-macos.html
+
+# Websites
+
+Youtube - https://support.google.com/youtube/answer/7631406?hl=en
+Gmail - https://support.google.com/mail/answer/6594?co=GENIE.Platform%3DDesktop&hl=en
+Google Calander - https://support.google.com/calendar/answer/37034?hl=en
+Google sheets - https://support.google.com/docs/answer/181110?co=GENIE.Platform%3DDesktop&hl=en
+Google Docs - https://support.google.com/docs/answer/179738?co=GENIE.Platform%3DDesktop&hl=en
+Google slides - https://support.google.com/docs/answer/1696717?co=GENIE.Platform%3DDesktop&hl=en
+
+---
+
 # Music
 
 Logic Pro X - http://www.logicprokeycommands.com/logic-pro-x-key-commands/
 Pro Tools - http://www.protoolskeyboardshortcuts.com/pro-tools-2018-keyboard-shortcuts/
-Studio One - 
+Studio One -
 Ableton Live
 Cubase Pro
 Propellerhead Reason
@@ -73,17 +91,3 @@ AfterEffects - https://helpx.adobe.com/after-effects/using/keyboard-shortcuts-re
 Lightroom - https://helpx.adobe.com/il_en/lightroom/help/keyboard-shortcuts.html
 3DS Max - https://knowledge.autodesk.com/support/3ds-max/getting-started/caas/CloudHelp/cloudhelp/2019/ENU/3DSMax-Basics/files/GUID-6D38579A-C018-47F6-AC57-2578CF903F2D-htm.html
 Maya - https://www.autodesk.com/shortcuts/maya
-
-# OS
-
-Windows - https://shortcuts.design/toolspage-windows.html
-OSX - https://shortcuts.design/toolspage-macos.html
-
-# Websites
-
-Youtube - https://support.google.com/youtube/answer/7631406?hl=en
-Gmail - https://support.google.com/mail/answer/6594?co=GENIE.Platform%3DDesktop&hl=en
-Google Calander - https://support.google.com/calendar/answer/37034?hl=en
-Google sheets - https://support.google.com/docs/answer/181110?co=GENIE.Platform%3DDesktop&hl=en
-Google Docs - https://support.google.com/docs/answer/179738?co=GENIE.Platform%3DDesktop&hl=en
-Google slides - https://support.google.com/docs/answer/1696717?co=GENIE.Platform%3DDesktop&hl=en
