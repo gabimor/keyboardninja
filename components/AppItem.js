@@ -4,10 +4,10 @@ import styled from "styled-components"
 import { colors } from "../pages/layout"
 import { lightenDarkenColor } from "../helpers"
 
-export default function App({ name, imageUrl }) {
+export default function App({ name, icon }) {
   return (
     <Container>
-      <Image src={imageUrl} />
+      <Image src={icon} />
       <Name>{name}</Name>
     </Container>
   )

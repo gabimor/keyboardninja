@@ -7,6 +7,7 @@ import { encodeAppName, appUrlPrefix } from "../helpers"
 import App from "./AppItem"
 
 export default function AppList({ name, apps }) {
+  console.log(apps)
   return (
     <Container>
       <Header>{name}</Header>
@@ -17,7 +18,7 @@ export default function AppList({ name, apps }) {
             as={appUrlPrefix + encodeAppName(app.name)}
           >
             <a key={app._id}>
-              <App imageUrl={app.imageUrl} name={app.name} />
+              <App icon={app.icon} name={app.name} />
             </a>
           </Link>
         ))}

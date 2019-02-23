@@ -2,18 +2,24 @@ const express = require("express")
 const next = require("next")
 const mysql = require("promise-mysql")
 const mongodb = require("mongodb")
-const MongoClient = mongodb.MongoClient
+const { MongoClient, ObjectId } = mongodb
 const url = "mongodb://localhost:27017/keyboardninja"
 
 const dev = process.env.NODE_ENV !== "production"
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
+let apps
+let appCategories
+
 process.env.PORT = process.env.PORT || 3000
 
 main()
 
 async function main() {
+  apps = await getApps()
+  appCategories = await getAppCategories()
+
   await app.prepare()
 
   const server = express()
@@ -29,67 +35,78 @@ async function main() {
 
     const appCategory = await db
       .collection("apps")
-      .find({ "apps._id": new mongodb.ObjectId(id) })
+      .find({ _id: ObjectId(id) })
       .toArray()
 
-    const appData = appCategory[0].apps.find(
-      e => e._id.toString() === id
-    )
+    const appData = appCategory[0].apps.find(e => e._id.toString() === id)
 
     client.close()
     res.json(appData)
   })
 
-  server.get("/api/app_categories", async (req, res) => {
+  async function getAppCategories() {
     const client = await MongoClient.connect(url, {
       useNewUrlParser: true,
     })
 
     const db = client.db("keyboardninja")
-    const apps = await db
-      .collection("apps")
+    const appCategories = await db
+      .collection("app_categories")
       .find()
       .toArray()
+
     client.close()
-    res.json(apps)
+
+    for (const category of appCategories) {
+      for (let i = 0; i < category.apps.length; i++) {
+        const appId = category.apps[i]
+        let { name, icon } = apps.find(e => e._id.equals(appId))
+        icon = "/static/logos/" + icon
+        category.apps[i] = { _id: appId, name, icon }
+      }
+    }
+
+    return appCategories
+  }
+
+  server.get("/api/app_categories", async (req, res) => {
+    res.json(appCategories)
   })
 
   server.get("/", (req, res) => {
     return handle(req, res)
   })
 
-  server.get("/:name", async (req, res) => {
-    const client = await MongoClient.connect(url, {
-      useNewUrlParser: true,
-    })
+  // server.get("/:name", async (req, res) => {
+  //   const client = await MongoClient.connect(url, {
+  //     useNewUrlParser: true,
+  //   })
 
-    const id = "5c6716e4ad58d167f43a0c84"
-    const db = client.db("keyboardninja")
+  //   const id = "5c6716e4ad58d167f43a0c84"
+  //   const db = client.db("keyboardninja")
 
-    const appCategory = await db
-      .collection("apps")
-      .find({ "apps._id": new mongodb.ObjectId(id) })
-      .toArray()
+  //   const appCategory = await db
+  //     .collection("apps")
+  //     .find({ "apps._id": new mongodb.ObjectId(id) })
+  //     .toArray()
 
-    const appData = appCategory[0].apps.find(
-      e => e._id.toString() === id
-    )
-    client.close()
-    const actualPage = "/app"
-    const queryParams = { id }
-    app.render(req, res, actualPage, queryParams)
+  //   const appData = appCategory[0].apps.find(e => e._id.toString() === id)
+  //   client.close()
+  //   const actualPage = "/app"
+  //   const queryParams = { id }
+  //   app.render(req, res, actualPage, queryParams)
 
-    // const actualPage = "/app"
-    // const data = await getData()
-    // const id = getAppIdByName(req.params.name, data.apps)
-    // if (!id) {
+  //   // const actualPage = "/app"
+  //   // const data = await getData()
+  //   // const id = getAppIdByName(req.params.name, data.apps)
+  //   // if (!id) {
 
-    //   app.render(req, res, "/404")
-    // } else {
-    //   const queryParams = { id }
-    //   app.render(req, res, actualPage, queryParams)
-    // }
-  })
+  //   //   app.render(req, res, "/404")
+  //   // } else {
+  //   //   const queryParams = { id }
+  //   //   app.render(req, res, actualPage, queryParams)
+  //   // }
+  // })
 
   server.get("*", (req, res) => {
     app.render(req, res, "/404")
@@ -101,37 +118,21 @@ async function main() {
   })
 }
 
-async function getData() {
-  const conn = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "1234",
-    database: "keyboard_ninja",
+async function getApps() {
+  const client = await MongoClient.connect(url, {
+    useNewUrlParser: true,
   })
 
-  const shortcuts = await conn.query("select * from shortcuts")
-  const apps = await conn.query("select * from apps")
-  const appSections = await conn.query("SELECT * FROM app_sections")
-  const appCategories = await conn.query("SELECT * FROM app_categories")
-  const mostSearchedApps = await conn.query("SELECT * FROM apps LIMIT 5")
-  const mostPinnedApps = await conn.query(
-    "SELECT * FROM v_most_pinned_apps LIMIT 5"
-  )
-  const mostShortcutsApps = await conn.query(
-    "SELECT * FROM v_most_shortcuts_apps LIMIT 5"
-  )
+  const db = client.db("keyboardninja")
 
-  conn.end()
+  const apps = await db
+    .collection("apps")
+    .find()
+    .toArray()
 
-  return {
-    apps,
-    shortcuts,
-    appCategories,
-    appSections,
-    mostSearchedApps,
-    mostPinnedApps,
-    mostShortcutsApps,
-  }
+  client.close()
+
+  return apps
 }
 
 // TODO: those are also found in client helpers.js, had trouble with storybook when importing from CommonJS helpers.js, changed to ES6 modules
