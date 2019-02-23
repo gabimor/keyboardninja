@@ -41,11 +41,11 @@ async function main() {
     const currApp = apps.find(e => encodeAppName(e.name) === req.params.name)
     const actualPage = "/app"
 
-    if (!currApp) {
-      app.render(req, res, "/404")
-    } else {
+    if (currApp) {
       const queryParams = { id: currApp._id }
       app.render(req, res, actualPage, queryParams)
+    } else {
+      app.render(req, res, "/404")
     }
   })
 
