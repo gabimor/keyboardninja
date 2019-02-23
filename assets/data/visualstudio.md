@@ -365,7 +365,7 @@ Window.WindowSearch (-) Alt+`
 # Azure
 RetryMobileServiceScriptOperation (-) Ctrl+Num *, Ctrl+R
 ShowMobileServiceScriptErrorDetails (-) Ctrl+Num *, Ctrl+D
-# ADO.NET Entity Data Model Designer
+# ADO~NET Entity Data Model Designer
 MicrosoftDataEntityDesignContext.MoveProperties.Down (-) Alt+Down Arrow
 MicrosoftDataEntityDesignContext.MoveProperties.Down5 (-) Alt+PgDn
 MicrosoftDataEntityDesignContext.MoveProperties.ToBottom (-) Alt+End

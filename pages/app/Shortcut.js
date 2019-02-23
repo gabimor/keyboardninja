@@ -6,33 +6,10 @@ import { colors } from "../layout"
 import ShortcutKey from "../../components/ShortcutKey"
 import { upperFirstLetter } from "../../helpers"
 
-function moveKeyFirst(keys, key) {
-  if (keys.includes(key)) {
-    return [key, ...keys.filter(item => item !== key)]
-  } else {
-    return keys
-  }
-}
-
-function addPlus(keys) {
-  const result = []
-  for (let i = 0; i < keys.length; i++) {
-    result.push(keys[i])
-    if (keys[i] && keys[i] !== " " && keys[i + 1] && keys[i + 1] !== " ") {
-      result.push("+")
-    }
-  }
-  return result
-}
-
-export default function Shortcut({ keys }) {
-  keys = moveKeyFirst(keys, "shift")
-  keys = moveKeyFirst(keys, "alt")
-  keys = moveKeyFirst(keys, "ctrl")
-  keys = addPlus(keys)
+export default function Shortcut({ keys }) {  
   return (
     <Container>
-      {keys.map((key, index) => {
+      {keys.split("+").map((key, index) => {
         key = upperFirstLetter(key)
         switch (key) {
           case "+":
@@ -80,7 +57,7 @@ export default function Shortcut({ keys }) {
 }
 
 Shortcut.propTypes = {
-  keys: PropTypes.array,
+  keys: PropTypes.string.isRequired,
 }
 
 const Container = styled.div`

@@ -3,11 +3,10 @@ import Link from "next/link"
 import styled from "styled-components"
 
 import { colors } from "../pages/layout"
-import { encodeAppName, appUrlPrefix } from "../helpers"
+import { encodeAppName } from "../helpers"
 import App from "./AppItem"
 
 export default function AppList({ name, apps }) {
-  console.log(apps)
   return (
     <Container>
       <Header>{name}</Header>
@@ -15,9 +14,10 @@ export default function AppList({ name, apps }) {
         {apps.map(app => (
           <Link
             href={"/app?id=" + app._id}
-            as={appUrlPrefix + encodeAppName(app.name)}
+            as={"/" + encodeAppName(app.name)}
+            key={app._id}
           >
-            <a key={app._id}>
+            <a>
               <App icon={app.icon} name={app.name} />
             </a>
           </Link>

@@ -6,6 +6,7 @@ import styled from "styled-components"
 import { colors } from "../layout"
 
 export default function ShortcutList({ title, shortcuts }) {
+  console.log(title, shortcuts)
   return (
     <div>
       <Title>{title}</Title>
@@ -13,8 +14,8 @@ export default function ShortcutList({ title, shortcuts }) {
         <TBody>
           {shortcuts.map(shortcut => (
             <ShortcutItem
-              key={shortcut.id}
-              keys={shortcut.keys.split("+")}
+              key={shortcut._id}
+              keys={shortcut.keys}
               action={shortcut.action}
               pins={shortcut.pins}
               isPinned={shortcut.isPinned}

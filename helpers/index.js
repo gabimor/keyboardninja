@@ -1,23 +1,17 @@
-export const appUrlPrefix = "/"
-
-export function encodeAppName(name) {
+function encodeAppName(name) {
   return name.toLowerCase().replace(new RegExp(" ", "g"), "-")
 }
 
-export function getAppIdByName(urlName, apps) {
-  return apps.find(item => encodeAppName(item.name) === urlName).id
-}
-
-export function upperFirstLetter(string) {
+function upperFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-export function getClientOS() {
+function getClientOS() {
   const isWin = navigator.platform.toLowerCase().includes("win")
   return isWin ? "win" : "osx"
 }
 
-export function lightenDarkenColor(color, amount) {
+function lightenDarkenColor(color, amount) {
   let usePound = false
 
   if (color[0] === "#") {
@@ -43,4 +37,11 @@ export function lightenDarkenColor(color, amount) {
   else if (g < 0) g = 0
 
   return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16)
+}
+
+module.exports = {
+  encodeAppName,
+  upperFirstLetter,
+  getClientOS,
+  lightenDarkenColor,
 }

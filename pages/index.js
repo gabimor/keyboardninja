@@ -1,14 +1,11 @@
 import { Component } from "react"
-import { connect } from "react-redux"
 
 import styled from "styled-components"
 import Router, { withRouter } from "next/router"
 
-import { encodeAppName } from "../helpers"
 import AppList from "../components/AppList"
 import Layout from "./layout/Layout"
 import { colors } from "./layout"
-import { appUrlPrefix } from "../helpers"
 import "isomorphic-unfetch"
 
 class App extends Component {
@@ -18,19 +15,6 @@ class App extends Component {
     return { appCategories }
   }
 
-  // getAppName(selectedAppId) {
-  //   if (!selectedAppId) return ""
-  //   return this.props.apps.find(item => item.id === selectedAppId).name
-  // }
-
-  // handleSearch(selectedAppId) {
-  //   const appName = this.getAppName(selectedAppId)
-  //   Router.push(
-  //     "/app?id=" + selectedAppId,
-  //     appUrlPrefix + encodeAppName(appName)
-  //   )
-  // }
-
   render() {
     const { appCategories } = this.props
     return (
@@ -39,7 +23,7 @@ class App extends Component {
           Discover, save, share your <b>shortcuts</b>
         </Hero>
         {appCategories.map(category => (
-          <AppList name={category.name} apps={category.apps} />
+          <AppList name={category.name} apps={category.apps} key={category._id}/>
         ))}
       </Layout>
     )
@@ -58,8 +42,4 @@ const Hero = styled.h1`
   }
 `
 
-function mapStateToProps({ apps }) {
-  return { apps2: apps }
-}
-
-export default connect(mapStateToProps)(withRouter(App))
+export default withRouter(App)
