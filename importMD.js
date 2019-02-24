@@ -38,6 +38,8 @@ async function main() {
 
   await addShortcuts(fileObj.appId, fileObj.os, fileObj.shortcuts)
   client.close()
+
+  console.log("finished")
 }
 
 function readFile(fileName) {

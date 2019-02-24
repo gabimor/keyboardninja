@@ -24,7 +24,17 @@ function split(keysArr, seperator) {
 
 export default function Shortcut({ keys }) {
   let keysArr = split([keys], " or ")
-  keysArr = split(keysArr, "+")
+
+  return keysArr.map((e, index) => (
+    <div key={index}>
+      <ShortcutOption keys={e} />{" "}
+    </div>
+  ))
+}
+
+function ShortcutOption({ keys }) {
+  let keysArr = split([keys], "+")
+  // keysArr = split(keysArr, "+")
   keysArr = split(keysArr, " ")
   return (
     <Container>
@@ -41,7 +51,7 @@ export default function Shortcut({ keys }) {
         ) {
           return (
             <ShortcutKey key={index}>
-              <i className="fas fa-long-arrow-alt-${key}" />
+              <i className={`fas fa-long-arrow-alt-${key}`} />
             </ShortcutKey>
           )
         } else
@@ -56,6 +66,7 @@ Shortcut.propTypes = {
 }
 
 const Container = styled.div`
+  display: inline-flex;
   font-size: 14px;
   color: ${colors.mainBG};
 `

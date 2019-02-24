@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
-import { colors } from "."
+import { colors } from "../layout"
 
 import { loadOS, saveOS } from "../../helpers/localStorage"
 import { getClientOS } from "../../helpers"
@@ -55,7 +55,8 @@ class OSSelect extends Component {
 export default OSSelect
 
 const Container = styled.span`
-  margin-left: auto;
   font-size: 30px;
   cursor: pointer;
+  border-left: solid 1px ${colors.mutedIcon};
+  padding-left:20px;
 `

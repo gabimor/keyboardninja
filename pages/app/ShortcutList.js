@@ -6,9 +6,8 @@ import styled from "styled-components"
 import { colors } from "../layout"
 
 export default function ShortcutList({ title, shortcuts }) {
-  console.log(title, shortcuts)
   return (
-    <div>
+    <Container>
       <Title>{title}</Title>
       <Table cellSpacing={0}>
         <TBody>
@@ -23,16 +22,22 @@ export default function ShortcutList({ title, shortcuts }) {
           ))}
         </TBody>
       </Table>
-    </div>
+    </Container>
   )
 }
 
+const Container = styled.div`
+  display: inline-block;
+  margin-bottom: 40px;
+  font-size: 14px;
+  border-radius: 5px;
+  overflow: hidden;
+`
+
 const Title = styled.header`
-  display: flex;
-  align-items: baseline;
   color: ${colors.softText};
-  padding-bottom: 7px;
-  text-transform: uppercase;
+  background: #a12d2a;
+  padding: 5px 10px 7px 15px;
 `
 
 const Table = styled.table`
@@ -41,7 +46,7 @@ const Table = styled.table`
 `
 
 const TBody = styled.tbody`
-  & tr:nth-child(odd) {
-    background: ${colors.panelZebra};
+  & td {
+    border-bottom: solid 1px ${colors.darkBorder};
   }
 `

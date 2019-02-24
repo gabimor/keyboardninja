@@ -14,7 +14,7 @@ function ShortcutItem({ action, keys, pins, isPinned }) {
       <PinContainer>
         <Pin isPinned={isPinned} count={pins} />
       </PinContainer>
-      <td>{upperFirstLetter(action)}</td>
+      <ActionContainer isPinned={isPinned}>{upperFirstLetter(action)}</ActionContainer>
       <KeysContainer>
         <Shortcut keys={keys} />
       </KeysContainer>
@@ -24,7 +24,7 @@ function ShortcutItem({ action, keys, pins, isPinned }) {
 
 ShortcutItem.propTypes = {
   action: PropTypes.string.isRequired,
-  keys: PropTypes.array.isRequired,
+  keys: PropTypes.string.isRequired,
 }
 
 export default ShortcutItem
@@ -32,15 +32,20 @@ export default ShortcutItem
 const Container = styled.tr`
   background: ${colors.panel};
   font-weight: 300;
+  vertical-align: baseline;
+`
+
+const ActionContainer = styled.td`
+  color:${props => props.isPinned ? colors.pinSelected : "inherit"};
 `
 
 const PinContainer = styled.td`
   width: 1%;
   text-align: center;
-  padding: 6px 18px 6px 18px;
+  padding: 6px 13px 6px 15px;
 `
 
 const KeysContainer = styled.td`
   width: 1%;
-  padding-right: 13px;
+  padding: 0 13px 8px 0;  
 `

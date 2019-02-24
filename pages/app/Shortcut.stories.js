@@ -1,20 +1,28 @@
 import React from "react"
 
 import { storiesOf } from "@storybook/react"
-import { withKnobs, text } from "@storybook/addon-knobs"
 
 import Shortcut from "./Shortcut"
 
-const shortcuts = ["ctrl+k+v", "ctrl+shift+k+v", "ctrl+alt+shift+esc", "ctrl+k f", "ctrl+k f or F12",]
+const shortcuts = [
+  "ctrl+k",
+  "ctrl+shift+k",
+  "ctrl+alt+shift+esc",
+  "ctrl+alt+shift+c",
+  "ctrl+up",
+  "ctrl+down",
+  "ctrl+left",
+  "ctrl+right",
+  "ctrl+space",
+  "alt+`",
+  "ctrl+k f",
+  "ctrl+k f or F12",
+]
 
-storiesOf("Shortcut", module)
-  .addDecorator(withKnobs)
-  .add("2 keys", () => (
-    <ul>
-      {shortcuts.map(e => (
-        <li>
-          <Shortcut keys={e} />
-        </li>
-      ))}
-    </ul>
+storiesOf("Shortcut", module).add("default", () =>
+  shortcuts.map(e => (
+    <>
+      <hr /> <Shortcut keys={e} />
+    </>
   ))
+)

@@ -8,6 +8,8 @@ export const colors = {
   mainBG1: "#442323",
   mainBG2: "#270505",
 
+  darkBorder: "#453A3A",
+
   mutedIcon: "#5A5A5A",
   softText: "#E9E5E5",
   labelText: "#9D8B8B", // pinBorder
@@ -18,7 +20,7 @@ export const colors = {
   white: "#FFFFFF",
   black: "#000000",
   appPanel: "#4F4242",
-  panel: "#453A3A",
+  panel: "#2E2424",  
   panelZebra: "#2C2525",
 }
 
@@ -32,7 +34,8 @@ export default createGlobalStyle`
   }
 
   body {
-    background-image: linear-gradient(${colors.mainBG1}, ${colors.mainBG2});
+    background: linear-gradient(${colors.mainBG1}, ${colors.mainBG2}) no-repeat;    
+    background-size: 100% 400px;
     color: ${colors.white}
     margin: 0;
     font-family: "IBM Plex Sans", sans-serif;

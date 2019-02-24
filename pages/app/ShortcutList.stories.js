@@ -7,7 +7,7 @@ import ShortcutList from "./ShortcutList"
 
 const shortcutList = [
   { action: "test", keys: "ctrl+s", pins: 0 },
-  { action: "Lorem ipsum dolor sit amet", keys: "ctrl+s", pins: 4 },
+  { action: "Lorem ipsum dolor sit amet", keys: "ctrl+s or F12", pins: 4 },
   { action: "psum dolor sit amet", keys: "ctrl+~", pins: 12 },
   { action: "dolor sit amet", keys: "alt+s", pins: 33 },
   {
