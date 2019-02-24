@@ -4,13 +4,17 @@ import { storiesOf } from "@storybook/react"
 import { withKnobs, text } from "@storybook/addon-knobs"
 
 import Shortcut from "./Shortcut"
-import { colors } from "../layout"
+
+const shortcuts = ["ctrl+k+v", "ctrl+shift+k+v", "ctrl+alt+shift+esc", "ctrl+k f", "ctrl+k f or F12",]
 
 storiesOf("Shortcut", module)
   .addDecorator(withKnobs)
-  .addDecorator(story => (
-    <div style={{ background: colors.panel }}>{story()}</div>
+  .add("2 keys", () => (
+    <ul>
+      {shortcuts.map(e => (
+        <li>
+          <Shortcut keys={e} />
+        </li>
+      ))}
+    </ul>
   ))
-  .add("2 keys", () => <Shortcut keys={text("keys", ["ctrl", "k"])} />)
-  .add("3 keys", () => <Shortcut keys={text("keys", ["ctrl", "alt", "k"])} />)
-  .add("then", () => <Shortcut keys={text("keys", ["ctrl", "x", " ", "k"])} />)

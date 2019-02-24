@@ -1,7 +1,7 @@
 import React from "react"
 
 import styled from "styled-components"
-import { colors } from "../pages/layout"
+import { colors } from "../layout"
 
 export default function ShortcutKey({ children }) {
   return <Container>{children}</Container>
@@ -12,11 +12,10 @@ const Container = styled("span")`
   background-color: ${colors.red};
   color: ${colors.white};
 
-  font-size: 14px;
-  padding: 1px 5px 0;
+  font-size: 13px;
   border: solid 1px ${colors.darkRed};
   border-radius: 6px;
   margin: 0 2px;
-  min-width: 34px;
+  min-width: 32px;
   text-align: center;
 `

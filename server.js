@@ -2,7 +2,7 @@ const express = require("express")
 const next = require("next")
 const mongodb = require("mongodb")
 const { MongoClient, ObjectId } = mongodb
-const { encodeAppName } = require("./helpers")
+const { encodeAppName } = require("./serverHelpers")
 
 const url = "mongodb://localhost:27017/keyboardninja"
 

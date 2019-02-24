@@ -1,17 +1,17 @@
-function encodeAppName(name) {
+export function encodeAppName(name) {
   return name.toLowerCase().replace(new RegExp(" ", "g"), "-")
 }
 
-function upperFirstLetter(string) {
+export function upperFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-function getClientOS() {
+export function getClientOS() {
   const isWin = navigator.platform.toLowerCase().includes("win")
   return isWin ? "win" : "osx"
 }
 
-function lightenDarkenColor(color, amount) {
+export function lightenDarkenColor(color, amount) {
   let usePound = false
 
   if (color[0] === "#") {
@@ -37,11 +37,4 @@ function lightenDarkenColor(color, amount) {
   else if (g < 0) g = 0
 
   return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16)
-}
-
-module.exports = {
-  encodeAppName,
-  upperFirstLetter,
-  getClientOS,
-  lightenDarkenColor,
 }
