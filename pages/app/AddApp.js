@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import styled from "styled-components"
 
-import { colors } from "../layout"
 import Button from "../../components/Button"
 
 class AddApp extends Component {
@@ -87,13 +86,13 @@ export default AddApp
 
 const errorLabel = `
   font-size:13px;
-  color:${colors.lightGray};
+  color:#FFFFFF;
 `
 
 const Container = styled.div`
   padding: 16px 30px 16px 30px;
   margin-bottom: 30px;
-  background: ${colors.formBG};
+  background: #000000;
 `
 
 const InnerContainer = styled.div`

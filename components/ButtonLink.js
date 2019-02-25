@@ -1,14 +1,14 @@
 import React from "react"
 
 import styled from "styled-components"
-import { colors } from "../pages/layout"
+import { lightenDarkenColor } from "../helpers"
 
 const ButtonLink = styled.a`
-  color: ${colors.red};
+  color: #e86562;
   text-decoration: underline;
   cursor: pointer;
   &:hover {
-    color: ${colors.lightRed};
+    color: ${lightenDarkenColor("#e86562", 10)};
   }
 `
 

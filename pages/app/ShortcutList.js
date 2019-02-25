@@ -3,7 +3,6 @@ import React from "react"
 import ShortcutItem from "./ShortcutItem"
 import styled from "styled-components"
 
-import { colors } from "../layout"
 import { upperFirstLetter } from "../../helpers"
 
 export default function ShortcutList({ title, shortcuts }) {
@@ -36,7 +35,7 @@ const Container = styled.div`
 `
 
 const Title = styled.header`
-  color: ${colors.softText};
+  color: #e9e5e5;
   background: #a12d2a;
   padding: 5px 10px 7px 15px;
 `
@@ -48,6 +47,6 @@ const Table = styled.table`
 
 const TBody = styled.tbody`
   & td {
-    border-bottom: solid 1px ${colors.darkBorder};
+    border-bottom: solid 1px #453a3a;
   }
 `

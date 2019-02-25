@@ -2,7 +2,6 @@ import React from "react"
 import Link from "next/link"
 import styled from "styled-components"
 
-import { colors } from "../pages/layout"
 import { encodeAppName } from "../helpers"
 import App from "./AppItem"
 
@@ -31,7 +30,7 @@ const InnerContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
-  background: ${colors.panelZebra};
+  background: #2C2525;
 `
 
 const Container = styled.div`
@@ -39,7 +38,7 @@ const Container = styled.div`
 `
 
 const Header = styled.h3`
-  color: ${colors.softText};
+  color: #e9e5e5;
   font-weight: 300;
   font-size: 16px;
   margin-bottom: 15px;

@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { colors } from "../pages/layout"
 
 export default function Tooltip({ children, style }) {
   return (
@@ -15,8 +14,8 @@ const Container = styled.div`
   position: absolute;
 `
 const Body = styled.div`
-  background: ${colors.red};
-  color: ${colors.panelZebra};
+  background: #e86562;
+  color: #FFFFFF;
   font-size: 14px;
   border-radius: 5px;
   padding: 5px 8px;
@@ -29,5 +28,5 @@ const Triangle = styled.div`
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
 
-  border-bottom: 9px solid ${colors.red};
+  border-bottom: 9px solid #e86562;
 `

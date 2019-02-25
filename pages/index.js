@@ -5,7 +5,6 @@ import Router, { withRouter } from "next/router"
 
 import AppList from "../components/AppList"
 import Layout from "./layout/Layout"
-import { colors } from "./layout"
 import "isomorphic-unfetch"
 
 class App extends Component {
@@ -31,7 +30,7 @@ class App extends Component {
 }
 
 const Hero = styled.h1`
-  color: ${colors.white};
+  color: #FFFFFF;
   font-size: 40px;
   margin: 120px 0 165px 0;
   text-align: center;

@@ -5,7 +5,6 @@ import PropTypes from "prop-types"
 
 import { upperFirstLetter } from "../../helpers"
 import Shortcut from "./Shortcut"
-import { colors } from "../layout"
 import Pin from "./Pin"
 
 function ShortcutItem({ action, keys, pins, isPinned }) {
@@ -30,13 +29,13 @@ ShortcutItem.propTypes = {
 export default ShortcutItem
 
 const Container = styled.tr`
-  background: ${colors.panel};
+  background: #2E2424;
   font-weight: 300;
   vertical-align: baseline;
 `
 
 const ActionContainer = styled.td`
-  color:${props => props.isPinned ? colors.pinSelected : "inherit"};
+  color:${props => props.isPinned ? "#FFD46F" : "inherit"};
 `
 
 const PinContainer = styled.td`

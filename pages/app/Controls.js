@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import styled from "styled-components"
 
 import OSSelect from "./OSSelect"
-import { colors } from "../layout"
+import Input from "../../components/Input"
 
 export default class extends Component {
   render() {
@@ -15,7 +15,7 @@ export default class extends Component {
         <Text>{name}</Text>
         <SearchWrapper>
           show all, just mine, grouped
-          <SearchInput />
+          <Input />
           <SearchIcon className="fas fa-search" />
         </SearchWrapper>
         <OSSelect />
@@ -29,11 +29,11 @@ const Container = styled.div`
   align-items: center;
   padding: 10px;
   margin: 60px 0 40px 0;
-  border-bottom: solid 1px ${colors.mutedIcon};
+  border-bottom: solid 1px #5a5a5a;
 `
 
 const Icon = styled.img`
-  width: 50px;  
+  width: 50px;
 `
 
 const Text = styled.h1`
@@ -52,13 +52,6 @@ const SearchIcon = styled.i`
   position: absolute;
   right: 10px;
   top: 7px;
-  color: ${colors.mutedIcon};  
-  font-size:20px;
-`
-
-const SearchInput = styled.input`
-  padding: 6px 36px 6px 6px;
-  background: black;
-  border: solid 1px ${colors.mutedIcon};
-  border-radius: 5px;
+  color: #5a5a5a;
+  font-size: 20px;
 `

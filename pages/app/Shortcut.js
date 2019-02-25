@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
-import { colors } from "../layout"
 
 import ShortcutKey from "./ShortcutKey"
 import { upperFirstLetter } from "../../helpers"
@@ -68,7 +67,6 @@ Shortcut.propTypes = {
 const Container = styled.div`
   display: inline-flex;
   font-size: 14px;
-  color: ${colors.mainBG};
 `
 
 const Plus = styled.span`
@@ -82,5 +80,5 @@ const Or = styled.div`
 const Text = styled.span`
   padding: 2px 4px 0;
   font-size: 13px;
-  color: ${colors.white};
+  color: #FFFFFF;
 `

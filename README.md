@@ -7,13 +7,17 @@
 - show: all pinned | grouped flat
 - my apps: apps you've pinned shortcuts in will show here
 - sections: support dot, order, text/shortcut width
-- view: watch - ctrl+1|2|3|4
+- view: ctrl+1|2|3|4
+- view: ctrl+1...9
 - MD: add ids to shortcuts and sections
 - homepage: now contains 20,123 shortcuts from 55 apps
 
 ### Alpha
 
-- no pins
+- login
+- my apps
+- suggest app
+- performance
 - responsive work
   - mobile menu
   - cross browser checks

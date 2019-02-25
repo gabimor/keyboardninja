@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
-import { colors } from "../layout"
 
 export default function Shortcut({ count, isPinned }) {
   return (
@@ -27,30 +26,30 @@ const Container = styled.div`
   width: 100%;
   align-items: flex-start;
   border: solid 1px
-    ${props => (props.isPinned ? colors.pinSelectedBorder : colors.labelText)};
+    ${props => (props.isPinned ? "#A57E26" : "#9D8B8B")};
   border-radius: 3px;
   padding: 5px 0 3px;
   cursor: pointer;
 
   :hover i,
   :hover span {
-    color: ${props => (props.isPinned ? colors.pinSelected : colors.white)};
+    color: ${props => (props.isPinned ? "#FFD46F" : "#FFFFFF")};
   }
 
   :hover {
-    background: ${colors.labelText};
+    background: #9d8b8b;
   }
 `
 
 const Icon = styled.i`
-  color: ${props => (props.isPinned ? colors.pinSelected : colors.pin)};
+  color: ${props => (props.isPinned ? "#FFD46F" : "#A4A3A6")};
   font-size: 13px;
   margin-left: 7px;
 `
 
 const Count = styled.span`
   font-size: 11px;
-  color: ${props => (props.isPinned ? colors.pinSelected : colors.softText)};
+  color: ${props => (props.isPinned ? "#FFD46F" : "#E9E5E5")};
   margin: 0 auto;
   padding: 0 6px;
   line-height: 10px;

@@ -1,28 +1,27 @@
 import { createGlobalStyle } from "styled-components"
 
-export const colors = {
-  darkRed: "#D1403D",
-  red: "#E86562",
-  textRed: "#d1b4b4",
+/*
+  #a12d2a - shortcuts titles
+  #D1403D - darkRed
+  #E86562 - red
+  #5A5A5A - mutedIcon
+  #9D8B8B - labelText, pinBorder
+  #A4A3A6 - pin
+  #d1b4b4 - textRed
+  #E9E5E5 - softText  
 
-  mainBG1: "#442323",
-  mainBG2: "#270505",
+  #FFD46F - pinSelected
+  #A57E26 - pinSelectedBorder
 
-  darkBorder: "#453A3A",
-
-  mutedIcon: "#5A5A5A",
-  softText: "#E9E5E5",
-  labelText: "#9D8B8B", // pinBorder
-  pin: "#A4A3A6",
-  pinSelected: "#FFD46F",
-  pinSelectedBorder: "#A57E26",
-
-  white: "#FFFFFF",
-  black: "#000000",
-  appPanel: "#4F4242",
-  panel: "#2E2424",  
-  panelZebra: "#2C2525",
-}
+  #FFFFFF - white
+  #000000 - black
+  #4F4242 - appPanel
+  #453A3A - darkBorder
+  #2E2424 - panel
+  #2C2525 - panelZebra
+  #442323 - mainBG1
+  #270505 - mainBG2
+*/
 
 export default createGlobalStyle`
   * {
@@ -30,13 +29,13 @@ export default createGlobalStyle`
   }
   html {
     height:100%;
-    background-color: ${colors.mainBG2};
+    background-color: #270505;
   }
 
   body {
-    background: linear-gradient(${colors.mainBG1}, ${colors.mainBG2}) no-repeat;    
+    background: linear-gradient(#442323, #270505) no-repeat;    
     background-size: 100% 400px;
-    color: ${colors.white}
+    color: #FFFFFF;
     margin: 0;
     font-family: "IBM Plex Sans", sans-serif;
     font-size: 16px;
@@ -55,13 +54,13 @@ export default createGlobalStyle`
 
   input {
     padding: 8px 10px 8px;
-    color: white;
-    background: ${colors.formInputBG};
+    color: #FFFFFF;
+    background: #000000;
   }
   
   label {
     margin-right: 6px;
-    color: ${colors.lightGray};
+    color: #FFFFFF;
   }
 
   ul, ul li, ol, ol li {
@@ -76,7 +75,7 @@ export default createGlobalStyle`
   }
 
   a {
-    color: ${colors.white};
+    color: #FFFFFF;
     text-decoration: none;
   }
 

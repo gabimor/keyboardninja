@@ -1,7 +1,6 @@
 import React from "react"
 
 import styled from "styled-components"
-import { colors } from "."
 
 export default function Logo() {
   return (
@@ -16,7 +15,7 @@ export default function Logo() {
 }
 
 const H1 = styled.h1`
-  color: ${colors.white};
+  color: #FFFFFF;
   font-size: 25px;
   display: inline-block;
   cursor: pointer;
@@ -24,6 +23,6 @@ const H1 = styled.h1`
 `
 
 const Dot = styled.span`
-  color: ${colors.red};
+  color: #e86562;
   font-size: 1.35em;
 `

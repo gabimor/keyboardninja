@@ -26,25 +26,6 @@ rubymine
 textmate
 resharper - https://www.jetbrains.com/help/resharper/Reference__Keyboard_Shortcuts.html
 
-# Design
-
-Photoshop - https://helpx.adobe.com/il_en/photoshop/using/default-keyboard-shortcuts.html
-Gimp - https://defkey.com/gimp-shortcuts
-Illustrator - https://helpx.adobe.com/il_en/illustrator/using/default-keyboard-shortcuts.html
-InDesign - https://shortcuts.design/toolspage-adobeindesign.html
-XD - https://shortcuts.design/toolspage-adobexd.html
-Sketch - https://shortcuts.design/toolspage-sketch.html
-Dreamweaver -
-CorelDraw
-
-## Office
-
-word - https://support.office.com/en-us/article/keyboard-shortcuts-for-microsoft-word-on-windows-95ef89dd-7142-4b50-afb2-f762f663ceb2
-excel - https://support.office.com/en-us/article/keyboard-shortcuts-in-excel-for-windows-1798d9d5-842a-42b8-9c99-9b7213f0040f#PickTab=Newer_versions
-access - https://support.office.com/en-us/article/keyboard-shortcuts-for-access-70a673e4-4f7b-4300-b8e5-3320fa6606e2
-powerpoint - https://support.office.com/en-us/article/use-keyboard-shortcuts-to-create-powerpoint-presentations-ebb3d20e-dcd4-444f-a38e-bb5c5ed180f4
-visio - https://support.office.com/en-us/article/keyboard-shortcuts-for-visio-ee952f31-7e3e-4564-8116-f3ecbb733cc1
-
 ## browsers
 
 Chrome - https://support.google.com/chrome/answer/157179?hl=en
@@ -66,6 +47,25 @@ Google Calander - https://support.google.com/calendar/answer/37034?hl=en
 Google sheets - https://support.google.com/docs/answer/181110?co=GENIE.Platform%3DDesktop&hl=en
 Google Docs - https://support.google.com/docs/answer/179738?co=GENIE.Platform%3DDesktop&hl=en
 Google slides - https://support.google.com/docs/answer/1696717?co=GENIE.Platform%3DDesktop&hl=en
+
+## Office
+
+word - https://support.office.com/en-us/article/keyboard-shortcuts-for-microsoft-word-on-windows-95ef89dd-7142-4b50-afb2-f762f663ceb2
+excel - https://support.office.com/en-us/article/keyboard-shortcuts-in-excel-for-windows-1798d9d5-842a-42b8-9c99-9b7213f0040f#PickTab=Newer_versions
+access - https://support.office.com/en-us/article/keyboard-shortcuts-for-access-70a673e4-4f7b-4300-b8e5-3320fa6606e2
+powerpoint - https://support.office.com/en-us/article/use-keyboard-shortcuts-to-create-powerpoint-presentations-ebb3d20e-dcd4-444f-a38e-bb5c5ed180f4
+visio - https://support.office.com/en-us/article/keyboard-shortcuts-for-visio-ee952f31-7e3e-4564-8116-f3ecbb733cc1
+
+# Design
+
+Photoshop - https://helpx.adobe.com/il_en/photoshop/using/default-keyboard-shortcuts.html
+Gimp - https://defkey.com/gimp-shortcuts
+Illustrator - https://helpx.adobe.com/il_en/illustrator/using/default-keyboard-shortcuts.html
+InDesign - https://shortcuts.design/toolspage-adobeindesign.html
+XD - https://shortcuts.design/toolspage-adobexd.html
+Sketch - https://shortcuts.design/toolspage-sketch.html
+Dreamweaver -
+CorelDraw
 
 ---
 

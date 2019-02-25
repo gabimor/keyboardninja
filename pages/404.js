@@ -1,5 +1,4 @@
 import Layout from "./layout/Layout"
-import { colors } from "./layout"
 import styled from "styled-components"
 
 const About = () => {
@@ -9,15 +8,14 @@ const About = () => {
         <Header>Oops</Header>
         <Message>Looks like no one's here ..</Message>
         <Code>404</Code>
-        
       </Container>
     </Layout>
   )
 }
 
 const Header = styled.h1`
-  font-size:40px;
-  color: ${colors.red};
+  font-size: 40px;
+  color: #e86562;
   margin: 100px 0 10px;
 `
 
@@ -26,7 +24,7 @@ const Message = styled.div`
 `
 
 const Code = styled.span`
-  color: ${colors.formInputBG};
+  color: #FFFFFF;
 `
 
 const Container = styled.div`

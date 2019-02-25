@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
-import { colors } from "../layout"
 
 import { loadOS, saveOS } from "../../helpers/localStorage"
 import { getClientOS } from "../../helpers"
@@ -31,9 +30,7 @@ class OSSelect extends Component {
   }
 
   getColor = os =>
-    this.state.os && os === this.state.os
-      ? colors.softText
-      : colors.mutedIcon
+    this.state.os && os === this.state.os ? "#E9E5E5" : "#5A5A5A"
 
   render() {
     return (
@@ -57,6 +54,6 @@ export default OSSelect
 const Container = styled.span`
   font-size: 30px;
   cursor: pointer;
-  border-left: solid 1px ${colors.mutedIcon};
-  padding-left:20px;
+  border-left: solid 1px #5a5a5a;
+  padding-left: 20px;
 `

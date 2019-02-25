@@ -2,7 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 
 import styled from "styled-components"
-import { colors } from "../pages/layout"
 
 export default function Button({ children, secondary, style, onClick }) {
   return secondary ? (
@@ -23,7 +22,7 @@ Button.propTypes = {
 const style = `
   display: inline-block;
   cursor:pointer;
-  color: ${colors.softText};
+  color: #E9E5E5;
   padding: 8px 15px;
   border-radius: 4px;
   line-height: 100%;
@@ -31,23 +30,23 @@ const style = `
 
 const PrimaryButton = styled.button`
   ${style}
-  
-  background-color: ${colors.darkRed};
-  color: ${colors.white};
-  border: 1px solid ${colors.darkRed};
+
+  background-color: #D1403D;
+  color: #FFFFFF;
+  border: 1px solid #d1403d;
 
   &:hover {
-    background-color: ${colors.red};
+    background-color: #e86562;
   }
 `
 
 const SecondaryButton = styled.button`
   ${style}
   background:transparent;
-  color: ${colors.lightGray};
-  border: 1px solid ${colors.lightGray};
+  color: #A4A3A6;
+  border: 1px solid #A4A3A6;
 
   &:hover {
-    background: ${colors.labelText};
+    background: #9d8b8b;
   }
 `
