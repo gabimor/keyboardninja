@@ -4,11 +4,12 @@ import ShortcutItem from "./ShortcutItem"
 import styled from "styled-components"
 
 import { colors } from "../layout"
+import { upperFirstLetter } from "../../helpers"
 
 export default function ShortcutList({ title, shortcuts }) {
   return (
     <Container>
-      <Title>{title}</Title>
+      <Title>{upperFirstLetter(title)}</Title>
       <Table cellSpacing={0}>
         <TBody>
           {shortcuts.map(shortcut => (

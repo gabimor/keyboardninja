@@ -34,8 +34,8 @@ export default function Shortcut({ keys }) {
 
 function ShortcutOption({ keys }) {
   let keysArr = split([keys], "+")
-  // keysArr = split(keysArr, "+")
   keysArr = split(keysArr, " ")
+  
   return (
     <Container>
       {keysArr.map((key, index) => {

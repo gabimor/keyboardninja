@@ -1,14 +1,15 @@
 const fs = require("fs")
 const mongodb = require("mongodb")
-const { MongoClient, ObjectId, Logger } = mongodb
+const { MongoClient, ObjectId } = mongodb
 const url = "mongodb://localhost:27017/keyboardninja"
 
+const APP_CATEGORIES = { code: "5c6edbd64be441f542733f01" }
+
+// SET THESE 2
 const fileName = "visualstudio"
+const categoryId = APP_CATEGORIES.code
 
 const fullFileName = __dirname + "/assets/data/" + fileName + ".md"
-
-const APP_CATEGORIES = { code: "5c6edbd64be441f542733f01" }
-const categoryId = APP_CATEGORIES.code
 
 let client
 let db

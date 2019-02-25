@@ -24,6 +24,7 @@ emacs
 rstudio
 rubymine
 textmate
+resharper - https://www.jetbrains.com/help/resharper/Reference__Keyboard_Shortcuts.html
 
 # Design
 
@@ -74,7 +75,7 @@ Logic Pro X - http://www.logicprokeycommands.com/logic-pro-x-key-commands/
 Pro Tools - http://www.protoolskeyboardshortcuts.com/pro-tools-2018-keyboard-shortcuts/
 Studio One -
 Ableton Live
-Cubase Pro
+Cubase Pro - https://steinberg.help/cubase_ai_le_elements/v9/en/cubase_nuendo/topics/key_commands/key_commands_default_c.html
 Propellerhead Reason
 FL Studio
 Cockos Reaper
