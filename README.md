@@ -11,53 +11,40 @@
 - view: ctrl+1...9
 - MD: add ids to shortcuts and sections
 - homepage: now contains 20,123 shortcuts from 55 apps
-
-### Alpha
-
-- login
-- my apps
 - suggest app
 - performance
 - responsive work
   - mobile menu
   - cross browser checks
 - favicon
-- low priority
-  - OSSelect - store os in cookie, load server side
-
-## Phase 2
-
+- OSSelect - store os in cookie, load server side
 - patreon/buy me a coffee
 
-user system
-
-- login
-- logout
-- signup - email, password
-- forgot my password
-- requires login
-  - pin
-  - my pinned apps
-
-## Backlog
+### Backlog
 
 - emotion.sh
+- mysql
 - special keys - (Ctrl, Alt, Shift, Windows, Insert,Delete, Esc, F1 ... F12, Enter, PageUp, PageDown, Home, End, ArrowUp ... Arrow
 
-general
+### general
 
 - hotjar
 - get as many apps and shortcuts as i can for starters
 - spread the word in blogs/groups
 - seo - find a pro friend
 
-## phase 3
+## phase 2
 
 - theme pages ("top shortcuts for a web developer")
 - advanced mode
   - several shortcuts to the same action
   - text edit the shortcut
   - support VS code "Ctrl+K V" type shortcuts
+
+## phase 3 - take over the world
+
+- "wanna learn how I built this site on my own completely from scratch, from the design to the finished product?"
+- offer courses, make money
 
 ## tagline
 
@@ -85,15 +72,16 @@ general
 
 ## Checkout
 
-https://www.producthunt.com/
-https://github.com/michelvanheest/shortcuts-design-data/issues/12
-https://varnish-cache.org/intro/index.html#intro
-https://nomadlist.com/
-https://tylermcginnis.com/react-router-server-rendering/
-https://egghead.io/lessons/javascript-redux-updating-data-on-the-server
+- https://www.producthunt.com/
+- https://github.com/michelvanheest/shortcuts-design-data/issues/12
+- https://varnish-cache.org/intro/index.html#intro
+- https://nomadlist.com/
+- https://tylermcginnis.com/react-router-server-rendering/
+- https://egghead.io/lessons/javascript-redux-updating-data-on-the-server
 
 ### reference
 
 - https://caniuse.com/
 - https://marksheet.io/
 - https://devhints.io/react/
+- https://alligator.io/react/react-powerplug/

@@ -15,13 +15,13 @@ import { createGlobalStyle } from "styled-components"
   #A57E26 - pinSelectedBorder
 
   #FFFFFF - white
-  #000000 - black
   #4F4242 - appPanel
   #453A3A - darkBorder
-  #2E2424 - panel
-  #2C2525 - panelZebra
   #442323 - mainBG1
   #270505 - mainBG2
+  #2C2525 - panelZebra
+  #2E2424 - panel
+  #000000 - black
 */
 
 export default createGlobalStyle`
