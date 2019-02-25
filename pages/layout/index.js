@@ -3,7 +3,8 @@ import { createGlobalStyle } from "styled-components"
 /*
   #a12d2a - shortcuts titles
   #D1403D - darkRed
-  #E86562 - red
+  #E86562 - red, links
+  #fa9290 - links
   #5A5A5A - mutedIcon
   #9D8B8B - labelText, pinBorder
   #A4A3A6 - pin
@@ -75,8 +76,9 @@ export default createGlobalStyle`
   }
 
   a {
-    color: #FFFFFF;
+    color: #fa9290;
     text-decoration: none;
+    cursor: pointer;
   }
 
   h1,h2,h3,h4,h5,h6 {
