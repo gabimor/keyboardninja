@@ -1,44 +1,33 @@
 const fs = require("fs")
-const mongodb = require("mongodb")
-const { MongoClient, ObjectId } = mongodb
-const url = "mongodb://localhost:27017/keyboardninja"
+const mysql = require("promise-mysql")
 
-const APP_CATEGORIES = { code: "5c6edbd64be441f542733f01" }
-
-// SET THESE 2
-const fileName = "visualstudio"
-const categoryId = APP_CATEGORIES.code
+// SET THIS
+const fileName = "visualstudio" 
 
 const fullFileName = __dirname + "/assets/data/" + fileName + ".md"
 
-let client
-let db
+let conn
 
 main()
 
 async function main() {
-  client = await MongoClient.connect(url, {
-    useNewUrlParser: true,
+  conn = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "1234",
+    database: "keyboard_ninja",
   })
-  db = client.db("keyboardninja")
 
   const fileObj = readFile(fullFileName)
 
-  if (await appExists(fileObj.appId)) {
+  if (await shortcutsExist(fileObj.appId)) {
     console.log("aborting. app exists: " + fileObj.appId)
-    client.close()
+    conn.end()
     return
   }
 
-  await addApp(
-    fileObj.appId,
-    fileObj.appName,
-    fileObj.companyName,
-    fileObj.icon
-  )
-
   await addShortcuts(fileObj.appId, fileObj.os, fileObj.shortcuts)
-  client.close()
+  conn.end()
 
   console.log("finished")
 }
@@ -50,61 +39,48 @@ function readFile(fileName) {
   let lines = dataStr.substring(headerInx + 3, dataStr.length - 2).split("\n")
 
   const lineParams = lines[0].split(",")
-  const appId = lineParams[0].trim()
-  const appName = lineParams[1].trim()
-  const companyName = lineParams[2].trim()
-  const icon = lineParams[3].trim()
-  const os = lineParams[4].trim()
+  const appId = +lineParams[0].trim()
+  const os = +lineParams[1].trim()
   const shortcuts = lines.splice(1)
 
-  return { appId, appName, companyName, icon, os, shortcuts }
+  return { appId, os, shortcuts }
 }
 
-async function appExists(id) {
-  return await db.collection("apps").findOne({ _id: ObjectId(id) })
-}
-
-async function addApp(id, name, company, icon) {
-  await db
-    .collection("apps")
-    .insertOne({ _id: ObjectId(id), name, company, icon })
+async function shortcutsExist(appId) {
+  const shortcuts = await conn.query(
+    `SELECT * FROM shortcuts WHERE appId = ${appId}`
+  )
+  const sections = await conn.query(
+    `SELECT * FROM app_sections WHERE appId = ${appId}`
+  )
+  return shortcuts.length > 0 || sections.length > 0
 }
 
 async function addShortcuts(appId, os, shortcuts) {
-  let currSection = ""
+  let currSectionId = 0
   for (const shortcut of shortcuts) {
     if (shortcut[0] === "#") {
-      currSection = shortcut.substr(1).trim()
+      const sectionName = prepareStr(shortcut.substr(1))
+      currSectionId++
+
+      await conn.query(
+        `INSERT INTO app_sections (id, appId, name) VALUES (${currSectionId}, ${appId}, "${sectionName}")`
+      )
     } else {
       const splitshortcut = shortcut.split("(-)")
-      const action = splitshortcut[0].trim()
-      const keys = splitshortcut[1].trim()
-      try {
-        const result = await db.collection("apps").updateOne(
-          { _id: ObjectId(appId) },
-          {
-            $push: {
-              [os + "." + currSection]: {
-                _id: ObjectId(),
-                action,
-                keys,
-                pins: 0,
-              },
-            },
-          }
-        )
-      } catch (err) {
-        console.log(err)
-      }
+      const action = prepareStr(splitshortcut[0])
+      const keys = prepareStr(splitshortcut[1])
+
+      await conn.query(
+        `INSERT INTO shortcuts (appId, \`action\`, \`keys\`, os, sectionId) VALUES (${appId}, "${action}", "${keys}", ${os}, ${currSectionId})`
+      )
     }
   }
 }
 
-async function addToCategory(categoryId, appId) {
-  return await db
-    .collection("app_categories")
-    .updateOne(
-      { _id: ObjectId(categoryId) },
-      { $addToSet: { apps: ObjectId(appId) } }
-    )
+function prepareStr(str) {
+  return str
+    .trim()
+    .split("\\")
+    .join("\\\\")
 }
