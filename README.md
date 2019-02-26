@@ -6,6 +6,7 @@
 - login, signup popup & pages (500px)
 - show: all pinned | grouped flat
 - my apps: apps you've pinned shortcuts in will show here
+3
 - sections: support dot, order, text/shortcut width
 - view: ctrl+1|2|3|4
 - view: ctrl+1...9
@@ -45,6 +46,7 @@
 
 - "wanna learn how I built this site on my own completely from scratch, from the design to the finished product?"
 - offer courses, make money
+- tree of knowledge - each subject refrences required subjects
 
 ## tagline
 
