@@ -1,7 +1,7 @@
 const express = require("express")
-const db = require("./db")
 const next = require("next")
-const { encodeAppName } = require("./serverHelpers")
+const db = require("./db")
+const { encodeAppName } = require("./helpers")
 
 const dev = process.env.NODE_ENV !== "production"
 const app = next({ dev })
@@ -28,7 +28,7 @@ async function main() {
     next()
   })
 
-  server.get("/api/apps/:id", async (req, res) => {    
+  server.get("/api/apps/:id", async (req, res) => {
     res.json(apps.find(e => e.id === +req.params.id))
   })
 
