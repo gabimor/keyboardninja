@@ -12,12 +12,12 @@ export default function AppList({ name, apps }) {
       <InnerContainer>
         {apps.map(app => (
           <Link
-            href={"/app?id=" + app._id}
+            href={"/app?id=" + app.id}
             as={"/" + encodeAppName(app.name)}
-            key={app._id}
+            key={app.id}
           >
             <a>
-              <App icon={app.icon} name={app.name} />
+              <App icon={"/static/logos/" + app.icon} name={app.name} />
             </a>
           </Link>
         ))}

@@ -22,7 +22,7 @@ class App extends Component {
           Discover, save, share your <b>shortcuts</b>
         </Hero>
         {appCategories.map(category => (
-          <AppList name={category.name} apps={category.apps} key={category._id}/>
+          <AppList name={category.name} apps={category.apps} key={category.id}/>
         ))}
       </Layout>
     )

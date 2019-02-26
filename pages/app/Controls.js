@@ -7,7 +7,6 @@ import Input from "../../components/Input"
 export default class extends Component {
   render() {
     const { icon, name } = this.props
-    // const { os, searchText } = this.state
 
     return (
       <Container>

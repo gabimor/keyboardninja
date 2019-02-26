@@ -21,11 +21,11 @@ class App extends Component {
       <Layout>
         <Controls icon={app.icon} name={app.name} />
         <ResultsContainer>
-          {Object.keys(app.win).map(sectionName => (
+          {app.win.map(section => (
             <ShortcutList
-              key={sectionName}
-              shortcuts={app.win[sectionName]}
-              title={sectionName}
+              key={section.name}
+              shortcuts={section.shortcuts}
+              title={section.name}
             />
           ))}
         </ResultsContainer>

@@ -2,7 +2,7 @@ const fs = require("fs")
 const mysql = require("promise-mysql")
 
 // SET THIS
-const fileName = "visualstudio" 
+const fileName = "visualstudio"
 
 const fullFileName = __dirname + "/assets/data/" + fileName + ".md"
 
@@ -20,7 +20,7 @@ async function main() {
 
   const fileObj = readFile(fullFileName)
 
-  if (await shortcutsExist(fileObj.appId)) {
+  if (await shortcutsExist(fileObj.appId, fileObj.os)) {
     console.log("aborting. app exists: " + fileObj.appId)
     conn.end()
     return
@@ -46,14 +46,11 @@ function readFile(fileName) {
   return { appId, os, shortcuts }
 }
 
-async function shortcutsExist(appId) {
-  const shortcuts = await conn.query(
-    `SELECT * FROM shortcuts WHERE appId = ${appId}`
-  )
+async function shortcutsExist(appId, os) {
   const sections = await conn.query(
-    `SELECT * FROM app_sections WHERE appId = ${appId}`
+    `SELECT * FROM app_sections WHERE appId = ${appId} AND os = ${os}`
   )
-  return shortcuts.length > 0 || sections.length > 0
+  return sections.length > 0
 }
 
 async function addShortcuts(appId, os, shortcuts) {
@@ -64,7 +61,7 @@ async function addShortcuts(appId, os, shortcuts) {
       currSectionId++
 
       await conn.query(
-        `INSERT INTO app_sections (id, appId, name) VALUES (${currSectionId}, ${appId}, "${sectionName}")`
+        `INSERT INTO app_sections (id, appId, name, os) VALUES (${currSectionId}, ${appId}, "${sectionName}", ${os})`
       )
     } else {
       const splitshortcut = shortcut.split("(-)")
@@ -72,7 +69,7 @@ async function addShortcuts(appId, os, shortcuts) {
       const keys = prepareStr(splitshortcut[1])
 
       await conn.query(
-        `INSERT INTO shortcuts (appId, \`action\`, \`keys\`, os, sectionId) VALUES (${appId}, "${action}", "${keys}", ${os}, ${currSectionId})`
+        `INSERT INTO shortcuts (sectionId, \`action\`, \`keys\`) VALUES (${currSectionId}, "${action}", "${keys}")`
       )
     }
   }

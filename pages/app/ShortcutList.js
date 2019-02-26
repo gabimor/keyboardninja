@@ -13,7 +13,7 @@ export default function ShortcutList({ title, shortcuts }) {
         <TBody>
           {shortcuts.map(shortcut => (
             <ShortcutItem
-              key={shortcut._id}
+              key={shortcut.id}
               keys={shortcut.keys}
               action={shortcut.action}
               pins={shortcut.pins}

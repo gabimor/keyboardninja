@@ -6,11 +6,9 @@
 - login, signup popup & pages (500px)
 - show: all pinned | grouped flat
 - my apps: apps you've pinned shortcuts in will show here
-3
 - sections: support dot, order, text/shortcut width
 - view: ctrl+1|2|3|4
 - view: ctrl+1...9
-- MD: add ids to shortcuts and sections
 - homepage: now contains 20,123 shortcuts from 55 apps
 - suggest app
 - performance
@@ -24,7 +22,6 @@
 ### Backlog
 
 - emotion.sh
-- mysql
 - special keys - (Ctrl, Alt, Shift, Windows, Insert,Delete, Esc, F1 ... F12, Enter, PageUp, PageDown, Home, End, ArrowUp ... Arrow
 
 ### general
