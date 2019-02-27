@@ -39,7 +39,7 @@ export default createGlobalStyle`
     color: #FFFFFF;
     margin: 0;
     font-family: "IBM Plex Sans", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
   }
   
   input, textarea, select, button {

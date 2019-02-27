@@ -29,8 +29,12 @@ const Container = styled.ul`
   list-style: none;
   margin-left: auto;
 
-  & li {
+  li {
     padding-left: 20px;
     display: inline-block;
+  }
+
+  a {
+    color: #ffffff;
   }
 `

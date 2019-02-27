@@ -2,14 +2,14 @@
 
 ## TODO
 
-- svg in page
+- svg in page (export from icons.js)
 - login, signup popup & pages (500px)
 - show: all pinned | grouped flat
 - my apps: apps you've pinned shortcuts in will show here
-- sections: support dot, order, text/shortcut width
-- view: ctrl+1|2|3|4
-- view: ctrl+1...9
-- homepage: now contains 20,123 shortcuts from 55 apps
+- sections: text/shortcut width
+- homepage
+  - now contains 20,123 shortcuts from 55 apps
+  - links all categories at the top
 - suggest app
 - performance
 - responsive work
@@ -19,10 +19,13 @@
 - OSSelect - store os in cookie, load server side
 - patreon/buy me a coffee
 
-### Backlog
+### Tech debt
 
 - emotion.sh
-- special keys - (Ctrl, Alt, Shift, Windows, Insert,Delete, Esc, F1 ... F12, Enter, PageUp, PageDown, Home, End, ArrowUp ... Arrow
+- storybook 5
+- remove X-Powerd-By
+- react 16.8
+- next 8
 
 ### general
 
@@ -38,6 +41,7 @@
   - several shortcuts to the same action
   - text edit the shortcut
   - support VS code "Ctrl+K V" type shortcuts
+- share my personalized page of shortcuts
 
 ## phase 3 - take over the world
 

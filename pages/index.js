@@ -22,7 +22,11 @@ class App extends Component {
           Discover, save, share your <b>shortcuts</b>
         </Hero>
         {appCategories.map(category => (
-          <AppList name={category.name} apps={category.apps} key={category.id}/>
+          <AppList
+            key={category.name}
+            name={category.name}
+            apps={category.apps}
+          />
         ))}
       </Layout>
     )
@@ -30,7 +34,7 @@ class App extends Component {
 }
 
 const Hero = styled.h1`
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 40px;
   margin: 120px 0 165px 0;
   text-align: center;

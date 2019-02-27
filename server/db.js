@@ -1,12 +1,14 @@
 const mysql = require("promise-mysql")
 
+const credentials = {
+  host: "localhost",
+  user: "root",
+  password: "1234",
+  database: "keyboard_ninja",
+}
+
 async function getAppCategories() {
-  const conn = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "1234",
-    database: "keyboard_ninja",
-  })
+  const conn = await mysql.createConnection(credentials)
 
   const apps = await conn.query("SELECT * FROM apps")
   const appCategories = await conn.query("SELECT * FROM app_categories")
@@ -26,12 +28,7 @@ async function getAppCategories() {
 }
 
 async function getApps() {
-  const conn = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "1234",
-    database: "keyboard_ninja",
-  })
+  const conn = await mysql.createConnection(credentials)
 
   const apps = await conn.query("SELECT * FROM apps")
   const appSections = await conn.query(
@@ -66,6 +63,17 @@ function createApp(app, sections, shortcuts) {
     })
   }
   return result
+}
+
+async function findUser(email, password) {
+  const conn = await mysql.createConnection(credentials)
+
+  const user = await conn.query(
+    `SELECT * FROM users WHERE email=${email} AND password=${password}`
+  )
+  conn.end()
+
+  return user
 }
 
 module.exports = { getApps, getAppCategories }

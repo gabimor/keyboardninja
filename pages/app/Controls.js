@@ -1,27 +1,23 @@
-import React, { Component } from "react"
+import React from "react"
 import styled from "styled-components"
 
 import OSSelect from "./OSSelect"
-import Input from "../../components/Input"
+// import Input from "../../components/Input"
 
-export default class extends Component {
-  render() {
-    const { icon, name } = this.props
+const Controls = ({ icon, name }) => (
+  <Container>
+    <Icon src={"/static/logos/" + icon} />
+    <Text>{name}</Text>
+    <SearchWrapper>
+      Show: All, My Shortcuts | Grouped, Ungrouped
+      {/* <Input />
+          <SearchIcon className="fas fa-search" /> */}
+    </SearchWrapper>
+    <OSSelect />
+  </Container>
+)
 
-    return (
-      <Container>
-        <Icon src={"/static/logos/" + icon} />
-        <Text>{name}</Text>
-        <SearchWrapper>
-          show all, just mine, grouped
-          <Input />
-          <SearchIcon className="fas fa-search" />
-        </SearchWrapper>
-        <OSSelect />
-      </Container>
-    )
-  }
-}
+export default Controls
 
 const Container = styled.div`
   display: flex;

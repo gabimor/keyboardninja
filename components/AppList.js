@@ -16,7 +16,7 @@ export default function AppList({ name, apps }) {
             as={"/" + encodeAppName(app.name)}
             key={app.id}
           >
-            <a>
+            <a key={app.id}>
               <App icon={"/static/logos/" + app.icon} name={app.name} />
             </a>
           </Link>

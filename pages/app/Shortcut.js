@@ -11,6 +11,7 @@ function split(keysArr, seperator) {
     const item1Split = item1.split(seperator)
     for (let i = 0; i < item1Split.length; i++) {
       newArr.push(item1Split[i].trim())
+      
       // dont add seperator after last element
       if (i !== item1Split.length - 1) {
         newArr.push(seperator)
@@ -33,6 +34,8 @@ export default function Shortcut({ keys }) {
 
 function ShortcutOption({ keys }) {
   let keysArr = split([keys], "+")
+  keysArr = split(keysArr, "|")
+  keysArr = split(keysArr, "..")
   keysArr = split(keysArr, " ")
   
   return (
@@ -42,6 +45,8 @@ function ShortcutOption({ keys }) {
         else if (key === " ") return <Text key={index}>then</Text>
         else if (key === "or") return <Or key={index}>or</Or>
         else if (key === "plus") return <ShortcutKey key={index}>+</ShortcutKey>
+        else if (key === "|") return <Text key={index}>/</Text>
+        else if (key === "..") return <Text key={index}>..</Text>
         else if (
           key === "up" ||
           key === "down" ||
@@ -80,5 +85,5 @@ const Or = styled.div`
 const Text = styled.span`
   padding: 2px 4px 0;
   font-size: 13px;
-  color: #FFFFFF;
+  color: #E9E5E5;
 `
