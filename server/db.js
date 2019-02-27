@@ -69,11 +69,11 @@ async function findUser(email, password) {
   const conn = await mysql.createConnection(credentials)
 
   const user = await conn.query(
-    `SELECT * FROM users WHERE email=${email} AND password=${password}`
+    `SELECT * FROM users WHERE email="${email}" AND password="${password}"`
   )
   conn.end()
 
   return user
 }
 
-module.exports = { getApps, getAppCategories }
+module.exports = { getApps, getAppCategories, findUser }
