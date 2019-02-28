@@ -11,7 +11,7 @@ import "isomorphic-unfetch"
 class App extends Component {
   static async getInitialProps({ query }) {
     const { id } = query
-    const res = await fetch(`${process.env.DOMAIN_URL}api/apps/${id}`)
+    const res = await fetch(`${process.env.DOMAIN_URL || ""}api/apps/${id}`)
     const app = await res.json()
     return { app }
   }
