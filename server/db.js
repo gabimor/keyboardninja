@@ -8,45 +8,45 @@ const credentials = {
 }
 
 async function getAppCategories() {
-  return []
-  // const conn = await mysql.createConnection(credentials)
+  // return []
+  const conn = await mysql.createConnection(credentials)
 
-  // const apps = await conn.query("SELECT * FROM apps")
-  // const appCategories = await conn.query("SELECT * FROM app_categories")
+  const apps = await conn.query("SELECT * FROM apps")
+  const appCategories = await conn.query("SELECT * FROM app_categories")
 
-  // const result = []
-  // for (const category of appCategories) {
-  //   const filteredApps = apps.filter(e => e.categoryId === category.id)
+  const result = []
+  for (const category of appCategories) {
+    const filteredApps = apps.filter(e => e.categoryId === category.id)
 
-  //   result.push({
-  //     name: category.name,
-  //     apps: filteredApps,
-  //   })
-  // }
-  // conn.end()
+    result.push({
+      name: category.name,
+      apps: filteredApps,
+    })
+  }
+  conn.end()
 
-  // return result
+  return result
 }
 
 async function getApps() {
-  return []
+  // return []
 
-  // const conn = await mysql.createConnection(credentials)
+  const conn = await mysql.createConnection(credentials)
 
-  // const apps = await conn.query("SELECT * FROM apps")
-  // const appSections = await conn.query(
-  //   "SELECT * FROM app_sections ORDER BY `order`"
-  // )
-  // const shortcuts = await conn.query("SELECT * FROM shortcuts")
+  const apps = await conn.query("SELECT * FROM apps")
+  const appSections = await conn.query(
+    "SELECT * FROM app_sections ORDER BY `order`"
+  )
+  const shortcuts = await conn.query("SELECT * FROM shortcuts")
 
-  // const result = []
-  // for (const app of apps) {
-  //   result.push(createApp(app, appSections, shortcuts))
-  // }
+  const result = []
+  for (const app of apps) {
+    result.push(createApp(app, appSections, shortcuts))
+  }
 
-  // conn.end()
+  conn.end()
 
-  // return result
+  return result
 }
 
 function createApp(app, sections, shortcuts) {
