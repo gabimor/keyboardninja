@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "set PORT=3000 && nodemon --inspect --watch server.js ./server/server.js",
     "build": "next build",
-    "start": "set NODE_ENV=production && node .server/server.js",
+    "start": "set NODE_ENV=production && node ./server/server.js",
     "storybook": "start-storybook -p 6006 -s ./static",
     "build-storybook": "build-storybook"
   },

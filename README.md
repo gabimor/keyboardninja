@@ -27,6 +27,11 @@
 - react 16.8
 - next 8
 
+### thougts
+
+- discovering a shortcut after years of working with an app (chrome ctrl+1..)
+- rate shortcuts (1-3)
+
 ### general
 
 - hotjar

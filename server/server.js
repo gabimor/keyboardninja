@@ -12,8 +12,8 @@ const db = require("./db")
 const { encodeAppName } = require("./helpers")
 
 const dev = process.env.NODE_ENV !== "production"
-const app = next({ dev })
-const handle = app.getRequestHandler()
+const nextApp = next({ dev })
+const handle = nextApp.getRequestHandler()
 
 let apps
 let appCategories
@@ -23,11 +23,11 @@ process.env.PORT = process.env.PORT || 3000
 main()
 
 async function main() {
-  // await app.prepare()
+  await nextApp.prepare()
 
-  const server = express()
+  const app = express()
 
-  server.use(
+  app.use(
     session({
       secret: "W9t5wawtmal",
       resave: false,
@@ -36,21 +36,27 @@ async function main() {
     })
   )
 
-  server.use(bodyParser.json())
+  app.use(bodyParser.json())
 
   passport.use(
-    new LocalStrategy(async function(username, password, done) {
-      try {
-        // console.log("in passport")
-        const user = await db.findUser(username, password)
-        if (!user) {
-          return done(null, false, { message: "Incorrect email or password" })
+    new LocalStrategy(
+      {
+        usernameField: "email",
+        passwordField: "password",
+      },
+      async function(username, password, done) {
+        try {
+          const user = await db.findUser(username, password)
+          if (user && user.length === 1) {
+            return done(null, user[0])
+          } else {
+            return done(null, false, { message: "Incorrect email or password" })
+          }
+        } catch (err) {
+          return done(err)
         }
-        return done(null, user)
-      } catch (err) {
-        return done(err)
       }
-    })
+    )
   )
 
   // serialize user object
@@ -63,25 +69,21 @@ async function main() {
     done(err, user)
   })
 
-  server.use(flash())
-  server.use(passport.initialize())
-  server.use(passport.session())
+  app.use(flash())
+  app.use(passport.initialize())
+  app.use(passport.session())
 
-  server.use(async function(req, res, next) {
+  app.use(async function(req, res, next) {
     // TODO: don't do this for every request
     apps = await db.getApps()
     appCategories = await db.getAppCategories()
     next()
   })
 
-  server.post(
+  app.post(
     "/api/login",
     function(req, res, next) {
       passport.authenticate("local", function(error, user, info) {
-        console.log(error)
-        console.log(user)
-        console.log(info)
-
         if (error) {
           res.status(401).send(error)
         } else if (!user) {
@@ -106,39 +108,43 @@ async function main() {
   //   })
   // )
 
-  server.get("/api/apps/:id", async (req, res) => {
+  app.get("/api/apps/:id", (req, res) => {
     res.json(apps.find(e => e.id === +req.params.id))
   })
 
-  server.get("/api/app_categories", async (req, res) => {
+  app.get("/api/user", (req, res) => {
+    res.send(req.user)
+  })
+
+  app.get("/api/app_categories", (req, res) => {
     res.json(appCategories)
   })
 
-  server.get("/", (req, res) => {
+  app.get("/", (req, res) => {
     return handle(req, res)
   })
 
-  server.get("/login", (req, res) => {
+  app.get("/login", (req, res) => {
     return handle(req, res)
   })
 
-  server.get("/:name", async (req, res) => {
+  app.get("/:name", (req, res) => {
     const currApp = apps.find(e => encodeAppName(e.name) === req.params.name)
     const actualPage = "/app"
 
     if (currApp) {
       const queryParams = { id: currApp.id }
-      app.render(req, res, actualPage, queryParams)
+      nextApp.render(req, res, actualPage, queryParams)
     } else {
-      app.render(req, res, "/404")
+      nextApp.render(req, res, "/404")
     }
   })
 
-  server.get("*", (req, res) => {
-    app.render(req, res, "/404")
+  app.get("*", (req, res) => {
+    nextApp.render(req, res, "/404")
   })
 
-  server.listen(process.env.PORT, err => {
+  app.listen(process.env.PORT, err => {
     if (err) throw err
     console.log("> Ready on http://localhost:" + process.env.PORT)
   })
