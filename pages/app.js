@@ -6,11 +6,12 @@ import Router, { withRouter } from "next/router"
 import ShortcutList from "./app/ShortcutList"
 import Controls from "./app/Controls"
 import Layout from "./layout/Layout"
+import "isomorphic-unfetch"
 
 class App extends Component {
   static async getInitialProps({ query }) {
     const { id } = query
-    const res = await fetch(`http://localhost:3000/api/apps/${id}`)
+    const res = await fetch(`${process.env.DOMAIN_URL}api/apps/${id}`)
     const app = await res.json()
     return { app }
   }

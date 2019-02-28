@@ -1,14 +1,13 @@
 const mysql = require("promise-mysql")
 
 const credentials = {
-  host: "localhost",
-  user: "root",
-  password: "1234",
-  database: "keyboard_ninja",
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
 }
 
 async function getAppCategories() {
-  // return []
   const conn = await mysql.createConnection(credentials)
 
   const apps = await conn.query("SELECT * FROM apps")
@@ -29,8 +28,6 @@ async function getAppCategories() {
 }
 
 async function getApps() {
-  // return []
-
   const conn = await mysql.createConnection(credentials)
 
   const apps = await conn.query("SELECT * FROM apps")

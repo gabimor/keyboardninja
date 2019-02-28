@@ -7,6 +7,8 @@ const flash = require("connect-flash")
 const LocalStrategy = require("passport-local").Strategy
 const session = require("express-session")
 
+require("dotenv").config()
+
 // const auth = require("./auth")
 const db = require("./db")
 const { encodeAppName } = require("./helpers")
