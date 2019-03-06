@@ -4,14 +4,18 @@ import styled from "styled-components"
 import LoginForm from "./login/LoginForm"
 
 const Login = () => {
-  async function handleSubmit() {
+  async function handleSubmit(email, password) {
     const res = await fetch("/api/login", {
       method: "POST",
       headers: {
+        credentials: "include",
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
     })
-    console.log(res)
   }
 
   return (

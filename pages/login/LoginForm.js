@@ -17,10 +17,7 @@ export default function Login({ onSubmit }) {
     setValues({ emailValid, passwordValid })
 
     if (emailValid && passwordValid) {
-      onSubmit({
-        email: values.email,
-        password: values.password,
-      })
+      onSubmit(values.email, values.password)
     }
   }
 

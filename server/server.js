@@ -85,13 +85,40 @@ async function main() {
   app.post(
     "/api/login",
     function(req, res, next) {
+      // passport.authenticate(
+      //   "local",
+      //   {
+      //     successRedirect: "/",
+      //     failureRedirect: "/login",
+      //   },
+      //   function(req, res) {
+      //     // If this function gets called, authentication was successful.
+      //     // `req.user` contains the authenticated user.
+      //     res.redirect("/users/" + req.user.username)
+      //   }
+      // )
+
+      passport.serializeUser(function(user, done) {
+        done(null, user)
+      })
+
+      passport.deserializeUser(function(user, done) {
+        done(err, user)
+      })
+
       passport.authenticate("local", function(error, user, info) {
         if (error) {
           res.status(401).send(error)
         } else if (!user) {
           res.status(401).send(info)
         } else {
-          next()
+          // res.status(200).send("logged in")
+          req.login(user, function(err) {
+            if (err) {
+              return next(err)
+            }
+            return res.redirect("/")
+          })
         }
       })(req, res)
     },
@@ -123,6 +150,7 @@ async function main() {
   })
 
   app.get("/", (req, res) => {
+    console.log(req.user)
     return handle(req, res)
   })
 
