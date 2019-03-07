@@ -1,5 +1,8 @@
 const express = require("express")
 const next = require("next")
+const fs = require("fs")
+const path = require("path")
+const morgan = require("morgan")
 // const bcrypt = require("bcrypt")
 const bodyParser = require("body-parser")
 const passport = require("passport")
@@ -30,17 +33,34 @@ async function main() {
 
   const app = express()
 
+  const accessLogStream = fs.createWriteStream(
+    path.join(__dirname, "access.log"),
+    { flags: "a" }
+  )
+
+  app.use(morgan("combined", { stream: accessLogStream }))
   app.use(
     session({
       store: new RedisStore({ host: "localhost", port: 6379 }),
       secret: "W9t5wawtmal",
       resave: false,
       saveUninitialized: true,
-      cookie: { secure: true },
+      cookie: { secure: true, maxAge: 300000 },
     })
   )
 
+  app.use(flash())
+  app.use(passport.initialize())
+  app.use(passport.session())
+
   app.use(bodyParser.json())
+
+  app.use(async function(req, res, next) {
+    // TODO: don't do this for every request
+    apps = await db.getApps()
+    appCategories = await db.getAppCategories()
+    next()
+  })
 
   passport.use(
     new LocalStrategy(
@@ -50,7 +70,6 @@ async function main() {
       },
       async function(username, password, done) {
         try {
-          console.log("async function(username, password, done) {")
           const user = await db.findUser(username, password)
           if (user && user.length === 1) {
             return done(null, user[0])
@@ -66,24 +85,12 @@ async function main() {
 
   // serialize user object
   passport.serializeUser(function(user, done) {
-    console.log("passport.serializeUser(function(user, done) {")
     done(null, user)
   })
 
   // deserialize user object
   passport.deserializeUser(function(user, done) {
     done(null, user)
-  })
-
-  // app.use(flash())
-  app.use(passport.initialize())
-  app.use(passport.session())
-
-  app.use(async function(req, res, next) {
-    // TODO: don't do this for every request
-    apps = await db.getApps()
-    appCategories = await db.getAppCategories()
-    next()
   })
 
   // app.post(
