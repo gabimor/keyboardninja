@@ -6,6 +6,7 @@ const passport = require("passport")
 const flash = require("connect-flash")
 const LocalStrategy = require("passport-local").Strategy
 const session = require("express-session")
+const RedisStore = require("connect-redis")(session)
 
 require("dotenv").config()
 
@@ -31,6 +32,7 @@ async function main() {
 
   app.use(
     session({
+      store: new RedisStore({ host: "localhost", port: 6379 }),
       secret: "W9t5wawtmal",
       resave: false,
       saveUninitialized: true,
@@ -48,6 +50,7 @@ async function main() {
       },
       async function(username, password, done) {
         try {
+          console.log("async function(username, password, done) {")
           const user = await db.findUser(username, password)
           if (user && user.length === 1) {
             return done(null, user[0])
@@ -63,15 +66,16 @@ async function main() {
 
   // serialize user object
   passport.serializeUser(function(user, done) {
+    console.log("passport.serializeUser(function(user, done) {")
     done(null, user)
   })
 
   // deserialize user object
   passport.deserializeUser(function(user, done) {
-    done(err, user)
+    done(null, user)
   })
 
-  app.use(flash())
+  // app.use(flash())
   app.use(passport.initialize())
   app.use(passport.session())
 
@@ -81,6 +85,14 @@ async function main() {
     appCategories = await db.getAppCategories()
     next()
   })
+
+  // app.post(
+  //   "/api/login",
+  //   passport.authenticate("local", {
+  //     successRedirect: "/",
+  //     failureRedirect: "/login",
+  //   })
+  // )
 
   app.post(
     "/api/login",
@@ -98,26 +110,17 @@ async function main() {
       //   }
       // )
 
-      passport.serializeUser(function(user, done) {
-        done(null, user)
-      })
-
-      passport.deserializeUser(function(user, done) {
-        done(err, user)
-      })
-
       passport.authenticate("local", function(error, user, info) {
         if (error) {
           res.status(401).send(error)
         } else if (!user) {
           res.status(401).send(info)
         } else {
-          // res.status(200).send("logged in")
           req.login(user, function(err) {
             if (err) {
               return next(err)
             }
-            return res.redirect("/")
+            return res.status(200).send()
           })
         }
       })(req, res)
@@ -128,6 +131,7 @@ async function main() {
       res.status(200).send("logged in!")
     }
   )
+
   // server.post(
   //   "/api/login",
   //   passport.authenticate("local", {
@@ -150,7 +154,7 @@ async function main() {
   })
 
   app.get("/", (req, res) => {
-    console.log(req.user)
+    console.log(req.session.password)
     return handle(req, res)
   })
 
