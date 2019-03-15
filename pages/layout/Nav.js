@@ -4,21 +4,46 @@ import styled from "styled-components"
 import Link from "next/link"
 import Button from "../../components/Button"
 
-export default () => (
+function Anonymous() {
+  return (
+    <>
+      <li>
+        <Link href="/login">
+          <a>Log In</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/signup">
+          <Button>Sign Up</Button>
+        </Link>
+      </li>
+    </>
+  )
+}
+
+function LoggedIn({user}) {
+  return (
+    <>
+      <li>
+        <Link href="/login">
+          <a>Hello {user.email} </a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/logout">
+          <a>Logout</a>
+        </Link>
+      </li>
+    </>
+  )
+}
+
+export default ({ user }) => (
   <Container>
     <li>
       <a>Suggest An App</a>
     </li>
-    <li>
-      <Link href="/login">
-        <a>Log In</a>
-      </Link>
-    </li>
-    <li>
-      <Link href="/signup">
-        <Button>Sign Up</Button>
-      </Link>
-    </li>
+    {user ? <LoggedIn user={user} /> : <Anonymous />}
   </Container>
 )
 

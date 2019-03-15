@@ -8,8 +8,7 @@ import Layout from "./layout/Layout"
 import "isomorphic-unfetch"
 
 class App extends Component {
-  static async getInitialProps({ req }) {
-    
+  static async getInitialProps() {
     const res = await fetch(`${process.env.DOMAIN_URL || ""}api/app_categories`)
     const appCategories = await res.json()
     return { appCategories }

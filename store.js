@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 import thunkMiddleware from "redux-thunk"
 
-const exampleInitialState = {}
+const exampleInitialState = { test: 1 }
 
 export const actionTypes = {
   CANCEL_SUGGEST_SHORTCUT: "CANCEL_SUGGEST_SHORTCUT",

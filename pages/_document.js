@@ -1,6 +1,7 @@
 import Document, { Head, Main, NextScript } from "next/document"
 import { ServerStyleSheet } from "styled-components"
 
+
 const hotjar = `
   <!-- Hotjar Tracking Code for http://www.keyboardninja.me -->
   <script>
