@@ -21,7 +21,7 @@ function Anonymous() {
   )
 }
 
-function LoggedIn({user}) {
+function LoggedIn({ user, onLogout }) {
   return (
     <>
       <li>
@@ -30,20 +30,23 @@ function LoggedIn({user}) {
         </Link>
       </li>
       <li>
-        <Link href="/logout">
-          <a>Logout</a>
+        <Link href="/apps">
+          <a>My apps</a>
         </Link>
+      </li>
+      <li>
+        <a onClick={onLogout}>Logout</a>
       </li>
     </>
   )
 }
 
-export default ({ user }) => (
+export default (props) => (
   <Container>
     <li>
       <a>Suggest An App</a>
     </li>
-    {user ? <LoggedIn user={user} /> : <Anonymous />}
+    {props.user ? <LoggedIn {...props} /> : <Anonymous />}
   </Container>
 )
 

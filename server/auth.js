@@ -25,7 +25,7 @@ passport.use(
 
 // serialize user object
 passport.serializeUser(function(user, done) {
-  done(null, user)
+  done(null, { email: user.email })
 })
 
 // deserialize user object

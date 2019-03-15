@@ -1,13 +1,14 @@
 import Layout from "./layout/Layout"
 import styled from "styled-components"
+import { LOGIN } from "../redux/actions"
+import { login } from "../redux/actions"
 import { connect } from "react-redux"
-
 
 import LoginForm from "./login/LoginForm"
 
-const Login = ({a}) => {
+const Login = ({login}) => {
   async function handleSubmit(email, password) {
-    await fetch("/api/login", {
+    const res = await fetch("/api/login", {
       method: "POST",
       headers: {
         credentials: "include",
@@ -18,9 +19,12 @@ const Login = ({a}) => {
         password,
       }),
     })
+    const user = await res.json()
+
+    login(user)
   }
 
-  console.log(a)
+  
   return (
     <Layout>
       <Container>
@@ -30,21 +34,12 @@ const Login = ({a}) => {
   )
 }
 
-function mapStateToProps(state) {
-  const { a } = state
-  return { a }
-}
-
-export default connect(mapStateToProps)(Login)
-
-// Login.getInitialProps = async function (req) {
-//   console.log("test")
-//   console.log(req.user)
-//   return {a:1}
-// }
+export default connect(
+  null,
+  { login }
+)(Login)
 
 const Container = styled.div`
   width: 300px;
   margin: 100px auto 0 auto;
 `
-

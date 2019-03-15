@@ -3,10 +3,24 @@ import Link from "next/link"
 import styled from "styled-components"
 import { connect } from "react-redux"
 
+import { logout } from "../../redux/actions"
+
 import Logo from "./Logo"
 import Nav from "./Nav"
 
-function Header({ user }) {
+function Header({ user, logout }) {
+  function handleLogout() {
+    fetch("/api/logout", {
+      method: "POST",
+      headers: {
+        credentials: "include",
+        "Content-Type": "application/json",
+      },
+    })
+
+    logout()
+  }
+
   return (
     <Container>
       <Link href="/">
@@ -14,7 +28,7 @@ function Header({ user }) {
           <Logo />
         </a>
       </Link>
-      <Nav user={user} />
+      <Nav user={user} onLogout={handleLogout} />
     </Container>
   )
 }
@@ -24,7 +38,12 @@ function mapStateToProps(state) {
   return { user }
 }
 
-export default connect(mapStateToProps)(Header)
+export default connect(
+  mapStateToProps,
+  {
+    logout,
+  }
+)(Header)
 
 const Container = styled.header`
   display: flex;
