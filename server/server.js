@@ -11,6 +11,10 @@ const LocalStrategy = require("passport-local").Strategy
 const session = require("express-session")
 const RedisStore = require("connect-redis")(session)
 
+// routes
+const api = require("./api")
+const router = express.Router()
+
 require("dotenv").config()
 
 // const auth = require("./auth")
@@ -44,16 +48,16 @@ async function main() {
       store: new RedisStore({ host: "localhost", port: 6379 }),
       secret: "W9t5wawtmal",
       resave: false,
-      saveUninitialized: true,
-      cookie: { secure: true, maxAge: 300000 },
+      saveUninitialized: false,
+      cookie: { maxAge: 300000 },
     })
   )
 
-  app.use(flash())
-  app.use(passport.initialize())
-  app.use(passport.session())
-
   app.use(bodyParser.json())
+  app.use(bodyParser.urlencoded({ extended: false }))
+  app.use(passport.initialize())
+  app.use(flash())
+  app.use(passport.session())
 
   app.use(async function(req, res, next) {
     // TODO: don't do this for every request
@@ -85,11 +89,15 @@ async function main() {
 
   // serialize user object
   passport.serializeUser(function(user, done) {
+    // console.log("serialize")
+    // console.log(user)
     done(null, user)
   })
 
   // deserialize user object
   passport.deserializeUser(function(user, done) {
+    // console.log("deserialize")
+    // console.log(user)
     done(null, user)
   })
 
@@ -103,41 +111,59 @@ async function main() {
 
   app.post(
     "/api/login",
-    function(req, res, next) {
-      // passport.authenticate(
-      //   "local",
-      //   {
-      //     successRedirect: "/",
-      //     failureRedirect: "/login",
-      //   },
-      //   function(req, res) {
-      //     // If this function gets called, authentication was successful.
-      //     // `req.user` contains the authenticated user.
-      //     res.redirect("/users/" + req.user.username)
-      //   }
-      // )
-
-      passport.authenticate("local", function(error, user, info) {
-        if (error) {
-          res.status(401).send(error)
-        } else if (!user) {
-          res.status(401).send(info)
-        } else {
-          req.login(user, function(err) {
-            if (err) {
-              return next(err)
-            }
-            return res.status(200).send()
-          })
+    passport.authenticate("local", {
+      failureRedirect: "/login",
+      failureFlash: true,
+    }),
+    (req, res, next) => {
+      req.session.save(err => {
+        if (err) {
+          return next(err)
         }
-      })(req, res)
-    },
-
-    // function to call once successfully authenticated
-    function(req, res) {
-      res.status(200).send("logged in!")
+        res.redirect("/")
+      })
     }
   )
+
+  // app.post(
+  //   "/api/login",
+  //   function(req, res, next) {
+  //     // passport.authenticate(
+  //     //   "local",
+  //     //   {
+  //     //     successRedirect: "/",
+  //     //     failureRedirect: "/login",
+  //     //   },
+  //     //   function(req, res) {
+  //     //     // If this function gets called, authentication was successful.
+  //     //     // `req.user` contains the authenticated user.
+  //     //     res.redirect("/users/" + req.user.username)
+  //     //   }
+  //     // )
+
+  //     passport.authenticate("local", function(error, user, info) {
+  //       if (error) {
+  //         res.status(401).send(error)
+  //       } else if (!user) {
+  //         res.status(401).send(info)
+  //       } else {
+  //         req.login(user, function(err) {
+  //           if (err) {
+  //             return next(err)
+  //           }
+  //           console.log("logging in")
+  //           console.log(user)
+  //           return res.status(200).send()
+  //         })
+  //       }
+  //     })(req, res)
+  //   },
+
+  //   // function to call once successfully authenticated
+  //   function(req, res) {
+  //     res.status(200).send("logged in!")
+  //   }
+  // )
 
   // server.post(
   //   "/api/login",
@@ -161,11 +187,12 @@ async function main() {
   })
 
   app.get("/", (req, res) => {
-    console.log(req.session.password)
     return handle(req, res)
   })
 
   app.get("/login", (req, res) => {
+    console.log("/login")
+    console.log(req.user)
     return handle(req, res)
   })
 
