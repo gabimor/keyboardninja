@@ -2,7 +2,7 @@ import React from "react"
 // import Link from "react-router-dom"
 import styled from "@emotion/styled"
 
-import { encodeAppName } from "../helpers"
+// import { encodeAppName } from "../helpers"
 import App from "./AppItem"
 
 export default function AppList({ name, apps }) {

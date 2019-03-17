@@ -7,21 +7,24 @@ import Login from "./pages/Login"
 import Header from "./pages/layout/Header"
 import Footer from "./pages/layout/Footer"
 import Theme from "./pages/layout"
-import Overlay from "./pages/layout/Overlay"
+// import Overlay from "./pages/layout/Overlay"
+import TestContext from "./TestContext"
 
-const App = overlay => (
-  <div>
-    <Theme />
-    {/* {overlay && <Overlay />} */}
-    <Container>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/login" component={Login} />
-      </Switch>
-      <Footer />
-    </Container>
-  </div>
+const App = ({ overlay, appCategories }) => (
+  <TestContext.Provider value={appCategories}>
+    <div>
+      <Theme />
+      {/* {overlay && <Overlay />} */}
+      <Container>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
+        </Switch>
+        <Footer />
+      </Container>
+    </div>
+  </TestContext.Provider>
 )
 
 const Container = styled.div`

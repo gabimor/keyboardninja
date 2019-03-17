@@ -31,10 +31,10 @@ function Header({ user, logout }) {
   )
 }
 
-function mapStateToProps(state) {
-  const { user } = state
-  return { user }
-}
+// function mapStateToProps(state) {
+//   const { user } = state
+//   return { user }
+// }
 
 export default Header
 
