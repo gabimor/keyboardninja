@@ -7,9 +7,12 @@
     "dev": "razzle start -- --inspect-brk",
     "build": "razzle build",
     "test": "razzle test --env=jsdom",
-    "start:prod": "set NODE_ENV=production&&node build/server.js"
+    "start:prod": "set NODE_ENV=production&&node build/server.js",
+    "sb": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.9",
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
     "connect-redis": "^3.4.1",
@@ -23,6 +26,15 @@
     "razzle": "2.4.1",
     "react": "16.8.4",
     "react-dom": "16.8.4",
+    "react-powerplug": "^1.0.0",
     "react-router-dom": "4.4.0"
+  },
+  "devDependencies": {
+    "@storybook/react": "^5.0.2",
+    "@storybook/addon-actions": "^5.0.2",
+    "@storybook/addon-links": "^5.0.2",
+    "@storybook/addons": "^5.0.2",
+    "@babel/core": "^7.3.4",
+    "babel-loader": "^8.0.5"
   }
 }

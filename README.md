@@ -1,5 +1,6 @@
 # Keyboard ninja
-ZSDXFECA24367## move
+
+## move
 
 - DX - working on the server/ client
 - redis

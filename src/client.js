@@ -1,4 +1,4 @@
-import App from "./client/pages/App"
+import App from "./client/App"
 import { BrowserRouter } from "react-router-dom"
 import React from "react"
 import { hydrate } from "react-dom"
