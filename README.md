@@ -1,4 +1,23 @@
 # Keyboard ninja
+ZSDXFECA24367## move
+
+- DX - working on the server/ client
+- redis
+- auth
+- dir structure & client server code share
+- HMR quality
+- deployment
+
+- emotion
+- redux / context
+- hooks
+- react-power-plug
+- package sizes thing
+- storybook
+- react
+  - portals
+  - react morph
+- lighthouse
 
 ## TODO
 
@@ -6,7 +25,7 @@
 - login, signup popup & pages (500px)
 - show: all pinned | grouped flat
 - my apps: apps you've pinned shortcuts in will show here
-- sections: text/shortcut width
+- sections: text/shortcut width-
 - homepage
   - now contains 20,123 shortcuts from 55 apps
   - links all categories at the top

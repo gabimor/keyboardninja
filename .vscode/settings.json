@@ -1,0 +1,9 @@
+{
+  "git.ignoreLimitWarning": true,
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#E86562",
+    "titleBar.activeForeground": "#15202b",
+  },
+  "editor.tabSize": 2,
+  "debug.node.autoAttach": "on"
+}
