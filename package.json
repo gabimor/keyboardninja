@@ -1,5 +1,5 @@
 {
-  "name": "my-razzle-app",
+  "name": "keyboardninja",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -32,7 +32,9 @@
   "devDependencies": {
     "@storybook/react": "^5.0.2",
     "@storybook/addon-actions": "^5.0.2",
+    "@storybook/addon-knobs": "^5.0.2",
     "@storybook/addon-links": "^5.0.2",
+    "@storybook/addon-viewport": "^5.0.2",
     "@storybook/addons": "^5.0.2",
     "@babel/core": "^7.3.4",
     "babel-loader": "^8.0.5"

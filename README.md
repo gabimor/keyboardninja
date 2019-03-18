@@ -1,25 +1,5 @@
 # Keyboard ninja
 
-## move
-
-- DX - working on the server/ client
-- redis
-- auth
-- dir structure & client server code share
-- HMR quality
-- deployment
-
-- emotion
-- redux / context
-- hooks
-- react-power-plug
-- package sizes thing
-- storybook
-- react
-  - portals
-  - react morph
-- lighthouse
-
 ## TODO
 
 - svg in page (export from icons.js)
@@ -41,11 +21,15 @@
 
 ### Tech debt
 
-- emotion.sh
-- storybook 5
-- remove X-Powerd-By
-- react 16.8
-- next 8
+- hooks instead of <Context.Provider>
+- Add <> </> support
+- no-unused-vars error
+- don't use globals TO store date
+- package sizes thing
+- react
+  - portals
+  - react morph
+- lighthouse
 
 ### thougts
 

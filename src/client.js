@@ -1,11 +1,11 @@
+import React from "react" // eslint-disable-line no-unused-vars
 import App from "./client/App"
 import { BrowserRouter } from "react-router-dom"
-import React from "react"
 import { hydrate } from "react-dom"
 
 hydrate(
   <BrowserRouter>
-    <App />
+    <App appCategories={window.__KBN_DATA__} />
   </BrowserRouter>,
   document.getElementById("root")
 )

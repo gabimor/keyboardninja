@@ -1,6 +1,10 @@
 const passport = require("passport")
 const router = require("express").Router()
 
+router.get("/apps/:id", (req, res) => {
+  res.json(global.apps.find(e => e.id === +req.params.id))
+})
+
 // router.post(
 //   "/login",
 //   passport.authenticate("local", {
@@ -17,15 +21,9 @@ const router = require("express").Router()
 //   }
 // )
 
-router.get("/apps/:id", (req, res) => {
-  res.json(global.apps.find(e => e.id === +req.params.id))
-})
-
-router.get("/app_categories", (req, res) => {
-  res.json(global.appCategories)
-})
-
-module.exports = router
+// router.get("/app_categories", (req, res) => {
+//   res.json(global.appCategories)
+// })
 
 // router.post(
 //   "/login",
@@ -48,7 +46,6 @@ router.post("/login", function(req, res, next) {
   //     res.redirect("/users/" + req.user.username)
   //   }
   // )
-  console.log(123)
   passport.authenticate("local", function(error, user, info) {
     if (error) {
       res.status(401).send(error)
@@ -78,3 +75,5 @@ router.post("/logout", function(req, res) {
 //     failureFlash: true,
 //   })
 // )
+
+module.exports = router

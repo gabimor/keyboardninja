@@ -1,9 +1,9 @@
-import React from "react"
-// import Link from "react-router-dom"
+import React from "react" // eslint-disable-line no-unused-vars
+import { Link } from "react-router-dom"
 import styled from "@emotion/styled"
 
-// import { encodeAppName } from "../helpers"
-import App from "./AppItem"
+import { encodeAppName } from "../helpers"
+import AppItem from "./AppItem"
 
 export default function AppList({ name, apps }) {
   return (
@@ -11,15 +11,9 @@ export default function AppList({ name, apps }) {
       <Header>{name}</Header>
       <InnerContainer>
         {apps.map(app => (
-          // <Link
-          //   href={"/app?id=" + app.id}
-          //   as={"/" + encodeAppName(app.name)}
-          //   key={app.id}
-          // >
-          <a key={app.id}>
-            <App icon={"/static/logos/" + app.icon} name={app.name} />
-          </a>
-          // </Link>
+          <Link to={"/" + encodeAppName(app.name)} key={app.id}>
+            <AppItem icon={"/logos/" + app.icon} name={app.name} />
+          </Link>
         ))}
       </InnerContainer>
     </Container>

@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react" // eslint-disable-line no-unused-vars
 
 import styled from "@emotion/styled"
 // import { LOGIN } from "../redux/actions"
@@ -20,8 +20,8 @@ const Login = ({ login }) => {
         password,
       }),
     })
-    const user = await res.json()
-
+    // const user = await res.json()
+    // console.log(login, res)
     // login(user)
   }
 

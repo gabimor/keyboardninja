@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 import { Route, Switch } from "react-router-dom"
 
@@ -8,24 +8,27 @@ import Header from "./pages/layout/Header"
 import Footer from "./pages/layout/Footer"
 import Theme from "./pages/layout"
 // import Overlay from "./pages/layout/Overlay"
-import TestContext from "./TestContext"
+import DataContext from "./DataContext"
 
-const App = ({ overlay, appCategories }) => (
-  <TestContext.Provider value={appCategories}>
-    <div>
-      <Theme />
-      {/* {overlay && <Overlay />} */}
-      <Container>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-        </Switch>
-        <Footer />
-      </Container>
-    </div>
-  </TestContext.Provider>
-)
+const App = ({ overlay, appCategories }) => {
+  return (
+    <DataContext.Provider value={appCategories}>
+      <div>
+        <Theme />
+        {/* {overlay && <Overlay />} */}
+        <Container>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/:name" component={() => "asd"} />
+          </Switch>
+          <Footer />
+        </Container>
+      </div>
+    </DataContext.Provider>
+  )
+}
 
 const Container = styled.div`
   max-width: 1160px;
