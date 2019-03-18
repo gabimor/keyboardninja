@@ -1,9 +1,16 @@
-const passport = require("passport")
-const router = require("express").Router()
-const { encodeAppName } = require("../client/helpers")
+import * as db from "./db"
 
-router.get("/apps/:name", (req, res) => {
-  res.json(global.apps.find(e => encodeAppName(e.name) === req.params.name))
+import passport from "passport"
+import express from "express"
+import { encodeAppName } from "../client/helpers"
+
+const router = express.Router()
+
+router.get("/apps/:name", async (req, res) => {
+  const app = global.apps.find(e => encodeAppName(e.name) === req.params.name)
+  const userApp = await db.getUserAppShortcuts(1123, app.id)
+
+  res.json({ app, userApp })
 })
 
 // router.post(
@@ -73,4 +80,4 @@ router.post("/logout", function(req, res) {
 //   })
 // )
 
-module.exports = router
+export default router

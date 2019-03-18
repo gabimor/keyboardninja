@@ -2,6 +2,7 @@
 
 ## TODO
 
+- app page - SSR load the first sections + show all
 - svg in page (export from icons.js)
 - login, signup popup & pages (500px)
 - show: all pinned | grouped flat
@@ -21,6 +22,7 @@
 
 ### Tech debt
 
+- dont expose ids to the client
 - components: functions or arrow functions ? (check react devtools)
 - Add <> </> support
 - no-unused-vars error

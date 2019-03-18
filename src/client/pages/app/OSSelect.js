@@ -1,54 +1,45 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
+import React, { useState, useEffect } from "react"
 import styled from "@emotion/styled"
 
 import { loadOS, saveOS } from "../../helpers/localStorage"
 import { getClientOS } from "../../helpers"
 
-class OSSelect extends Component {
-  constructor(props) {
-    super()
+function OSSelect({ onSelect }) {
+  const [os, setOS] = useState({})
 
-    this.state = {}
-  }
-
-  componentDidMount() {
-    if (!this.state.os) {
-      let os = loadOS()
-      if (!os) {
-        os = getClientOS()
-        saveOS(os)
-      }
-      this.setState({ os })
+  useEffect(() => {
+    let detectedOS = loadOS()
+    if (!detectedOS) {
+      detectedOS = getClientOS()
+      saveOS(detectedOS)
     }
+    setOS(detectedOS)
+  }, [])
+
+  function handleSelect(selectedOS) {
+    setOS(selectedOS)
+    saveOS(selectedOS)
+    onSelect(selectedOS)
   }
 
-  handleSelect(os) {
-    this.setState({ os })
-    saveOS(os)
-    this.props.onSelect(os)
-  }
+  const getColor = chosenOS => (os && chosenOS === os ? "#E9E5E5" : "#5A5A5A")
 
-  getColor = os =>
-    this.state.os && os === this.state.os ? "#E9E5E5" : "#5A5A5A"
-
-  render() {
-    return (
-      <Container>
-        <i
-          className="fab fa-windows"
-          style={{ color: this.getColor("win") }}
-          onClick={() => this.handleSelect("win")}
-        />
-        <i
-          className="fab fa-apple"
-          style={{ color: this.getColor("osx"), paddingLeft: 20 }}
-          onClick={() => this.handleSelect("osx")}
-        />
-      </Container>
-    )
-  }
+  return (
+    <Container>
+      <i
+        className="fab fa-windows"
+        style={{ color: getColor("win") }}
+        onClick={() => handleSelect("win")}
+      />
+      <i
+        className="fab fa-apple"
+        style={{ color: getColor("osx"), paddingLeft: 20 }}
+        onClick={() => handleSelect("osx")}
+      />
+    </Container>
+  )
 }
+
 export default OSSelect
 
 const Container = styled.span`

@@ -1,6 +1,6 @@
-const passport = require("passport")
-const LocalStrategy = require("passport-local").Strategy
-const db = require("./db")
+import passport from "passport"
+import { Strategy as LocalStrategy } from "passport-local"
+import * as db from "./db"
 
 passport.use(
   new LocalStrategy(

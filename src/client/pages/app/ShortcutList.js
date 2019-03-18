@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react" // eslint-disable-line no-unused-vars
 
 import ShortcutItem from "./ShortcutItem"
 import styled from "@emotion/styled"
@@ -12,6 +12,7 @@ export default function ShortcutList({ title, shortcuts }) {
       <Table cellSpacing={0}>
         <TBody>
           {shortcuts.map(shortcut => (
+            // <div key={shortcut.id}>test</div>
             <ShortcutItem
               key={shortcut.id}
               keys={shortcut.keys}

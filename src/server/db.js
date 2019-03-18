@@ -54,6 +54,18 @@ export async function getApps() {
   return result
 }
 
+export async function getUserAppShortcuts(userId, appId) {
+  const conn = await mysql.createConnection(credentials)
+
+  const userShortcuts = await conn.query(
+    `SELECT * FROM user_shortcuts WHERE userId = ${userId} AND appId = ${appId}`
+  )
+
+  conn.end()
+
+  return userShortcuts
+}
+
 export function createApp(app, sections, shortcuts) {
   const result = {
     id: app.id,
