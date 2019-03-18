@@ -1,13 +1,13 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React, { useContext } from "react" // eslint-disable-line no-unused-vars
+import DataContext from "../DataContext"
 
 import styled from "@emotion/styled"
-// import { LOGIN } from "../redux/actions"
-// import { login } from "../redux/actions"
-// import { connect } from "react-redux"
 
 import LoginForm from "./login/LoginForm"
 
-const Login = ({ login }) => {
+const Login = () => {
+  const { doLogin } = useContext(DataContext)
+
   async function handleSubmit(email, password) {
     const res = await fetch("/api/login", {
       method: "POST",
@@ -20,9 +20,8 @@ const Login = ({ login }) => {
         password,
       }),
     })
-    // const user = await res.json()
-    // console.log(login, res)
-    // login(user)
+    const userJson = await res.json()
+    doLogin(userJson)
   }
 
   return (

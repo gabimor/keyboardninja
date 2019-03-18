@@ -1,14 +1,14 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React, { useContext } from "react" // eslint-disable-line no-unused-vars
 import { Link } from "react-router-dom"
 import styled from "@emotion/styled"
-// import { connect } from "react-redux"
-
-// import { logout } from "../../redux/actions"
+import DataContext from "../../DataContext"
 
 import Logo from "./Logo"
 import Nav from "./Nav"
 
-function Header({ user, logout }) {
+function Header() {
+  const { user, doLogout } = useContext(DataContext)
+
   function handleLogout() {
     fetch("/api/logout", {
       method: "POST",
@@ -18,7 +18,7 @@ function Header({ user, logout }) {
       },
     })
 
-    logout()
+    doLogout()
   }
 
   return (
@@ -31,19 +31,7 @@ function Header({ user, logout }) {
   )
 }
 
-// function mapStateToProps(state) {
-//   const { user } = state
-//   return { user }
-// }
-
 export default Header
-
-// export default connect(
-//   mapStateToProps,
-//   {
-//     logout,
-//   }
-// )(Header)
 
 const Container = styled.header`
   display: flex;

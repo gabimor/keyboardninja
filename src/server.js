@@ -55,22 +55,8 @@ app.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
 app.use("/api", api)
 app.use("/", router)
 
-app.get("/apps/:name", (req, res) => {
-  const dataContext = { appCategories }
-  const markup = renderToString(
-    <DataContext.Provider value={dataContext}>
-      <StaticRouter context={{}} location={req.url}>
-        <Layout />
-      </StaticRouter>
-    </DataContext.Provider>
-  )
-  res
-    .status(200)
-    .send(page(markup, "App Name - Keyboard Ninja Me", assets, dataContext))
-})
-
 app.get("/*", (req, res) => {
-  const dataContext = { appCategories }
+  const dataContext = { appCategories, user: req.user }
   const context = {}
   const markup = renderToString(
     <DataContext.Provider value={dataContext}>
