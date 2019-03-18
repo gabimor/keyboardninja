@@ -1,12 +1,15 @@
 import React from "react" // eslint-disable-line no-unused-vars
-import App from "./client/App"
+import Layout from "./client/Layout"
 import { BrowserRouter } from "react-router-dom"
 import { hydrate } from "react-dom"
+import DataContext from "./client/DataContext"
 
 hydrate(
-  <BrowserRouter>
-    <App appCategories={window.__KBN_DATA__} />
-  </BrowserRouter>,
+  <DataContext.Provider value={window.__KBN_DATA__}>
+    <BrowserRouter>
+      <Layout />
+    </BrowserRouter>
+  </DataContext.Provider>,
   document.getElementById("root")
 )
 

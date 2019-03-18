@@ -66,6 +66,7 @@ export function createApp(app, sections, shortcuts) {
     const os = section.os === 1 ? "win" : "mac"
 
     result[os].push({
+      id: section.id,
       name: section.name,
       shortcuts: shortcuts.filter(e => e.sectionId === section.id),
     })

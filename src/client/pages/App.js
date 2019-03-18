@@ -1,36 +1,35 @@
-import React from "react" // eslint-disable-line no-unused-vars
-import { Component } from "react"
+import React, { useState, useEffect } from "react" // eslint-disable-line no-unused-vars
 
 import styled from "@emotion/styled"
 
 import ShortcutList from "./app/ShortcutList"
 import Controls from "./app/Controls"
 
-class App extends Component {
-  static async getInitialProps({ query }) {
-    const { id } = query
-    const res = await fetch(`api/apps/${id}`)
-    const app = await res.json()
-    return { app }
-  }
+const App = () => {
+  const [app, setApp] = useState({ name: "clienttts", icon: "asdsa", win: [] })
 
-  render() {
-    const { app } = this.props
-    return (
-      <div>
-        <Controls icon={app.icon} name={app.name} />
-        <ResultsContainer>
-          {app.win.map(section => (
-            <ShortcutList
-              key={section.name}
-              shortcuts={section.shortcuts}
-              title={section.name}
-            />
-          ))}
-        </ResultsContainer>
-      </div>
-    )
-  }
+  useEffect(() => {
+    fetch("/api/apps/visual-studio")
+      .then(res => res.json())
+      .then(json => {
+        setApp(json)
+      })
+  }, [])
+
+  return (
+    <div>
+      <Controls icon={app.icon} name={app.name} />
+      <ResultsContainer>
+        {app.win.map(section => (
+          <ShortcutList
+            key={section.id}
+            shortcuts={section.shortcuts}
+            title={section.name}
+          />
+        ))}
+      </ResultsContainer>
+    </div>
+  )
 }
 
 export default App

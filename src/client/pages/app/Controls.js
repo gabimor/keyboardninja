@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 
 import OSSelect from "./OSSelect"
@@ -6,7 +6,7 @@ import OSSelect from "./OSSelect"
 
 const Controls = ({ icon, name }) => (
   <Container>
-    <Icon src={"/static/logos/" + icon} />
+    <Icon src={"/logos/" + icon} />
     <Text>{name}</Text>
     <SearchWrapper>
       Show: All, My Shortcuts | Grouped, Ungrouped
@@ -43,10 +43,10 @@ const SearchWrapper = styled.div`
   margin-left: auto;
 `
 
-const SearchIcon = styled.i`
-  position: absolute;
-  right: 10px;
-  top: 7px;
-  color: #5a5a5a;
-  font-size: 20px;
-`
+// const SearchIcon = styled.i`
+//   position: absolute;
+//   right: 10px;
+//   top: 7px;
+//   color: #5a5a5a;
+//   font-size: 20px;
+// `

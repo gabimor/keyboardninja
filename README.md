@@ -21,10 +21,9 @@
 
 ### Tech debt
 
-- hooks instead of <Context.Provider>
+- components: functions or arrow functions ? (check react devtools)
 - Add <> </> support
 - no-unused-vars error
-- don't use globals TO store date
 - package sizes thing
 - react
   - portals

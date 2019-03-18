@@ -1,8 +1,9 @@
 const passport = require("passport")
 const router = require("express").Router()
+const { encodeAppName } = require("../client/helpers")
 
-router.get("/apps/:id", (req, res) => {
-  res.json(global.apps.find(e => e.id === +req.params.id))
+router.get("/apps/:name", (req, res) => {
+  res.json(global.apps.find(e => encodeAppName(e.name) === req.params.name))
 })
 
 // router.post(
@@ -20,10 +21,6 @@ router.get("/apps/:id", (req, res) => {
 //     })
 //   }
 // )
-
-// router.get("/app_categories", (req, res) => {
-//   res.json(global.appCategories)
-// })
 
 // router.post(
 //   "/login",

@@ -1,27 +1,27 @@
-import React, { Fragment } from "react" // eslint-disable-line no-unused-vars
+import React, { Fragment, useContext } from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 
 import AppList from "../components/AppList"
 import DataContext from "../DataContext"
 
-const App = () => (
-  <DataContext.Consumer>
-    {appCategories => (
-      <Fragment>
-        <Hero>
-          Discover, save, share your <b>shortcuts</b>
-        </Hero>
-        {appCategories.map(category => (
-          <AppList
-            key={category.name}
-            name={category.name}
-            apps={category.apps}
-          />
-        ))}
-      </Fragment>
-    )}
-  </DataContext.Consumer>
-)
+const App = () => {
+  const { appCategories } = useContext(DataContext)
+
+  return (
+    <Fragment>
+      <Hero>
+        Discover, save, share your <b>shortcuts</b>
+      </Hero>
+      {appCategories.map(category => (
+        <AppList
+          key={category.name}
+          name={category.name}
+          apps={category.apps}
+        />
+      ))}
+    </Fragment>
+  )
+}
 
 const Hero = styled.h1`
   color: #ffffff;
