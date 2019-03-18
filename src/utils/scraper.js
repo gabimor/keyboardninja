@@ -1,6 +1,6 @@
 // pdf to html - https://www.idrsolutions.com/online-pdf-to-html5-converter/
 
-copy(scrape(".s1_2",".s2_2", ".s3_2"))
+copy(scrape(".s1_2", ".s2_2", ".s3_2")) // eslint-disable-line
 
 function scrape(headerSelector, actionSelector, keySelector) {
   let results = window.location.href + "\n"
@@ -14,7 +14,9 @@ function scrape(headerSelector, actionSelector, keySelector) {
     .join("\n")
 
   results += "\n-----------------------------\n"
-  const actions = [...document.querySelectorAll(actionSelector)].map(e => e.innerText)
+  const actions = [...document.querySelectorAll(actionSelector)].map(
+    e => e.innerText
+  )
   const keys = [...document.querySelectorAll(keySelector)].map(e => e.innerText)
   results.actions = []
 

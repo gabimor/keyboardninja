@@ -7,12 +7,14 @@ import Controls from "./app/Controls"
 
 const App = () => {
   const [app, setApp] = useState({ name: "clienttts", icon: "asdsa", win: [] })
+  const [userApp, setUserApp] = useState()
 
   useEffect(() => {
     fetch("/api/apps/visual-studio")
       .then(res => res.json())
       .then(json => {
-        setApp(json)
+        setApp(json.app)
+        setUserApp(json.userApp)
       })
   }, [])
 
