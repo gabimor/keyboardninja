@@ -11,9 +11,9 @@ function Anonymous() {
         <Link to="/login">Log In</Link>
       </li>
       <li>
-        {/* <Link href="/signup"> */}
-        <Button>Sign Up</Button>
-        {/* </Link> */}
+        <Link to="/signup">
+          <Button>Sign Up</Button>
+        </Link>
       </li>
     </Fragment>
   )

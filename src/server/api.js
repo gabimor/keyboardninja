@@ -37,6 +37,18 @@ router.get("/apps/:name", async (req, res) => {
 //   })
 // )
 
+router.post("/signup", function(req, res, next) {
+  const { email, password } = req.body
+
+  db.signupUser(email, password).then(insertedUser => {
+    req.login({ email, password }, function(err) {
+      if (err) {
+        return next(err)
+      }
+      return res.json({ email })
+    })
+  })
+})
 router.post("/login", function(req, res, next) {
   // passport.authenticate(
   //   "local",

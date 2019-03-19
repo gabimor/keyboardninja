@@ -22,6 +22,7 @@
 
 ### Tech debt
 
+- prevent sql injection with sequelize
 - dont expose ids to the client
 - components: functions or arrow functions ? (check react devtools)
 - Add <> </> support
@@ -90,7 +91,6 @@
 - https://varnish-cache.org/intro/index.html#intro
 - https://nomadlist.com/
 - https://tylermcginnis.com/react-router-server-rendering/
-- https://egghead.io/lessons/javascript-redux-updating-data-on-the-server
 
 ### reference
 

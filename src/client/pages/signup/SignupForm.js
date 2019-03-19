@@ -1,6 +1,5 @@
 import React from "react" // eslint-disable-line no-unused-vars
 import { Link } from "react-router-dom"
-
 import { Form } from "react-powerplug"
 import * as EmailValidator from "email-validator"
 
@@ -9,12 +8,15 @@ import styled from "@emotion/styled"
 import Input from "../../components/Input"
 import Button from "../../components/Button"
 
-export default function Login({ onSubmit }) {
+export default function Signup({ onSubmit }) {
   function handleSubmit(e, values, setValues) {
     e.preventDefault()
 
     const emailValid = EmailValidator.validate(values.email)
-    const passwordValid = values.password && values.password.length >= 6
+    const passwordValid =
+      values.password &&
+      values.password.length >= 6 &&
+      values.password.length <= 12
 
     setValues({ emailValid, passwordValid })
 
@@ -22,11 +24,12 @@ export default function Login({ onSubmit }) {
       onSubmit(values.email, values.password)
     }
   }
+  const mockEmail = `a${Math.floor(Math.random() * Math.floor(1000000))}@b.com`
 
   return (
     <Form
       initial={{
-        email: "gabimor@gmail.com",
+        email: mockEmail,
         password: "123456",
         emailValid: true,
         passwordValid: true,
@@ -35,21 +38,22 @@ export default function Login({ onSubmit }) {
       {({ field, values, setValues }) => {
         return (
           <FormContainer onSubmit={e => handleSubmit(e, values, setValues)}>
-            <Header>Log in</Header>
+            <Header>Sign up</Header>
             <Label>Email</Label>
             <Input {...field("email").bind} />
             {!values.emailValid && <Error>Please enter a valid email</Error>}
             <LabelWrapper>
               <Label>Password</Label>
-              <a>Forgot password ?</a>
             </LabelWrapper>
             <Input {...field("password").bind} />
-            {!values.passwordValid && <Error>Please enter your password</Error>}
+            {!values.passwordValid && (
+              <Error>Please choose a password of 6-12 charecters</Error>
+            )}
             <Button type="submit" style={{ marginTop: 20 }}>
-              Log in
+              Sign up
             </Button>
             <SignupWrapper>
-              Don't have an account ?<Link to="/signup"> Sign up</Link>
+              Already have an account ?<Link to="/login"> Log in</Link>
             </SignupWrapper>
           </FormContainer>
         )

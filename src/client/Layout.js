@@ -8,6 +8,7 @@ import Login from "./pages/Login"
 import Header from "./pages/layout/Header"
 import Footer from "./pages/layout/Footer"
 import Theme from "./pages/layout"
+import Signup from "./pages/Signup"
 
 const Layout = () => {
   return (
@@ -18,6 +19,7 @@ const Layout = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
           <Route path="/apps/:name" component={App} />
         </Switch>
         <Footer />

@@ -96,3 +96,20 @@ export async function findUser(email, password) {
 
   return user
 }
+
+export async function signupUser(email, password) {
+  const conn = await mysql.createConnection(credentials)
+
+  let user = await conn.query(`SELECT * FROM users WHERE email="${email}"`)
+
+  if (user.length === 0) {
+    user = await conn.query(
+      `INSERT INTO users (email, password) VALUES ("${email}", "${password}")`
+    )
+  } else {
+    user = undefined
+  }
+  conn.end()
+
+  return user
+}

@@ -3,13 +3,13 @@ import DataContext from "../DataContext"
 
 import styled from "@emotion/styled"
 
-import LoginForm from "./login/LoginForm"
+import SignupForm from "./signup/SignupForm"
 
-const Login = () => {
+const Signup = () => {
   const { doLogin } = useContext(DataContext)
 
   async function handleSubmit(email, password) {
-    const res = await fetch("/api/login", {
+    const res = await fetch("/api/signup", {
       method: "POST",
       headers: {
         credentials: "include",
@@ -26,12 +26,12 @@ const Login = () => {
 
   return (
     <Container>
-      <LoginForm onSubmit={handleSubmit} />
+      <SignupForm onSubmit={handleSubmit} />
     </Container>
   )
 }
 
-export default Login
+export default Signup
 
 const Container = styled.div`
   width: 300px;
