@@ -1,10 +1,12 @@
+/* eslint-disable no-console */
 const fs = require("fs")
 const mysql = require("promise-mysql")
 
-// SET THIS
-const fileName = "visualstudio"
+// 1. SET THIS
+// 2. ADD ---appId,osId (1=win,2=mac)
 
-const fullFileName = __dirname + "/assets/data/" + fileName + ".md"
+const fullFileName =
+  "C:\\MyStuff\\Code\\keyboardninja\\assets\\data\\sublime.win.md"
 
 let conn
 
@@ -18,39 +20,27 @@ async function main() {
     database: "keyboard_ninja",
   })
 
-  const fileObj = readFile(fullFileName)
+  try {
+    conn.beginTransaction()
 
-  if (await shortcutsExist(fileObj.appId, fileObj.os)) {
-    console.log("aborting. app exists: " + fileObj.appId)
-    conn.end()
-    return
+    const fileObj = readFile(fullFileName)
+
+    if (await shortcutsExist(fileObj.appId, fileObj.os)) {
+      console.log("aborting. app exists: " + fileObj.appId)
+      conn.end()
+      return
+    }
+
+    await addShortcuts(fileObj.appId, fileObj.os, fileObj.shortcuts)
+
+    conn.commit()
+  } catch (err) {
+    console.log(err)
+    conn.rollback()
   }
-
-  await addShortcuts(fileObj.appId, fileObj.os, fileObj.shortcuts)
   conn.end()
 
   console.log("finished")
-}
-
-function readFile(fileName) {
-  const data = fs.readFileSync(fileName)
-  const dataStr = data.toString()
-  const headerInx = dataStr.toString().lastIndexOf("---")
-  let lines = dataStr.substring(headerInx + 3, dataStr.length - 2).split("\n")
-
-  const lineParams = lines[0].split(",")
-  const appId = +lineParams[0].trim()
-  const os = +lineParams[1].trim()
-  const shortcuts = lines.splice(1)
-
-  return { appId, os, shortcuts }
-}
-
-async function shortcutsExist(appId, os) {
-  const sections = await conn.query(
-    `SELECT * FROM app_sections WHERE appId = ${appId} AND os = ${os}`
-  )
-  return sections.length > 0
 }
 
 async function addShortcuts(appId, os, shortcuts) {
@@ -58,11 +48,11 @@ async function addShortcuts(appId, os, shortcuts) {
   for (const shortcut of shortcuts) {
     if (shortcut[0] === "#") {
       const sectionName = prepareStr(shortcut.substr(1))
-      currSectionId++
 
-      await conn.query(
-        `INSERT INTO app_sections (id, appId, name, os) VALUES (${currSectionId}, ${appId}, "${sectionName}", ${os})`
+      const data = await conn.query(
+        `INSERT INTO app_sections (appId, name, os) VALUES (${appId}, "${sectionName}", ${os})`
       )
+      currSectionId = data.insertId
     } else {
       const splitshortcut = shortcut.split("(-)")
       const action = prepareStr(splitshortcut[0])
@@ -73,6 +63,27 @@ async function addShortcuts(appId, os, shortcuts) {
       )
     }
   }
+}
+
+async function shortcutsExist(appId, os) {
+  const sections = await conn.query(
+    `SELECT * FROM app_sections WHERE appId = ${appId} AND os = ${os}`
+  )
+  return sections.length > 0
+}
+
+function readFile(fileName) {
+  const data = fs.readFileSync(fileName)
+  const dataStr = data.toString().toLowerCase()
+  const headerInx = dataStr.toString().lastIndexOf("---")
+  let lines = dataStr.substring(headerInx + 3, dataStr.length - 2).split("\n")
+
+  const lineParams = lines[0].split(",")
+  const appId = +lineParams[0].trim()
+  const os = +lineParams[1].trim()
+  const shortcuts = lines.splice(1)
+
+  return { appId, os, shortcuts }
 }
 
 function prepareStr(str) {
