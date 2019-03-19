@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 import React from "react" // eslint-disable-line no-unused-vars
 import { StaticRouter } from "react-router-dom"
 import { renderToString } from "react-dom/server"
@@ -63,8 +64,10 @@ app.get("/apps/:name", async (req, res, next) => {
     .get("apps")
     .find(e => encodeAppName(e.name) === req.params.name)
 
-  // if (req.user) {
-  const userApp = await db.getUserAppShortcuts(1123, app.id)
+  let userApp = []
+  if (req.user) {
+    userApp = await db.getUserAppShortcuts(req.user.id, app.id)
+  }
 
   const dataContext = {
     app,
