@@ -8,30 +8,28 @@ import session from "express-session"
 import express from "express"
 import * as db from "./server/db"
 import "isomorphic-unfetch"
+import dotenv from "dotenv"
 
+dotenv.config()
+
+import cache from "./server/cache"
 import Layout from "./client/Layout"
 import DataContext from "./client/DataContext"
 import page from "./server/page"
-
-require("dotenv").config()
-require("./server/auth")
-
-const RedisStore = require("connect-redis")(session)
-const redisStore = new RedisStore({ host: "localhost", port: 6379 })
+import "./server/auth"
+import api from "./server/api"
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
 
 const app = express()
 
-import api from "./server/api"
 const router = express.Router()
 
 app.disable("x-powered-by")
 
 app.use(
   session({
-    store: redisStore,
-    secret: "W9t5wawtmal", // TODO: save somewhere else
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 300000 },
@@ -44,11 +42,14 @@ app.use(passport.initialize())
 app.use(flash())
 app.use(passport.session())
 
-let appCategories = []
-
 app.use(async function(req, res, next) {
-  if (appCategories.length === 0) appCategories = await db.getAppCategories()
-  if (!global.apps) global.apps = await db.getApps()
+  if (!cache.get("appCategories")) {
+    const appCategories = await db.getAppCategories()
+    cache.set("appCategories", appCategories)
+
+    const apps = await db.getApps()
+    cache.set("apps", apps)
+  }
   next()
 })
 
@@ -68,6 +69,8 @@ app.get("/apps/:name", (req, res, next) => {
 })
 
 app.get("/*", (req, res) => {
+  const appCategories = cache.get("appCategories")
+
   const dataContext = {
     appCategories,
     ...req.dataContext,

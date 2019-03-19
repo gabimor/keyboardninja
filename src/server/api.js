@@ -1,13 +1,16 @@
-import * as db from "./db"
-
 import passport from "passport"
 import express from "express"
+
+import cache from "./cache"
 import { encodeAppName } from "../client/helpers"
+import * as db from "./db"
 
 const router = express.Router()
 
 router.get("/apps/:name", async (req, res) => {
-  const app = global.apps.find(e => encodeAppName(e.name) === req.params.name)
+  const app = cache
+    .get("apps")
+    .find(e => encodeAppName(e.name) === req.params.name)
   const userApp = await db.getUserAppShortcuts(1123, app.id)
 
   res.json({ app, userApp })
