@@ -5,7 +5,7 @@ import { hydrate } from "react-dom"
 import DataContext from "./client/DataContext"
 
 const Client = () => {
-  const [user, setUser] = useState(window.__KBN_DATA__.user)
+  const [, setUser] = useState(window.__KBN_DATA__.user)
 
   function doLogin(user) {
     setUser(user)
@@ -16,8 +16,7 @@ const Client = () => {
   }
 
   const contextValue = {
-    appCategories: window.__KBN_DATA__.appCategories,
-    user,
+    ...window.__KBN_DATA__,
     doLogin,
     doLogout,
   }

@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react" // eslint-disable-line no-unused-vars
+import React, { useState, useEffect, useContext } from "react" // eslint-disable-line no-unused-vars
+import DataContext from "../DataContext"
+import "isomorphic-unfetch"
 
 import styled from "@emotion/styled"
 
 import ShortcutList from "./app/ShortcutList"
 import Controls from "./app/Controls"
 
-const App = () => {
-  const [app, setApp] = useState({ name: "clienttts", icon: "asdsa", win: [] })
-  const [userApp, setUserApp] = useState()
+const App = ({ match }) => {
+  const contextData = useContext(DataContext)
+  const [app, setApp] = useState({
+    name: contextData.app.name,
+    icon: contextData.app.icon,
+    win: [],
+  })
+  const [, setUserApp] = useState()
 
   useEffect(() => {
-    fetch("/api/apps/visual-studio")
+    fetch("/api/apps/" + match.params.name)
       .then(res => res.json())
       .then(json => {
         setApp(json.app)

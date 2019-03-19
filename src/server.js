@@ -7,6 +7,7 @@ import flash from "connect-flash"
 import session from "express-session"
 import express from "express"
 import * as db from "./server/db"
+import "isomorphic-unfetch"
 
 import Layout from "./client/Layout"
 import DataContext from "./client/DataContext"
@@ -55,8 +56,21 @@ app.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
 app.use("/api", api)
 app.use("/", router)
 
+app.get("/apps/:name", (req, res, next) => {
+  fetch("http://localhost:3000/api/apps/" + req.params.name)
+    .then(r => r.json())
+    .then(appData => {
+      req.appData = appData.app
+      next()
+    })
+})
+
 app.get("/*", (req, res) => {
-  const dataContext = { appCategories, user: req.user }
+  const dataContext = {
+    appCategories,
+    app: { name: req.appData.name, icon: req.appData.icon },
+    user: req.user,
+  }
   const context = {}
   const markup = renderToString(
     <DataContext.Provider value={dataContext}>
