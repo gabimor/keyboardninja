@@ -2,22 +2,23 @@
 
 ## TODO
 
+- responsive work
+  - mobile menu
+  - cross browser checks
+- login, signup popup & pages (500px)
+- favicon
+- OSSelect - store os in cookie, load server side
+
 - app page - SSR load the first sections + show all
 - svg in page (export from icons.js)
-- login, signup popup & pages (500px)
 - show: all pinned | grouped flat
 - my apps: apps you've pinned shortcuts in will show here
-- sections: text/shortcut width-
+- sections: text/shortcut width
 - homepage
   - now contains 20,123 shortcuts from 55 apps
   - links all categories at the top
 - suggest app
 - performance
-- responsive work
-  - mobile menu
-  - cross browser checks
-- favicon
-- OSSelect - store os in cookie, load server side
 - patreon/buy me a coffee
 
 ### Tech debt

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react" // eslint-disable-line no-unused-vars
 import DataContext from "../DataContext"
-import "isomorphic-unfetch"
 
 import styled from "@emotion/styled"
 

@@ -57,10 +57,12 @@ app.use("/api", api)
 app.use("/", router)
 
 app.get("/apps/:name", (req, res, next) => {
-  fetch("http://localhost:3000/api/apps/" + req.params.name)
+  fetch(process.env.API_URL + "api/apps/" + req.params.name)
     .then(r => r.json())
     .then(appData => {
-      req.appData = appData.app
+      req.dataContext = {
+        app: { name: appData.app.name, icon: appData.app.icon },
+      }
       next()
     })
 })
@@ -68,7 +70,7 @@ app.get("/apps/:name", (req, res, next) => {
 app.get("/*", (req, res) => {
   const dataContext = {
     appCategories,
-    app: { name: req.appData.name, icon: req.appData.icon },
+    ...req.dataContext,
     user: req.user,
   }
   const context = {}
