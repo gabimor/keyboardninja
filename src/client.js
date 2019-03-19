@@ -6,7 +6,6 @@ import DataContext from "./client/DataContext"
 
 const Client = () => {
   function doLogin(user) {
-    console.log(user)
     setUser(user)
   }
 
@@ -14,12 +13,19 @@ const Client = () => {
     setUser()
   }
 
+  function doSetUserApp(userApp) {
+    setUserApp(userApp)
+  }
+
+  const [userApp, setUserApp] = useState([])
   const [user, setUser] = useState(window.__KBN_DATA__.user)
   const contextValue = {
     ...window.__KBN_DATA__,
     user,
+    userApp,
     doLogin,
     doLogout,
+    doSetUserApp,
   }
 
   return (

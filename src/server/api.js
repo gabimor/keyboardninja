@@ -7,13 +7,21 @@ import * as db from "./db"
 
 const router = express.Router()
 
-router.get("/apps/:name", async (req, res) => {
+router.get("/apps/:name", (req, res) => {
   const app = cache
     .get("apps")
     .find(e => encodeAppName(e.name) === req.params.name)
-  const userApp = await db.getUserAppShortcuts(1123, app.id)
 
-  res.json({ app, userApp })
+  const result = { app }
+
+  // if (req.user) {
+  db.getUserAppShortcuts(1123, app.id).then(userApp => {
+    result.userApp = userApp
+    res.json(result)
+  })
+  // }
+
+  // res.json(result)
 })
 
 // router.post(

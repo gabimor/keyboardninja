@@ -41,6 +41,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize())
 app.use(flash())
 app.use(passport.session())
+app.use("/api", api)
+app.use("/", router)
 
 app.use(async function(req, res, next) {
   if (!cache.get("appCategories")) {
@@ -54,15 +56,13 @@ app.use(async function(req, res, next) {
 })
 
 app.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
-app.use("/api", api)
-app.use("/", router)
 
 app.get("/apps/:name", (req, res, next) => {
   fetch(process.env.API_URL + "api/apps/" + req.params.name)
     .then(r => r.json())
     .then(appData => {
       req.dataContext = {
-        app: { name: appData.app.name, icon: appData.app.icon },
+        app: { name: appData.app.name, icon: appData.app.icon },        
       }
       next()
     })

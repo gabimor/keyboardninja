@@ -1,4 +1,5 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React, { useContext } from "react" // eslint-disable-line no-unused-vars
+import DataContext from "../../DataContext"
 
 import ShortcutItem from "./ShortcutItem"
 import styled from "@emotion/styled"
@@ -6,21 +7,26 @@ import styled from "@emotion/styled"
 import { upperFirstLetter } from "../../helpers"
 
 export default function ShortcutList({ title, shortcuts }) {
+  const { userApp } = useContext(DataContext)
   return (
     <Container>
       <Title>{upperFirstLetter(title)}</Title>
       <Table cellSpacing={0}>
         <TBody>
-          {shortcuts.map(shortcut => (
-            // <div key={shortcut.id}>test</div>
-            <ShortcutItem
-              key={shortcut.id}
-              keys={shortcut.keys}
-              action={shortcut.action}
-              pins={shortcut.pins}
-              isPinned={shortcut.isPinned}
-            />
-          ))}
+          {shortcuts.map(shortcut => {
+            const isPinned = !!userApp.find(
+              userShortcut => shortcut.id === userShortcut.shortcutId
+            )
+            return (
+              <ShortcutItem
+                key={shortcut.id}
+                keys={shortcut.keys}
+                action={shortcut.action}
+                pins={shortcut.pins}
+                isPinned={isPinned}
+              />
+            )
+          })}
         </TBody>
       </Table>
     </Container>

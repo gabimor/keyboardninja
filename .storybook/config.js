@@ -43,10 +43,8 @@ addDecorator(story => (
 
 // automatically import all files ending in *.stories.js
 const pages = require.context("../src", true, /.stories.js$/)
-// const componenets = require.context("../components", true, /.stories.js$/)
 function loadStories() {
   pages.keys().forEach(filename => pages(filename))
-  // componenets.keys().forEach(filename => componenets(filename))
 }
 
 configure(loadStories, module)

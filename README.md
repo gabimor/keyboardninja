@@ -9,6 +9,7 @@
 - favicon
 - OSSelect - store os in cookie, load server side
 
+- add social login
 - app page - SSR load the first sections + show all
 - svg in page (export from icons.js)
 - show: all pinned | grouped flat
@@ -58,6 +59,7 @@
 ## phase 3 - take over the world
 
 - "wanna learn how I built this site on my own completely from scratch, from the design to the finished product?"
+- a payed tour of kbn
 - offer courses, make money
 - tree of knowledge - each subject refrences required subjects
 

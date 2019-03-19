@@ -8,6 +8,7 @@ import styled from "@emotion/styled"
 
 import Input from "../../components/Input"
 import Button from "../../components/Button"
+// export default ""
 
 export default function Login({ onSubmit }) {
   function handleSubmit(e, values, setValues) {
@@ -44,7 +45,9 @@ export default function Login({ onSubmit }) {
               <a>Forgot password ?</a>
             </LabelWrapper>
             <Input {...field("password").bind} />
-            {!values.passwordValid && <Error>Please enter your password</Error>}
+            {!values.passwordValid && (
+              <Error>Please enter your password</Error>
+            )}{" "}
             <Button type="submit" style={{ marginTop: 20 }}>
               Log in
             </Button>

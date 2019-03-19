@@ -12,15 +12,15 @@ const App = ({ match }) => {
     name: contextData.app.name,
     icon: contextData.app.icon,
     win: [],
+    mac: [],    
   })
-  const [, setUserApp] = useState()
 
   useEffect(() => {
     fetch("/api/apps/" + match.params.name)
       .then(res => res.json())
       .then(json => {
         setApp(json.app)
-        setUserApp(json.userApp)
+        contextData.doSetUserApp(json.userApp)
       })
   }, [])
 
