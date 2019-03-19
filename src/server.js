@@ -12,6 +12,7 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
+import { encodeAppName } from "./client/helpers"
 import cache from "./server/cache"
 import Layout from "./client/Layout"
 import DataContext from "./client/DataContext"
@@ -57,23 +58,29 @@ app.use(async function(req, res, next) {
 
 app.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
 
-app.get("/apps/:name", (req, res, next) => {
-  fetch(process.env.API_URL + "api/apps/" + req.params.name)
-    .then(r => r.json())
-    .then(appData => {
-      req.dataContext = {
-        app: { name: appData.app.name, icon: appData.app.icon },        
-      }
-      next()
-    })
+app.get("/apps/:name", async (req, res, next) => {
+  const app = cache
+    .get("apps")
+    .find(e => encodeAppName(e.name) === req.params.name)
+
+  // if (req.user) {
+  const userApp = await db.getUserAppShortcuts(1123, app.id)
+
+  const dataContext = {
+    app,
+    userApp,
+  }
+
+  req.dataContext = dataContext
+  next()
 })
 
 app.get("/*", (req, res) => {
   const appCategories = cache.get("appCategories")
 
   const dataContext = {
-    appCategories,
     ...req.dataContext,
+    appCategories,
     user: req.user,
   }
   const context = {}

@@ -1,28 +1,9 @@
 import passport from "passport"
 import express from "express"
 
-import cache from "./cache"
-import { encodeAppName } from "../client/helpers"
 import * as db from "./db"
 
 const router = express.Router()
-
-router.get("/apps/:name", (req, res) => {
-  const app = cache
-    .get("apps")
-    .find(e => encodeAppName(e.name) === req.params.name)
-
-  const result = { app }
-
-  // if (req.user) {
-  db.getUserAppShortcuts(1123, app.id).then(userApp => {
-    result.userApp = userApp
-    res.json(result)
-  })
-  // }
-
-  // res.json(result)
-})
 
 // router.post(
 //   "/login",

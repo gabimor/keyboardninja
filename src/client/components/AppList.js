@@ -1,5 +1,4 @@
 import React from "react" // eslint-disable-line no-unused-vars
-import { Link } from "react-router-dom"
 import styled from "@emotion/styled"
 
 import { encodeAppName } from "../helpers"
@@ -11,9 +10,9 @@ export default function AppList({ name, apps }) {
       <Header>{name}</Header>
       <InnerContainer>
         {apps.map(app => (
-          <Link to={"/apps/" + encodeAppName(app.name)} key={app.id}>
+          <a href={"/apps/" + encodeAppName(app.name)} key={app.id}>
             <AppItem icon={"/logos/" + app.icon} name={app.name} />
-          </Link>
+          </a>
         ))}
       </InnerContainer>
     </Container>

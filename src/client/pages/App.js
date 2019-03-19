@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react" // eslint-disable-line no-unused-vars
+import React, { useContext } from "react" // eslint-disable-line no-unused-vars
 import DataContext from "../DataContext"
 
 import styled from "@emotion/styled"
@@ -6,23 +6,8 @@ import styled from "@emotion/styled"
 import ShortcutList from "./app/ShortcutList"
 import Controls from "./app/Controls"
 
-const App = ({ match }) => {
-  const contextData = useContext(DataContext)
-  const [app, setApp] = useState({
-    name: contextData.app.name,
-    icon: contextData.app.icon,
-    win: [],
-    mac: [],    
-  })
-
-  useEffect(() => {
-    fetch("/api/apps/" + match.params.name)
-      .then(res => res.json())
-      .then(json => {
-        setApp(json.app)
-        contextData.doSetUserApp(json.userApp)
-      })
-  }, [])
+const App = () => {
+  const { app } = useContext(DataContext)
 
   return (
     <div>
