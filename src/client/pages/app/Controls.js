@@ -2,17 +2,12 @@ import React from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 
 import OSSelect from "./OSSelect"
-// import Input from "../../components/Input"
 
 const Controls = ({ icon, name }) => (
   <Container>
     <Icon src={"/logos/" + icon} />
     <Text>{name}</Text>
-    <SearchWrapper>
-      Show: All, My Shortcuts | Grouped, Ungrouped
-      {/* <Input />
-          <SearchIcon className="fas fa-search" /> */}
-    </SearchWrapper>
+    <SearchWrapper />
     <OSSelect />
   </Container>
 )
@@ -42,11 +37,3 @@ const SearchWrapper = styled.div`
   margin-right: 20px;
   margin-left: auto;
 `
-
-// const SearchIcon = styled.i`
-//   position: absolute;
-//   right: 10px;
-//   top: 7px;
-//   color: #5a5a5a;
-//   font-size: 20px;
-// `

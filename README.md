@@ -8,11 +8,12 @@
 - login, signup popup & pages (500px)
 - favicon
 - OSSelect - store os in cookie, load server side
+- forgot password
 
 - add social login
-- app page - SSR load the first sections + show all
+- Show: All, My Shortcuts | Grouped, Ungrouped (inside SearchWrapper)
+- ?? app page - SSR load the first sections + show all
 - svg in page (export from icons.js)
-- show: all pinned | grouped flat
 - my apps: apps you've pinned shortcuts in will show here
 - sections: text/shortcut width
 - homepage

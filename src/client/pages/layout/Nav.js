@@ -22,15 +22,9 @@ function Anonymous() {
 function LoggedIn({ user, onLogout }) {
   return (
     <Fragment>
+      <li>{user.email}</li>
       <li>
-        {/* <Link href="/login"> */}
-        <a>Hello {user.email} </a>
-        {/* </Link> */}
-      </li>
-      <li>
-        {/* <Link href="/apps"> */}
-        <a>My apps</a>
-        {/* </Link> */}
+        <Link to="/apps">My apps</Link>
       </li>
       <li>
         <a onClick={onLogout}>Logout</a>
@@ -40,12 +34,7 @@ function LoggedIn({ user, onLogout }) {
 }
 
 export default props => (
-  <Container>
-    <li>
-      <a>Suggest An App</a>
-    </li>
-    {props.user ? <LoggedIn {...props} /> : <Anonymous />}
-  </Container>
+  <Container>{props.user ? <LoggedIn {...props} /> : <Anonymous />}</Container>
 )
 
 const Container = styled.ul`
