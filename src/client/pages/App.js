@@ -9,11 +9,12 @@ import Controls from "./app/Controls"
 const App = () => {
   const { app } = useContext(DataContext)
 
+  const sections = createSections(app)
   return (
     <div>
       <Controls icon={app.icon} name={app.name} />
       <ResultsContainer>
-        {app.win.map(section => (
+        {sections.map(section => (
           <ShortcutList
             key={section.id}
             shortcuts={section.shortcuts}
@@ -23,6 +24,20 @@ const App = () => {
       </ResultsContainer>
     </div>
   )
+}
+
+export function createSections({ id, sections, shortcuts }) {
+  const result = []
+
+  for (const section of sections.filter(e => e.appId === id)) {
+    result.push({
+      id: section.id,
+      order: section.order,
+      name: section.name,
+      shortcuts: shortcuts.filter(e => e.sectionId === section.id),
+    })
+  }
+  return result
 }
 
 export default App

@@ -21,6 +21,7 @@
 - enter all apps data
 - prevent sql injection with sequelize
 - dont expose ids to the client
+- search TODOs
 - performance
   - render times
   - server times

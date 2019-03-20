@@ -50,11 +50,24 @@ app.use("/", router)
 
 app.use(async function(req, res, next) {
   if (!cache.get("appCategories")) {
-    const appCategories = await db.getAppCategories()
-    cache.set("appCategories", appCategories)
+    cache.set("appCategories", await db.getAppCategories())
+    const allSections = await db.getAppSections()
+    const allShortcuts = await db.getShortcuts()
 
-    const apps = await db.getApps()
-    cache.set("apps", apps)
+    for (const currApp of await db.getApps()) {
+      const sections = allSections.filter(e => e.appId === currApp.id)
+
+      const sectionIds = sections.map(e => e.id)
+      const shortcuts = allShortcuts.filter(e =>
+        sectionIds.includes(e.sectionId)
+      )
+
+      cache.set("app-" + encodeAppName(currApp.name), {
+        ...currApp,
+        sections,
+        shortcuts,
+      })
+    }
   }
   next()
 })
@@ -62,21 +75,23 @@ app.use(async function(req, res, next) {
 app.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
 
 app.get("/apps/:name", async (req, res, next) => {
-  const app = cache
-    .get("apps")
-    .find(e => encodeAppName(e.name) === req.params.name)
+  const app = cache.get("app-" + encodeAppName(req.params.name))
 
-  let userApp = []
   if (req.user) {
-    userApp = await db.getUserAppShortcuts(req.user.id, app.id)
+    const userShortcuts = await db.getUserShortcuts(req.user.id, app.id)
+
+    for (const userShortcut of userShortcuts) {
+      const shortcut = app.shortcuts.find(e => e.id === userShortcut.shortcutId)
+      shortcut.isPinned = true
+    }
   }
 
-  const dataContext = {
-    app,
-    userApp,
-  }
-
-  req.dataContext = dataContext
+  const currOSSectionIds = app.sections.filter(e => e.os === 1).map(e => e.id)
+  // TODO: get os code from the client
+  app.shortcuts = app.shortcuts.filter(e =>
+    currOSSectionIds.includes(e.sectionId)
+  )
+  req.dataContext = { app }
   next()
 })
 

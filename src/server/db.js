@@ -39,22 +39,35 @@ export async function getApps() {
   const conn = await mysql.createConnection(credentials)
 
   const apps = await conn.query("SELECT * FROM apps")
-  const appSections = await conn.query(
-    "SELECT * FROM app_sections ORDER BY `order`"
-  )
-  const shortcuts = await conn.query("SELECT * FROM shortcuts")
-
-  const result = []
-  for (const app of apps) {
-    result.push(createApp(app, appSections, shortcuts))
-  }
 
   conn.end()
 
-  return result
+  return apps
 }
 
-export async function getUserAppShortcuts(userId, appId) {
+export async function getAppSections() {
+  const conn = await mysql.createConnection(credentials)
+
+  const appSections = await conn.query(
+    "SELECT * FROM app_sections ORDER BY `order`"
+  )
+
+  conn.end()
+
+  return appSections
+}
+
+export async function getShortcuts() {
+  const conn = await mysql.createConnection(credentials)
+
+  const shortcuts = await conn.query("SELECT * FROM shortcuts")
+
+  conn.end()
+
+  return shortcuts
+}
+
+export async function getUserShortcuts(userId, appId) {
   const conn = await mysql.createConnection(credentials)
 
   const userShortcuts = await conn.query(
@@ -64,26 +77,6 @@ export async function getUserAppShortcuts(userId, appId) {
   conn.end()
 
   return userShortcuts
-}
-
-export function createApp(app, sections, shortcuts) {
-  const result = {
-    id: app.id,
-    name: app.name,
-    icon: app.icon,
-    win: [],
-    mac: [],
-  }
-  for (const section of sections.filter(e => e.appId === app.id)) {
-    const os = section.os === 1 ? "win" : "mac"
-
-    result[os].push({
-      id: section.id,
-      name: section.name,
-      shortcuts: shortcuts.filter(e => e.sectionId === section.id),
-    })
-  }
-  return result
 }
 
 export async function findUser(email, password) {
