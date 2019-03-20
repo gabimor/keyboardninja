@@ -31,6 +31,10 @@
   - fonts - only load required weights
   - bundle size (code split between home and app ?)
 
+### bugs
+
+- notify when signing up twice
+
 ### low priority
 
 - add social login

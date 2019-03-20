@@ -1,5 +1,4 @@
 import React, { useContext } from "react" // eslint-disable-line no-unused-vars
-import DataContext from "../../DataContext"
 
 import ShortcutItem from "./ShortcutItem"
 import styled from "@emotion/styled"
@@ -16,10 +15,11 @@ export default function ShortcutList({ title, shortcuts }) {
             return (
               <ShortcutItem
                 key={shortcut.id}
+                id={shortcut.id}
                 keys={shortcut.keys}
                 action={shortcut.action}
                 pins={shortcut.pins}
-                isPinned={shortcut.isPinned}
+                isPinned={!!shortcut.isPinned}
               />
             )
           })}

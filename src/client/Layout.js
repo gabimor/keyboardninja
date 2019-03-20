@@ -7,13 +7,13 @@ import App from "./pages/App"
 import Login from "./pages/Login"
 import Header from "./pages/layout/Header"
 import Footer from "./pages/layout/Footer"
-import Theme from "./pages/layout"
+// import Theme from "./pages/layout"
 import Signup from "./pages/Signup"
 
 const Layout = () => {
   return (
     <div>
-      <Theme />
+      {/* <Theme /> */}
       <Container>
         <Header />
         <Switch>

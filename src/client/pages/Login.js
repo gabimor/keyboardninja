@@ -1,26 +1,15 @@
 import React, { useContext } from "react" // eslint-disable-line no-unused-vars
-import DataContext from "../DataContext"
-
 import styled from "@emotion/styled"
 
+import { login } from "../helpers/api"
+import DataContext from "../DataContext"
 import LoginForm from "./login/LoginForm"
 
 const Login = () => {
   const { doLogin } = useContext(DataContext)
 
   async function handleSubmit(email, password) {
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        credentials: "include",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-    const userJson = await res.json()
+    const userJson = await login(email, password)
     doLogin(userJson)
   }
 

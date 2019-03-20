@@ -1,8 +1,9 @@
 import React, { useContext } from "react" // eslint-disable-line no-unused-vars
 import { Link } from "react-router-dom"
 import styled from "@emotion/styled"
-import DataContext from "../../DataContext"
 
+import {logout} from "../../helpers/api"
+import DataContext from "../../DataContext"
 import Logo from "./Logo"
 import Nav from "./Nav"
 
@@ -10,13 +11,7 @@ function Header() {
   const { user, doLogout } = useContext(DataContext)
 
   function handleLogout() {
-    fetch("/api/logout", {
-      method: "POST",
-      headers: {
-        credentials: "include",
-        "Content-Type": "application/json",
-      },
-    })
+    logout()
 
     doLogout()
   }

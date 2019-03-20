@@ -5,6 +5,19 @@ import * as db from "./db"
 
 const router = express.Router()
 
+router.post("/signup", function(req, res, next) {
+  const { email, password } = req.body
+
+  db.signupUser(email, password).then(insertedUser => {
+    req.login({ email, password }, function(err) {
+      if (err) {
+        return next(err)
+      }
+      return res.json({ email })
+    })
+  })
+})
+
 // router.post(
 //   "/login",
 //   passport.authenticate("local", {
@@ -29,18 +42,6 @@ const router = express.Router()
 //   })
 // )
 
-router.post("/signup", function(req, res, next) {
-  const { email, password } = req.body
-
-  db.signupUser(email, password).then(insertedUser => {
-    req.login({ email, password }, function(err) {
-      if (err) {
-        return next(err)
-      }
-      return res.json({ email })
-    })
-  })
-})
 router.post("/login", function(req, res, next) {
   // passport.authenticate(
   //   "local",
@@ -75,13 +76,9 @@ router.post("/logout", function(req, res) {
   res.send()
 })
 
-// server.post(
-//   "/login",
-//   passport.authenticate("local", {
-//     successRedirect: "/",
-//     failureRedirect: "/login",
-//     failureFlash: true,
-//   })
-// )
+router.patch("/pin", function(req, res) {
+  db.setPin(req.user.id, req.body.appId, req.body.shortcutId, req.body.isPinned)
+  res.status(200).send()
+})
 
 export default router

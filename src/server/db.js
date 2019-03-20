@@ -79,6 +79,34 @@ export async function getUserShortcuts(userId, appId) {
   return userShortcuts
 }
 
+export async function getShortcutsPins() {
+  const conn = await mysql.createConnection(credentials)
+
+  const shortcutsPins = await conn.query(
+    "SELECT shortcutId as id, COUNT(*) as pins FROM user_shortcuts GROUP BY shortcutId"
+  )
+
+  conn.end()
+
+  return shortcutsPins
+}
+
+export async function setPin(userId, appId, shortcutId, isPinned) {
+  const conn = await mysql.createConnection(credentials)
+
+  if (isPinned) {
+    await conn.query(
+      `INSERT INTO user_shortcuts (userId, appId, shortcutId) VALUES(${userId}, ${appId}, ${shortcutId})`
+    )
+  } else {
+    await conn.query(
+      `DELETE FROM user_shortcuts WHERE userId = ${userId} AND shortcutId = ${shortcutId}`
+    )
+  }
+
+  conn.end()
+}
+
 export async function findUser(email, password) {
   const conn = await mysql.createConnection(credentials)
 

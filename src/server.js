@@ -1,7 +1,8 @@
 /* eslint-disable import/first */
 import React from "react" // eslint-disable-line no-unused-vars
 import { StaticRouter } from "react-router-dom"
-import { renderToString } from "react-dom/server"
+import zlib from "zlib"
+import { renderToString, renderToNodeStream } from "react-dom/server"
 import bodyParser from "body-parser"
 import passport from "passport"
 import flash from "connect-flash"
@@ -18,7 +19,7 @@ import { encodeAppName } from "./client/helpers"
 import cache from "./server/cache"
 import Layout from "./client/Layout"
 import DataContext from "./client/DataContext"
-import page from "./server/page"
+import { pageStart, pageEnd } from "./server/page"
 import "./server/auth"
 import api from "./server/api"
 
@@ -39,7 +40,7 @@ app.use(
   })
 )
 
-app.use(compression())
+// app.use(compression())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize())
@@ -53,6 +54,10 @@ app.use(async function(req, res, next) {
     cache.set("appCategories", await db.getAppCategories())
     const allSections = await db.getAppSections()
     const allShortcuts = await db.getShortcuts()
+
+    for (const currShortcut of await db.getShortcutsPins()) {
+      allShortcuts.find(e => e.id === currShortcut.id).pins = currShortcut.pins
+    }
 
     for (const currApp of await db.getApps()) {
       const sections = allSections.filter(e => e.appId === currApp.id)
@@ -92,6 +97,7 @@ app.get("/apps/:name", async (req, res, next) => {
     currOSSectionIds.includes(e.sectionId)
   )
   req.dataContext = { app }
+
   next()
 })
 
@@ -104,7 +110,10 @@ app.get("/*", (req, res) => {
     user: req.user,
   }
   const context = {}
-  const markup = renderToString(
+  // const hrstart = process.hrtime()
+  res.write(pageStart(undefined, assets, dataContext))
+
+  const stream = renderToNodeStream(
     <DataContext.Provider value={dataContext}>
       <StaticRouter context={{}} location={req.url}>
         <Layout />
@@ -112,10 +121,24 @@ app.get("/*", (req, res) => {
     </DataContext.Provider>
   )
 
+  // stream.pipe(zlib.createGzip())
+  stream.pipe(
+    res,
+    { end: "false" }
+  )
+
+  stream.on("end", () => {
+    res.end(pageEnd())
+  })
+
+  // const markup = renderToNodeStream()
+  // const hrend = process.hrtime(hrstart)
+  // console.log(`${hrend[0]}s ${hrend[1] / 1000000}ms`)
+
   if (context.url) {
     res.redirect(context.url)
   } else {
-    res.status(200).send(page(markup, undefined, assets, dataContext))
+    // res.status(200).send(page(markup, undefined, assets, dataContext))
   }
 })
 
