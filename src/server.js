@@ -7,6 +7,7 @@ import passport from "passport"
 import flash from "connect-flash"
 import session from "express-session"
 import express from "express"
+import compression from "compression"
 import * as db from "./server/db"
 import "isomorphic-unfetch"
 import dotenv from "dotenv"
@@ -38,6 +39,7 @@ app.use(
   })
 )
 
+app.use(compression())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize())

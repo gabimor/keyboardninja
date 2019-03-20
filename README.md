@@ -2,6 +2,8 @@
 
 ## TODO
 
+- flat list of shortcuts, client side grouping, server side augmntation with userApp
+- drop the /apps
 - pin
   - show counter
   - enable click
@@ -23,7 +25,9 @@
   - render times
   - server times
   - lighthouse
-  - images sizes (unite)
+  - images sizes (unite per category)
+  - move to svg
+  - fonts - only load required weights
   - bundle size (code split between home and app ?)
 
 ### low priority
@@ -31,7 +35,6 @@
 - add social login
 - Show: All, My Shortcuts | Grouped, Ungrouped (inside SearchWrapper)
 - ?? app page - SSR load the first sections + show all
-- svg in page (export from icons.js)
 - my apps: apps you've pinned shortcuts in will show here
 - homepage
   - now contains 20,123 shortcuts from 55 apps
@@ -50,7 +53,8 @@
 - react
   - portals
   - react morph
-
+- express - advanced topics https://expressjs.com/en/advanced/best-practice-performance.html
+- https://github.com/i0natan/nodebestpractices
 
 ## Backlog
 
