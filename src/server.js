@@ -1,8 +1,8 @@
 /* eslint-disable import/first */
 import React from "react" // eslint-disable-line no-unused-vars
 import { StaticRouter } from "react-router-dom"
-import zlib from "zlib"
 import { renderToString, renderToNodeStream } from "react-dom/server"
+import zlib from "zlib"
 import bodyParser from "body-parser"
 import passport from "passport"
 import flash from "connect-flash"
@@ -19,7 +19,7 @@ import { encodeAppName } from "./client/helpers"
 import cache from "./server/cache"
 import Layout from "./client/Layout"
 import DataContext from "./client/DataContext"
-import { pageStart, pageEnd } from "./server/page"
+import { page, pageStart, pageEnd } from "./server/page"
 import "./server/auth"
 import api from "./server/api"
 
@@ -40,7 +40,7 @@ app.use(
   })
 )
 
-// app.use(compression())
+app.use(compression())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize())
@@ -101,6 +101,35 @@ app.get("/apps/:name", async (req, res, next) => {
   next()
 })
 
+// app.get("/*", (req, res) => {
+//   const appCategories = cache.get("appCategories")
+
+//   const dataContext = {
+//     ...req.dataContext,
+//     appCategories,
+//     user: req.user,
+//   }
+//   const context = {}
+//   // const hrstart = process.hrtime()
+
+//   const markup = renderToString(
+//     <DataContext.Provider value={dataContext}>
+//       <StaticRouter context={{}} location={req.url}>
+//         <Layout />
+//       </StaticRouter>
+//     </DataContext.Provider>
+//   )
+
+//   // const hrend = process.hrtime(hrstart)
+//   // console.log(`${hrend[0]}s ${hrend[1] / 1000000}ms`)
+
+//   if (context.url) {
+//     res.redirect(context.url)
+//   } else {
+//     res.status(200).send(page(markup, undefined, assets, dataContext))
+//   }
+// })
+
 app.get("/*", (req, res) => {
   const appCategories = cache.get("appCategories")
 
@@ -121,12 +150,14 @@ app.get("/*", (req, res) => {
     </DataContext.Provider>
   )
 
-  // stream.pipe(zlib.createGzip())
   stream.pipe(
     res,
     { end: "false" }
   )
 
+  // stream.on("data", data => {
+  //   console.log(data)
+  // })
   stream.on("end", () => {
     res.end(pageEnd())
   })

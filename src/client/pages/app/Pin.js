@@ -6,7 +6,11 @@ export default function Shortcut({ count, isPinned, onClick }) {
   return (
     <Container isPinned={isPinned} onClick={onClick}>
       <IconWrapper>
-        {isPinned ? <img src="/pin-on.svg" /> : <img src="/pin-off.svg" />}
+        {isPinned ? (
+          <img src="/pin-on.svg" alt="" />
+        ) : (
+          <img src="/pin-off.svg" alt="" />
+        )}
       </IconWrapper>
       <Count isPinned={isPinned}>{count}</Count>
     </Container>

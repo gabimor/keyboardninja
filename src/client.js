@@ -25,7 +25,7 @@ const Client = () => {
   )
 }
 
-hydrate(<Client />, document.getElementById("root"))
+// hydrate(<Client />, document.getElementById("root"))
 
 if (module.hot) {
   module.hot.accept()
