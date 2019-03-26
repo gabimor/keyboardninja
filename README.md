@@ -2,17 +2,16 @@
 
 ## TODO
 
-- flat list of shortcuts, client side grouping, server side augmntation with userApp
-- drop the /apps
 - pin
   - show counter
   - enable click
-- login, signup popup
-- load userApp on login
+- login, signup popup & load userApp on login
 - OSSelect
   - store os in cookie, load server side
   - change the display
+  - cache mac/win, handle mac/win only apps
 - forgot password
+- handle 404
 - sections: text/shortcut width
 - responsive
   - mobile menu
@@ -30,6 +29,10 @@
   - move to svg
   - fonts - only load required weights
   - bundle size (code split between home and app ?)
+
+### thoughts
+
+- You register i the site invokes emotional feeling, its your your clan
 
 ### bugs
 
@@ -51,6 +54,8 @@
 
 ## Tech debt
 
+- change memory cache to redis
+- users: service workers, transform stream + gzip
 - components: functions or arrow functions ? (check react devtools)
 - Add <> </> support
 - no-unused-vars error

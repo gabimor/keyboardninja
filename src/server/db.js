@@ -35,21 +35,21 @@ export async function getAppCategories() {
   return result
 }
 
-export async function getApps() {
+export async function getApp(appId) {
   const conn = await mysql.createConnection(credentials)
 
-  const apps = await conn.query("SELECT * FROM apps")
+  const apps = await conn.query(`SELECT * FROM apps WHERE id = ${appId}`)
 
   conn.end()
 
-  return apps
+  return apps[0]
 }
 
-export async function getAppSections() {
+export async function getAppSections(appId) {
   const conn = await mysql.createConnection(credentials)
 
   const appSections = await conn.query(
-    "SELECT * FROM app_sections ORDER BY `order`"
+    `SELECT * FROM app_sections WHERE appId = ${appId} ORDER BY \`order\``
   )
 
   conn.end()
@@ -57,7 +57,7 @@ export async function getAppSections() {
   return appSections
 }
 
-export async function getShortcuts() {
+export async function getAllShortcuts() {
   const conn = await mysql.createConnection(credentials)
 
   const shortcuts = await conn.query("SELECT * FROM shortcuts")
@@ -79,11 +79,11 @@ export async function getUserShortcuts(userId, appId) {
   return userShortcuts
 }
 
-export async function getShortcutsPins() {
+export async function getShortcutsPins(appId) {
   const conn = await mysql.createConnection(credentials)
 
   const shortcutsPins = await conn.query(
-    "SELECT shortcutId as id, COUNT(*) as pins FROM user_shortcuts GROUP BY shortcutId"
+    `SELECT shortcutId as id, COUNT(*) as pins FROM user_shortcuts WHERE appId = ${appId} GROUP BY shortcutId`
   )
 
   conn.end()

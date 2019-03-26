@@ -8,12 +8,23 @@ const Client = () => {
   const doLogin = user => setUser(user)
   const doLogout = () => setUser()
 
+  const { appCategories, app } = window.__KBN_DATA__
+
   const [user, setUser] = useState(window.__KBN_DATA__.user)
+
+  const doPin = (shortcutId, pins, isPinned) => {
+    const shortcut = app.shortcuts.find(e => e.id === shortcutId)
+    shortcut.pins = pins
+    shortcut.isPinned = isPinned
+  }
+
   const contextValue = {
-    ...window.__KBN_DATA__,
+    app,
+    appCategories,
     user,
     doLogin,
     doLogout,
+    doPin,
   }
 
   return (
@@ -25,7 +36,7 @@ const Client = () => {
   )
 }
 
-// hydrate(<Client />, document.getElementById("root"))
+hydrate(<Client />, document.getElementById("root"))
 
 if (module.hot) {
   module.hot.accept()

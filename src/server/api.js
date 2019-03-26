@@ -2,6 +2,7 @@ import passport from "passport"
 import express from "express"
 
 import * as db from "./db"
+import * as cache from "./cache"
 
 const router = express.Router()
 
@@ -77,6 +78,7 @@ router.post("/logout", function(req, res) {
 })
 
 router.patch("/pin", function(req, res) {
+  cache.deleteApp(req.body.appId)
   db.setPin(req.user.id, req.body.appId, req.body.shortcutId, req.body.isPinned)
   res.status(200).send()
 })

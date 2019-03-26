@@ -1,4 +1,4 @@
-import React, { useContext } from "react" // eslint-disable-line no-unused-vars
+import React, { useContext, useState } from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 import PropTypes from "prop-types"
 
@@ -8,18 +8,25 @@ import { upperFirstLetter } from "../../helpers"
 import Shortcut from "./Shortcut"
 import Pin from "./Pin"
 
-function ShortcutItem({ id, action, keys, pins, isPinned }) {
-  const { app, user } = useContext(DataContext)
+function ShortcutItem({ id, action, keys, pins: _pins, isPinned: _isPinned }) {
+  const { app, user, doPin } = useContext(DataContext)
+  const [pins, setPins] = useState(_pins || 0)
+  const [isPinned, setIsPins] = useState(_isPinned)
 
   async function handlePin() {
     if (user) {
-      await pin(app.id, id, !isPinned)
+      const newPins = isPinned ? pins - 1 : pins + 1
+      const newIsPinned = !isPinned
+
+      setPins(newPins)
+      setIsPins(newIsPinned)
+      await pin(app.id, id, newIsPinned)
+      doPin(id, newPins, newIsPinned)
     } else {
       alert("not logged in")
     }
   }
 
-  // return "test"
   return (
     <Container>
       <PinContainer>
