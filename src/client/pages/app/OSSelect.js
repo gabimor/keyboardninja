@@ -3,25 +3,31 @@ import styled from "@emotion/styled"
 
 import { osTypes } from "../../helpers/osSelect"
 
-function OSSelect({ os, onSelect }) {
+function OSSelect({ oss, os, onSelect }) {
   const SELECTED_COLOR = "#E9E5E5"
   const UNSELECTED_COLOR = "#5A5A5A"
 
   return (
     <Container>
-      <i
-        className="fab fa-windows"
-        style={{ color: os === osTypes.WIN ? SELECTED_COLOR : UNSELECTED_COLOR }}
-        onClick={() => onSelect(osTypes.WIN)}
-      />
-      <i
-        className="fab fa-apple"
-        style={{
-          color: os === osTypes.MAC ? SELECTED_COLOR : UNSELECTED_COLOR,
-          paddingLeft: 20,
-        }}
-        onClick={() => onSelect(osTypes.MAC)}
-      />
+      {oss[osTypes.WIN] && (
+        <i
+          className="fab fa-windows"
+          style={{
+            color: os === osTypes.WIN ? SELECTED_COLOR : UNSELECTED_COLOR,
+          }}
+          onClick={() => onSelect(osTypes.WIN)}
+        />
+      )}
+      {oss[osTypes.MAC] && (
+        <i
+          className="fab fa-apple"
+          style={{
+            color: os === osTypes.MAC ? SELECTED_COLOR : UNSELECTED_COLOR,
+            paddingLeft: 20,
+          }}
+          onClick={() => onSelect(osTypes.MAC)}
+        />
+      )}
     </Container>
   )
 }

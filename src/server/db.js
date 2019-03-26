@@ -45,7 +45,6 @@ export async function getApps() {
   return apps
 }
 
-
 export async function getApp(appId) {
   const conn = await mysql.createConnection(credentials)
 
@@ -56,16 +55,14 @@ export async function getApp(appId) {
   return apps[0]
 }
 
-export async function getAppSections(appId) {
+export async function getAllSections() {
   const conn = await mysql.createConnection(credentials)
 
-  const appSections = await conn.query(
-    `SELECT * FROM app_sections WHERE appId = ${appId} ORDER BY \`order\``
-  )
+  const allSections = await conn.query("SELECT * FROM app_sections")
 
   conn.end()
 
-  return appSections
+  return allSections
 }
 
 export async function getAllShortcuts() {

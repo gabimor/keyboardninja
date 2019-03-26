@@ -10,6 +10,7 @@ const Client = () => {
   const doLogin = user => setUser(user)
   const doLogout = () => setUser()
   const doSetOs = os => {
+    // TODO: get data without refresh
     // setOs(os)
     osSelect.setSelectedOS(os)
     window.location.reload()
@@ -22,11 +23,11 @@ const Client = () => {
 
   const { appCategories, app } = window.__KBN_DATA__
 
-  const [os, setOs] = useState(window.__KBN_DATA__.os)
+  const [os] = useState(window.__KBN_DATA__.os)
   const [user, setUser] = useState(window.__KBN_DATA__.user)
 
   osSelect.init()
-
+  
   const contextValue = {
     app,
     appCategories,

@@ -30,6 +30,26 @@ export function getApps() {
   return apps
 }
 
+export function getAllSections() {
+  let sections = cache.get("sections")
+
+  if (!sections) {
+    sections = db.getAllSections()
+    cache.set("sections", sections)
+  }
+  return sections
+}
+
+export function getAllShortcuts() {
+  let shortcuts = cache.get("shortcuts")
+
+  if (!shortcuts) {
+    shortcuts = db.getAllShortcuts()
+    cache.set("shortcuts", shortcuts)
+  }
+  return shortcuts
+}
+
 export async function getApp(appId) {
   const cacheKey = "app-" + appId
   let app = cache.get(cacheKey)
@@ -37,8 +57,8 @@ export async function getApp(appId) {
   if (!app) {
     app = await db.getApp(appId)
 
-    app.sections = await db.getAppSections(appId)
-    const allShortcuts = await db.getAllShortcuts()
+    app.sections = (await getAllSections()).filter(e => e.appId === appId)
+    const allShortcuts = await getAllShortcuts()
 
     for (const currShortcut of await db.getShortcutsPins(appId)) {
       allShortcuts.find(e => e.id === currShortcut.id).pins = currShortcut.pins

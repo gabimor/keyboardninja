@@ -5,14 +5,14 @@ import DataContext from "../../DataContext"
 import OSSelect from "./OSSelect"
 
 const Controls = ({ icon, name }) => {
-  const { os, doSetOs } = useContext(DataContext)
+  const { app, os, doSetOs } = useContext(DataContext)
 
   return (
     <Container>
       <Icon src={"/logos/" + icon} />
       <Text>{name}</Text>
       <SearchWrapper />
-      <OSSelect onSelect={doSetOs} os={os} />
+      <OSSelect onSelect={doSetOs} os={os} oss={app.oss} />
     </Container>
   )
 }

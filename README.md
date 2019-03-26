@@ -2,19 +2,23 @@
 
 ## TODO
 
-- login, signup popup & load userApp on login
-- OSSelect
-  - store os in cookie, load server side
-  - change the display
-  - cache mac/win, handle mac/win only apps
-- forgot password
-- handle 404
-- sections: text/shortcut width
+#### alpha
+
+- enter all apps data
 - responsive
   - mobile menu
   - cross browser/device tests
+- forgot password
+- handle 404
 - favicon
-- enter all apps data
+
+#### beta
+
+- suggest an app
+- footer
+- sections: text/shortcut width
+- homepage: category index
+- login, signup popup & load userApp on login
 - prevent sql injection with sequelize
 - dont expose ids to the client
 - search TODOs

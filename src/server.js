@@ -53,10 +53,7 @@ app.use("/", router)
 
 app.use(async function(req, res, next) {
   if (!apps) {
-    apps = await db.getApps()
-    for (const currApp of apps) {
-      apps[helpers.encodeAppName(currApp.name)] = currApp.id
-    }
+    apps = await helpers.getAppsBasicData()
   }
   next()
 })
@@ -66,13 +63,16 @@ app.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
 app.get("/:name", async (req, res, next) => {
   if (req.params.name === "login" || req.params.name === "signup") next()
 
-  const app = await helpers.getApp(
-    apps[req.params.name],
-    req.user,
-    +req.cookies.os
-  )
+  const appBasicData = apps[req.params.name]
+  let os = +req.cookies.os
 
-  req.dataContext = { app }
+  // is os not found, change to the other
+  os = appBasicData.oss[os] ? os : ((os + 2) % 2) + 1
+
+  const app = await helpers.getApp(appBasicData.id, req.user, os)
+  app.oss = appBasicData.oss
+
+  req.dataContext = { app, os }
 
   next()
 })
@@ -83,12 +83,13 @@ app.get("/*", async (req, res) => {
   const dataContext = {
     ...req.dataContext,
     appCategories,
-    os: +req.cookies.os,
     user: req.user,
   }
 
+  // dataContext.os = dataContext.app.oss[req.cookies.os] ? +req.cookies.os :
+
   if (!req.user) {
-    let cachePage = cache.get(req.path + "-" + req.cookies.os)
+    let cachePage = cache.get(req.path + "-" + dataContext.os)
     if (!cachePage) {
       const markup = renderToString(
         <DataContext.Provider value={dataContext}>
