@@ -1,40 +1,26 @@
 import React, { useState, useEffect } from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 
-import { loadOS, saveOS } from "../../helpers/localStorage"
-import { getClientOS } from "../../helpers"
+import { osTypes } from "../../helpers/osSelect"
 
-function OSSelect({ onSelect }) {
-  const [os, setOS] = useState({})
-
-  useEffect(() => {
-    let detectedOS = loadOS()
-    if (!detectedOS) {
-      detectedOS = getClientOS()
-      saveOS(detectedOS)
-    }
-    setOS(detectedOS)
-  }, [])
-
-  function handleSelect(selectedOS) {
-    setOS(selectedOS)
-    saveOS(selectedOS)
-    onSelect(selectedOS)
-  }
-
-  const getColor = chosenOS => (os && chosenOS === os ? "#E9E5E5" : "#5A5A5A")
+function OSSelect({ os, onSelect }) {
+  const SELECTED_COLOR = "#E9E5E5"
+  const UNSELECTED_COLOR = "#5A5A5A"
 
   return (
     <Container>
       <i
         className="fab fa-windows"
-        style={{ color: getColor("win") }}
-        onClick={() => handleSelect("win")}
+        style={{ color: os === osTypes.WIN ? SELECTED_COLOR : UNSELECTED_COLOR }}
+        onClick={() => onSelect(osTypes.WIN)}
       />
       <i
         className="fab fa-apple"
-        style={{ color: getColor("osx"), paddingLeft: 20 }}
-        onClick={() => handleSelect("osx")}
+        style={{
+          color: os === osTypes.MAC ? SELECTED_COLOR : UNSELECTED_COLOR,
+          paddingLeft: 20,
+        }}
+        onClick={() => onSelect(osTypes.MAC)}
       />
     </Container>
   )

@@ -6,11 +6,6 @@ export function upperFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-export function getClientOS() {
-  const isWin = navigator.platform.toLowerCase().includes("win")
-  return isWin ? "win" : "osx"
-}
-
 export function lightenDarkenColor(color, amount) {
   let usePound = false
 

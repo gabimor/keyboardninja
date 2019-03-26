@@ -35,6 +35,17 @@ export async function getAppCategories() {
   return result
 }
 
+export async function getApps() {
+  const conn = await mysql.createConnection(credentials)
+
+  const apps = await conn.query("SELECT * FROM apps")
+
+  conn.end()
+
+  return apps
+}
+
+
 export async function getApp(appId) {
   const conn = await mysql.createConnection(credentials)
 

@@ -7,7 +7,7 @@ import ShortcutList from "./app/ShortcutList"
 import Controls from "./app/Controls"
 
 const App = () => {
-  const { app } = useContext(DataContext)
+  const { app } = useContext(DataContext)  
 
   const sections = createSections(app)
   return (

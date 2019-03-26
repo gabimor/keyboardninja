@@ -2,9 +2,6 @@
 
 ## TODO
 
-- pin
-  - show counter
-  - enable click
 - login, signup popup & load userApp on login
 - OSSelect
   - store os in cookie, load server side

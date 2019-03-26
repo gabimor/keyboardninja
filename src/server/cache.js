@@ -12,12 +12,22 @@ export async function getAppCategories() {
   return appCategories
 }
 
-export function getPage(path) {
-  return cache.get(path)
+export function get(key) {
+  return cache.get(key)
 }
 
-export function setPage(path, page) {
-  cache.set(path, page)
+export function set(key, page) {
+  cache.set(key, page)
+}
+
+export function getApps() {
+  let apps = cache.get("apps")
+
+  if (!apps) {
+    apps = db.getApps()
+    cache.set("apps", apps)
+  }
+  return apps
 }
 
 export async function getApp(appId) {

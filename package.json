@@ -17,6 +17,7 @@
     "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
     "connect-redis": "^3.4.1",
+    "cookie-parser": "^1.4.4",
     "dotenv": "^7.0.0",
     "electrode-react-ssr-caching": "^0.1.6",
     "email-validator": "^2.0.4",

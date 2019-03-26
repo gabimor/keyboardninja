@@ -1,16 +1,21 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React, { useContext } from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 
+import DataContext from "../../DataContext"
 import OSSelect from "./OSSelect"
 
-const Controls = ({ icon, name }) => (
-  <Container>
-    <Icon src={"/logos/" + icon} />
-    <Text>{name}</Text>
-    <SearchWrapper />
-    <OSSelect />
-  </Container>
-)
+const Controls = ({ icon, name }) => {
+  const { os, doSetOs } = useContext(DataContext)
+
+  return (
+    <Container>
+      <Icon src={"/logos/" + icon} />
+      <Text>{name}</Text>
+      <SearchWrapper />
+      <OSSelect onSelect={doSetOs} os={os} />
+    </Container>
+  )
+}
 
 export default Controls
 
