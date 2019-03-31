@@ -2,10 +2,13 @@ import React, { useContext } from "react" // eslint-disable-line no-unused-vars
 
 import ShortcutItem from "./ShortcutItem"
 import styled from "@emotion/styled"
+import DataContext from "../../DataContext"
 
 import { upperFirstLetter } from "../../helpers"
 
 export default function ShortcutList({ title, shortcuts }) {
+  const { os } = useContext(DataContext)
+
   return (
     <Container>
       <Title>{upperFirstLetter(title)}</Title>
@@ -14,9 +17,9 @@ export default function ShortcutList({ title, shortcuts }) {
           {shortcuts.map(shortcut => {
             return (
               <ShortcutItem
-                key={shortcut.id}
-                id={shortcut.id}
-                keys={shortcut.keys}
+                key={shortcut._id}
+                id={shortcut._id}
+                keys={shortcut[os]}
                 action={shortcut.action}
                 pins={shortcut.pins}
                 isPinned={!!shortcut.isPinned}

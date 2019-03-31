@@ -1,5 +1,3 @@
-export const osTypes = { WIN: 1, MAC: 2 }
-
 export function init() {
   if (!document.cookie.includes("os=")) {
     document.cookie = "os=" + getClientOS()
@@ -21,7 +19,7 @@ export function setSelectedOS(os) {
 
 function getClientOS() {
   const isWin = navigator.platform.toLowerCase().includes("win")
-  return isWin ? osTypes.WIN : osTypes.MAC
+  return isWin ? "win" : "mac"
 }
 
 function getCookie(name) {

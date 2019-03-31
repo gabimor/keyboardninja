@@ -7,17 +7,21 @@ import ShortcutList from "./app/ShortcutList"
 import Controls from "./app/Controls"
 
 const App = () => {
-  const { app } = useContext(DataContext)  
+  const { app } = useContext(DataContext)
 
-  const sections = createSections(app)
+  console.log(app)
+  // const sections = createSections(app)
+  // console.log(sections)
+  console.log(app.sections)
+  console.log(app.shortcuts)
   return (
     <div>
       <Controls icon={app.icon} name={app.name} />
       <ResultsContainer>
-        {sections.map(section => (
+        {app.sections.map(section => (
           <ShortcutList
-            key={section.id}
-            shortcuts={section.shortcuts}
+            key={section._id}
+            shortcuts={app.shortcuts.filter(e => e.sectionId === section._id)}
             title={section.name}
           />
         ))}
@@ -26,19 +30,19 @@ const App = () => {
   )
 }
 
-export function createSections({ id, sections, shortcuts }) {
-  const result = []
+// function createSections({ id, sections, shortcuts }) {
+//   const result = []
 
-  for (const section of sections.filter(e => e.appId === id)) {
-    result.push({
-      id: section.id,
-      order: section.order,
-      name: section.name,
-      shortcuts: shortcuts.filter(e => e.sectionId === section.id),
-    })
-  }
-  return result
-}
+//   for (const section of sections.filter(e => e.appId === id)) {
+//     result.push({
+//       id: section.id,
+//       order: section.order,
+//       name: section.name,
+//       shortcuts: shortcuts.filter(e => e.sectionId === section.id),
+//     })
+//   }
+//   return result
+// }
 
 export default App
 

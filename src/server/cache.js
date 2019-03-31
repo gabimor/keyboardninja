@@ -4,7 +4,9 @@ import * as db from "./db"
 const cache = new NodeCache()
 
 export async function getAppCategories() {
-  let appCategories = cache.get("appCategories")
+  // TODO: restore caching
+  // let appCategories = cache.get("appCategories")
+  let appCategories = undefined
   if (!appCategories) {
     appCategories = await db.getAppCategories()
     cache.set("appCategories", appCategories)

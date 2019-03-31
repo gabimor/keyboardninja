@@ -6,16 +6,15 @@ import * as cache from "./cache"
 
 const router = express.Router()
 
-router.post("/signup", function(req, res, next) {
+router.post("/signup", async function(req, res, next) {
   const { email, password } = req.body
 
-  db.signupUser(email, password).then(insertedUser => {
-    req.login({ email, password }, function(err) {
-      if (err) {
-        return next(err)
-      }
-      return res.json({ email })
-    })
+  await db.signupUser(email, password)
+  req.login({ email, password }, function(err) {
+    if (err) {
+      return next(err)
+    }
+    return res.json({ email })
   })
 })
 

@@ -27,7 +27,7 @@ const Client = () => {
   const [user, setUser] = useState(window.__KBN_DATA__.user)
 
   osSelect.init()
-  
+
   const contextValue = {
     app,
     appCategories,

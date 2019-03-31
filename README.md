@@ -4,6 +4,9 @@
 
 #### alpha
 
+- move to mongodb
+  - prevent sql injection with sequelize
+  - dont expose ids to the client
 - enter all apps data
 - responsive
   - mobile menu
@@ -11,22 +14,28 @@
 - forgot password
 - handle 404
 - favicon
+- my apps
+- not logged in behavior
+- images sizes (unite per category)
+- upload to server
+- connect domain
+- sanity tests
+- GA & hotjar
 
 #### beta
 
+- login or signup to save, you can also share your shortcuts with a frien
+- separate popularity and btn?
 - suggest an app
 - footer
 - sections: text/shortcut width
 - homepage: category index
 - login, signup popup & load userApp on login
-- prevent sql injection with sequelize
-- dont expose ids to the client
 - search TODOs
 - performance
   - render times
   - server times
   - lighthouse
-  - images sizes (unite per category)
   - move to svg
   - fonts - only load required weights
   - bundle size (code split between home and app ?)

@@ -13,7 +13,7 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-import * as db from "./server/db"
+// import * as db from "./server/db"
 import * as helpers from "./server/helpers"
 import * as cache from "./server/cache"
 import Layout from "./client/Layout"
@@ -59,18 +59,25 @@ app.use(async function(req, res, next) {
 })
 
 app.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
+app.get("/__get-internal-source", async (req, res, next) => res.send())
 
-app.get("/:name", async (req, res, next) => {
-  if (req.params.name === "login" || req.params.name === "signup") next()
+app.get("/apps/:name", async (req, res, next) => {
+  // TODO: find solution to /:name
+  // if (
+  //   req.params.name === "login" ||
+  //   req.params.name === "signup" ||
+  //   req.params.name === "__get-internal-source"
+  // )
+  //   next()
 
-  const appBasicData = apps[req.params.name]
-  let os = +req.cookies.os
+  const app = apps[req.params.name]
+  let { os } = req.cookies
 
   // is os not found, change to the other
-  os = appBasicData.oss[os] ? os : ((os + 2) % 2) + 1
+  // os = appBasicData.oss[os] ? os : ((os + 2) % 2) + 1
 
-  const app = await helpers.getApp(appBasicData.id, req.user, os)
-  app.oss = appBasicData.oss
+  // const app = await helpers.getApp(appBasicData.id, req.user, os)
+  // app.oss = appBasicData.oss
 
   req.dataContext = { app, os }
 
@@ -89,28 +96,18 @@ app.get("/*", async (req, res) => {
   // dataContext.os = dataContext.app.oss[req.cookies.os] ? +req.cookies.os :
 
   if (!req.user) {
-    let cachePage = cache.get(req.path + "-" + dataContext.os)
+    // TODO: restore cache
+    let cachePage = undefined
+    // let cachePage = cache.get(req.path + "-" + dataContext.os)
     if (!cachePage) {
-      const markup = renderToString(
-        <DataContext.Provider value={dataContext}>
-          <StaticRouter context={{}} location={req.url}>
-            <Layout />
-          </StaticRouter>
-        </DataContext.Provider>
-      )
+      const markup = renderToString(getTemplate(req.url, dataContext))
       cachePage = page(markup, undefined, assets, dataContext)
       cache.set(req.path + "-" + req.cookies.os, cachePage)
     }
     res.status(200).send(cachePage)
   } else {
     res.write(pageStart(undefined, assets, dataContext))
-    const stream = renderToNodeStream(
-      <DataContext.Provider value={dataContext}>
-        <StaticRouter context={{}} location={req.url}>
-          <Layout />
-        </StaticRouter>
-      </DataContext.Provider>
-    )
+    const stream = renderToNodeStream(getTemplate(req.url, dataContext))
 
     stream.pipe(
       res,
@@ -121,5 +118,13 @@ app.get("/*", async (req, res) => {
     })
   }
 })
+
+const getTemplate = (url, dataContext) => (
+  <DataContext.Provider value={dataContext}>
+    <StaticRouter context={{}} location={url}>
+      <Layout />
+    </StaticRouter>
+  </DataContext.Provider>
+)
 
 export default app

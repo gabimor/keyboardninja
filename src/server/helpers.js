@@ -1,23 +1,20 @@
 import * as db from "./db"
 import * as cache from "./cache"
+import { App } from "./model"
 
 export function encodeAppName(name) {
   return name.toLowerCase().replace(new RegExp(" ", "g"), "-")
 }
 
 export async function getAppsBasicData() {
-  const apps = await db.getApps()
-  const sections = await cache.getAllSections()
+  const apps = await App.find().lean()  
+
+  // const apps = await db.getApps()
+  // const sections = await cache.getAllSections()
 
   const results = {}
   for (const currApp of apps) {
-    results[encodeAppName(currApp.name)] = {
-      id: currApp.id,
-      oss: {
-        1: !!sections.find(e => e.appId === currApp.id && e.os === 1),
-        2: !!sections.find(e => e.appId === currApp.id && e.os === 2),
-      },
-    }
+    results[encodeAppName(currApp.name)] = currApp
   }
 
   return results

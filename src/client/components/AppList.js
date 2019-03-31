@@ -10,7 +10,7 @@ export default function AppList({ name, apps }) {
       <Header>{name}</Header>
       <InnerContainer>
         {apps.map(app => (
-          <a href={"/" + encodeAppName(app.name)} key={app.id}>
+          <a href={"/apps/" + encodeAppName(app.name)} key={app.id}>
             <AppItem icon={"/logos/" + app.icon} name={app.name} />
           </a>
         ))}

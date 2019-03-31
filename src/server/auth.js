@@ -11,8 +11,8 @@ passport.use(
     async function(username, password, done) {
       try {
         const user = await db.findUser(username, password)
-        if (user && user.length === 1) {
-          return done(null, user[0])
+        if (user) {
+          return done(null, user)
         } else {
           return done(null, false, { message: "Incorrect email or password" })
         }
