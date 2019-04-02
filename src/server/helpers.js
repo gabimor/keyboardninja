@@ -1,41 +1,61 @@
-import * as db from "./db"
-import * as cache from "./cache"
-import { App } from "./model"
-
 export function encodeAppName(name) {
   return name.toLowerCase().replace(new RegExp(" ", "g"), "-")
 }
 
-export async function getAppsBasicData() {
-  const apps = await App.find().lean()  
+// export async function getAppsHash() {
+//   const apps = await App.find().lean()
+//   const userShortcuts = await UserShortcut.find().lean()
 
-  // const apps = await db.getApps()
-  // const sections = await cache.getAllSections()
+//   // calculate pins field
+//   // go over every appid, userId record
+//   for (const userShortcut of userShortcuts) {
+//     // go over every shortcut in that record
+//     for (const shortcut of userShortcut.shortcuts) {
+//       const appToUpdate = apps.find(
+//         e => e._id.toString() === userShortcut.appId.toString()
+//       )
 
-  const results = {}
-  for (const currApp of apps) {
-    results[encodeAppName(currApp.name)] = currApp
-  }
+//       appToUpdate.shortcuts.find(e => e._id.toString() === shortcut.toString())
+//         .pins++
+//     }
+//   }
 
-  return results
-}
+//   const results = {}
+//   for (const currApp of apps) {
+//     results[encodeAppName(currApp.name)] = currApp
+//   }
 
-export async function getApp(appId, user, os) {
-  const app = await cache.getApp(appId)
+//   return results
+// }
 
-  if (user) {
-    const userShortcuts = await db.getUserShortcuts(user.id, app.id)
+// import { App, UserShortcut } from "./models"
 
-    for (const userShortcut of userShortcuts) {
-      const shortcut = app.shortcuts.find(e => e.id === userShortcut.shortcutId)
-      shortcut.isPinned = true
-    }
-  }
+// export function encodeAppName(name) {
+//   return name.toLowerCase().replace(new RegExp(" ", "g"), "-")
+// }
 
-  app.sections = app.sections.filter(e => e.os === os)
-  const currOSSectionIds = app.sections.map(e => e.id)
-  app.shortcuts = app.shortcuts.filter(e =>
-    currOSSectionIds.includes(e.sectionId)
-  )
-  return app
-}
+// export async function getAppsHash() {
+//   const apps = await App.find().lean()
+//   const userShortcuts = await UserShortcut.find().lean()
+
+//   // calculate pins field
+//   // go over every appid, userId record
+//   for (const userShortcut of userShortcuts) {
+//     // go over every shortcut in that record
+//     for (const shortcut of userShortcut.shortcuts) {
+//       const appToUpdate = apps.find(
+//         e => e._id.toString() === userShortcut.appId.toString()
+//       )
+
+//       appToUpdate.shortcuts.find(e => e._id.toString() === shortcut.toString())
+//         .pins++
+//     }
+//   }
+
+//   const results = {}
+//   for (const currApp of apps) {
+//     results[encodeAppName(currApp.name)] = currApp
+//   }
+
+//   return results
+// }

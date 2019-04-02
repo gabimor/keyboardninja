@@ -10,7 +10,7 @@ import Pin from "./Pin"
 
 function ShortcutItem({ id, action, keys, pins: _pins, isPinned: _isPinned }) {
   const { app, user, doPin } = useContext(DataContext)
-  const [pins, setPins] = useState(_pins || 0)
+  const [pins, setPins] = useState(_pins)
   const [isPinned, setIsPins] = useState(_isPinned)
 
   async function handlePin() {
@@ -20,7 +20,7 @@ function ShortcutItem({ id, action, keys, pins: _pins, isPinned: _isPinned }) {
 
       setPins(newPins)
       setIsPins(newIsPinned)
-      await pin(app.id, id, newIsPinned)
+      await pin(app._id, id, newIsPinned)
       doPin(id, newPins, newIsPinned)
     } else {
       alert("not logged in")

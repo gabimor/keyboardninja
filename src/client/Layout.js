@@ -13,7 +13,6 @@ import MyApps from "./pages/MyApps"
 const Layout = () => {
   return (
     <div>
-      {/* <Theme /> */}
       <Container>
         <Header />
         <Switch>

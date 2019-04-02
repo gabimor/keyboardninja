@@ -32,6 +32,7 @@ export const App = mongoose.model(
         sectionId: Schema.ObjectId,
         win: String,
         mac: String,
+        pins: Number,
       }),
     ],
   })
@@ -47,30 +48,10 @@ export const AppCategory = mongoose.model(
 )
 
 export const UserShortcut = mongoose.model(
-  "userShortcut",
+  "user_shortcuts",
   new Schema({
-    userId: String,
-    appId: String,
-    shortcutId: String,
+    userId: Schema.ObjectId,
+    appId: Schema.ObjectId,
+    shortcuts: [Schema.ObjectId],
   })
 )
-
-// export const AppSection = mongoose.model(
-//   "appsSections",
-//   new Schema({
-//     name: String,
-//     appId: String,
-//     order: Number,
-//     os: Number,
-//   })
-// )
-
-// export const Shortcut = mongoose.model(
-//   "shortcuts",
-//   new Schema({
-//     action: String,
-//     sectionId: String,
-//     keys: String,
-//     order: Number,
-//   })
-// )

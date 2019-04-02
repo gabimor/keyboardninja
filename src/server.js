@@ -13,22 +13,19 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-// import * as db from "./server/db"
-import * as helpers from "./server/helpers"
 import * as cache from "./server/cache"
 import Layout from "./client/Layout"
 import DataContext from "./client/DataContext"
 import { page, pageStart, pageEnd } from "./server/page"
 import "./server/auth"
 import api from "./server/api"
+import { UserShortcut } from "./server/models"
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
 
 const app = express()
 
 const router = express.Router()
-
-let apps
 
 app.disable("x-powered-by")
 
@@ -51,15 +48,7 @@ app.use(passport.session())
 app.use("/api", api)
 app.use("/", router)
 
-app.use(async function(req, res, next) {
-  if (!apps) {
-    apps = await helpers.getAppsBasicData()
-  }
-  next()
-})
-
 app.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
-app.get("/__get-internal-source", async (req, res, next) => res.send())
 
 app.get("/apps/:name", async (req, res, next) => {
   // TODO: find solution to /:name
@@ -69,15 +58,35 @@ app.get("/apps/:name", async (req, res, next) => {
   //   req.params.name === "__get-internal-source"
   // )
   //   next()
+  const appsHash = await cache.getAppsHash()
+  // console.log(appsHash)
+  const appId = appsHash[req.params.name]
 
-  const app = apps[req.params.name]
+  const app = await cache.getApp(appId)
+
   let { os } = req.cookies
+  if (!os) {
+    os = req.headers["user-agent"].toLowerCase().includes("win") ? "win" : "mac"
+  }
+  // if app doesn't support the detected os, switch os to the one that's supported
+  if (!app.oss.includes(os)) {
+    os = app.oss[0]
+  }
 
-  // is os not found, change to the other
-  // os = appBasicData.oss[os] ? os : ((os + 2) % 2) + 1
-
-  // const app = await helpers.getApp(appBasicData.id, req.user, os)
-  // app.oss = appBasicData.oss
+  if (req.user) {
+    const userShortcuts = await UserShortcut.findOne({
+      userId: req.user.id,
+      appId: app._id,
+    })
+    if (userShortcuts) {
+      for (const shortcutId of userShortcuts.shortcuts) {
+        app.shortcuts.find(e => {
+          console.log(e._id, shortcutId)
+          return e._id.toString() === shortcutId.toString()
+        }).isPinned = true
+      }
+    }
+  }
 
   req.dataContext = { app, os }
 
@@ -93,16 +102,12 @@ app.get("/*", async (req, res) => {
     user: req.user,
   }
 
-  // dataContext.os = dataContext.app.oss[req.cookies.os] ? +req.cookies.os :
-
   if (!req.user) {
-    // TODO: restore cache
-    let cachePage = undefined
-    // let cachePage = cache.get(req.path + "-" + dataContext.os)
+    let cachePage = cache.get(req.path + "-" + dataContext.os)
     if (!cachePage) {
       const markup = renderToString(getTemplate(req.url, dataContext))
       cachePage = page(markup, undefined, assets, dataContext)
-      cache.set(req.path + "-" + req.cookies.os, cachePage)
+      cache.set(req.path + "-" + dataContext.os, cachePage)
     }
     res.status(200).send(cachePage)
   } else {

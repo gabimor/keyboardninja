@@ -1,84 +1,74 @@
 import NodeCache from "node-cache"
-import * as db from "./db"
+import redis from "redis"
 
-const cache = new NodeCache()
+import { encodeAppName } from "./helpers"
+
+import { App, AppCategory, UserShortcut } from "./models"
+
+const nodeCache = new NodeCache()
+const redisCache = redis.createClient()
+
+export async function getAppsHash() {
+  let appsHash = nodeCache.get("appsHash")
+  if (!appsHash) {
+    appsHash = {}
+    const apps = await App.find()
+    for (const app of apps) {
+      appsHash[encodeAppName(app.name)] = app._id
+    }
+    nodeCache.set("appsHash", appsHash)
+  }
+  return appsHash
+}
 
 export async function getAppCategories() {
-  // TODO: restore caching
-  // let appCategories = cache.get("appCategories")
-  let appCategories = undefined
+  let appCategories = nodeCache.get("appCategories")
   if (!appCategories) {
-    appCategories = await db.getAppCategories()
-    cache.set("appCategories", appCategories)
+    appCategories = await AppCategory.find().lean()
+    nodeCache.set("appHash", appCategories)
   }
   return appCategories
 }
 
-export function get(key) {
-  return cache.get(key)
-}
+export function setPin(appId, shortcutId, isPinned) {
+  const app = nodeCache.get("app-" + appId)
 
-export function set(key, page) {
-  cache.set(key, page)
-}
+  const change = isPinned ? 1 : -1
+  app.shortcuts.find(
+    e => e._id.toString() === shortcutId.toString()
+  ).pins += change
 
-export function getApps() {
-  let apps = cache.get("apps")
-
-  if (!apps) {
-    apps = db.getApps()
-    cache.set("apps", apps)
-  }
-  return apps
-}
-
-export function getAllSections() {
-  let sections = cache.get("sections")
-
-  if (!sections) {
-    sections = db.getAllSections()
-    cache.set("sections", sections)
-  }
-  return sections
-}
-
-export function getAllShortcuts() {
-  let shortcuts = cache.get("shortcuts")
-
-  if (!shortcuts) {
-    shortcuts = db.getAllShortcuts()
-    cache.set("shortcuts", shortcuts)
-  }
-  return shortcuts
+  nodeCache.set("app-" + appId, app)
 }
 
 export async function getApp(appId) {
-  const cacheKey = "app-" + appId
-  let app = cache.get(cacheKey)
+  let cacheApp = nodeCache.get("app-" + appId)
 
-  if (!app) {
-    app = await db.getApp(appId)
+  if (!cacheApp) {
+    cacheApp = await App.findById(appId).lean()
+    const userShortcuts = await UserShortcut.find({ appId: appId }).lean()
 
-    app.sections = (await getAllSections()).filter(e => e.appId === appId)
-    const allShortcuts = await getAllShortcuts()
-
-    for (const currShortcut of await db.getShortcutsPins(appId)) {
-      allShortcuts.find(e => e.id === currShortcut.id).pins = currShortcut.pins
+    // calculate pins field
+    // go over every appid, userId record
+    for (const userShortcut of userShortcuts) {
+      // go over every shortcut in that record
+      for (const shortcut of userShortcut.shortcuts) {
+        cacheApp.shortcuts.find(e => e._id.toString() === shortcut.toString())
+          .pins++
+      }
     }
-
-    const sectionIds = app.sections.map(e => e.id)
-    app.shortcuts = allShortcuts.filter(e => sectionIds.includes(e.sectionId))
-
-    cache.set(cacheKey, app)
   }
 
-  return app
+  return cacheApp
 }
 
-export function deleteApp(appId) {
-  cache.del("app-" + appId)
+export function set(key, value) {
+  redisCache.set(key, value)
 }
 
+export function get(key) {
+  redisCache.get(key)
+}
 // export default nodeCache
 // START PERFORMANCE MEASURE
 // const hrstart = process.hrtime()

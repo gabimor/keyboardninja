@@ -77,8 +77,11 @@ router.post("/logout", function(req, res) {
 })
 
 router.patch("/pin", function(req, res) {
-  cache.deleteApp(req.body.appId)
-  db.setPin(req.user.id, req.body.appId, req.body.shortcutId, req.body.isPinned)
+  const { appId, shortcutId, isPinned } = req.body
+
+  db.setPin(req.user.id, appId, shortcutId, isPinned)
+  cache.setPin(appId, shortcutId, isPinned)
+
   res.status(200).send()
 })
 

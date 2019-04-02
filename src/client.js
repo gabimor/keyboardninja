@@ -10,20 +10,20 @@ const Client = () => {
   const doLogin = user => setUser(user)
   const doLogout = () => setUser()
   const doSetOs = os => {
-    // TODO: get data without refresh
-    // setOs(os)
+    setOs(os)
     osSelect.setSelectedOS(os)
-    window.location.reload()
   }
   const doPin = (shortcutId, pins, isPinned) => {
-    const shortcut = app.shortcuts.find(e => e.id === shortcutId)
+    const shortcut = app.shortcuts.find(
+      e => e._id.toString() === shortcutId.toString()
+    )
     shortcut.pins = pins
     shortcut.isPinned = isPinned
   }
 
   const { appCategories, app } = window.__KBN_DATA__
 
-  const [os] = useState(window.__KBN_DATA__.os)
+  const [os, setOs] = useState(window.__KBN_DATA__.os)
   const [user, setUser] = useState(window.__KBN_DATA__.user)
 
   osSelect.init()
