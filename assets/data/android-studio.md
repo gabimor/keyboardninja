@@ -13,105 +13,105 @@ osxSelector: td:nth-child(3)
 # Build and run
 # Debugging
 # Refactoring
-# Version control / local history
+# Version ctrl / local history
 -----------------------------
-Save all (-) Control + S (-) Command + S
-Synchronize (-) Control + Alt + Y (-) Command + Option + Y
-Maximize/minimize editor (-) Control + Shift + F12 (-) Control + Command + F12
-Add to favorites (-) Alt + Shift + F (-) Option + Shift + F
-Inspect current file with current profile (-) Alt + Shift + I (-) Option + Shift + I
-Quick switch scheme (-) Control + ` (backquote) (-) Control + ` (backquote)
-Open settings dialogue (-) Control + Alt + S (-) Command + , (comma)
-Open project structure dialog (-) Control + Alt + Shift + S (-) Command + ; (semicolon)
-Switch between tabs and tool window (-) Control + Tab (-) Control + Tab
-Search everything (including code and menus) (-) Press Shift twice (-) Press Shift twice
-Find (-) Control + F (-) Command + F
-Find next (-) F3 (-) Command + G
-Find previous (-) Shift + F3 (-) Command + Shift + G
-Replace (-) Control + R (-) Command + R
-Find action (-) Control + Shift + A (-) Command + Shift + A
-Search by symbol name (-) Control + Alt + Shift + N (-) Command + Option + O
-Find class (-) Control + N (-) Command + O
-Find file (instead of class) (-) Control + Shift + N (-) Command + Shift + O
-Find in path (-) Control + Shift + F (-) Command + Shift + F
-Open file structure pop-up (-) Control + F12 (-) Command + F12
-Navigate between open editor tabs (-) Alt + Right/Left Arrow (-) Control + Right/Left Arrow
-Jump to source (-) F4 / Control + Enter (-) F4 / Command + Down Arrow
-Open current editor tab in new window (-) Shift + F4 (-) Shift + F4
-Recently opened files pop-up (-) Control + E (-) Command + E
-Recently edited files pop-up (-) Control + Shift + E (-) Command + Shift + E
-Go to last edit location (-) Control + Shift + Backspace (-) Command + Shift + Backspace
-Close active editor tab (-) Control + F4 (-) Command + W
-Return to editor window from a tool window (-) Esc (-) Esc
-Hide active or last active tool window (-) Shift + Esc (-) Shift + Esc
-Go to line (-) Control + G (-) Command + L
-Open type hierarchy (-) Control + H (-) Control + H
-Open method hierarchy (-) Control + Shift + H (-) Command + Shift + H
-Open call hierarchy (-) Control + Alt + H (-) Control + Option + H
-Generate code (getters, setters, constructors, hashCode/equals, toString, new file, new class) (-) Alt + Insert (-) Command + N
-Override methods (-) Control + O (-) Control + O
-Implement methods (-) Control + I (-) Control + I
-Surround with (if...else / try...catch / etc.) (-) Control + Alt + T (-) Command + Option + T
-Delete line at caret (-) Control + Y (-) Command + Backspace
-Collapse/expand current code block (-) Control + minus/plus (-) Command + minus/plus
-Collapse/expand all code blocks (-) Control + Shift + minus/plus (-) Command + Shift + minus/plus
-Duplicate current line or selection (-) Control + D (-) Command + D
-Basic code completion (-) Control + Space (-) Control + Space
-Smart code completion (filters the list of methods and variables by expected type) (-) Control + Shift + Space (-) Control + Shift + Space
-Complete statement (-) Control + Shift + Enter (-) Command + Shift + Enter
-Quick documentation lookup (-) Control + Q (-) Control + J
-Show parameters for selected method (-) Control + P (-) Command + P
-Go to declaration (directly) (-) Control + B or Control + Click (-) Command + B or Command + Click
-Go to implementations (-) Control + Alt + B (-) Command + Alt + B
-Go to super-method/super-class (-) Control + U (-) Command + U
-Open quick definition lookup (-) Control + Shift + I (-) Command + Y
-Toggle project tool window visibility (-) Alt + 1 (-) Command + 1
-Toggle bookmark (-) F11 (-) F3
-Toggle bookmark with mnemonic (-) Control + F11 (-) Option + F3
-Comment/uncomment with line comment (-) Control + / (-) Command + /
-Comment/uncomment with block comment (-) Control + Shift + / (-) Command + Shift + /
-Select successively increasing code blocks (-) Control + W (-) Option + Up
-Decrease current selection to previous state (-) Control + Shift + W (-) Option + Down
-Move to code block start (-) Control + [ (-) Option + Command + [
-Move to code block end (-) Control + ] (-) Option + Command + ]
-Select to the code block start (-) Control + Shift + [ (-) Option + Command + Shift + [
-Select to the code block end (-) Control + Shift + ] (-) Option + Command + Shift + ]
-Delete to end of word (-) Control + Delete (-) Option + Delete
-Delete to start of word (-) Control + Backspace (-) Option + Backspace
-Optimize imports (-) Control + Alt + O (-) Control + Option + O
-Project quick fix (show intention actions and quick fixes) (-) Alt + Enter (-) Option + Enter
-Reformat code (-) Control + Alt + L (-) Command + Option + L
-Auto-indent lines (-) Control + Alt + I (-) Control + Option + I
-Indent/unindent lines (-) Tab/Shift + Tab (-) Tab/Shift + Tab
-Smart line join (-) Control + Shift + J (-) Control + Shift + J
-Smart line split (-) Control + Enter (-) Command + Enter
-Start new line (-) Shift + Enter (-) Shift + Enter
-Next/previous highlighted error (-) F2 / Shift + F2 (-) F2 / Shift + F2
-Build (-) Control + F9 (-) Command + F9
-Build and run (-) Shift + F10 (-) Control + R
-Apply changes (with Instant Run) (-) Control + F10 (-) Control + Command + R
-Debug (-) Shift + F9 (-) Control + D
-Step over (-) F8 (-) F8
-Step into (-) F7 (-) F7
-Smart step into (-) Shift + F7 (-) Shift + F7
-Step out (-) Shift + F8 (-) Shift + F8
-Run to cursor (-) Alt + F9 (-) Option + F9
-Evaluate expression (-) Alt + F8 (-) Option + F8
-Resume program (-) F9 (-) Command + Option + R
-Toggle breakpoint (-) Control + F8 (-) Command + F8
-View breakpoints (-) Control + Shift + F8 (-) Command + Shift + F8
-Copy (-) F5 (-) F5
-Move (-) F6 (-) F6
-Safe delete (-) Alt + Delete (-) Command + Delete
-Rename (-) Shift + F6 (-) Shift + F6
-Change signature (-) Control + F6 (-) Command + F6
-Inline (-) Control + Alt + N (-) Command + Option + N
-Extract method (-) Control + Alt + M (-) Command + Option + M
-Extract variable (-) Control + Alt + V (-) Command + Option + V
-Extract field (-) Control + Alt + F (-) Command + Option + F
-Extract constant (-) Control + Alt + C (-) Command + Option + C
-Extract parameter (-) Control + Alt + P (-) Command + Option + P
-Commit project to VCS (-) Control + K (-) Command + K
-Update project from VCS (-) Control + T (-) Command + T
-View recent changes (-) Alt + Shift + C (-) Option + Shift + C
-Open VCS popup (-) Alt + ` (backquote) (-) Control + V
+save all(-)ctrl+s(-)cmd+s
+synchronize(-)ctrl+alt+y(-)cmd+opt+y
+maximize/minimize editor(-)ctrl+shift+f12(-)ctrl+cmd+f12
+add to favorites(-)alt+shift+f(-)opt+shift+f
+inspect current file with current profile(-)alt+shift+i(-)opt+shift+i
+quick switch scheme(-)ctrl+` (backquote)(-)ctrl+` (backquote)
+open settings dialogue(-)ctrl+alt+s(-)cmd+, (comma)
+open project structure dialog(-)ctrl+alt+shift+s(-)cmd+; (semicolon)
+switch between tabs and tool window(-)ctrl+tab(-)ctrl+tab
+search everything (including code and menus)(-)press shift twice(-)press shift twice
+find(-)ctrl+f(-)cmd+f
+find next(-)f3(-)cmd+g
+find previous(-)shift+f3(-)cmd+shift+g
+replace(-)ctrl+r(-)cmd+r
+find action(-)ctrl+shift+a(-)cmd+shift+a
+search by symbol name(-)ctrl+alt+shift+n(-)cmd+opt+o
+find class(-)ctrl+n(-)cmd+o
+find file (instead of class)(-)ctrl+shift+n(-)cmd+shift+o
+find in path(-)ctrl+shift+f(-)cmd+shift+f
+open file structure pop-up(-)ctrl+f12(-)cmd+f12
+navigate between open editor tabs(-)alt+right/left arrow(-)ctrl+right/left arrow
+jump to source(-)f4 / ctrl+enter(-)f4 / cmd+down arrow
+open current editor tab in new window(-)shift+f4(-)shift+f4
+recently opened files pop-up(-)ctrl+e(-)cmd+e
+recently edited files pop-up(-)ctrl+shift+e(-)cmd+shift+e
+go to last edit location(-)ctrl+shift+backspace(-)cmd+shift+backspace
+close active editor tab(-)ctrl+f4(-)cmd+w
+return to editor window from a tool window(-)esc(-)esc
+hide active or last active tool window(-)shift+esc(-)shift+esc
+go to line(-)ctrl+g(-)cmd+l
+open type hierarchy(-)ctrl+h(-)ctrl+h
+open method hierarchy(-)ctrl+shift+h(-)cmd+shift+h
+open call hierarchy(-)ctrl+alt+h(-)ctrl+opt+h
+generate code (getters, setters, constructors, hashcode/equals, tostring, new file, new class)(-)alt+insert(-)cmd+n
+override methods(-)ctrl+o(-)ctrl+o
+implement methods(-)ctrl+i(-)ctrl+i
+surround with (if...else / try...catch / etc.)(-)ctrl+alt+t(-)cmd+opt+t
+delete line at caret(-)ctrl+y(-)cmd+backspace
+collapse/expand current code block(-)ctrl+-/plus(-)cmd+-/plus
+collapse/expand all code blocks(-)ctrl+shift+-/plus(-)cmd+shift+-/plus
+duplicate current line or selection(-)ctrl+d(-)cmd+d
+basic code completion(-)ctrl+space(-)ctrl+space
+smart code completion (filters the list of methods and variables by expected type)(-)ctrl+shift+space(-)ctrl+shift+space
+complete statement(-)ctrl+shift+enter(-)cmd+shift+enter
+quick documentation lookup(-)ctrl+q(-)ctrl+j
+show parameters for selected method(-)ctrl+p(-)cmd+p
+go to declaration (directly)(-)ctrl+b or ctrl+click(-)cmd+b or cmd+click
+go to implementations(-)ctrl+alt+b(-)cmd+alt+b
+go to super-method/super-class(-)ctrl+u(-)cmd+u
+open quick definition lookup(-)ctrl+shift+i(-)cmd+y
+toggle project tool window visibility(-)alt+1(-)cmd+1
+toggle bookmark(-)f11(-)f3
+toggle bookmark with mnemonic(-)ctrl+f11(-)opt+f3
+comment/uncomment with line comment(-)ctrl+/(-)cmd+/
+comment/uncomment with block comment(-)ctrl+shift+/(-)cmd+shift+/
+select successively increasing code blocks(-)ctrl+w(-)opt+up
+decrease current selection to previous state(-)ctrl+shift+w(-)opt+down
+move to code block start(-)ctrl+[(-)opt+cmd+[
+move to code block end(-)ctrl+](-)opt+cmd+]
+select to the code block start(-)ctrl+shift+[(-)opt+cmd+shift+[
+select to the code block end(-)ctrl+shift+](-)opt+cmd+shift+]
+delete to end of word(-)ctrl+delete(-)opt+delete
+delete to start of word(-)ctrl+backspace(-)opt+backspace
+optimize imports(-)ctrl+alt+o(-)ctrl+opt+o
+project quick fix (show intention actions and quick fixes)(-)alt+enter(-)opt+enter
+reformat code(-)ctrl+alt+l(-)cmd+opt+l
+auto-indent lines(-)ctrl+alt+i(-)ctrl+opt+i
+indent/unindent lines(-)tab/shift+tab(-)tab/shift+tab
+smart line join(-)ctrl+shift+j(-)ctrl+shift+j
+smart line split(-)ctrl+enter(-)cmd+enter
+start new line(-)shift+enter(-)shift+enter
+next/previous highlighted error(-)f2 / shift+f2(-)f2 / shift+f2
+build(-)ctrl+f9(-)cmd+f9
+build and run(-)shift+f10(-)ctrl+r
+apply changes (with instant run)(-)ctrl+f10(-)ctrl+cmd+r
+debug(-)shift+f9(-)ctrl+d
+step over(-)f8(-)f8
+step into(-)f7(-)f7
+smart step into(-)shift+f7(-)shift+f7
+step out(-)shift+f8(-)shift+f8
+run to cursor(-)alt+f9(-)opt+f9
+evaluate expression(-)alt+f8(-)opt+f8
+resume program(-)f9(-)cmd+opt+r
+toggle breakpoint(-)ctrl+f8(-)cmd+f8
+view breakpoints(-)ctrl+shift+f8(-)cmd+shift+f8
+copy(-)f5(-)f5
+move(-)f6(-)f6
+safe delete(-)alt+delete(-)cmd+delete
+rename(-)shift+f6(-)shift+f6
+change signature(-)ctrl+f6(-)cmd+f6
+inline(-)ctrl+alt+n(-)cmd+opt+n
+extract method(-)ctrl+alt+m(-)cmd+opt+m
+extract variable(-)ctrl+alt+v(-)cmd+opt+v
+extract field(-)ctrl+alt+f(-)cmd+opt+f
+extract constant(-)ctrl+alt+c(-)cmd+opt+c
+extract parameter(-)ctrl+alt+p(-)cmd+opt+p
+commit project to vcs(-)ctrl+k(-)cmd+k
+update project from vcs(-)ctrl+t(-)cmd+t
+view recent changes(-)alt+shift+c(-)opt+shift+c
+open vcs popup(-)alt+` (backquote)(-)ctrl+v

@@ -1,12 +1,10 @@
 import NodeCache from "node-cache"
-import redis from "redis"
 
 import { encodeAppName } from "./helpers"
 
 import { App, AppCategory, UserShortcut } from "./models"
 
 const nodeCache = new NodeCache()
-const redisCache = redis.createClient()
 
 export async function getAppsHash() {
   let appsHash = nodeCache.get("appsHash")
@@ -63,11 +61,11 @@ export async function getApp(appId) {
 }
 
 export function set(key, value) {
-  redisCache.set(key, value)
+  nodeCache.set(key, value)
 }
 
 export function get(key) {
-  redisCache.get(key)
+  return nodeCache.get(key)
 }
 // export default nodeCache
 // START PERFORMANCE MEASURE

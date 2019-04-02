@@ -7,23 +7,21 @@ VS code - https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
 visual studio - https://docs.microsoft.com/en-us/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio?view=vs-2017
 notepad++ - http://docs.notepad-plus-plus.org/index.php/Keyboard_And_Mouse_Shortcuts
 sublime text - http://docs.sublimetext.info/en/latest/reference/keyboard_shortcuts_win.html
-vim - https://www.maketecheasier.com/vim-keyboard-shortcuts-cheatsheet/
 intellij - https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf
 android studio - https://developer.android.com/studio/intro/keyboard-shortcuts
-eclipse - https://shortcutworld.com/Eclipse/win/Eclipse-Helios_Shortcuts
 atom - https://github.com/nwinkler/atom-keyboard-shortcuts
 pycharm - https://www.jetbrains.com/help/pycharm/keyboard-shortcuts-by-category.html
 xcode - https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/xcode_help-command_shortcuts/MenuCommands/MenuCommands014.html
 phpstorm - https://www.jetbrains.com/help/phpstorm/keyboard-shortcuts-by-category.html
-netbeans - https://netbeans.org/project_downloads/usersguide/shortcuts-80.pdf
 webstorm - https://resources.jetbrains.com/storage/products/webstorm/docs/WebStorm_ReferenceCard.pdf
 chrome devtools - https://developers.google.com/web/tools/chrome-devtools/shortcuts
-firefox devtools - https://developer.mozilla.org/en-US/docs/Tools/Keyboard_shortcuts
-ipython/jupyter
-emacs
-rstudio
-rubymine
+rubymine - https://resources.jetbrains.com/storage/products/rubymine/docs/RubyMine_ReferenceCard_mac.pdf
+
 textmate
+firefox devtools - https://developer.mozilla.org/en-US/docs/Tools/Keyboard_shortcuts
+netbeans - https://netbeans.org/project_downloads/usersguide/shortcuts-80.pdf
+eclipse - https://shortcutworld.com/Eclipse/win/Eclipse-Helios_Shortcuts
+vim - https://www.maketecheasier.com/vim-keyboard-shortcuts-cheatsheet/
 resharper - https://www.jetbrains.com/help/resharper/Reference__Keyboard_Shortcuts.html
 
 ## browsers
@@ -63,9 +61,9 @@ Gimp - https://defkey.com/gimp-shortcuts
 Illustrator - https://helpx.adobe.com/il_en/illustrator/using/default-keyboard-shortcuts.html
 InDesign - https://shortcuts.design/toolspage-adobeindesign.html
 XD - https://shortcuts.design/toolspage-adobexd.html
+https://helpx.adobe.com/il_en/xd/help/keyboard-shortcuts.html
 Sketch - https://shortcuts.design/toolspage-sketch.html
-Dreamweaver -
-CorelDraw
+after effects: https://helpx.adobe.com/il_en/after-effects/using/keyboard-shortcuts-reference.html
 
 ---
 

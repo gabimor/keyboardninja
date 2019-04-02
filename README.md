@@ -4,9 +4,6 @@
 
 #### alpha
 
-- move to mongodb
-  - prevent sql injection with sequelize
-  - dont expose ids to the client
 - enter all apps data
 - responsive
   - mobile menu

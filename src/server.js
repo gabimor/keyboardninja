@@ -59,7 +59,6 @@ app.get("/apps/:name", async (req, res, next) => {
   // )
   //   next()
   const appsHash = await cache.getAppsHash()
-  // console.log(appsHash)
   const appId = appsHash[req.params.name]
 
   const app = await cache.getApp(appId)
@@ -80,10 +79,9 @@ app.get("/apps/:name", async (req, res, next) => {
     })
     if (userShortcuts) {
       for (const shortcutId of userShortcuts.shortcuts) {
-        app.shortcuts.find(e => {
-          console.log(e._id, shortcutId)
-          return e._id.toString() === shortcutId.toString()
-        }).isPinned = true
+        app.shortcuts.find(
+          e => e._id.toString() === shortcutId.toString()
+        ).isPinned = true
       }
     }
   }

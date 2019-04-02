@@ -1,6 +1,7 @@
 import passport from "passport"
 import { Strategy as LocalStrategy } from "passport-local"
-import * as db from "./db"
+
+import { User } from "./models"
 
 passport.use(
   new LocalStrategy(
@@ -10,7 +11,7 @@ passport.use(
     },
     async function(username, password, done) {
       try {
-        const user = await db.findUser(username, password)
+        const user = await User.findOne({ username, password })
         if (user) {
           return done(null, user)
         } else {
