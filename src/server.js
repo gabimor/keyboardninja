@@ -51,13 +51,6 @@ app.use("/", router)
 app.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
 
 app.get("/:name", async (req, res, next) => {
-  // TODO: find solution to /:name
-  // if (
-  //   req.params.name === "login" ||
-  //   req.params.name === "signup" ||
-  //   req.params.name === "__get-internal-source"
-  // )
-  //   next()
   try {
     const appsHash = await cache.getAppsHash()
     const appId = appsHash[req.params.name]
