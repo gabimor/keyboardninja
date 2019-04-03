@@ -58,48 +58,73 @@ app.get("/apps/:name", async (req, res, next) => {
   //   req.params.name === "__get-internal-source"
   // )
   //   next()
-  const appsHash = await cache.getAppsHash()
-  const appId = appsHash[req.params.name]
+  try {
+    const appsHash = await cache.getAppsHash()
+    const appId = appsHash[req.params.name]
 
-  const app = await cache.getApp(appId)
+    if (!appId) return next()
 
-  let { os } = req.cookies
-  if (!os) {
-    os = req.headers["user-agent"].toLowerCase().includes("win") ? "win" : "mac"
-  }
-  // if app doesn't support the detected os, switch os to the one that's supported
-  if (!app.oss.includes(os)) {
-    os = app.oss[0]
-  }
+    const app = await cache.getApp(appId)
 
-  if (req.user) {
-    const userShortcuts = await UserShortcut.findOne({
-      userId: req.user.id,
-      appId: app._id,
-    })
-    if (userShortcuts) {
-      for (const shortcutId of userShortcuts.shortcuts) {
-        app.shortcuts.find(
-          e => e._id.toString() === shortcutId.toString()
-        ).isPinned = true
+    let { os } = req.cookies
+    if (!os) {
+      os = req.headers["user-agent"].toLowerCase().includes("win")
+        ? "win"
+        : "mac"
+    }
+    // if app doesn't support the detected os, switch os to the one that's supported
+    if (!app.oss.includes(os)) {
+      os = app.oss[0]
+    }
+
+    if (req.user) {
+      const userShortcuts = await UserShortcut.findOne({
+        userId: req.user.id,
+        appId: app._id,
+      })
+      if (userShortcuts) {
+        for (const shortcutId of userShortcuts.shortcuts) {
+          app.shortcuts.find(
+            e => e._id.toString() === shortcutId.toString()
+          ).isPinned = true
+        }
       }
     }
+
+    const appCategories = await cache.getAppCategories()
+    const dataContext = { app, os, appCategories }
+
+    sendPage(req, res, dataContext)
+  } catch (err) {
+    next(err)
   }
-
-  req.dataContext = { app, os }
-
-  next()
 })
 
 app.get("/*", async (req, res) => {
+  console.log("started11111")
   const appCategories = await cache.getAppCategories()
 
   const dataContext = {
-    ...req.dataContext,
     appCategories,
     user: req.user,
   }
 
+  sendPage(req, res, dataContext)
+})
+
+// app.use(function(err, req, res, next) {
+//   console.log("error!!")
+// })
+
+const getTemplate = (url, dataContext) => (
+  <DataContext.Provider value={dataContext}>
+    <StaticRouter context={{}} location={url}>
+      <Layout />
+    </StaticRouter>
+  </DataContext.Provider>
+)
+
+const sendPage = (req, res, dataContext) => {
   if (!req.user) {
     let cachePage = cache.get(req.path + "-" + dataContext.os)
     if (!cachePage) {
@@ -111,7 +136,6 @@ app.get("/*", async (req, res) => {
   } else {
     res.write(pageStart(undefined, assets, dataContext))
     const stream = renderToNodeStream(getTemplate(req.url, dataContext))
-
     stream.pipe(
       res,
       { end: "false" }
@@ -120,14 +144,6 @@ app.get("/*", async (req, res) => {
       res.end(pageEnd())
     })
   }
-})
-
-const getTemplate = (url, dataContext) => (
-  <DataContext.Provider value={dataContext}>
-    <StaticRouter context={{}} location={url}>
-      <Layout />
-    </StaticRouter>
-  </DataContext.Provider>
-)
+}
 
 export default app

@@ -8,16 +8,21 @@
 - responsive
   - mobile menu
   - cross browser/device tests
-- forgot password
+- share page
+  - pin without login
+  - save to localstorage
+  - on share, create link and save to server
 - handle 404
 - favicon
-- my apps
-- not logged in behavior
-- images sizes (unite per category)
-- upload to server
-- connect domain
+- upload to server & connect domain
 - sanity tests
 - GA & hotjar
+
+#### alpha 2
+- images sizes (unite per category)
+- embed
+- my apps
+- forgot password
 
 #### beta
 
