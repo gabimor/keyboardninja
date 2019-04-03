@@ -50,7 +50,7 @@ app.use("/", router)
 
 app.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
 
-app.get("/apps/:name", async (req, res, next) => {
+app.get("/:name", async (req, res, next) => {
   // TODO: find solution to /:name
   // if (
   //   req.params.name === "login" ||
@@ -100,21 +100,28 @@ app.get("/apps/:name", async (req, res, next) => {
   }
 })
 
-app.get("/*", async (req, res) => {
-  console.log("started11111")
-  const appCategories = await cache.getAppCategories()
+app.get("/*", async (req, res, next) => {
+  try {
+    const appCategories = await cache.getAppCategories()
 
-  const dataContext = {
-    appCategories,
-    user: req.user,
+    const dataContext = {
+      appCategories,
+      user: req.user,
+    }
+
+    sendPage(req, res, dataContext)
+  } catch (err) {
+    next(err)
   }
-
-  sendPage(req, res, dataContext)
 })
 
-// app.use(function(err, req, res, next) {
-//   console.log("error!!")
-// })
+app.use(function(err, req, res) {
+  res.status(err.status).json({
+    type: "error",
+    message: err.message,
+    err,
+  })
+})
 
 const getTemplate = (url, dataContext) => (
   <DataContext.Provider value={dataContext}>

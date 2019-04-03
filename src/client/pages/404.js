@@ -1,17 +1,20 @@
-import Layout from "./layout/Layout"
+import React from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 
-const About = () => {
+const Page404 = () => {
   return (
-    <Layout>
-      <Container>
-        <Header>Oops</Header>
-        <Message>Looks like no one's here ..</Message>
-        <Code>404</Code>
-      </Container>
-    </Layout>
+    <Container>
+      <div>
+        <Header>
+          <Code>404 </Code>Oops...
+        </Header>
+        <Message>There's no one here</Message>
+      </div>
+    </Container>
   )
 }
+
+export default Page404
 
 const Header = styled.h1`
   font-size: 40px;
@@ -21,14 +24,16 @@ const Header = styled.h1`
 
 const Message = styled.div`
   margin-bottom: 10px;
+  font-size: 18px;
+  color: #e9e5e5;
 `
 
 const Code = styled.span`
-  color: #ffffff;
+  color: #fa9290;
 `
 
 const Container = styled.div`
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
-
-export default About

@@ -1,3 +1,27 @@
+// /*
+//   #a12d2a - shortcuts titles
+//   #D1403D - darkRed
+//   #E86562 - red, links
+//   #fa9290 - links
+//   #5A5A5A - mutedIcon
+//   #9D8B8B - labelText, pinBorder
+//   #A4A3A6 - pin
+//   #d1b4b4 - textRed
+//   #E9E5E5 - softText
+
+//   #FFD46F - pinSelected
+//   #A57E26 - pinSelectedBorder
+
+//   #FFFFFF - white
+//   #4F4242 - appPanel
+//   #453A3A - darkBorder
+//   #442323 - mainBG1
+//   #270505 - mainBG2
+//   #2C2525 - panelZebra
+//   #2E2424 - panel
+//   #000000 - black
+// */
+
 const style = `<style>
 * {
   box-sizing: border-box;
@@ -14,6 +38,7 @@ body {
   margin: 0;
   font-family: "IBM Plex Sans", sans-serif;
   font-size: 14px;
+  min-height: 500px;
 }
 
 input, textarea, select, button {

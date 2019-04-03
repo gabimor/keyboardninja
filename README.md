@@ -12,14 +12,15 @@
   - pin without login
   - save to localstorage
   - on share, create link and save to server
-- handle 404
 - favicon
 - upload to server & connect domain
 - sanity tests
 - GA & hotjar
 
 #### alpha 2
+
 - images sizes (unite per category)
+- homepage: category index
 - embed
 - my apps
 - forgot password
@@ -31,7 +32,6 @@
 - suggest an app
 - footer
 - sections: text/shortcut width
-- homepage: category index
 - login, signup popup & load userApp on login
 - search TODOs
 - performance
@@ -67,6 +67,7 @@
 ## Tech debt
 
 - change memory cache to redis
+- dont cache 404
 - users: service workers, transform stream + gzip
 - components: functions or arrow functions ? (check react devtools)
 - Add <> </> support

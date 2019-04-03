@@ -9,6 +9,7 @@ import Header from "./pages/layout/Header"
 import Footer from "./pages/layout/Footer"
 import Signup from "./pages/Signup"
 import MyApps from "./pages/MyApps"
+import Page404 from "./pages/404"
 
 const Layout = () => {
   return (
@@ -20,7 +21,8 @@ const Layout = () => {
           <Route exact path="/login" component={Login} />
           <Route ex act path="/signup" component={Signup} />
           <Route exact path="/apps" component={MyApps} />
-          <Route path="/apps/:name" component={App} />
+          <Route path="/:name" component={App} />
+          <Route component={Page404} />
         </Switch>
         <Footer />
       </Container>
