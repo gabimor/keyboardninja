@@ -6,11 +6,8 @@
 
 - enter all apps data
 - UI
-  - favicon
-  - switch to kbd element https://developer.mozilla.org/en-US/docs/Web/HTML/Element/samp
+  - favicon  
   - try ninja star instead of pin
-  - one column layout vs two (custom per app?)
-  - field width custom ?
   - separate popularity and btn?
 - responsive
   - mobile menu
@@ -24,14 +21,6 @@
   - sanity tests
   - 500 page
   - GA & hotjar
-
-##### unsupported features
-
-- text instead of kbd (mouse gestures)
-- links
-- remarks
-  - indentation
-  - styling
 
 #### alpha 2
 
