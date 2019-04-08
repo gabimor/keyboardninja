@@ -40,24 +40,34 @@ function ShortcutOption({ keys }) {
   return (
     <Container>
       {keysArr.map((key, index) => {
-        if (key === "+") return <Plus key={index}>+</Plus>
-        else if (key === " ") return <Text key={index}>then</Text>
-        else if (key === "or") return <Or key={index}>or</Or>
-        else if (key === "plus") return <kbd key={index}>+</kbd>
-        else if (key === "|") return ""
-        else if (key === "..") return <Text key={index}>..</Text>
-        else if (
-          key === "up" ||
-          key === "down" ||
-          key === "left" ||
-          key === "right"
-        ) {
-          return (
-            <kbd key={index}>
-              <i className={`fas fa-long-arrow-alt-${key}`} />
-            </kbd>
-          )
-        } else return <kbd key={index}>{upperFirstLetter(key)}</kbd>
+        switch (key) {
+          case "+":
+          case "..":
+            return key
+          case " ":
+            return "then"
+          case "or":
+            return (
+              <div key={index} className="kbn-or">
+                or
+              </div>
+            )
+          case "plus":
+            return <kbd key={index}>+</kbd>
+          case "|":
+            return ""
+          case "up":
+          case "down":
+          case "left":
+          case "right":
+            return (
+              <kbd key={index}>
+                <i className={`fas fa-long-arrow-alt-${key}`} />
+              </kbd>
+            )
+          default:
+            return <kbd key={index}>{upperFirstLetter(key)}</kbd>
+        }
       })}
     </Container>
   )
@@ -69,19 +79,13 @@ Shortcut.propTypes = {
 
 const Container = styled.div`
   display: inline-flex;
-  font-size: 14px;
-`
-
-const Plus = styled.span`
-  padding: 1px 0px;
-`
-
-const Or = styled.div`
-  padding: 1px 10px;
-`
-
-const Text = styled.span`
-  padding: 2px 4px 0;
   font-size: 13px;
   color: #e9e5e5;
+
+  kbd {
+    font-size: 14px;
+  }
+  .kbn-or {
+    padding: 1px 10px;
+  }
 `

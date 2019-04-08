@@ -107,11 +107,11 @@ function doWork(auth) {
   })
 }
 
+// ---------- my code ------------
+
 function encodeAppName(name) {
   return name.toLowerCase().replace(new RegExp(" ", "g"), "-")
 }
-
-// ---------- my code ------------
 
 mongoose.connect("mongodb://localhost:27017/keyboardninja", {
   useNewUrlParser: true,
@@ -164,26 +164,6 @@ function getSpreadsheetId(appName) {
       return "1b-Apeea9rBt6E4QG6Drzx_YQJmyxwKh9vjL8Ma6b1os"
   }
 }
-
-const apps = {
-  xcode: { name: "Xcode", icon: "xcode.png", oss: ["mac"] },
-  "visual studio": {
-    name: "Visual Studio",
-    icon: "visualstudio.png",
-    oss: ["win"],
-  },
-  vscode: {
-    name: "Visual Studio Code",
-    icon: "vscode.png",
-    oss: ["win", "mac"],
-  },
-  atom: {
-    name: "Atom",
-    icon: "atom.png",
-    oss: ["win", "mac"],
-  },
-}
-
 const App = mongoose.model(
   "apps",
   new Schema({
