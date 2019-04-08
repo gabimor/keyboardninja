@@ -22,7 +22,7 @@
 //   #000000 - black
 // */
 
-const style = `<style>
+export const style = `<style>
 * {
   box-sizing: border-box;
 }
@@ -56,6 +56,22 @@ input {
   padding: 8px 10px 8px;
   color: #FFFFFF;
   background: #000000;
+}
+
+kbd {
+  display: inline-block;
+  background-color: #635656;
+  color: #FFFFFF;
+  font-family: inherit;
+
+  font-size: 13px;
+  border: solid 1px #442323;
+  border-radius: 6px;
+  padding: 0 2px;
+  margin: 0 2px;
+  min-width: 32px;
+  text-align: center;
+  box-shadow: 0px 6px 1px 1px rgba(30,30,30,0.2);
 }
 
 label {

@@ -5,6 +5,13 @@
 #### alpha
 
 - enter all apps data
+- UI
+  - favicon
+  - switch to kbd element https://developer.mozilla.org/en-US/docs/Web/HTML/Element/samp
+  - try ninja star instead of pin
+  - one column layout vs two (custom per app?)
+  - field width custom ?
+  - separate popularity and btn?
 - responsive
   - mobile menu
   - cross browser/device tests
@@ -12,13 +19,23 @@
   - pin without login
   - save to localstorage
   - on share, create link and save to server
-- favicon
-- upload to server & connect domain
-- sanity tests
-- GA & hotjar
+- go live
+  - upload to server & connect domain
+  - sanity tests
+  - 500 page
+  - GA & hotjar
+
+##### unsupported features
+
+- text instead of kbd (mouse gestures)
+- links
+- remarks
+  - indentation
+  - styling
 
 #### alpha 2
 
+- find
 - images sizes (unite per category)
 - homepage: category index
 - embed
@@ -27,11 +44,10 @@
 
 #### beta
 
+- new app poll
 - login or signup to save, you can also share your shortcuts with a frien
-- separate popularity and btn?
 - suggest an app
 - footer
-- sections: text/shortcut width
 - login, signup popup & load userApp on login
 - search TODOs
 - performance
@@ -66,6 +82,7 @@
 
 ## Tech debt
 
+- store sessions in redis
 - change memory cache to redis
 - dont cache 404
 - users: service workers, transform stream + gzip

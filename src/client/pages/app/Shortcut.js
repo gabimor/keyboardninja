@@ -2,7 +2,6 @@ import React from "react" // eslint-disable-line no-unused-vars
 import PropTypes from "prop-types"
 import styled from "@emotion/styled"
 
-import ShortcutKey from "./ShortcutKey"
 import { upperFirstLetter } from "../../helpers"
 
 function split(keysArr, seperator) {
@@ -11,7 +10,7 @@ function split(keysArr, seperator) {
     const item1Split = item1.split(seperator)
     for (let i = 0; i < item1Split.length; i++) {
       newArr.push(item1Split[i].trim())
-      
+
       // dont add seperator after last element
       if (i !== item1Split.length - 1) {
         newArr.push(seperator)
@@ -37,15 +36,15 @@ function ShortcutOption({ keys }) {
   keysArr = split(keysArr, "|")
   keysArr = split(keysArr, "..")
   keysArr = split(keysArr, " ")
-  
+
   return (
     <Container>
       {keysArr.map((key, index) => {
         if (key === "+") return <Plus key={index}>+</Plus>
         else if (key === " ") return <Text key={index}>then</Text>
         else if (key === "or") return <Or key={index}>or</Or>
-        else if (key === "plus") return <ShortcutKey key={index}>+</ShortcutKey>
-        else if (key === "|") return <Text key={index}>/</Text>
+        else if (key === "plus") return <kbd key={index}>+</kbd>
+        else if (key === "|") return ""
         else if (key === "..") return <Text key={index}>..</Text>
         else if (
           key === "up" ||
@@ -54,12 +53,11 @@ function ShortcutOption({ keys }) {
           key === "right"
         ) {
           return (
-            <ShortcutKey key={index}>
+            <kbd key={index}>
               <i className={`fas fa-long-arrow-alt-${key}`} />
-            </ShortcutKey>
+            </kbd>
           )
-        } else
-          return <ShortcutKey key={index}>{upperFirstLetter(key)}</ShortcutKey>
+        } else return <kbd key={index}>{upperFirstLetter(key)}</kbd>
       })}
     </Container>
   )
@@ -85,5 +83,5 @@ const Or = styled.div`
 const Text = styled.span`
   padding: 2px 4px 0;
   font-size: 13px;
-  color: #E9E5E5;
+  color: #e9e5e5;
 `

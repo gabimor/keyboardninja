@@ -9,6 +9,8 @@ const shortcuts = [
   "ctrl+shift+k",
   "ctrl+alt+shift+esc",
   "ctrl+alt+shift+c",
+  "ctrl+left|right|up|down",
+  "ctrl+space",
   "ctrl+up",
   "ctrl+down",
   "ctrl+left",
@@ -17,6 +19,8 @@ const shortcuts = [
   "alt+`",
   "ctrl+k f",
   "ctrl+k f or F12",
+  "ctrl+1..4",
+  "ctrl+up|down",
 ]
 
 storiesOf("Shortcut", module).add("default", () =>

@@ -2,7 +2,7 @@ import React from "react" // eslint-disable-line no-unused-vars
 import { configure, addDecorator } from "@storybook/react"
 import { configureViewport } from "@storybook/addon-viewport"
 
-import Theme from "../src/client/pages/layout"
+import { style } from "../src/server/page"
 
 const viewports = {
   responsive: {
@@ -36,7 +36,7 @@ configureViewport({
 // global decorator to add theme
 addDecorator(story => (
   <div style={{ padding: 40 }}>
-    <Theme />
+    <style>{style}</style>
     {story()}
   </div>
 ))

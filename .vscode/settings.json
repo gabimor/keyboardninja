@@ -13,5 +13,5 @@
   },
   "peacock.affectActivityBar": true,
   "editor.tabSize": 2,
-  "debug.node.autoAttach": "off"
+  "debug.node.autoAttach": "on"
 }

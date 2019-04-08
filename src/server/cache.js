@@ -7,7 +7,8 @@ import { App, AppCategory, UserShortcut } from "./models"
 const nodeCache = new NodeCache()
 
 export async function getAppsHash() {
-  let appsHash = nodeCache.get("appsHash")
+  // let appsHash = nodeCache.get("appsHash")
+  let appsHash
   if (!appsHash) {
     appsHash = {}
     const apps = await App.find()
@@ -40,7 +41,8 @@ export function setPin(appId, shortcutId, isPinned) {
 }
 
 export async function getApp(appId) {
-  let cacheApp = nodeCache.get("app-" + appId)
+  // let cacheApp = nodeCache.get("app-" + appId)
+  let cacheApp
 
   if (!cacheApp) {
     cacheApp = await App.findById(appId).lean()
@@ -51,8 +53,11 @@ export async function getApp(appId) {
     for (const userShortcut of userShortcuts) {
       // go over every shortcut in that record
       for (const shortcut of userShortcut.shortcuts) {
-        cacheApp.shortcuts.find(e => e._id.toString() === shortcut.toString())
-          .pins++
+        const app = cacheApp.shortcuts.find(
+          e => e._id.toString() === shortcut.toString()
+        )
+        app.pins = app.pins || 0
+        app.pins++
       }
     }
   }
@@ -65,7 +70,7 @@ export function set(key, value) {
 }
 
 export function get(key) {
-  return nodeCache.get(key)
+  // return nodeCache.get(key)
 }
 // export default nodeCache
 // START PERFORMANCE MEASURE

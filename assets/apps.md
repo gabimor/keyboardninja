@@ -3,19 +3,29 @@ http://www.livekeyboardshortcuts.com/ableton-live-9-keyboard-shortcuts.html
 
 ## Code
 
-VS code - https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
-visual studio - https://docs.microsoft.com/en-us/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio?view=vs-2017
-notepad++ - http://docs.notepad-plus-plus.org/index.php/Keyboard_And_Mouse_Shortcuts
-sublime text - http://docs.sublimetext.info/en/latest/reference/keyboard_shortcuts_win.html
-intellij - https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf
-android studio - https://developer.android.com/studio/intro/keyboard-shortcuts
-atom - https://github.com/nwinkler/atom-keyboard-shortcuts
-pycharm - https://www.jetbrains.com/help/pycharm/keyboard-shortcuts-by-category.html
-xcode - https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/xcode_help-command_shortcuts/MenuCommands/MenuCommands014.html
-phpstorm - https://www.jetbrains.com/help/phpstorm/keyboard-shortcuts-by-category.html
-webstorm - https://resources.jetbrains.com/storage/products/webstorm/docs/WebStorm_ReferenceCard.pdf
-chrome devtools - https://developers.google.com/web/tools/chrome-devtools/shortcuts
-rubymine - https://resources.jetbrains.com/storage/products/rubymine/docs/RubyMine_ReferenceCard_mac.pdf
+- VS code
+  - win: https://code.visualstudio.com/docs/getstarted/keybindings
+  - mac: https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf
+- visual studio
+  - win: https://docs.microsoft.com/en-us/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio?view=vs-2019
+  - mac: https://docs.microsoft.com/en-us/visualstudio/mac/keyboard-shortcuts?view=vsmac-2019
+- notepad++
+  - win: http://docs.notepad-plus-plus.org/index.php/Keyboard_And_Mouse_Shortcuts
+- sublime text
+  - win: http://docs.sublimetext.info/en/latest/reference/keyboard_shortcuts_win.html
+  - mac: http://docs.sublimetext.info/en/latest/reference/keyboard_shortcuts_osx.html
+- intellij - https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf
+- android studio - https://developer.android.com/studio/intro/keyboard-shortcuts
+- atom - https://github.com/nwinkler/atom-keyboard-shortcuts
+- pycharm - https://www.jetbrains.com/help/pycharm/keyboard-shortcuts-by-category.html
+- xcode
+  - mac: https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/xcode_help-command_shortcuts/MenuCommands/MenuCommands014.html
+- phpstorm - https://www.jetbrains.com/help/phpstorm/keyboard-shortcuts-by-category.html
+- webstorm - https://resources.jetbrains.com/storage/products/webstorm/docs/WebStorm_ReferenceCard.pdf
+- chrome devtools - https://developers.google.com/web/tools/chrome-devtools/shortcuts
+- rubymine
+  - win: https://resources.jetbrains.com/storage/products/rubymine/docs/RubyMine_ReferenceCard.pdf
+  - mac: https://resources.jetbrains.com/storage/products/rubymine/docs/RubyMine_ReferenceCard_mac.pdf
 
 textmate
 firefox devtools - https://developer.mozilla.org/en-US/docs/Tools/Keyboard_shortcuts
@@ -29,6 +39,7 @@ resharper - https://www.jetbrains.com/help/resharper/Reference__Keyboard_Shortcu
 Chrome - https://support.google.com/chrome/answer/157179?hl=en
 Firefox - https://support.mozilla.org/en-US/kb/keyboard-shortcuts-perform-firefox-tasks-quickly
 Safary - https://support.apple.com/en-il/guide/safari/keyboard-and-other-shortcuts-cpsh003/mac
+
 Edge
 Opera
 
@@ -72,7 +83,7 @@ after effects: https://helpx.adobe.com/il_en/after-effects/using/keyboard-shortc
 Logic Pro X - http://www.logicprokeycommands.com/logic-pro-x-key-commands/
 Pro Tools - http://www.protoolskeyboardshortcuts.com/pro-tools-2018-keyboard-shortcuts/
 Studio One -
-Ableton Live
+Ableton Live - http://www.livekeyboardshortcuts.com/ableton-live-9-keyboard-shortcuts.html
 Cubase Pro - https://steinberg.help/cubase_ai_le_elements/v9/en/cubase_nuendo/topics/key_commands/key_commands_default_c.html
 Propellerhead Reason
 FL Studio
