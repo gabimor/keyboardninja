@@ -83,7 +83,7 @@ function doWork(auth) {
   const appName = process.argv[2]
 
   const sheetObj = {
-    spreadsheetId: getSpreadsheetId(appName),
+    spreadsheetId: "1b-Apeea9rBt6E4QG6Drzx_YQJmyxwKh9vjL8Ma6b1os",
     range: `${appName}!A:F`,
   }
 
@@ -128,7 +128,11 @@ async function addApp(name, icon, oss, shortcuts) {
 
       appData.sections.push({ _id: sectionId, name: sectionName })
     } else {
+      const isHtml = !!shortcutRow[3]
+      const note = shortcutRow[4]
       const shortcut = { sectionId }
+      if (isHtml) shortcut.isHtml = isHtml
+      if (note) shortcut.note = note
 
       shortcut.action = shortcutRow[0].trim()
       shortcut[oss[0]] = shortcutRow[1] ? shortcutRow[1].trim() : ""
@@ -146,24 +150,6 @@ async function addApp(name, icon, oss, shortcuts) {
   app.save(() => process.exit(0))
 }
 
-function getSpreadsheetId(appName) {
-  switch (appName) {
-    case "xcode":
-    case "visual studio":
-    case "visual studio code":
-    case "sublime text":
-    case "notepadpp":
-    case "atom":
-    case "chrome devtools":
-    case "phpstorm":
-    case "android studio":
-    case "firefox devtools":
-    case "pycharm":
-    case "intellij":
-    case "webstorm":
-      return "1b-Apeea9rBt6E4QG6Drzx_YQJmyxwKh9vjL8Ma6b1os"
-  }
-}
 const App = mongoose.model(
   "apps",
   new Schema({
@@ -181,7 +167,8 @@ const App = mongoose.model(
         sectionId: Schema.ObjectId,
         win: String,
         mac: String,
-        pins: Number,
+        isHtml: Boolean,
+        note: String,
       }),
     ],
   })

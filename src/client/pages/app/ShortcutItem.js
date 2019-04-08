@@ -8,9 +8,18 @@ import { upperFirstLetter } from "../../helpers"
 import Shortcut from "./Shortcut"
 import Pin from "./Pin"
 
-function ShortcutItem({ id, action, keys, pins: _pins, isPinned: _isPinned }) {
+function ShortcutItem({
+  id,
+  action,
+  keys,
+  pins: _pins,
+  isPinned: _isPinned,
+  isHtml,
+  note,
+}) {
   const { app, user, doPin } = useContext(DataContext)
   const [pins, setPins] = useState(_pins)
+  const [infoVisible, setInfoVisible] = useState(false)
   const [isPinned, setIsPins] = useState(_isPinned)
 
   async function handlePin() {
@@ -34,9 +43,16 @@ function ShortcutItem({ id, action, keys, pins: _pins, isPinned: _isPinned }) {
       </PinContainer>
       <ActionContainer isPinned={isPinned}>
         {upperFirstLetter(action)}
+        {note && (
+          <InfoIcon
+            className="fas fa-info"
+            onClick={() => setInfoVisible(true)}
+          />
+        )}
+        {infoVisible && <InfoContainer>{note}</InfoContainer>}
       </ActionContainer>
       <KeysContainer>
-        <Shortcut keys={keys} />
+        <Shortcut keys={keys} isHtml={isHtml} />
       </KeysContainer>
     </Container>
   )
@@ -55,8 +71,23 @@ const Container = styled.tr`
   vertical-align: baseline;
 `
 
+const InfoIcon = styled.i`
+  font-size: 13px;
+  color: #a4a3a6;
+  margin-left: 10px;
+  cursor: pointer;
+`
+
+const InfoContainer = styled.div`
+  font-size: 13px;
+  color: #a4a3a6;
+  margin-top: 3px;
+`
+
 const ActionContainer = styled.td`
   color: ${props => (props.isPinned ? "#FFD46F" : "inherit")};
+  width: 50%;
+  padding-right: 30px;
 `
 
 const PinContainer = styled.td`
@@ -66,6 +97,5 @@ const PinContainer = styled.td`
 `
 
 const KeysContainer = styled.td`
-  width: 1%;
   padding: 0 13px 8px 0;
 `

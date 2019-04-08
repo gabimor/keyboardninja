@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose"
 
 const { Schema } = mongoose
@@ -33,7 +32,8 @@ export const App = mongoose.model(
         sectionId: Schema.ObjectId,
         win: String,
         mac: String,
-        pins: Number,
+        isHtml: Boolean,
+        note: String,
       }),
     ],
   })

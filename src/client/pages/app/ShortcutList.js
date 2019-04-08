@@ -21,7 +21,9 @@ export default function ShortcutList({ title, shortcuts }) {
                 id={shortcut._id}
                 keys={shortcut[os]}
                 action={shortcut.action}
+                note={shortcut.note}
                 pins={shortcut.pins}
+                isHtml={shortcut.isHtml}
                 isPinned={!!shortcut.isPinned}
               />
             )
