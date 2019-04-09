@@ -36,6 +36,7 @@ const Container = styled.div`
   border-radius: 3px;
   padding: 5px 0 3px;
   cursor: pointer;
+  vertical-align: top;
 
   img {
     height: 12px;

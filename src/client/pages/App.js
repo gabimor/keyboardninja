@@ -5,13 +5,14 @@ import styled from "@emotion/styled"
 
 import ShortcutList from "./app/ShortcutList"
 import Controls from "./app/Controls"
+import { encodeAppName } from "../helpers"
 
 const App = () => {
   const { app, os } = useContext(DataContext)
-
+  const encodedName = encodeAppName(app.name)
   return (
     <div>
-      <Controls icon={app.icon} name={app.name} />
+      <Controls icon={encodedName + ".png"} name={app.name} />
       <ResultsContainer>
         {app.sections.map(section => {
           const shortcuts = app.shortcuts.filter(

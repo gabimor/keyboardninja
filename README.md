@@ -5,11 +5,8 @@
 #### alpha
 
 - enter all apps data
-- UI
-  - favicon  
-  - try ninja star instead of pin
-  - separate popularity and btn?
 - responsive
+  - homepage grid
   - mobile menu
   - cross browser/device tests
 - share page
@@ -21,14 +18,21 @@
   - sanity tests
   - 500 page
   - GA & hotjar
+- UI
+  - favicon  
+  - try ninja star instead of pin
+  - separate popularity and btn?
 
 #### alpha 2
 
 - find
+- Show: All, My Shortcuts | Grouped, Ungrouped (inside SearchWrapper)
 - images sizes (unite per category)
 - homepage: category index
+- sort by popularity
+- flat 
 - embed
-- my apps
+
 - forgot password
 
 #### beta
@@ -37,6 +41,7 @@
 - login or signup to save, you can also share your shortcuts with a frien
 - suggest an app
 - footer
+- show related apps in app page (to show there's more content on the site)
 - login, signup popup & load userApp on login
 - search TODOs
 - performance
@@ -57,8 +62,9 @@
 
 ### low priority
 
-- add social login
-- Show: All, My Shortcuts | Grouped, Ungrouped (inside SearchWrapper)
+- login
+  - add social login
+  - forgot password
 - ?? app page - SSR load the first sections + show all
 - my apps: apps you've pinned shortcuts in will show here
 - homepage
@@ -67,7 +73,6 @@
 - suggest app
 - patreon/buy me a coffee
 - spread the word in blogs/groups
-- seo - find a pro friend
 
 ## Tech debt
 

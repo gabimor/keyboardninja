@@ -24,7 +24,10 @@ function split(keysArr, seperator) {
 export default function Shortcut({ keys, isHtml }) {
   if (isHtml)
     return (
-      <Container dangerouslySetInnerHTML={{ __html: keys }} isHtml={isHtml} />
+      <Container
+        dangerouslySetInnerHTML={{ __html: prepareHtml(keys) }}
+        isHtml={isHtml}
+      />
     )
 
   let keysArr = split([keys], " or ")
@@ -34,6 +37,17 @@ export default function Shortcut({ keys, isHtml }) {
       <ShortcutOption keys={e} />{" "}
     </div>
   ))
+}
+
+function prepareHtml(html) {
+  let isEnding = false
+
+  while (html.includes("**")) {
+    html = html.replace("**", isEnding ? "</kbd>" : "<kbd>")
+    isEnding = !isEnding
+  }
+
+  return upperFirstLetter(html)
 }
 
 function ShortcutOption({ keys }) {
@@ -60,7 +74,7 @@ function ShortcutOption({ keys }) {
           case "plus":
             return <kbd key={index}>+</kbd>
           case "|":
-            return ""
+            return " / "
           case "up":
           case "down":
           case "left":

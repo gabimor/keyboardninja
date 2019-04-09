@@ -34,6 +34,7 @@
     "react-dom": "16.8.4",
     "react-powerplug": "^1.0.0",
     "react-router-dom": "4.4.0",
+    "react-scroll": "^1.7.11",
     "redis": "^2.8.0"
   },
   "devDependencies": {

@@ -3,7 +3,8 @@ import React from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 import { lightenDarkenColor } from "../helpers"
 
-export default function App({ name, icon }) {
+export default function App({ name, icon, disabled }) {  
+  const Container = disabled ? DisabledContainer : EnabledContainer
   return (
     <Container>
       <Image src={icon} />
@@ -12,19 +13,28 @@ export default function App({ name, icon }) {
   )
 }
 
-const Container = styled.div`
-  display: inline-flex;
-  padding: 5px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 120px;
-  height: 120px;
-  margin: 10px;
-  background-color: #4F4242;
-  color: #d1b4b4;
+const sharedStyles = `
+display: inline-flex;
+padding: 5px;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+width: 120px;
+height: 120px;
+margin: 10px;
+background-color: #4f4242;
+color: #d1b4b4;
+box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+`
+
+const DisabledContainer = styled.div`
+  ${sharedStyles}
+  opacity: 0.4;
+`
+
+const EnabledContainer = styled.div`
+  ${sharedStyles}
   cursor: pointer;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
   transition: all 0.3s;
 
   :hover {

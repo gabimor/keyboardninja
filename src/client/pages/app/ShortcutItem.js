@@ -46,7 +46,7 @@ function ShortcutItem({
         {note && (
           <InfoIcon
             className="fas fa-info"
-            onClick={() => setInfoVisible(true)}
+            onClick={() => setInfoVisible(!infoVisible)}
           />
         )}
         {infoVisible && <InfoContainer>{note}</InfoContainer>}
