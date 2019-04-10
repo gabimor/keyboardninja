@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <Container>
       <Hero>
-        Discover, save, share your <b>shortcuts</b>
+        Every app, every shortcut, <b>the best ones first.</b>
       </Hero>
       <Index>
         {appCategories.map(appCategory => (
@@ -50,6 +50,7 @@ const GridContainer = styled.div`
     "casual casual casual"
     "graphics graphics graphics"
     "office office office";
+  margin-top: 100px;
 
   @media (max-width: 992px) {
     grid-template-areas:
@@ -66,18 +67,18 @@ const Index = styled.h3`
   display: flex;
   margin-bottom: 50px;
 
-  color: #ffffff;
-  text-align: center;
+  justify-content: center;
 
   a {
-    flex-grow: 1;
+    color: #d1d0d4;
+    margin: 0 10px;
   }
 `
 
 const Hero = styled.h1`
   color: #ffffff;
-  font-size: 40px;
-  margin: 120px 0 165px 0;
+  font-size: 50px;
+  margin: 120px 0 25px 0;
   text-align: center;
   font-weight: 300;
 

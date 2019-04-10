@@ -8,40 +8,32 @@ import { upperFirstLetter } from "../../helpers"
 import Shortcut from "./Shortcut"
 import Pin from "./Pin"
 
-function ShortcutItem({
-  id,
-  action,
-  keys,
-  pins: _pins,
-  isPinned: _isPinned,
-  isHtml,
-  note,
-}) {
+function ShortcutItem({ id, action, keys, pins, isPinned, isHtml, note }) {
   const { app, user, doPin } = useContext(DataContext)
-  const [pins, setPins] = useState(_pins)
+  const [pinsState, setPinsState] = useState(pins)
   const [infoVisible, setInfoVisible] = useState(false)
-  const [isPinned, setIsPins] = useState(_isPinned)
+  const [isPinnedState, setIsPinnedState] = useState(isPinned)
 
   async function handlePin() {
-    if (user) {
-      const newPins = isPinned ? pins - 1 : pins + 1
-      const newIsPinned = !isPinned
+    const newPins = isPinnedState ? pins : pins + 1
+    const newIsPinned = !isPinnedState
+    setPinsState(newPins)
+    setIsPinnedState(newIsPinned)
 
-      setPins(newPins)
-      setIsPins(newIsPinned)
-      await pin(app._id, id, newIsPinned)
-      doPin(id, newPins, newIsPinned)
-    } else {
-      alert("not logged in")
-    }
+    doPin(id, newPins, newIsPinned)
+    await pin(app._id, id, newIsPinned)
+
+    // if (user) {
+    // } else {
+    // }
   }
 
   return (
     <Container>
       <PinContainer>
-        <Pin isPinned={isPinned} count={pins} onClick={handlePin} />
+        <Pin isPinned={isPinnedState} pins={pinsState} onClick={handlePin} />
       </PinContainer>
-      <ActionContainer isPinned={isPinned}>
+      <ActionContainer isPinned={isPinnedState}>
         {upperFirstLetter(action)}
         {note && (
           <InfoIcon
@@ -88,14 +80,16 @@ const ActionContainer = styled.td`
   color: ${props => (props.isPinned ? "#FFD46F" : "inherit")};
   width: 50%;
   padding-right: 30px;
+  user-select: none;
 `
 
 const PinContainer = styled.td`
   width: 1%;
   text-align: center;
   padding: 6px 13px 6px 15px;
+  user-select: none;
 `
 
 const KeysContainer = styled.td`
-  padding: 0 13px 8px 0;
+  padding: 0 13px 0 0;
 `

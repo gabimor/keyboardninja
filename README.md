@@ -2,26 +2,43 @@
 
 ## TODO
 
+- clicking a shortcut saves it to localstorage
+- refreshing loads from localstorage
+- Get Link hashes sessionid & all the shortcutsids and creates a hash for link
+  - creating two links for the same input will not create a new hash
+  - message "login to to be able to edit that page"
+- logged in user saves the page automatically
+
 #### alpha
 
-- enter all apps data
 - responsive
-  - homepage grid
   - mobile menu
   - cross browser/device tests
 - share page
+  - issues
+    - userless voting, how to prevent voting more than one time ?
+    - count only shares ?
+    - resort on vote ?
   - pin without login
-  - save to localstorage
+  - save to localstorage/session ?
+  - sticky header
   - on share, create link and save to server
+  - separate popularity and btn?
+- found an error ?
+  - proofing (search "fix")
+  - cmd or ⌘, ⌥, ⇧, ^
+- enter all apps data
+  - visual studio - mac
+  - firefox - mac
 - go live
+  - search TODOs
   - upload to server & connect domain
   - sanity tests
   - 500 page
+  - error handling (fetch, try catch)
   - GA & hotjar
 - UI
   - favicon  
-  - try ninja star instead of pin
-  - separate popularity and btn?
 
 #### alpha 2
 
@@ -37,13 +54,10 @@
 
 #### beta
 
-- new app poll
-- login or signup to save, you can also share your shortcuts with a frien
-- suggest an app
+- suggest an app / new app poll
 - footer
 - show related apps in app page (to show there's more content on the site)
 - login, signup popup & load userApp on login
-- search TODOs
 - performance
   - render times
   - server times

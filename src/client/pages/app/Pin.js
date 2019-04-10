@@ -2,7 +2,7 @@ import React from "react" // eslint-disable-line no-unused-vars
 import PropTypes from "prop-types"
 import styled from "@emotion/styled"
 
-export default function Shortcut({ count, isPinned, onClick }) {
+export default function Shortcut({ pins, isPinned, onClick }) {
   return (
     <Container isPinned={isPinned} onClick={onClick}>
       <IconWrapper>
@@ -12,20 +12,15 @@ export default function Shortcut({ count, isPinned, onClick }) {
           <img src="/pin-off.svg" alt="" />
         )}
       </IconWrapper>
-      <Count isPinned={isPinned}>{count}</Count>
+      <Count isPinned={isPinned}>{pins}</Count>
     </Container>
   )
 }
 
 Shortcut.propTypes = {
-  count: PropTypes.number.isRequired,
+  pins: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
   isPinned: PropTypes.bool.isRequired,
-}
-
-Shortcut.defaultProps = {
-  count: 0,
-  isPinned: false,
 }
 
 const Container = styled.div`
@@ -36,7 +31,8 @@ const Container = styled.div`
   border-radius: 3px;
   padding: 5px 0 3px;
   cursor: pointer;
-  vertical-align: top;
+  vertical-align: middle;
+  user-select: none;
 
   img {
     height: 12px;

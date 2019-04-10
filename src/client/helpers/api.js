@@ -43,3 +43,11 @@ export function pin(appId, shortcutId, isPinned) {
     headers,
   })
 }
+
+export function getLink(appId, shortcutIds) {
+  return fetch("/api/getlink", {
+    method: "POST",
+    body: JSON.stringify({ appId, shortcutIds }),
+    headers,
+  })
+}

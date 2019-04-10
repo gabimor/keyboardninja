@@ -25,6 +25,7 @@
     "express-session": "^1.15.6",
     "googleapis": "^27.0.0",
     "isomorphic-unfetch": "^3.0.0",
+    "md5": "^2.2.1",
     "mongoose": "^5.4.20",
     "node-cache": "^4.2.0",
     "passport": "^0.4.0",

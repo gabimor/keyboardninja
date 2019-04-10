@@ -6,5 +6,6 @@ export default function Footer() {
   return <Container />
 }
 
-const Container = styled.footer`    
+const Container = styled.footer`
+  height: 50px;
 `

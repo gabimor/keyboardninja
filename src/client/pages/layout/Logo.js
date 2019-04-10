@@ -16,7 +16,7 @@ export default function Logo() {
 
 const H1 = styled.h1`
   color: #ffffff;
-  font-size: 25px;
+  font-size: 30px;
   display: inline-block;
   cursor: pointer;
   font-weight: 300;

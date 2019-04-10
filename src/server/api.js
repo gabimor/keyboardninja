@@ -3,6 +3,7 @@ import express from "express"
 
 import * as db from "./db"
 import * as cache from "./cache"
+import md5 from "md5"
 
 const router = express.Router()
 
@@ -79,10 +80,19 @@ router.post("/logout", function(req, res) {
 router.patch("/pin", function(req, res) {
   const { appId, shortcutId, isPinned } = req.body
 
-  db.setPin(req.user.id, appId, shortcutId, isPinned)
-  cache.setPin(appId, shortcutId, isPinned)
+  // db.setPin(req.user.id, appId, shortcutId, isPinned)
+  // cache.setPin(appId, shortcutId, isPinned)
+  req.session.pins = req.session.pins || 0
+  req.session.pins++
+  console.log(req.session.pins)
 
   res.status(200).send()
+})
+
+router.post("/getlink", function(req, res) {
+  const { appId, shortcutIds } = req.body  
+  const hash = md5(req.sessionId + shortcutIds.join())  
+  res.status(200).send({ hash })
 })
 
 export default router

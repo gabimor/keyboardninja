@@ -46,6 +46,11 @@ export async function getApp(appId) {
 
   if (!cacheApp) {
     cacheApp = await App.findById(appId).lean()
+    cacheApp.shortcuts = cacheApp.shortcuts.map(shortcut => ({
+      ...shortcut,
+      pins: 0,
+    }))
+
     const userShortcuts = await UserShortcut.find({ appId: appId }).lean()
 
     // calculate pins field
@@ -56,7 +61,6 @@ export async function getApp(appId) {
         const app = cacheApp.shortcuts.find(
           e => e._id.toString() === shortcut.toString()
         )
-        app.pins = app.pins || 0
         app.pins++
       }
     }

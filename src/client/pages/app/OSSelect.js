@@ -44,9 +44,7 @@ export default OSSelect
 
 const Container = styled.span`
   font-size: 30px;
-  border-left: solid 1px #5a5a5a;
-  padding-left: 10px;
-  i {
-    padding: 0 10px;
+  i + i {
+    margin-left: 20px;
   }
 `

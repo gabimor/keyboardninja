@@ -7,6 +7,7 @@
 //   #9D8B8B - labelText, pinBorder
 //   #A4A3A6 - pin
 //   #d1b4b4 - textRed
+//   #d1d0d4 - soon text
 //   #E9E5E5 - softText
 
 //   #FFD46F - pinSelected

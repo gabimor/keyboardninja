@@ -122,6 +122,7 @@ async function addApp(name, icon, oss, shortcuts) {
 
   let sectionId
   for (const shortcutRow of shortcuts) {
+    console.log(shortcutRow)
     if (shortcutRow[0][0] === "#") {
       const sectionName = shortcutRow[0].substr(1).trim()
       sectionId = mongoose.Types.ObjectId()

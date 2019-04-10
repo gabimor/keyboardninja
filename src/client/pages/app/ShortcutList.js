@@ -56,5 +56,6 @@ const Table = styled.table`
 const TBody = styled.tbody`
   & td {
     border-bottom: solid 1px #453a3a;
+    line-height: 1.5;
   }
 `

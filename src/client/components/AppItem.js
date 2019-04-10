@@ -3,33 +3,48 @@ import React from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 import { lightenDarkenColor } from "../helpers"
 
-export default function App({ name, icon, disabled }) {  
+export default function App({ name, icon, disabled }) {
   const Container = disabled ? DisabledContainer : EnabledContainer
   return (
     <Container>
-      <Image src={icon} />
-      <Name>{name}</Name>
+      {disabled && <Soon>Soon</Soon>}
+      <Image src={icon} disabled={disabled} />
+      <Name disabled={disabled}>{name}</Name>
     </Container>
   )
 }
 
 const sharedStyles = `
-display: inline-flex;
-padding: 5px;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-width: 120px;
-height: 120px;
-margin: 10px;
-background-color: #4f4242;
-color: #d1b4b4;
-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+  display: inline-flex;
+  padding: 5px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  margin: 10px;
+  background-color: #4f4242;
+  color: #d1b4b4;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
 `
 
 const DisabledContainer = styled.div`
   ${sharedStyles}
-  opacity: 0.4;
+  position: relative;
+  overflow: hidden;
+`
+
+const Soon = styled.div`
+  background: #d1403d;
+  color: #A4A3A6;
+  position: absolute;
+  top: 10px;
+  left: -20px;
+  transform: rotate(-45deg);
+  font-size: 13px;
+  width: 80px;
+  text-align: center;
+  z-index: 1;
 `
 
 const EnabledContainer = styled.div`
@@ -48,8 +63,10 @@ const EnabledContainer = styled.div`
 const Name = styled.div`
   text-align: center;
   font-size: 14px;
+  opacity: ${[props => (props.disabled ? 0.3 : 1)]};
 `
 const Image = styled.img`
   width: 60%;
   margin-bottom: 5px;
+  opacity: ${[props => (props.disabled ? 0.3 : 1)]};
 `
