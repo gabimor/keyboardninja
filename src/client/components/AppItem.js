@@ -21,11 +21,11 @@ const sharedStyles = `
   align-items: center;
   justify-content: center;
   width: 140px;
+  border-radius:5px;
   height: 140px;
-  margin: 10px;
-  background-color: #4f4242;
+  margin: 5px;
+  background-color: #403434;
   color: #d1b4b4;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
 `
 
 const DisabledContainer = styled.div`
@@ -36,7 +36,7 @@ const DisabledContainer = styled.div`
 
 const Soon = styled.div`
   background: #d1403d;
-  color: #A4A3A6;
+  color: #a4a3a6;
   position: absolute;
   top: 10px;
   left: -20px;
@@ -50,12 +50,12 @@ const Soon = styled.div`
 const EnabledContainer = styled.div`
   ${sharedStyles}
   cursor: pointer;
-  transition: all 0.3s;
+  // transition: all 0.3s;
 
   :hover {
     color: #e9e5e5;
     background: ${lightenDarkenColor("#4F4242", 10)};
-    box-shadow: 0 12px 17px rgba(0, 0, 0, 0.4);
+    // box-shadow: 0 12px 17px rgba(0, 0, 0, 0.4);
     transform: scale(1.04);
   }
 `

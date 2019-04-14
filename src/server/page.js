@@ -46,6 +46,7 @@ input, textarea, select, button {
   font-family: inherit;
   font-size: inherit;
   border: none;
+  box-sizing: border-box;
 }
 
 input:focus, textarea:focus, select:focus, div:focus, button:focus,

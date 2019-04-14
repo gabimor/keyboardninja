@@ -1,5 +1,7 @@
 const headers = {
-  credentials: "include",
+  // credentials: "include",
+  Accept: "application/json",
+  Cache: "no-cache",
   "Content-Type": "application/json",
 }
 
@@ -49,5 +51,6 @@ export function getLink(appId, shortcutIds) {
     method: "POST",
     body: JSON.stringify({ appId, shortcutIds }),
     headers,
+    credentials: "include",
   })
 }

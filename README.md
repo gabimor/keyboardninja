@@ -11,9 +11,14 @@
 
 #### alpha
 
-- responsive
-  - mobile menu
-  - cross browser/device tests
+- UI
+  - home page categories
+  - category names
+  - get link popup, spinner
+  - first time message
+  - responsive
+    - mobile menu
+    - cross browser/device tests
 - share page
   - issues
     - userless voting, how to prevent voting more than one time ?

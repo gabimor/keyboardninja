@@ -1,18 +1,32 @@
-import React, { useContext } from "react" // eslint-disable-line no-unused-vars
-import styled from "@emotion/styled"
+import React, { useEffect, useRef } from "react" // eslint-disable-line no-unused-vars
 
+import Button from "../../components/Button"
+import GetLinkPopup from "./GetLinkPopup"
 
-const GetLink = ({ hash }) => {
-  
+const GetLink = ({ link, onGetLink, onClose }) => {
+  const popupElm = useRef(null)
+
+  function handleClickAway(e) {
+    if (popupElm.current && !popupElm.current.contains(e.target)) onClose()
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickAway)
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickAway)
+    }
+  }, [])
+
   return (
-    <Container>
-        
-    </Container>
+    <div>
+      <Button onClick={onGetLink}>
+        <i className="fas fa-link" />
+        &nbsp; Get Link
+      </Button>
+      {link && <GetLinkPopup link={link} ref={popupElm} />}
+    </div>
   )
 }
 
 export default GetLink
-
-const Container = styled.div`
-  background:black;  
-`

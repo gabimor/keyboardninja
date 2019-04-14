@@ -33,8 +33,8 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 300000 },
+    saveUninitialized: true,
+    cookie: { maxAge: 300000, secure: false },
   })
 )
 
@@ -50,14 +50,18 @@ app.use("/", router)
 
 app.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
 
+app.get("/404", defaultHandler)
+
 app.get("/:name", async (req, res, next) => {
   try {
     const appsHash = await cache.getAppsHash()
-    const appId = appsHash[req.params.name]
+    const foundApp = appsHash.find(e => e.name === req.params.name)
 
-    if (!appId) return next()
+    if (!foundApp) return res.redirect("/404")
 
-    const app = await cache.getApp(appId)
+    const appId = foundApp.id
+
+    let app = await cache.getApp(appId)
 
     let { os } = req.cookies
     if (!os) {
@@ -70,19 +74,40 @@ app.get("/:name", async (req, res, next) => {
       os = app.oss[0]
     }
 
-    if (req.user) {
-      const userShortcuts = await UserShortcut.findOne({
-        userId: req.user.id,
-        appId: app._id,
-      })
-      if (userShortcuts) {
-        for (const shortcutId of userShortcuts.shortcuts) {
-          app.shortcuts.find(
-            e => e._id.toString() === shortcutId.toString()
-          ).isPinned = true
+    if (req.query.h) {
+      try {
+        const userShortcuts = await UserShortcut.findById(req.query.h)
+
+        // TODO: replace with production solution
+        app = JSON.parse(JSON.stringify(app))
+
+        if (userShortcuts && userShortcuts.appId.toString() === appId) {
+          for (const shortcutId of userShortcuts.shortcuts) {
+            app.shortcuts.find(
+              e => e._id.toString() === shortcutId.toString()
+            ).isPinned = true
+          }
         }
+      } catch (error) {
+        console.log(req.path)
+        console.log(error.toString())
+        // res.redirect(req.path)
       }
     }
+
+    // if (req.user) {
+    //   const userShortcuts = await UserShortcut.findOne({
+    //     userId: req.user.id,
+    //     appId: app._id,
+    //   })
+    //   if (userShortcuts) {
+    //     for (const shortcutId of userShortcuts.shortcuts) {
+    //       app.shortcuts.find(
+    //         e => e._id.toString() === shortcutId.toString()
+    //       ).isPinned = true
+    //     }
+    //   }
+    // }
 
     const appCategories = await cache.getAppCategories()
     const dataContext = { app, os, appCategories }
@@ -93,7 +118,9 @@ app.get("/:name", async (req, res, next) => {
   }
 })
 
-app.get("/*", async (req, res, next) => {
+app.get("/", defaultHandler)
+
+async function defaultHandler(req, res, next) {
   try {
     const appCategories = await cache.getAppCategories()
 
@@ -106,14 +133,11 @@ app.get("/*", async (req, res, next) => {
   } catch (err) {
     next(err)
   }
-})
+}
 
-app.use(function(err, req, res) {
-  res.status(err.status).json({
-    type: "error",
-    message: err.message,
-    err,
-  })
+app.use(function errorHandler(err, req, res, next) {
+  res.status(500)
+  res.send(err.toString() + err.stack)
 })
 
 const getTemplate = (url, dataContext) => (

@@ -1,18 +1,25 @@
-import React, { useContext } from "react" // eslint-disable-line no-unused-vars
+import React, { useContext, useState } from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 
+import { copyToClipboard } from "../../helpers"
 import DataContext from "../../DataContext"
 import OSSelect from "./OSSelect"
-import Button from "../../components/Button"
+import GetLink from "./GetLink"
 import { getLink } from "../../helpers/api"
 
 const Controls = ({ icon, name }) => {
   const { app, os, doSetOs } = useContext(DataContext)
+  const [publicLink, setPublicLink] = useState()
 
   async function handleGetLink() {
     const shortcutIds = app.shortcuts.filter(e => e.isPinned).map(e => e._id)
-    const data = await getLink(app._id, shortcutIds).then(data => data.json())
-    console.log(data)
+    const link = await getLink(app._id, shortcutIds).then(data => data.text())
+    setPublicLink(link)
+    copyToClipboard(link)
+  }
+
+  function handleGetLinkClose() {
+    setPublicLink()
   }
 
   return (
@@ -22,10 +29,11 @@ const Controls = ({ icon, name }) => {
       <SearchWrapper />
       <OSSelect onSelect={doSetOs} os={os} oss={app.oss} />
       <Seperator />
-      <Button onClick={handleGetLink}>
-        <i className="fas fa-link" />
-        &nbsp; Get Link
-      </Button>
+      <GetLink
+        onGetLink={handleGetLink}
+        onClose={handleGetLinkClose}
+        link={publicLink}
+      />
     </Container>
   )
 }

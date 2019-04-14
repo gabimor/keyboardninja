@@ -9,6 +9,7 @@ import { encodeAppName } from "../helpers"
 
 const App = () => {
   const { app, os } = useContext(DataContext)
+  
   const encodedName = encodeAppName(app.name)
   return (
     <div>

@@ -1,6 +1,8 @@
 import passport from "passport"
 import express from "express"
+import { Types } from "mongoose"
 
+import { UserShortcut } from "./models"
 import * as db from "./db"
 import * as cache from "./cache"
 import md5 from "md5"
@@ -77,22 +79,39 @@ router.post("/logout", function(req, res) {
   res.send()
 })
 
-router.patch("/pin", function(req, res) {
-  const { appId, shortcutId, isPinned } = req.body
+// router.patch("/pin", function(req, res) {
+//   const { appId, shortcutId, isPinned } = req.body
 
-  // db.setPin(req.user.id, appId, shortcutId, isPinned)
-  // cache.setPin(appId, shortcutId, isPinned)
-  req.session.pins = req.session.pins || 0
-  req.session.pins++
-  console.log(req.session.pins)
+//   // db.setPin(req.user.id, appId, shortcutId, isPinned)
+//   // cache.setPin(appId, shortcutId, isPinned)
+//   req.session.pins = req.session.pins || 0
+//   req.session.pins++
 
-  res.status(200).send()
-})
+//   res.status(200).send()
+// })
 
-router.post("/getlink", function(req, res) {
-  const { appId, shortcutIds } = req.body  
-  const hash = md5(req.sessionId + shortcutIds.join())  
-  res.status(200).send({ hash })
+router.post("/getlink", async function(req, res) {
+  const appsHash = await cache.getAppsHash()
+  const { appId, shortcutIds } = req.body
+  const appName = appsHash.find(e => e.id.toString() === appId).name
+
+  let link = process.env.APP_URL + appName
+
+  if (shortcutIds.length > 0) {
+    const hash = md5(req.sessionID + shortcutIds.join()).substring(8)
+    link += "?h=" + hash
+
+    if (!UserShortcut.findById(hash)) {
+      const userShortcut = new UserShortcut({
+        _id: Types.ObjectId(hash),
+        appId,
+        shortcuts: shortcutIds,
+      })
+      userShortcut.save()
+    }
+  }
+
+  res.status(200).send(link)
 })
 
 export default router

@@ -7,13 +7,12 @@ import { App, AppCategory, UserShortcut } from "./models"
 const nodeCache = new NodeCache()
 
 export async function getAppsHash() {
-  // let appsHash = nodeCache.get("appsHash")
-  let appsHash
+  let appsHash = nodeCache.get("appsHash")
   if (!appsHash) {
-    appsHash = {}
+    appsHash = []
     const apps = await App.find()
     for (const app of apps) {
-      appsHash[encodeAppName(app.name)] = app._id
+      appsHash.push({ id: app._id.toString(), name: encodeAppName(app.name) })
     }
     nodeCache.set("appsHash", appsHash)
   }
@@ -41,8 +40,7 @@ export function setPin(appId, shortcutId, isPinned) {
 }
 
 export async function getApp(appId) {
-  // let cacheApp = nodeCache.get("app-" + appId)
-  let cacheApp
+  let cacheApp = nodeCache.get("app-" + appId)
 
   if (!cacheApp) {
     cacheApp = await App.findById(appId).lean()
@@ -74,7 +72,7 @@ export function set(key, value) {
 }
 
 export function get(key) {
-  // return nodeCache.get(key)
+  return nodeCache.get(key)
 }
 // export default nodeCache
 // START PERFORMANCE MEASURE

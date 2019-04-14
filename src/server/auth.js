@@ -11,7 +11,7 @@ passport.use(
     },
     async function(username, password, done) {
       try {
-        const user = await User.findOne({ username, password })
+        const user = await User.findOne({ email: username, password })
         if (user) {
           return done(null, user)
         } else {

@@ -45,8 +45,8 @@ const GridContainer = styled.div`
   display: grid;
   grid-gap: 60px;
   grid-template-areas:
-    "coding coding coding"
     "os browsers browsers"
+    "coding coding coding"
     "casual casual casual"
     "graphics graphics graphics"
     "office office office";
@@ -54,9 +54,9 @@ const GridContainer = styled.div`
 
   @media (max-width: 992px) {
     grid-template-areas:
-      "coding"
       "os"
       "browsers"
+      "coding"
       "casual"
       "graphics"
       "office";
