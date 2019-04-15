@@ -2,26 +2,26 @@ import React, { useContext } from "react" // eslint-disable-line no-unused-vars
 import { Link } from "react-router-dom"
 import styled from "@emotion/styled"
 
-import {logout} from "../../helpers/api"
-import DataContext from "../../DataContext"
+// import { logout } from "../../helpers/api"
+// import DataContext from "../../DataContext"
 import Logo from "./Logo"
-import Nav from "./Nav"
+// import Nav from "./Nav"
 
 function Header() {
-  const { user, doLogout } = useContext(DataContext)
+  // const { user, doLogout } = useContext(DataContext)
 
-  function handleLogout() {
-    logout()
+  // function handleLogout() {
+  //   logout()
 
-    doLogout()
-  }
+  //   doLogout()
+  // }
 
   return (
     <Container>
       <Link to="/">
         <Logo />
       </Link>
-      <Nav user={user} onLogout={handleLogout} />
+      {/* <Nav user={user} onLogout={handleLogout} /> */}
     </Container>
   )
 }

@@ -9,10 +9,10 @@ import { encodeAppName } from "../helpers"
 
 const App = () => {
   const { app, os } = useContext(DataContext)
-  
+
   const encodedName = encodeAppName(app.name)
   return (
-    <div>
+    <div>      
       <Controls icon={encodedName + ".png"} name={app.name} />
       <ResultsContainer>
         {app.sections.map(section => {

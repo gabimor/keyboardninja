@@ -7,7 +7,7 @@ import AppItem from "./AppItem"
 export default function AppList({ name, apps, shortName }) {
   return (
     <Container shortName={shortName}>
-      <Header id={shortName}>{name}</Header>
+      <Header>{name}</Header>
       <InnerContainer>
         {apps.map(app => {
           const encodedName = encodeAppName(app.name)
@@ -41,7 +41,6 @@ const Container = styled.div`
   background: #2c2525;
   grid-area: ${props => props.shortName};
   padding: 20px;
-  border-radius: 5px;
 `
 
 const Header = styled.h2`

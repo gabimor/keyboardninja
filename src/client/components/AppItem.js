@@ -21,7 +21,6 @@ const sharedStyles = `
   align-items: center;
   justify-content: center;
   width: 140px;
-  border-radius:5px;
   height: 140px;
   margin: 5px;
   background-color: #403434;
@@ -36,7 +35,7 @@ const DisabledContainer = styled.div`
 
 const Soon = styled.div`
   background: #d1403d;
-  color: #a4a3a6;
+  color: #cccad2;
   position: absolute;
   top: 10px;
   left: -20px;

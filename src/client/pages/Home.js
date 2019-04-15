@@ -1,6 +1,5 @@
 import React, { Fragment, useContext } from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
-import { Link } from "react-scroll"
 
 import AppList from "../components/AppList"
 import DataContext from "../DataContext"
@@ -13,18 +12,6 @@ const Home = () => {
       <Hero>
         Every app, every shortcut, <b>the best ones first.</b>
       </Hero>
-      <Index>
-        {appCategories.map(appCategory => (
-          <Link
-            key={appCategory.shortName}
-            to={appCategory.shortName}
-            smooth={true}
-            offset={-20}
-          >
-            {appCategory.name}
-          </Link>
-        ))}
-      </Index>
       <GridContainer>
         {appCategories.map(appCategory => (
           <AppList key={appCategory.shortName} {...appCategory} />
@@ -50,7 +37,7 @@ const GridContainer = styled.div`
     "casual casual casual"
     "graphics graphics graphics"
     "office office office";
-  margin-top: 100px;
+  margin-top: 190px;
 
   @media (max-width: 992px) {
     grid-template-areas:
@@ -63,22 +50,10 @@ const GridContainer = styled.div`
   }
 `
 
-const Index = styled.h3`
-  display: flex;
-  margin-bottom: 50px;
-
-  justify-content: center;
-
-  a {
-    color: #d1d0d4;
-    margin: 0 10px;
-  }
-`
-
 const Hero = styled.h1`
   color: #ffffff;
   font-size: 50px;
-  margin: 120px 0 25px 0;
+  margin: 150px 0 25px 0;
   text-align: center;
   font-weight: 300;
 

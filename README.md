@@ -1,40 +1,24 @@
 # Keyboard Ninja
 
-## TODO
-
-- clicking a shortcut saves it to localstorage
-- refreshing loads from localstorage
-- Get Link hashes sessionid & all the shortcutsids and creates a hash for link
-  - creating two links for the same input will not create a new hash
-  - message "login to to be able to edit that page"
-- logged in user saves the page automatically
 
 #### alpha
 
+- todo
+  - Numpad handle
+  - Really quit?
+  - Short id instead of 24 chars
 - UI
-  - home page categories
-  - category names
   - get link popup, spinner
+    - solve caching of pages
   - first time message
   - responsive
     - mobile menu
-    - cross browser/device tests
-- share page
-  - issues
-    - userless voting, how to prevent voting more than one time ?
-    - count only shares ?
-    - resort on vote ?
-  - pin without login
-  - save to localstorage/session ?
-  - sticky header
-  - on share, create link and save to server
-  - separate popularity and btn?
+    - cross browser/device tests  
 - found an error ?
   - proofing (search "fix")
   - cmd or ⌘, ⌥, ⇧, ^
 - enter all apps data
   - visual studio - mac
-  - firefox - mac
 - go live
   - search TODOs
   - upload to server & connect domain
@@ -95,9 +79,6 @@
 
 ## Tech debt
 
-- store sessions in redis
-- change memory cache to redis
-- dont cache 404
 - users: service workers, transform stream + gzip
 - components: functions or arrow functions ? (check react devtools)
 - Add <> </> support

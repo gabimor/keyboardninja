@@ -11,6 +11,8 @@ import express from "express"
 import compression from "compression"
 import dotenv from "dotenv"
 
+const RedisStore = require("connect-redis")(session)
+
 dotenv.config()
 
 import * as cache from "./server/cache"
@@ -31,6 +33,7 @@ app.disable("x-powered-by")
 
 app.use(
   session({
+    store: new RedisStore(),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
@@ -40,8 +43,8 @@ app.use(
 
 app.use(compression())
 app.use(bodyParser.json())
-app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cookieParser())
 app.use(passport.initialize())
 app.use(flash())
 app.use(passport.session())
