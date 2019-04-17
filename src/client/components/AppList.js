@@ -52,6 +52,7 @@ const InnerContainer = styled.div`
   grid-gap: 10px;
   --appItemSize: 132px;
 
+
   @media (max-width: 1024px) {
     --appItemSize: 123px;
   }
