@@ -4,11 +4,11 @@ import styled from "@emotion/styled"
 import { encodeAppName } from "../helpers"
 import AppItem from "./AppItem"
 
-export default function AppList({ name, apps, shortName }) {
+export default function AppList({ name, apps, gridArea }) {
   return (
-    <Container shortName={shortName}>
+    <Container gridArea={gridArea}>
       <Header>{name}</Header>
-      <InnerContainer>
+      <InnerContainer className={gridArea}>
         {apps.map(app => {
           const encodedName = encodeAppName(app.name)
           const CurrItem = () => (
@@ -32,15 +32,61 @@ export default function AppList({ name, apps, shortName }) {
   )
 }
 
-const InnerContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`
-
 const Container = styled.div`
   background: #2c2525;
-  grid-area: ${props => props.shortName};
+  grid-area: ${props => props.gridArea};
   padding: 20px;
+
+  @media (max-width: 992px) {
+    padding: 15px 10px;
+  }
+
+  @media (max-width: 767px) {
+    padding: 10px 6px;
+  }
+`
+
+const InnerContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 10px;
+  --appItemSize: 132px;
+
+  @media (max-width: 1024px) {
+    --appItemSize: 123px;
+  }
+
+  @media (max-width: 992px) {
+    --appItemSize: 140px;
+  }
+
+  @media (max-width: 880px) {
+    --appItemSize: 120px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(5, 1fr);
+    --appItemSize: 137px;
+  }
+
+  @media (max-width: 650px) {
+    --appItemSize: 130px;
+  }
+
+  @media (max-width: 550px) {
+    grid-template-columns: repeat(4, 1fr);
+    --appItemSize: 123px;
+  }
+
+
+  @media (max-width: 414px) {
+    grid-template-columns: repeat(3, 1fr);
+    --appItemSize: 119px;
+  }
+
+  @media (max-width: 375px) {
+    --appItemSize: 106px;
+  }
 `
 
 const Header = styled.h2`

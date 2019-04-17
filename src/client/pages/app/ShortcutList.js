@@ -13,22 +13,20 @@ export default function ShortcutList({ title, shortcuts }) {
     <Container>
       <Title>{upperFirstLetter(title)}</Title>
       <Table cellSpacing={0}>
-        <TBody>
-          {shortcuts.map(shortcut => {
-            return (
-              <ShortcutItem
-                key={shortcut._id}
-                id={shortcut._id}
-                keys={shortcut[os]}
-                action={shortcut.action}
-                note={shortcut.note}
-                pins={shortcut.pins}
-                isHtml={shortcut.isHtml}
-                isPinned={!!shortcut.isPinned}
-              />
-            )
-          })}
-        </TBody>
+        {shortcuts.map(shortcut => {
+          return (
+            <ShortcutItem
+              key={shortcut._id}
+              id={shortcut._id}
+              keys={shortcut[os]}
+              action={shortcut.action}
+              note={shortcut.note}
+              pins={shortcut.pins}
+              isHtml={shortcut.isHtml}
+              isPinned={!!shortcut.isPinned}
+            />
+          )
+        })}
       </Table>
     </Container>
   )
@@ -40,6 +38,7 @@ const Container = styled.div`
   font-size: 14px;
   border-radius: 5px;
   overflow: hidden;
+  width: 100%;
 `
 
 const Title = styled.header`
@@ -48,14 +47,17 @@ const Title = styled.header`
   padding: 5px 10px 7px 15px;
 `
 
-const Table = styled.table`
-  width: 100%;
+const Table = styled.div`
+  display: grid;
+  grid-gap: 8px 0;
+  grid-template-columns: 80px 1fr 1fr;
+  padding: 8px 0;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
-`
+  background: #2e2424;
+  font-weight: 300;
 
-const TBody = styled.tbody`
-  & td {
+  > div {
     border-bottom: solid 1px #453a3a;
-    line-height: 1.5;
+    padding-bottom:8px;
   }
 `

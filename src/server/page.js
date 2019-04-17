@@ -70,7 +70,6 @@ kbd {
   border: solid 1px #442323;
   border-radius: 6px;
   padding: 0 2px;
-  margin: 0 2px;
   min-width: 32px;
   text-align: center;
   box-shadow: 0px 6px 1px 1px rgba(30,30,30,0.2);

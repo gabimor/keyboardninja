@@ -24,8 +24,10 @@ const Controls = ({ icon, name }) => {
 
   return (
     <Container>
-      <Icon src={"/logos/" + icon} />
-      <Text>{name}</Text>
+      <NameWrapper>
+        <Icon src={"/logos/" + icon} />
+        <Name>{name}</Name>
+      </NameWrapper>
       <SearchWrapper />
       <OSSelect onSelect={doSetOs} os={os} oss={app.oss} />
       <Seperator />
@@ -55,16 +57,55 @@ const Container = styled.div`
   position: sticky;
   top: 0;
   background: linear-gradient(#3c1b1b, #371616) no-repeat;
+
+  @media (max-width: 768px) {
+    margin: 30px 0 20px 0;
+  }
+`
+
+const NameWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 const Icon = styled.img`
   width: 50px;
+  height: 50px;
+  transition: all 0.5s;
+
+  @media (max-width: 992px) {
+    width: 35px;
+    height: 35px;
+  }
+
+  @media (max-width: 768px) {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 4px;
+  }
 `
 
-const Text = styled.h1`
+const Name = styled.h1`
   font-size: 40px;
   margin-left: 20px;
   font-weight: 200;
+  line-height: normal;
+
+  transition: all 0.5s;
+
+  @media (max-width: 992px) {
+    font-size: 25px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    margin-left: 0;
+  }
 `
 
 const SearchWrapper = styled.div`

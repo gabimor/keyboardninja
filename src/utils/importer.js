@@ -113,7 +113,8 @@ function encodeAppName(name) {
   return name.toLowerCase().replace(new RegExp(" ", "g"), "-")
 }
 
-mongoose.connect("mongodb://localhost:27017/keyboardninja", {
+//mongodb://localhost:27017/keyboardninja
+mongoose.connect("mongodb+srv://gabimor:Tcinti1!@cluster0-li1ur.mongodb.net/keyboard_ninja?retryWrites=true", {
   useNewUrlParser: true,
 })
 

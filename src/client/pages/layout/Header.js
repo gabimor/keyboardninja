@@ -32,4 +32,8 @@ const Container = styled.header`
   display: flex;
   align-items: baseline;
   padding-top: 10px;
+
+  @media (max-width: 992px) {
+    padding-top: 0;
+  }
 `

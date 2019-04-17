@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react" // eslint-disable-line no-unused-vars
+import React, { Fragment, useContext, useState } from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 import PropTypes from "prop-types"
 
@@ -9,7 +9,7 @@ import Shortcut from "./Shortcut"
 import Pin from "./Pin"
 
 function ShortcutItem({ id, action, keys, pins, isPinned, isHtml, note }) {
-  const { app, user, doPin } = useContext(DataContext)
+  const { app, doPin } = useContext(DataContext)
   const [pinsState, setPinsState] = useState(pins)
   const [infoVisible, setInfoVisible] = useState(false)
   const [isPinnedState, setIsPinnedState] = useState(isPinned)
@@ -29,7 +29,7 @@ function ShortcutItem({ id, action, keys, pins, isPinned, isHtml, note }) {
   }
 
   return (
-    <Container>
+    <Fragment>
       <PinContainer>
         <Pin isPinned={isPinnedState} pins={pinsState} onClick={handlePin} />
       </PinContainer>
@@ -46,7 +46,7 @@ function ShortcutItem({ id, action, keys, pins, isPinned, isHtml, note }) {
       <KeysContainer>
         <Shortcut keys={keys} isHtml={isHtml} />
       </KeysContainer>
-    </Container>
+    </Fragment>
   )
 }
 
@@ -56,12 +56,6 @@ ShortcutItem.propTypes = {
 }
 
 export default ShortcutItem
-
-const Container = styled.tr`
-  background: #2e2424;
-  font-weight: 300;
-  vertical-align: baseline;
-`
 
 const InfoIcon = styled.i`
   font-size: 13px;
@@ -76,20 +70,19 @@ const InfoContainer = styled.div`
   margin-top: 3px;
 `
 
-const ActionContainer = styled.td`
+const ActionContainer = styled.div`
   color: ${props => (props.isPinned ? "#FFD46F" : "inherit")};
-  width: 50%;
-  padding-right: 30px;
-  user-select: none;
+  user-select: none;  
+  padding-right:20px;
 `
 
-const PinContainer = styled.td`
-  width: 1%;
+const PinContainer = styled.div`
+  // width: 1%;
   text-align: center;
-  padding: 6px 13px 6px 15px;
+  padding: 0 13px 0 15px;
   user-select: none;
 `
 
-const KeysContainer = styled.td`
+const KeysContainer = styled.div`
   padding: 0 13px 0 0;
 `

@@ -96,12 +96,18 @@ router.post("/getlink", async function(req, res) {
   const appName = appsHash.find(e => e.id.toString() === appId).name
 
   let link = process.env.APP_URL + appName
-
+  console.log(link)
   if (shortcutIds.length > 0) {
+    console.log(shortcutIds)
     const hash = md5(req.sessionID + shortcutIds.join()).substring(8)
     link += "?h=" + hash
 
-    if (!UserShortcut.findById(hash)) {
+    console.log(hash)
+
+    const existingSave = await UserShortcut.findById(hash)
+
+    if (!existingSave) {
+      console.log("saving")
       const userShortcut = new UserShortcut({
         _id: Types.ObjectId(hash),
         appId,

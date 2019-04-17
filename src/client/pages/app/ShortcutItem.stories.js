@@ -11,5 +11,6 @@ storiesOf("ShortcutItem", module)
     <ShortcutItem
       action={text("action", "Select all text")}
       keys={text("keys", "ctrl+k")}
+      pins={0}
     />
   ))

@@ -152,12 +152,14 @@ const getTemplate = (url, dataContext) => (
 )
 
 const sendPage = (req, res, dataContext) => {
+  const cacheKey = req.originalUrl + "-" + dataContext.os
+
   if (!req.user) {
-    let cachePage = cache.get(req.path + "-" + dataContext.os)
+    let cachePage = cache.get(cacheKey)
     if (!cachePage) {
       const markup = renderToString(getTemplate(req.url, dataContext))
       cachePage = page(markup, undefined, assets, dataContext)
-      cache.set(req.path + "-" + dataContext.os, cachePage)
+      cache.set(cacheKey, cachePage)
     }
     res.status(200).send(cachePage)
   } else {

@@ -72,7 +72,7 @@ export function set(key, value) {
 }
 
 export function get(key) {
-  // return nodeCache.get(key)
+  return nodeCache.get(key)
 }
 // export default nodeCache
 // START PERFORMANCE MEASURE

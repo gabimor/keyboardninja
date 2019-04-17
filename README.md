@@ -1,22 +1,14 @@
 # Keyboard Ninja
 
-
 #### alpha
 
 - todo
-  - Numpad handle
   - Really quit?
-  - Short id instead of 24 chars
-- UI
-  - get link popup, spinner
-    - solve caching of pages
+- UI      
   - first time message
   - responsive
     - mobile menu
     - cross browser/device tests  
-- found an error ?
-  - proofing (search "fix")
-  - cmd or ⌘, ⌥, ⇧, ^
 - enter all apps data
   - visual studio - mac
 - go live

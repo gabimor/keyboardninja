@@ -14,7 +14,7 @@ const Home = () => {
       </Hero>
       <GridContainer>
         {appCategories.map(appCategory => (
-          <AppList key={appCategory.shortName} {...appCategory} />
+          <AppList key={appCategory.gridArea} {...appCategory} />
         ))}
       </GridContainer>
     </Container>
@@ -24,7 +24,7 @@ const Home = () => {
 export default Home
 
 const Container = styled.div`
-  max-width: 1022px;
+  max-width: 1024px;
   margin: 0 auto;
 `
 
@@ -37,7 +37,6 @@ const GridContainer = styled.div`
     "casual casual casual"
     "graphics graphics graphics"
     "office office office";
-  margin-top: 190px;
 
   @media (max-width: 992px) {
     grid-template-areas:
@@ -53,11 +52,19 @@ const GridContainer = styled.div`
 const Hero = styled.h1`
   color: #ffffff;
   font-size: 50px;
-  margin: 150px 0 25px 0;
+  margin-top: 150px;
+  margin-bottom: 190px;
   text-align: center;
   font-weight: 300;
+  line-height: 1.5em;
 
   & b {
     font-weight: 500;
+  }
+
+  @media (max-width: 992px) {
+    margin-top: 50px;
+    margin-bottom: 70px;
+    font-size: 30px;
   }
 `

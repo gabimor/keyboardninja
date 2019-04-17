@@ -16,15 +16,22 @@ export default function App({ name, icon, disabled }) {
 
 const sharedStyles = `
   display: inline-flex;
-  padding: 5px;
+  padding: 10px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 140px;
-  height: 140px;
-  margin: 5px;
   background-color: #403434;
   color: #d1b4b4;
+  height: var(--appItemSize);  
+
+  @media (min-width: 992px) {
+    width: var(--appItemSize);
+  }
+
+  @media (max-width: 768px) {
+      font-size:12px;        
+  }
+
 `
 
 const DisabledContainer = styled.div`
@@ -49,12 +56,10 @@ const Soon = styled.div`
 const EnabledContainer = styled.div`
   ${sharedStyles}
   cursor: pointer;
-  // transition: all 0.3s;
 
   :hover {
     color: #e9e5e5;
     background: ${lightenDarkenColor("#4F4242", 10)};
-    // box-shadow: 0 12px 17px rgba(0, 0, 0, 0.4);
     transform: scale(1.04);
   }
 `

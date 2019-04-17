@@ -1,9 +1,16 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React, { useState, useEffect } from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 
 function OSSelect({ oss, os, onSelect }) {
+  const [x, setX] = useState(1)
+
+  useEffect(() => setX(9))
+
   return (
     <Container>
+      <button style={{ cursor: "pointer" }} onClick={() => setX(x + 1)}>
+        {x}
+      </button>
       <OSButton
         buttonOS="win"
         selectedOS={os}

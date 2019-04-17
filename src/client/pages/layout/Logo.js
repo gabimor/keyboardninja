@@ -10,9 +10,17 @@ export default function Logo() {
         ninja<Dot>.</Dot>
         me
       </span>
+      <Alpha>Alpha</Alpha>
     </H1>
   )
 }
+
+const Alpha = styled.small`
+  position: absolute;
+  right: 0;
+  bottom: -21px;
+  font-size:10px;
+`
 
 const H1 = styled.h1`
   color: #ffffff;
@@ -20,6 +28,11 @@ const H1 = styled.h1`
   display: inline-block;
   cursor: pointer;
   font-weight: 300;
+  position: relative;
+
+  @media (max-width: 992px) {
+    font-size: 20px;
+  }
 `
 
 const Dot = styled.span`
