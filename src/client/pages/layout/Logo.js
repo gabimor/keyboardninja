@@ -10,15 +10,12 @@ export default function Logo() {
         ninja<Dot>.</Dot>
         me
       </span>
-      <Alpha>Alpha</Alpha>
+      <Alpha> Alpha</Alpha>
     </H1>
   )
 }
 
 const Alpha = styled.small`
-  position: absolute;
-  right: 0;
-  bottom: -21px;
   font-size:10px;
 `
 
@@ -31,6 +28,10 @@ const H1 = styled.h1`
   position: relative;
 
   @media (max-width: 992px) {
+    font-size: 25px;
+  }
+
+  @media (max-width: 768px) {
     font-size: 20px;
   }
 `

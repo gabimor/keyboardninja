@@ -23,6 +23,7 @@ const sharedStyles = `
   background-color: #403434;
   color: #d1b4b4;
   height: var(--appItemSize);  
+  transition: all 0.5s;
 
   @media (min-width: 992px) {
     width: var(--appItemSize);

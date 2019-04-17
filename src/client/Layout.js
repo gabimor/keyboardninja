@@ -35,6 +35,10 @@ const Container = styled.div`
   padding: 0 30px;
 
   @media (max-width: 992px) {
+    padding: 20px;
+  }
+
+  @media (max-width: 768px) {
     padding: 10px;
   }
 `

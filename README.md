@@ -6,20 +6,15 @@
   - Really quit?
 - UI      
   - first time message
-  - responsive
-    - mobile menu
-    - cross browser/device tests  
+  - favicon
 - enter all apps data
   - visual studio - mac
 - go live
   - search TODOs
-  - upload to server & connect domain
-  - sanity tests
+  - upload to server & connect domain  
   - 500 page
   - error handling (fetch, try catch)
   - GA & hotjar
-- UI
-  - favicon  
 
 #### alpha 2
 
@@ -49,23 +44,14 @@
 
 ### thoughts
 
-- You register i the site invokes emotional feeling, its your your clan
-
-### bugs
-
-- notify when signing up twice
+- You register when the site invokes emotional feeling, its your clan
 
 ### low priority
 
 - login
   - add social login
   - forgot password
-- ?? app page - SSR load the first sections + show all
 - my apps: apps you've pinned shortcuts in will show here
-- homepage
-  - now contains 20,123 shortcuts from 55 apps
-  - links all categories at the top
-- suggest app
 - patreon/buy me a coffee
 - spread the word in blogs/groups
 
@@ -82,14 +68,6 @@
 - express - advanced topics https://expressjs.com/en/advanced/best-practice-performance.html
 - https://github.com/i0natan/nodebestpractices
 
-## Backlog
-
-- theme pages ("top shortcuts for a web developer")
-- advanced mode
-  - several shortcuts to the same action
-  - text edit the shortcut
-  - support VS code "Ctrl+K V" type shortcuts
-- share my personalized page of shortcuts
 
 ## Take over the world
 

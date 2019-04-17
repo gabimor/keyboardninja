@@ -52,31 +52,35 @@ const InnerContainer = styled.div`
   grid-gap: 10px;
   --appItemSize: 132px;
 
+  @media (max-width: 1124px) {
+    --appItemSize: 122px;
+  }
 
   @media (max-width: 1024px) {
-    --appItemSize: 123px;
+    grid-template-columns: repeat(6, 1fr);
+    --appItemSize: 136px;
   }
 
   @media (max-width: 992px) {
-    --appItemSize: 140px;
+    --appItemSize: 145px;
   }
 
   @media (max-width: 880px) {
-    --appItemSize: 120px;
+    grid-template-columns: repeat(5, 1fr);
+    --appItemSize: 150px;
   }
 
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(5, 1fr);
+  @media (max-width: 768px) {    
     --appItemSize: 137px;
   }
 
   @media (max-width: 650px) {
-    --appItemSize: 130px;
+    --appItemSize: 120px;
   }
 
   @media (max-width: 550px) {
     grid-template-columns: repeat(4, 1fr);
-    --appItemSize: 123px;
+    --appItemSize: 110px;
   }
 
 

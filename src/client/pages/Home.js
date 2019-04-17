@@ -63,6 +63,12 @@ const Hero = styled.h1`
   }
 
   @media (max-width: 992px) {
+    margin-top: 75px;
+    margin-bottom: 110px;
+    font-size: 40px;
+  }
+
+  @media (max-width: 768px) {
     margin-top: 50px;
     margin-bottom: 70px;
     font-size: 30px;
