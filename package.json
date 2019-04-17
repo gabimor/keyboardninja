@@ -7,7 +7,8 @@
     "dev": "razzle start -- --inspect-brk",
     "build": "razzle build",
     "test": "razzle test --env=jsdom",
-    "start:prod": "set NODE_ENV=production&&node build/server.js",
+    "start:prod": "NODE_ENV=production node build/server.js",
+    "start:prodwin": "set NODE_ENV=production&&node build/server.js",
     "sb": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook"
   },
