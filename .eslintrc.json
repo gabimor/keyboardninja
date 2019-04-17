@@ -20,10 +20,5 @@
     "quotes": ["error", "double"],
     "semi": ["error", "never"],
     "react/jsx-uses-vars": 2
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
   }
 }
