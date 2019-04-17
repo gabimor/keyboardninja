@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.9",
+    "@emotion/styled": "^10.0.9",
     "body-parser": "^1.18.3",
     "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
