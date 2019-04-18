@@ -9,6 +9,7 @@ let currentApp = app
 console.log(process.env.PORT)
 
 server.listen(process.env.PORT || 3000, error => {
+  console.log(process.env.PORT)
   if (error) {
     console.log(error)
   }
