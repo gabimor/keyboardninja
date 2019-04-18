@@ -11,7 +11,8 @@ server.listen(process.env.PORT || 3000, error => {
     console.log(error)
   }
 
-  console.log("🚀 started")
+  console.log(JSON.stringify(process.env))
+  console.log("server started")
 })
 
 if (module.hot) {
