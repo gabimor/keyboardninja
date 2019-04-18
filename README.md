@@ -4,9 +4,6 @@
 
 - todo
   - Really quit?
-- UI      
-  - first time message
-  - favicon
 - enter all apps data
   - visual studio - mac
 - go live

@@ -67,7 +67,7 @@ app.get("/:name", async (req, res, next) => {
     let app = await cache.getApp(appId)
 
     let { os } = req.cookies
-    
+
     if (!os) {
       os = req.headers["user-agent"].toLowerCase().includes("win")
         ? "win"
@@ -116,7 +116,7 @@ app.get("/:name", async (req, res, next) => {
     const appCategories = await cache.getAppCategories()
     const dataContext = { app, os, appCategories }
 
-    sendPage(req, res, dataContext)
+    sendPage(req, res, dataContext, app.name + " keyboard shortcuts")
   } catch (err) {
     next(err)
   }
@@ -152,19 +152,19 @@ const getTemplate = (url, dataContext) => (
   </DataContext.Provider>
 )
 
-const sendPage = (req, res, dataContext) => {
+const sendPage = (req, res, dataContext, title) => {
   const cacheKey = req.originalUrl + "-" + dataContext.os
 
   if (!req.user) {
     let cachePage = cache.get(cacheKey)
     if (!cachePage) {
       const markup = renderToString(getTemplate(req.url, dataContext))
-      cachePage = page(markup, undefined, assets, dataContext)
+      cachePage = page(markup, title, assets, dataContext)
       cache.set(cacheKey, cachePage)
     }
     res.status(200).send(cachePage)
   } else {
-    res.write(pageStart(undefined, assets, dataContext))
+    res.write(pageStart(title, assets, dataContext))
     const stream = renderToNodeStream(getTemplate(req.url, dataContext))
     stream.pipe(
       res,
