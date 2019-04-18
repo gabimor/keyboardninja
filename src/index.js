@@ -6,16 +6,7 @@ const server = http.createServer(app)
 
 let currentApp = app
 
-// console.log(process.env ? process.env["PORT"] : "no process env1")
-// console.log(
-//   function(x) {
-//     return x ? x["PORT"] : "no process env2"
-//   }.apply(null, process.env)
-// )
-// console.log(JSON.stringify(process.env))
-
 server.listen(process.env.PORT || 3000, error => {
-  // console.log(process.env.PORT)
   if (error) {
     console.log(error)
   }

@@ -7,6 +7,7 @@
     "dev": "razzle start -- --inspect-brk",
     "build": "razzle build",
     "test": "razzle test --env=jsdom",
+    "deploy": "git push heroku master",
     "start:prod": "NODE_ENV=production node build/server.js",
     "start:prodwin": "set NODE_ENV=production&&set ATLAS_PASSWORD=FNUFkpU2p1opumqZ&&node build/server.js",
     "sb": "start-storybook -s ./public -p 6006",

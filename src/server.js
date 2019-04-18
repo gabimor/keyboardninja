@@ -51,7 +51,6 @@ app.use(passport.session())
 app.use("/api", api)
 app.use("/", router)
 
-console.log(process.env.RAZZLE_PUBLIC_DIR)
 app.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
 
 app.get("/404", defaultHandler)
