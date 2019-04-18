@@ -1,6 +1,6 @@
 export function init() {
   if (!document.cookie.includes("os=")) {
-    document.cookie = "os=" + getClientOS()
+    setSelectedOS(getClientOS())
   }
 }
 
@@ -14,7 +14,7 @@ export function getSelectedOS() {
 }
 
 export function setSelectedOS(os) {
-  document.cookie = "os=" + os
+  document.cookie = "os=" + os + "; expires=Fri, 31 Dec 9999 23:59:59 GMT"
 }
 
 function getClientOS() {

@@ -71,7 +71,7 @@ const InfoContainer = styled.div`
 `
 
 const ActionContainer = styled.div`
-  color: ${props => (props.isPinned ? "#FFD46F" : "inherit")};
+  color: ${props => (props.isPinned ? "#ffe6ab" : "inherit")};
   user-select: none;  
   padding-right:20px;
 `

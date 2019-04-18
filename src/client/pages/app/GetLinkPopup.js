@@ -4,7 +4,11 @@ import styled from "@emotion/styled"
 const GetLinkPopup = React.forwardRef((props, ref) => {
   return (
     <Container ref={ref}>
-      <b>Done. </b>You can now share this link with friends or save it for future reference.
+      <b>Done! </b>
+      <Text>
+        Your selected shortcuts are saved with this link. You can share it with
+        friends or save it for future reference.
+      </Text>
       <InputWrapper>
         <Input
           type="text"
@@ -15,8 +19,6 @@ const GetLinkPopup = React.forwardRef((props, ref) => {
         <br />
         <small>Link copied to clipboard</small>
       </InputWrapper>
-      <Seperator />
-      <a>Login</a> to edit it in the future and more.
     </Container>
   )
 })
@@ -70,7 +72,11 @@ const InputWrapper = styled.div`
   margin: 20px 0 10px;
 `
 
-const Seperator = styled.hr`
-  border: 0;
-  border-top: 1px solid #453a3a;
+const Text = styled.div`
+  font-weight: 300;
 `
+
+// const Seperator = styled.hr`
+//   border: 0;
+//   border-top: 1px solid #453a3a;
+// `

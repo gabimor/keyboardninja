@@ -2,6 +2,8 @@ import React from "react" // eslint-disable-line no-unused-vars
 import PropTypes from "prop-types"
 import styled from "@emotion/styled"
 
+import { lightenDarkenColor } from "../../helpers"
+
 export default function Shortcut({ pins, isPinned, onClick }) {
   return (
     <Container isPinned={isPinned} onClick={onClick}>
@@ -27,7 +29,7 @@ const Container = styled.div`
   display: inline-flex;
   width: 100%;
   align-items: flex-start;
-  border: solid 1px ${({ isPinned }) => (isPinned ? "#b3995b" : "#9D8B8B")};
+  border: solid 1px ${({ isPinned }) => (isPinned ? "#ffe6ab" : "#9D8B8B")};
   border-radius: 3px;
   padding: 5px 0 3px;
   cursor: pointer;
@@ -39,10 +41,7 @@ const Container = styled.div`
   }
 
   :hover {
-    border-color: ${({ isPinned }) => (isPinned ? "#ffdb87" : "#e9e5e5")};
-    span {
-      color: ${({ isPinned }) => (isPinned ? "#ffdb87" : "#FFFFFF")};
-    }
+    border-color: ${({ isPinned }) => (isPinned ? lightenDarkenColor("#ffe6ab", 50) : lightenDarkenColor("#9D8B8B", 50))};
   }
 `
 
@@ -53,7 +52,7 @@ const IconWrapper = styled.span`
 
 const Count = styled.span`
   font-size: 11px;
-  color: ${({ isPinned }) => (isPinned ? "#FFD46F" : "#E9E5E5")};
+  color: ${({ isPinned }) => (isPinned ? "#ffe6ab" : "#E9E5E5")};
   margin: 0 auto;
   padding: 0 6px;
   line-height: 10px;

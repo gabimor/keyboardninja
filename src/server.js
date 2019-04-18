@@ -67,6 +67,7 @@ app.get("/:name", async (req, res, next) => {
     let app = await cache.getApp(appId)
 
     let { os } = req.cookies
+    
     if (!os) {
       os = req.headers["user-agent"].toLowerCase().includes("win")
         ? "win"

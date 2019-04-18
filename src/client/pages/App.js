@@ -1,19 +1,30 @@
-import React, { useContext } from "react" // eslint-disable-line no-unused-vars
+import React, { useContext, useEffect, useState } from "react" // eslint-disable-line no-unused-vars
 import DataContext from "../DataContext"
 
 import styled from "@emotion/styled"
 
+import FirstTimeMessage from "./app/FirstTimeMessage"
 import ShortcutList from "./app/ShortcutList"
 import Controls from "./app/Controls"
 import { encodeAppName } from "../helpers"
+import * as osSelect from "../helpers/osSelect"
 
 const App = () => {
   const { app, os } = useContext(DataContext)
+  const [messageVisible, setMessageVisible] = useState(false)
+
+  useEffect(() => {
+    setMessageVisible(!document.cookie)
+    osSelect.init()
+  }, [])
 
   const encodedName = encodeAppName(app.name)
   return (
-    <div>      
+    <div>
       <Controls icon={encodedName + ".png"} name={app.name} />
+      {messageVisible && (
+        <FirstTimeMessage onDismiss={() => setMessageVisible(false)} />
+      )}
       <ResultsContainer>
         {app.sections.map(section => {
           const shortcuts = app.shortcuts.filter(
@@ -39,9 +50,9 @@ export default App
 
 const ResultsContainer = styled.div`
   columns: 2;
-  column-gap: 30px;
+  column-gap: 30px;  
 
   @media (max-width: 1122px) {
-    columns:1;
+    columns: 1;
   }
 `

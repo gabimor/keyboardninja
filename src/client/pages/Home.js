@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 
-import AppList from "../components/AppList"
+import AppList from "./app/AppList"
 import DataContext from "../DataContext"
 
 const Home = () => {

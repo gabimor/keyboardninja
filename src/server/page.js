@@ -10,8 +10,7 @@
 //   #d1d0d4 - soon text
 //   #E9E5E5 - softText
 
-//   #FFD46F - pinSelected
-//   #A57E26 - pinSelectedBorder
+//   #ffe6ab - pinSelected
 
 //   #FFFFFF - white
 //   #4F4242 - appPanel
