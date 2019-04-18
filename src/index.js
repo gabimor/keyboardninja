@@ -7,6 +7,7 @@ const server = http.createServer(app)
 let currentApp = app
 
 console.log(process.env.PORT)
+console.log(JSON.stringify(process.env))
 
 server.listen(process.env.PORT || 3000, error => {
   console.log(process.env.PORT)
