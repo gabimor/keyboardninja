@@ -33,6 +33,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "razzle": "2.4.1",
+    "razzle-heroku": "^3.0.0",
     "react": "16.8.4",
     "react-dom": "16.8.4",
     "react-powerplug": "^1.0.0",
