@@ -23,7 +23,7 @@ module.exports =
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "624ac56cc47c5641fb9e";
+/******/ 	var hotCurrentHash = "0edced7313228a21afae";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -2208,7 +2208,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _jsxFileName = "C:\\MyStull\\Code\\keyboardninja\\src\\client\\pages\\app\\FirstTimeMessage.js";
 
-var _templateObject = babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  background: #742f2d;\n  margin-top: -20px;\n  padding: 20px;\n  line-height: 1.5em;\n  border-radius: 5px;\n  margin-bottom: 20px;\n  width: calc(50% - 15px);\n  position: relative;\n  font-weight: 300;\n\n  @media (max-width: 1122px) {\n    width: 100%;\n  }\n"], ["\n  background: #742f2d;\n  margin-top: -20px;\n  padding: 20px;\n  line-height: 1.5em;\n  border-radius: 5px;\n  margin-bottom: 20px;\n  width: calc(50% - 15px);\n  position: relative;\n  font-weight: 300;\n\n  @media (max-width: 1122px) {\n    width: 100%;\n  }\n"]),
+var _templateObject = babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  background: #742f2d;\n  padding: 20px;\n  line-height: 1.5em;\n  border-radius: 5px;\n  margin-bottom: 20px;\n  width: calc(50% - 15px);\n  position: relative;\n  font-weight: 300;\n\n  @media (max-width: 1122px) {\n    width: 100%;\n  }\n\n  @media (min-width: 768px) {\n    margin-top: -20px;\n  }\n"], ["\n  background: #742f2d;\n  padding: 20px;\n  line-height: 1.5em;\n  border-radius: 5px;\n  margin-bottom: 20px;\n  width: calc(50% - 15px);\n  position: relative;\n  font-weight: 300;\n\n  @media (max-width: 1122px) {\n    width: 100%;\n  }\n\n  @media (min-width: 768px) {\n    margin-top: -20px;\n  }\n"]),
     _templateObject2 = babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  margin: 0.5em 0;\n"], ["\n  margin: 0.5em 0;\n"]),
     _templateObject3 = babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  cursor: pointer;\n  position: absolute;\n  top: 0;\n  right: 5px;\n  font-size: 22px;\n  font-weight: 200;\n  color: #e9e5e5;\n"], ["\n  cursor: pointer;\n  position: absolute;\n  top: 0;\n  right: 5px;\n  font-size: 22px;\n  font-weight: 200;\n  color: #e9e5e5;\n"]),
     _templateObject4 = babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  color: #ffe6ab;\n"], ["\n  color: #ffe6ab;\n"]);

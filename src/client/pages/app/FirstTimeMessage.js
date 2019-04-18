@@ -23,7 +23,6 @@ export default FirstTimeMessage
 
 const Container = styled.div`
   background: #742f2d;
-  margin-top: -20px;
   padding: 20px;
   line-height: 1.5em;
   border-radius: 5px;
@@ -34,6 +33,10 @@ const Container = styled.div`
 
   @media (max-width: 1122px) {
     width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    margin-top: -20px;
   }
 `
 const TextWrapper = styled.div`
