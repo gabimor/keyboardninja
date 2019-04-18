@@ -1,9 +1,10 @@
 import mongoose from "mongoose"
 import { User, UserShortcut } from "./models"
 
-// mongodb://localhost:27017/keyboardninja
 mongoose.connect(
-  "mongodb+srv://gabimor:Tcinti1!@cluster0-li1ur.mongodb.net/keyboard_ninja?retryWrites=true",
+  `mongodb+srv://gabimor:${
+    process.env.ATLAS_PASSWORD
+  }@cluster0-li1ur.mongodb.net/keyboard_ninja?retryWrites=true`,
   {
     useNewUrlParser: true,
   }

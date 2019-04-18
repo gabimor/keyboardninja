@@ -15,14 +15,15 @@ export default function App({ name, icon, disabled }) {
 }
 
 const sharedStyles = `
-  display: inline-flex;
-  padding: 10px;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: var(--appItemSize);  
+  padding: 10px;
+  
   background-color: #403434;
   color: #d1b4b4;
-  height: var(--appItemSize);  
   transition: all 0.5s;
 
   @media (min-width: 992px) {
