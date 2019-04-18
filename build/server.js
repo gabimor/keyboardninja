@@ -23,7 +23,7 @@ module.exports =
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "0edced7313228a21afae";
+/******/ 	var hotCurrentHash = "894175b19b9a90f4bb88";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -5145,7 +5145,7 @@ function page(markup, title, assets, data) {
   var head = assets.client.css ? "<link rel=\"stylesheet\" href=\"" + assets.client.css + "\">" : "";
   head +=  false ? undefined : "<script src=\"" + assets.client.js + "\" defer crossorigin></script>";
 
-  return "<!doctype html>\n    <html lang=\"\">\n    <head>\n      <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n      <meta charset=\"utf-8\" />\n      <title>" + (title || "Keyboard Ninja Me") + "</title>\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n      <link\n        href=\"https://use.fontawesome.com/releases/v5.4.2/css/all.css\"\n        integrity=\"sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns\"\n        crossOrigin=\"anonymous\"\n        rel=\"stylesheet\" />\n      <link\n        href=\"https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i\"\n        rel=\"stylesheet\" />\n\n      " + style + "\n      " + (head || "") + "\n    </head>\n    <body>\n      <script>\n        window.__KBN_DATA__ = " + (data ? babel_runtime_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(data) : undefined) + ";\n      </script>\n      <div id=\"root\">" + markup + "</div>\n    </body>\n    </html>";
+  return "<!doctype html>\n    <html lang=\"\">\n    <head>\n      <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n      <meta charset=\"utf-8\" />\n      <title>" + (title || "Keyboard Ninja Me") + "</title>\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n      <link\n        href=\"https://use.fontawesome.com/releases/v5.4.2/css/all.css\"\n        integrity=\"sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns\"\n        crossOrigin=\"anonymous\"\n        rel=\"stylesheet\" />\n      <link\n        href=\"https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i\"\n        rel=\"stylesheet\" />\n\n      " + style + "\n      " + (head || "") + "\n    </head>\n    <body>\n      <script>\n        window.__KBN_DATA__ = " + (data ? babel_runtime_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(data) : undefined) + ";\n      </script>\n      <div id=\"root\">" + markup + "</div>\n      " + tracking + "\n    </body>\n    </html>";
 }
 
 function pageStart(title, assets, data) {
@@ -5156,28 +5156,10 @@ function pageStart(title, assets, data) {
 }
 
 function pageEnd() {
-  return "</div></body></html>";
+  return "</div>" + tracking + "</body></html>";
 }
-// <!-- Hotjar Tracking Code for http://www.keyboardninja.me -->
-// <script>
-//     (function(h,o,t,j,a,r){
-//         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-//         h._hjSettings={hjid:1186459,hjsv:6};
-//         a=o.getElementsByTagName('head')[0];
-//         r=o.createElement('script');r.async=1;
-//         r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-//         a.appendChild(r);
-//     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-// </script>
-// <!-- Global site tag (gtag.js) - Google Analytics -->
-// <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90675788-2"></script>
-// <script>
-//   window.dataLayer = window.dataLayer || [];
-//   function gtag(){dataLayer.push(arguments);}
-//   gtag('js', new Date());
 
-//   gtag('config', 'UA-90675788-2');
-// </script>
+var tracking = "\n  <!-- Hotjar Tracking Code for http://www.keyboardninja.me -->\n  <script>\n      (function(h,o,t,j,a,r){\n          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};\n          h._hjSettings={hjid:1186459,hjsv:6};\n          a=o.getElementsByTagName('head')[0];\n          r=o.createElement('script');r.async=1;\n          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;\n          a.appendChild(r);\n      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');\n  </script>\n  <!-- Global site tag (gtag.js) - Google Analytics -->\n  <script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-90675788-2\"></script>\n  <script>\n    window.dataLayer = window.dataLayer || [];\n    function gtag(){dataLayer.push(arguments);}\n    gtag('js', new Date());\n\n    gtag('config', 'UA-90675788-2');\n  </script>";
 
 /***/ }),
 
