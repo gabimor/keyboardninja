@@ -1,5 +1,15 @@
 # Keyboard Ninja
 
+#### yalla 
+- make every vote count
+- change osx icon
+- wanna help
+  - send missing apps
+  - send md
+  - get credit
+  - support financially
+  - contact form
+
 #### alpha
 
 - todo
