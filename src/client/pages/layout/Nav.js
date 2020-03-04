@@ -1,4 +1,4 @@
-import React, { Fragment } from "react" // eslint-disable-line no-unused-vars
+import React from "react" // eslint-disable-line no-unused-vars
 
 import styled from "@emotion/styled"
 import { Link } from "react-router-dom"
@@ -6,22 +6,17 @@ import Button from "../../components/Button"
 
 function Anonymous() {
   return (
-    <Fragment>
+    <>
       <li>
-        <Link to="/login">Log In</Link>
+        <Link to="/contact">Wanna help?</Link>
       </li>
-      <li>
-        <Link to="/signup">
-          <Button>Sign Up</Button>
-        </Link>
-      </li>
-    </Fragment>
+    </>
   )
 }
 
 function LoggedIn({ user, onLogout }) {
   return (
-    <Fragment>
+    <>
       <li>{user.email}</li>
       <li>
         <Link to="/apps">My apps</Link>
@@ -29,7 +24,7 @@ function LoggedIn({ user, onLogout }) {
       <li>
         <a onClick={onLogout}>Logout</a>
       </li>
-    </Fragment>
+    </>
   )
 }
 

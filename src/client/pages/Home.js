@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react" // eslint-disable-line no-unused-vars
+import React, { useContext } from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 
 import AppList from "./app/AppList"

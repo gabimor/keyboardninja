@@ -1,6 +1,7 @@
 import passport from "passport"
 import express from "express"
 import { Types } from "mongoose"
+import sgMail from "@sendgrid/mail"
 
 import { UserShortcut } from "./models"
 import * as db from "./db"
@@ -9,16 +10,34 @@ import md5 from "md5"
 
 const router = express.Router()
 
-router.post("/signup", async function(req, res, next) {
+router.get("/health", async (req, res) => {
+  res.send("healthy")
+})
+
+router.post("/signup", async (req, res, next) => {
   const { email, password } = req.body
 
   await db.signupUser(email, password)
-  req.login({ email, password }, function(err) {
+  req.login({ email, password }, err => {
     if (err) {
       return next(err)
     }
     return res.json({ email })
   })
+})
+
+router.post("/contactus", (req, res, next) => {
+  const { name, email, message } = req.body
+
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+  const msg = {
+    to: "gabimor@gmail.com",
+    from: email,
+    subject: "KeyboardNinja contact us",
+    text: message,
+  }
+  sgMail.send(msg)
+  res.sendStatus(200)
 })
 
 // router.post(
@@ -74,7 +93,7 @@ router.post("/login", function(req, res, next) {
   })(req, res)
 })
 
-router.post("/logout", function(req, res) {
+router.post("/logout", (req, res) => {
   req.logout()
   res.send()
 })
@@ -90,24 +109,19 @@ router.post("/logout", function(req, res) {
 //   res.status(200).send()
 // })
 
-router.post("/getlink", async function(req, res) {
+router.post("/getlink", async (req, res) => {
   const appsHash = await cache.getAppsHash()
   const { appId, shortcutIds } = req.body
   const appName = appsHash.find(e => e.id.toString() === appId).name
 
   let link = process.env.APP_URL + appName
-  console.log(link)
   if (shortcutIds.length > 0) {
-    console.log(shortcutIds)
     const hash = md5(req.sessionID + shortcutIds.join()).substring(8)
     link += "?h=" + hash
-
-    console.log(hash)
 
     const existingSave = await UserShortcut.findById(hash)
 
     if (!existingSave) {
-      console.log("saving")
       const userShortcut = new UserShortcut({
         _id: Types.ObjectId(hash),
         appId,

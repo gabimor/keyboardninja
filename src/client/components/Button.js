@@ -32,7 +32,7 @@ const PrimaryButton = styled.button`
   ${style}
 
   background-color: #D1403D;
-  color: #FFFFFF;
+  color: #ffffff;
   border: 1px solid #d1403d;
 
   &:hover {
@@ -43,8 +43,8 @@ const PrimaryButton = styled.button`
 const SecondaryButton = styled.button`
   ${style}
   background:transparent;
-  color: #A4A3A6;
-  border: 1px solid #A4A3A6;
+  color: #a4a3a6;
+  border: 1px solid #a4a3a6;
 
   &:hover {
     background: #9d8b8b;

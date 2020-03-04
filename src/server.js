@@ -43,7 +43,7 @@ app.use(
 
 app.use(compression())
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(passport.initialize())
 app.use(flash())
@@ -54,6 +54,7 @@ app.use("/", router)
 app.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
 
 app.get("/404", defaultHandler)
+app.get("/contact", defaultHandler)
 
 app.get("/:name", async (req, res, next) => {
   try {
@@ -166,10 +167,7 @@ const sendPage = (req, res, dataContext, title) => {
   } else {
     res.write(pageStart(title, assets, dataContext))
     const stream = renderToNodeStream(getTemplate(req.url, dataContext))
-    stream.pipe(
-      res,
-      { end: "false" }
-    )
+    stream.pipe(res, { end: "false" })
     stream.on("end", () => {
       res.end(pageEnd())
     })

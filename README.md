@@ -1,14 +1,15 @@
 # Keyboard Ninja
 
-#### yalla 
-- make every vote count
-- change osx icon
+#### yalla
+
 - wanna help
   - send missing apps
   - send md
   - get credit
   - support financially
   - contact form
+- change osx icon
+- make every vote count vs users
 
 #### alpha
 
@@ -18,7 +19,7 @@
   - visual studio - mac
 - go live
   - search TODOs
-  - upload to server & connect domain  
+  - upload to server & connect domain
   - 500 page
   - error handling (fetch, try catch)
   - GA & hotjar
@@ -30,7 +31,7 @@
 - images sizes (unite per category)
 - homepage: category index
 - sort by popularity
-- flat 
+- flat
 - embed
 - forgot password
 
@@ -73,7 +74,6 @@
   - react morph
 - express - advanced topics https://expressjs.com/en/advanced/best-practice-performance.html
 - https://github.com/i0natan/nodebestpractices
-
 
 ## Take over the world
 

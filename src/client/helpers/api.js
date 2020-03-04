@@ -16,6 +16,18 @@ export function signup(email, password) {
   }).then(res => res.json())
 }
 
+export function contactUs(name, email, message) {
+  return fetch("/api/contactus", {
+    method: "POST",
+    body: JSON.stringify({
+      name,
+      email,
+      message,
+    }),
+    headers,
+  })
+}
+
 export function login(email, password) {
   return fetch("/api/login", {
     method: "POST",

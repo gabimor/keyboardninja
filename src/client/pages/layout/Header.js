@@ -5,7 +5,7 @@ import styled from "@emotion/styled"
 // import { logout } from "../../helpers/api"
 // import DataContext from "../../DataContext"
 import Logo from "./Logo"
-// import Nav from "./Nav"
+import Nav from "./Nav"
 
 function Header() {
   // const { user, doLogout } = useContext(DataContext)
@@ -21,7 +21,7 @@ function Header() {
       <Link to="/">
         <Logo />
       </Link>
-      {/* <Nav user={user} onLogout={handleLogout} /> */}
+      <Nav  />
     </Container>
   )
 }

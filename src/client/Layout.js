@@ -8,6 +8,7 @@ import Login from "./pages/Login"
 import Header from "./pages/layout/Header"
 import Footer from "./pages/layout/Footer"
 import Signup from "./pages/Signup"
+import ContactUs from "./pages/ContactUs"
 import Page404 from "./pages/404"
 
 const Layout = () => {
@@ -19,6 +20,7 @@ const Layout = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/contact" component={ContactUs} />
           <Route path="/404" component={Page404} />
           <Route path="/:name" component={App} />
           <Route component={Page404} />

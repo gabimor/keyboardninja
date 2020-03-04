@@ -20,9 +20,9 @@ export default function AppList({ name, apps, gridArea }) {
           )
 
           return app.disabled ? (
-            <CurrItem key={app._id} />
+            <CurrItem key={app.name} />
           ) : (
-            <a href={"/" + encodedName} key={app._id}>
+            <a href={"/" + encodedName} key={app.name}>
               <CurrItem />
             </a>
           )
@@ -70,7 +70,7 @@ const InnerContainer = styled.div`
     --appItemSize: 150px;
   }
 
-  @media (max-width: 768px) {    
+  @media (max-width: 768px) {
     --appItemSize: 137px;
   }
 
@@ -82,7 +82,6 @@ const InnerContainer = styled.div`
     grid-template-columns: repeat(4, 1fr);
     --appItemSize: 110px;
   }
-
 
   @media (max-width: 414px) {
     grid-template-columns: repeat(3, 1fr);

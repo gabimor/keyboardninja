@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from "react" // eslint-disable-line no-unused-vars
+import React, { useContext, useState } from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 import PropTypes from "prop-types"
 
@@ -29,7 +29,7 @@ function ShortcutItem({ id, action, keys, pins, isPinned, isHtml, note }) {
   }
 
   return (
-    <Fragment>
+    <>
       <PinContainer>
         <Pin isPinned={isPinnedState} pins={pinsState} onClick={handlePin} />
       </PinContainer>
@@ -46,7 +46,7 @@ function ShortcutItem({ id, action, keys, pins, isPinned, isHtml, note }) {
       <KeysContainer>
         <Shortcut keys={keys} isHtml={isHtml} />
       </KeysContainer>
-    </Fragment>
+    </>
   )
 }
 
