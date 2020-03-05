@@ -1,0 +1,20 @@
+{
+  "git.ignoreLimitWarning": true,
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#e86562",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#e3fbe4",
+    "activityBarBadge.foreground": "#15202b",
+    "titleBar.activeBackground": "#e86562",
+    "titleBar.inactiveBackground": "#e8656299",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.affectActivityBar": true,
+  "editor.tabSize": 2,
+  "debug.node.autoAttach": "on",
+  "files.exclude": {
+    "**/build": true
+  }
+}
