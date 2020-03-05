@@ -1,8 +1,12 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React, { useState } from "react" // eslint-disable-line no-unused-vars
 import styled from "@emotion/styled"
 import ContactForm from "./contactUs/ContactForm"
 
 export default () => {
+  const [messageSent, setMessageSent] = useState(false)
+
+  const onSend = () => setMessageSent(true)
+
   return (
     <Container>
       <div>
@@ -12,7 +16,14 @@ export default () => {
         </Subtitle>
         Missing your favorite app ? your favorite shortcut ? noticed a mistake ?
         here's how you can help: 1.
-        <ContactForm />
+        {!messageSent ? (
+          <ContactForm onSend={onSend} />
+        ) : (
+          <ThankYou>
+            <h2>Thank You!</h2>
+            Promise to get back to you ASAP
+          </ThankYou>
+        )}
       </div>
     </Container>
   )
@@ -29,6 +40,11 @@ const Container = styled.div`
 const Header = styled.h1`
   font-weight: bold;
   padding-bottom: 15px;
+`
+
+const ThankYou = styled.div`
+  padding: 40px;
+  text-align: center;
 `
 
 const Subtitle = styled.h2``

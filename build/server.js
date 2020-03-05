@@ -23,7 +23,7 @@ module.exports =
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "21fc193d32804f0b3d9f";
+/******/ 	var hotCurrentHash = "f786ccb4a6504968b89d";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1590,16 +1590,29 @@ var ResultsContainer = _emotion_styled__WEBPACK_IMPORTED_MODULE_4___default.a.di
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/taggedTemplateLiteral */ "@babel/runtime/helpers/taggedTemplateLiteral");
 /* harmony import */ var _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/styled */ "@emotion/styled");
-/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _contactUs_ContactForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./contactUs/ContactForm */ "./src/client/pages/contactUs/ContactForm.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "@babel/runtime/helpers/slicedToArray");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/styled */ "@emotion/styled");
+/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _contactUs_ContactForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./contactUs/ContactForm */ "./src/client/pages/contactUs/ContactForm.js");
+
 
 var _jsxFileName = "/Users/gabimor/Code/keyboardninja/src/client/pages/ContactUs.js";
 
-function _templateObject3() {
+function _templateObject4() {
   var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()([""]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  padding: 40px;\n  text-align: center;\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -1633,36 +1646,57 @@ function _templateObject() {
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Container, {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false),
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState, 2),
+      messageSent = _useState2[0],
+      setMessageSent = _useState2[1];
+
+  var onSend = function onSend() {
+    return setMessageSent(true);
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Container, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 11
     }
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
+      lineNumber: 12
     }
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Header, {
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Header, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 13
     }
-  }, "Calling all shortcuts geeks"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Subtitle, {
+  }, "Calling all shortcuts geeks"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Subtitle, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 14
     }
-  }, "Join the effort do document every shortcut out there!"), "Missing your favorite app ? your favorite shortcut ? noticed a mistake ? here's how you can help: 1.", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_contactUs_ContactForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "Join the effort do document every shortcut out there!"), "Missing your favorite app ? your favorite shortcut ? noticed a mistake ? here's how you can help: 1.", !messageSent ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_contactUs_ContactForm__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    onSend: onSend,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 20
     }
-  })));
+  }) : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(ThankYou, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 22
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h2", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 23
+    }
+  }, "Thank You!"), "Promise to get back to you ASAP")));
 });
-var Container = _emotion_styled__WEBPACK_IMPORTED_MODULE_2___default.a.div(_templateObject());
-var Header = _emotion_styled__WEBPACK_IMPORTED_MODULE_2___default.a.h1(_templateObject2());
-var Subtitle = _emotion_styled__WEBPACK_IMPORTED_MODULE_2___default.a.h2(_templateObject3());
+var Container = _emotion_styled__WEBPACK_IMPORTED_MODULE_3___default.a.div(_templateObject());
+var Header = _emotion_styled__WEBPACK_IMPORTED_MODULE_3___default.a.h1(_templateObject2());
+var ThankYou = _emotion_styled__WEBPACK_IMPORTED_MODULE_3___default.a.div(_templateObject3());
+var Subtitle = _emotion_styled__WEBPACK_IMPORTED_MODULE_3___default.a.h2(_templateObject4());
 
 /***/ }),
 
@@ -3528,17 +3562,30 @@ var Table = _emotion_styled__WEBPACK_IMPORTED_MODULE_3___default.a.div(_template
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/taggedTemplateLiteral */ "@babel/runtime/helpers/taggedTemplateLiteral");
 /* harmony import */ var _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers/api */ "./src/client/helpers/api.js");
-/* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Button */ "./src/client/components/Button.js");
-/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @emotion/styled */ "@emotion/styled");
-/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "@babel/runtime/helpers/slicedToArray");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../helpers/api */ "./src/client/helpers/api.js");
+/* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Button */ "./src/client/components/Button.js");
+/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @emotion/styled */ "@emotion/styled");
+/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled__WEBPACK_IMPORTED_MODULE_5__);
+
 
 var _jsxFileName = "/Users/gabimor/Code/keyboardninja/src/client/pages/contactUs/ContactForm.js";
 
+function _templateObject5() {
+  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  color: black;\n  background: #e9e5e5;\n  border-radius: 3px;\n  display: block;\n  width: 100%;\n  padding: 8px 10px;\n"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject4() {
-  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  background: #e9e5e5;\n  border-radius: 3px;\n  display: block;\n  width: 100%;\n"]);
+  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  color: black;\n  background: #e9e5e5;\n  border-radius: 3px;\n  display: block;\n  width: 100%;\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -3548,7 +3595,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  background: #e9e5e5;\n  border-radius: 3px;\n  display: block;\n  width: 100%;\n"]);
+  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  color: #9d8b8b;\n  display: block;\n  margin: 15px 0 5px 0;\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -3558,7 +3605,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  color: #9d8b8b;\n  display: block;\n  margin: 15px 0 5px 0;\n"]);
+  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  text-align: left;\n  margin-top: 50px;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -3568,7 +3615,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  text-align: left;\n  margin-top: 50px;\n"]);
+  var data = _babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0___default()(["\n  display: flex;\n  margin-bottom: 18px;\n  div {\n    flex-grow: 1;\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -3581,65 +3628,112 @@ function _templateObject() {
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  function handleSubmit(event) {
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var onSend = _ref.onSend;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(),
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState, 2),
+      name = _useState2[0],
+      setName = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(),
+      _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState3, 2),
+      email = _useState4[0],
+      setEmail = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(),
+      _useState6 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState5, 2),
+      message = _useState6[0],
+      setMessage = _useState6[1];
+
+  function handleSubmit() {
     event.preventDefault();
-    var _event$target = event.target,
-        name = _event$target.name,
-        email = _event$target.email,
-        message = _event$target.message;
-    Object(_helpers_api__WEBPACK_IMPORTED_MODULE_2__["contactUs"])(name.value, email.value, message.value);
+    Object(_helpers_api__WEBPACK_IMPORTED_MODULE_3__["contactUs"])(name, email, message);
+    setName("");
+    setEmail("");
+    setMessage("");
+    onSend();
   }
 
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Form, {
+  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Form, {
     onSubmit: handleSubmit,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 22
     }
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Label, {
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(FormTop, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 23
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    style: {
+      marginRight: 5
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 24
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Label, {
     htmlFor: "name",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 25
     }
-  }, "NAME"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    id: "name",
-    name: "name",
+  }, "NAME"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Input, {
+    required: true,
+    value: name,
+    onChange: function onChange(e) {
+      return setName(e.target.value);
+    },
     type: "text",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 26
     }
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Label, {
+  })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    style: {
+      marginLeft: 5
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Label, {
     htmlFor: "email",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 34
     }
-  }, "EMAIL"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    id: "email",
-    name: "email",
+  }, "EMAIL"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Input, {
+    required: true,
+    value: email,
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    },
     type: "email",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 35
     }
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Label, {
+  }))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Label, {
     htmlFor: "message",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 43
     }
-  }, "MESSAGE"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Textarea, {
-    id: "message",
-    name: "message",
+  }, "MESSAGE"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Textarea, {
+    required: true,
+    value: message,
+    onChange: function onChange(e) {
+      return setMessage(e.target.value);
+    },
     rows: 7,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 44
     }
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     type: "submit",
     style: {
       display: "block",
@@ -3649,14 +3743,15 @@ function _templateObject() {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 50
     }
   }, "Send"));
 });
-var Form = _emotion_styled__WEBPACK_IMPORTED_MODULE_4___default.a.form(_templateObject());
-var Label = _emotion_styled__WEBPACK_IMPORTED_MODULE_4___default.a.label(_templateObject2());
-var Input = _emotion_styled__WEBPACK_IMPORTED_MODULE_4___default.a.input(_templateObject3());
-var Textarea = _emotion_styled__WEBPACK_IMPORTED_MODULE_4___default.a.textarea(_templateObject4());
+var FormTop = _emotion_styled__WEBPACK_IMPORTED_MODULE_5___default.a.div(_templateObject());
+var Form = _emotion_styled__WEBPACK_IMPORTED_MODULE_5___default.a.form(_templateObject2());
+var Label = _emotion_styled__WEBPACK_IMPORTED_MODULE_5___default.a.label(_templateObject3());
+var Input = _emotion_styled__WEBPACK_IMPORTED_MODULE_5___default.a.input(_templateObject4());
+var Textarea = _emotion_styled__WEBPACK_IMPORTED_MODULE_5___default.a.textarea(_templateObject5());
 
 /***/ }),
 

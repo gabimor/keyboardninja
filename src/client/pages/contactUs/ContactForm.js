@@ -1,23 +1,52 @@
-import React from "react"
+import React, { useState } from "react"
 import { contactUs } from "../../helpers/api"
 import Button from "../../components/Button"
 import styled from "@emotion/styled"
 
-export default () => {
-  function handleSubmit(event) {
+export default ({ onSend }) => {
+  const [name, setName] = useState()
+  const [email, setEmail] = useState()
+  const [message, setMessage] = useState()
+
+  function handleSubmit() {
     event.preventDefault()
-    const { name, email, message } = event.target
-    contactUs(name.value, email.value, message.value)
+    contactUs(name, email, message)
+
+    setName("")
+    setEmail("")
+    setMessage("")
+    onSend()
   }
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Label htmlFor="name">NAME</Label>
-      <Input id="name" name="name" type="text" />
-      <Label htmlFor="email">EMAIL</Label>
-      <Input id="email" name="email" type="email" />
+      <FormTop>
+        <div style={{ marginRight: 5 }}>
+          <Label htmlFor="name">NAME</Label>
+          <Input
+            required
+            value={name}
+            onChange={e => setName(e.target.value)}
+            type="text"
+          />
+        </div>
+        <div style={{ marginLeft: 5 }}>
+          <Label htmlFor="email">EMAIL</Label>
+          <Input
+            required
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            type="email"
+          />
+        </div>
+      </FormTop>
       <Label htmlFor="message">MESSAGE</Label>
-      <Textarea id="message" name="message" rows={7}></Textarea>
+      <Textarea
+        required
+        value={message}
+        onChange={e => setMessage(e.target.value)}
+        rows={7}
+      ></Textarea>
       <Button
         type="submit"
         style={{ display: "block", width: "100%", padding: 12, marginTop: 25 }}
@@ -27,6 +56,14 @@ export default () => {
     </Form>
   )
 }
+
+const FormTop = styled.div`
+  display: flex;
+  margin-bottom: 18px;
+  div {
+    flex-grow: 1;
+  }
+`
 
 const Form = styled.form`
   text-align: left;
@@ -40,6 +77,7 @@ const Label = styled.label`
 `
 
 const Input = styled.input`
+  color: black;
   background: #e9e5e5;
   border-radius: 3px;
   display: block;
@@ -47,8 +85,10 @@ const Input = styled.input`
 `
 
 const Textarea = styled.textarea`
+  color: black;
   background: #e9e5e5;
   border-radius: 3px;
   display: block;
   width: 100%;
+  padding: 8px 10px;
 `
