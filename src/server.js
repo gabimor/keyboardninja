@@ -154,8 +154,9 @@ const getTemplate = (url, dataContext) => (
 )
 
 const sendPage = (req, res, dataContext, title) => {
+  const canonicalUrl = req.url.split("?")[0]
   const markup = renderToString(getTemplate(req.url, dataContext))
-  const pageMarkup = page(markup, title, assets, dataContext)
+  const pageMarkup = page(markup, title, assets, dataContext, canonicalUrl)
   res.status(200).send(pageMarkup)
 }
 
