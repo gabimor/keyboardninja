@@ -81,16 +81,16 @@ const Label = styled.label`
 `
 
 const Input = styled.input`
-  color: black;
-  background: #e9e5e5;
+  color: #e9e5e5;
+  background: #211c1c;
   border-radius: 3px;
   display: block;
   width: 100%;
 `
 
 const Textarea = styled.textarea`
-  color: black;
-  background: #e9e5e5;
+  color: #e9e5e5;
+  background: #211c1c;
   border-radius: 3px;
   display: block;
   width: 100%;

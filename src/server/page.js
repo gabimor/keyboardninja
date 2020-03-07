@@ -13,6 +13,7 @@
 //   #ffe6ab - pinSelected
 
 //   #FFFFFF - white
+//   #211c1c - input background
 //   #4F4242 - appPanel
 //   #453A3A - darkBorder
 //   #442323 - mainBG1
@@ -116,7 +117,7 @@ export function page(markup, title, assets, data, canonicalUrl) {
     <html lang="">
     <head>
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta property="og:url"    content="${canonicalUrl}" />
+      <meta property="og:url"    content="https://www.keyboardninja.me${canonicalUrl}" />
       <meta property="og:title"  content="KeyboardNinja.me${
         title ? " - " + title : ""
       }" />
