@@ -121,7 +121,7 @@ export function page(markup, title, assets, data, canonicalUrl) {
       <meta property="og:image" content="https://www.keyboardninja.me/social-preview.png" />
       <meta property="og:description" content="Every app, every shortcut. The best ones first." />
       <meta property="og:type" content="website" />
-      <meta property="og:app_id" content="2286973354960672" />
+      <meta property="fb:app_id" content="2286973354960672" />
       <meta property="og:title" content="keyboardninja.me${
         title ? " - " + title : ""
       }" />
