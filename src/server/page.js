@@ -119,10 +119,12 @@ export function page(markup, title, assets, data, canonicalUrl) {
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta property="og:url"   content="https://www.keyboardninja.me${canonicalUrl}" />
       <meta property="og:image" content="https://www.keyboardninja.me/social-preview.png" />
+      <meta property="og:description" content="Every app, every shortcut. The best ones first." />
+      <meta property="og:type" content="website" />
+      <meta property="og:app_id" content="2286973354960672" />
       <meta property="og:title" content="keyboardninja.me${
         title ? " - " + title : ""
       }" />
-      <meta property="og:description" content="Every app, every shortcut. The best ones first." />
       <meta charset="utf-8" />
       <title>${title || "Keyboard Ninja Me"}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
