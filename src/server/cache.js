@@ -28,20 +28,14 @@ export async function getAppCategories() {
   return appCategories
 }
 
-export function setPin(appId, shortcutId, isPinned) {
-  const app = nodeCache.get("app-" + appId)
-
-  const change = isPinned ? 1 : -1
-  app.shortcuts.find(
-    e => e._id.toString() === shortcutId.toString()
-  ).pins += change
-
-  nodeCache.set("app-" + appId, app)
+export async function clearApp(appId) {
+  nodeCache.del("app-" + appId)
 }
 
 export async function getApp(appId) {
-  let cacheApp = nodeCache.get("app-" + appId)
-
+  let cacheApp
+  // NO CACHE FOR NOW
+  // = nodeCache.get("app-" + appId)
   if (!cacheApp) {
     cacheApp = await App.findById(appId).lean()
     cacheApp.shortcuts = cacheApp.shortcuts.map(shortcut => ({
@@ -50,7 +44,6 @@ export async function getApp(appId) {
     }))
 
     const userShortcuts = await UserShortcut.find({ appId: appId }).lean()
-
     // calculate pins field
     // go over every appid, userId record
     for (const userShortcut of userShortcuts) {
@@ -74,6 +67,18 @@ export function set(key, value) {
 export function get(key) {
   return nodeCache.get(key)
 }
+
+// export function setPin(appId, shortcutId, isPinned) {
+//   const app = nodeCache.get("app-" + appId)
+
+//   const change = isPinned ? 1 : -1
+//   app.shortcuts.find(
+//     e => e._id.toString() === shortcutId.toString()
+//   ).pins += change
+
+//   nodeCache.set("app-" + appId, app)
+// }
+
 // export default nodeCache
 // START PERFORMANCE MEASURE
 // const hrstart = process.hrtime()

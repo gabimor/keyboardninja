@@ -154,24 +154,30 @@ const getTemplate = (url, dataContext) => (
 )
 
 const sendPage = (req, res, dataContext, title) => {
-  const cacheKey = req.originalUrl + "-" + dataContext.os
-
-  if (!req.user) {
-    let cachePage = cache.get(cacheKey)
-    if (!cachePage) {
-      const markup = renderToString(getTemplate(req.url, dataContext))
-      cachePage = page(markup, title, assets, dataContext)
-      cache.set(cacheKey, cachePage)
-    }
-    res.status(200).send(cachePage)
-  } else {
-    res.write(pageStart(title, assets, dataContext))
-    const stream = renderToNodeStream(getTemplate(req.url, dataContext))
-    stream.pipe(res, { end: "false" })
-    stream.on("end", () => {
-      res.end(pageEnd())
-    })
-  }
+  const markup = renderToString(getTemplate(req.url, dataContext))
+  const pageMarkup = page(markup, title, assets, dataContext)
+  res.status(200).send(pageMarkup)
 }
+
+// const sendPage = (req, res, dataContext, title) => {
+//   const cacheKey = req.originalUrl + "-" + dataContext.os
+
+//   if (!req.user) {
+//     let cachePage = cache.get(cacheKey)
+//     if (!cachePage) {
+//       const markup = renderToString(getTemplate(req.url, dataContext))
+//       cachePage = page(markup, title, assets, dataContext)
+//       cache.set(cacheKey, cachePage)
+//     }
+//     res.status(200).send(cachePage)
+//   } else {
+//     res.write(pageStart(title, assets, dataContext))
+//     const stream = renderToNodeStream(getTemplate(req.url, dataContext))
+//     stream.pipe(res, { end: "false" })
+//     stream.on("end", () => {
+//       res.end(pageEnd())
+//     })
+//   }
+// }
 
 export default app

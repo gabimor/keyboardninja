@@ -13,8 +13,13 @@ const App = () => {
   const { app, os } = useContext(DataContext)
   const [messageVisible, setMessageVisible] = useState(false)
 
+  const handleDismiss = () => {
+    localStorage.setItem("firstTimeMessage", "true")
+    setMessageVisible(false)
+  }
+
   useEffect(() => {
-    setMessageVisible(!document.cookie)
+    setMessageVisible(!localStorage.getItem("firstTimeMessage"))
     osSelect.init()
   }, [])
 
@@ -22,9 +27,7 @@ const App = () => {
   return (
     <div>
       <Controls icon={encodedName + ".png"} name={app.name} />
-      {messageVisible && (
-        <FirstTimeMessage onDismiss={() => setMessageVisible(false)} />
-      )}
+      {messageVisible && <FirstTimeMessage onDismiss={handleDismiss} />}
       <ResultsContainer>
         {app.sections.map(section => {
           const shortcuts = app.shortcuts.filter(
@@ -50,7 +53,7 @@ export default App
 
 const ResultsContainer = styled.div`
   columns: 2;
-  column-gap: 30px;  
+  column-gap: 30px;
 
   @media (max-width: 1122px) {
     columns: 1;

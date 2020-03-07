@@ -30,19 +30,16 @@ router.post("/getlink", async (req, res) => {
 
   let link = process.env.APP_URL + appName
   if (shortcutIds.length > 0) {
-    const hash = md5(req.sessionID + shortcutIds.join()).substring(8)
-    link += "?h=" + hash
+    const userShortcut = new UserShortcut({
+      _id: Types.ObjectId(),
+      appId,
+      shortcuts: shortcutIds,
+    })
+    userShortcut.save()
 
-    const existingSave = await UserShortcut.findById(hash)
+    link += "?h=" + userShortcut._id
 
-    if (!existingSave) {
-      const userShortcut = new UserShortcut({
-        _id: Types.ObjectId(hash),
-        appId,
-        shortcuts: shortcutIds,
-      })
-      userShortcut.save()
-    }
+    cache.clearApp(appId)
   }
 
   res.status(200).send(link)
@@ -121,8 +118,8 @@ router.post("/getlink", async (req, res) => {
 // router.patch("/pin", function(req, res) {
 //   const { appId, shortcutId, isPinned } = req.body
 
-//   // db.setPin(req.user.id, appId, shortcutId, isPinned)
-//   // cache.setPin(appId, shortcutId, isPinned)
+//   db.setPin(req.user.id, appId, shortcutId, isPinned)
+//   cache.setPin(appId, shortcutId, isPinned)
 //   req.session.pins = req.session.pins || 0
 //   req.session.pins++
 

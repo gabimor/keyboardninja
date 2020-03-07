@@ -3,15 +3,16 @@ import styled from "@emotion/styled"
 
 const FirstTimeMessage = ({ onDismiss }) => (
   <Container>
-    <b>Welcome!</b> Here's a few things to try here: <br />
+    <b>Welcome!</b> Here's a few things to try: <br />
     <TextWrapper>
       <ul>
         <li>
-          - Browse and <Highlight>pin</Highlight> your favorite shortcuts
+          1. Press the <Highlight>Pin</Highlight> button to select your favorite
+          shortcuts
         </li>
         <li>
-          - Hit <Highlight>Get Link</Highlight> and share your selection with
-          friends
+          2. Press the <Highlight>Get Link</Highlight> to save your selection
+          and get a link for future reference
         </li>
       </ul>
     </TextWrapper>
@@ -24,10 +25,11 @@ export default FirstTimeMessage
 const Container = styled.div`
   background: #742f2d;
   padding: 20px;
+  font-size: 20px;
   line-height: 1.5em;
   border-radius: 5px;
   margin-bottom: 20px;
-  width: calc(50% - 15px);
+  // width: calc(50% - 15px);
   position: relative;
   font-weight: 300;
 
@@ -47,8 +49,8 @@ const Dismiss = styled.span`
   cursor: pointer;
   position: absolute;
   top: 0;
-  right: 5px;
-  font-size: 22px;
+  right: 9px;
+  font-size: 28px;
   font-weight: 200;
   color: #e9e5e5;
 `

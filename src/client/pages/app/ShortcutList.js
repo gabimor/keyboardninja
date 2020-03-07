@@ -45,6 +45,7 @@ const Title = styled.header`
   color: #e9e5e5;
   background: #a12d2a;
   padding: 5px 10px 7px 15px;
+  font-size: 16px;
 `
 
 const Table = styled.div`
@@ -58,6 +59,6 @@ const Table = styled.div`
 
   > div {
     border-bottom: solid 1px #453a3a;
-    padding-bottom:8px;
+    padding-bottom: 8px;
   }
 `
