@@ -11,8 +11,8 @@ const FirstTimeMessage = ({ onDismiss }) => (
           shortcuts
         </li>
         <li>
-          2. Press the <Highlight>Get Link</Highlight> to save your selection
-          and get a link for future reference
+          2. Press <Highlight>Get Link</Highlight> to get a link with your saved
+          selection
         </li>
       </ul>
     </TextWrapper>
