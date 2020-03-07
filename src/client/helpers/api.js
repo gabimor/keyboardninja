@@ -16,16 +16,22 @@ export function signup(email, password) {
   }).then(res => res.json())
 }
 
-export function contactUs(name, email, message) {
-  return fetch("/api/contactus", {
-    method: "POST",
-    body: JSON.stringify({
-      name,
-      email,
-      message,
-    }),
-    headers,
-  })
+export async function contactUs(name, email, message) {
+  try {
+    const res = await fetch("/api/contactus", {
+      method: "POST",
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+      }),
+      headers,
+    })
+
+    if (res.status != 200) throw new Error()
+  } catch (e) {
+    throw e
+  }
 }
 
 export function login(email, password) {

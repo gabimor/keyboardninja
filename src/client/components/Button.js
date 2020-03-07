@@ -1,15 +1,25 @@
 import React from "react" // eslint-disable-line no-unused-vars
 import PropTypes from "prop-types"
-
+import { useHistory } from "react-router-dom"
 import styled from "@emotion/styled"
 
-export default function Button({ children, secondary, style, onClick }) {
+export default function Button({ children, secondary, style, onClick, to }) {
+  let history = useHistory()
+
+  const handleClick = () => {
+    if (to) {
+      history.push(to)
+    } else if (onClick) {
+      onClick()
+    }
+  }
+
   return secondary ? (
-    <SecondaryButton style={style} onClick={onClick}>
+    <SecondaryButton style={style} onClick={handleClick}>
       {children}
     </SecondaryButton>
   ) : (
-    <PrimaryButton style={style} onClick={onClick}>
+    <PrimaryButton style={style} onClick={handleClick}>
       {children}
     </PrimaryButton>
   )

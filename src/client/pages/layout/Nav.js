@@ -4,13 +4,11 @@ import styled from "@emotion/styled"
 import { Link } from "react-router-dom"
 import Button from "../../components/Button"
 
-function Anonymous() {
+function Anonymous(props) {
   return (
-    <>
-      <li>
-        <Link to="/contact">Wanna help?</Link>
-      </li>
-    </>
+    <li>
+      <Button to="/contact">Help us improve</Button>
+    </li>
   )
 }
 

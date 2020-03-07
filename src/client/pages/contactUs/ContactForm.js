@@ -8,14 +8,18 @@ export default ({ onSend }) => {
   const [email, setEmail] = useState()
   const [message, setMessage] = useState()
 
-  function handleSubmit() {
+  async function handleSubmit() {
     event.preventDefault()
-    contactUs(name, email, message)
 
-    setName("")
-    setEmail("")
-    setMessage("")
-    onSend()
+    try {
+      await contactUs(name, email, message)
+      setName("")
+      setEmail("")
+      setMessage("")
+      onSend()
+    } catch (e) {
+      onSend(e)
+    }
   }
 
   return (
@@ -46,6 +50,7 @@ export default ({ onSend }) => {
         value={message}
         onChange={e => setMessage(e.target.value)}
         rows={7}
+        placeholder="How can we help?"
       ></Textarea>
       <Button
         type="submit"
@@ -67,7 +72,6 @@ const FormTop = styled.div`
 
 const Form = styled.form`
   text-align: left;
-  margin-top: 50px;
 `
 
 const Label = styled.label`

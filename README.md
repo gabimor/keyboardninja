@@ -11,6 +11,11 @@
 - change osx icon
 - make every vote count vs users
 
+#### PR
+
+- product hunt
+- medium post
+
 #### alpha
 
 - todo
