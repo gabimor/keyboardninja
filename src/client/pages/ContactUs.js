@@ -17,8 +17,10 @@ export default () => {
   return (
     <Container>
       <div>
-        <Title>Missing something? Have an idea?</Title>
-        <Subtitle>Let us know</Subtitle>
+        <Title>
+          Missing something? Have an idea?
+          <TitleBold>Let us know</TitleBold>
+        </Title>
 
         {!messageSent ? (
           <ContactForm onSend={onSend} />
@@ -45,11 +47,17 @@ const Container = styled.div`
 const Title = styled.h1`
   padding-bottom: 15px;
   font-size: 45px;
+  line-height: 1.3em;
+  margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    font-size: 40px;
+  }
 `
-const Subtitle = styled.h2`
-  font-size: 45px;
+
+const TitleBold = styled.span`
+  display: block;
   font-weight: bold;
-  margin-bottom: 100px;
 `
 
 const Text = styled.div`
