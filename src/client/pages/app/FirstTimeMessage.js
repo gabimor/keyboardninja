@@ -25,19 +25,15 @@ export default FirstTimeMessage
 const Container = styled.div`
   background: #742f2d;
   padding: 20px;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.5em;
   border-radius: 5px;
   margin-bottom: 20px;
-  // width: calc(50% - 15px);
   position: relative;
   font-weight: 300;
 
-  @media (max-width: 1122px) {
-    width: 100%;
-  }
-
   @media (min-width: 768px) {
+    font-size: 20px;
     margin-top: -20px;
   }
 `
