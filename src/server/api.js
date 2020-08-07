@@ -45,17 +45,17 @@ router.post("/getlink", async (req, res) => {
   res.status(200).send(link)
 })
 
-// router.post("/signup", async (req, res, next) => {
-//   const { email, password } = req.body
+router.post("/signup", async (req, res, next) => {
+  const { email, password } = req.body
 
-//   await db.signupUser(email, password)
-//   req.login({ email, password }, err => {
-//     if (err) {
-//       return next(err)
-//     }
-//     return res.json({ email })
-//   })
-// })
+  await db.signupUser(email, password)
+  req.login({ email, password }, err => {
+    if (err) {
+      return next(err)
+    }
+    return res.json({ email })
+  })
+})
 
 // router.post(
 //   "/login",
@@ -81,34 +81,34 @@ router.post("/getlink", async (req, res) => {
 //   })
 // )
 
-// router.post("/login", function(req, res, next) {
-//   // passport.authenticate(
-//   //   "local",
-//   //   {
-//   //     successRedirect: "/",
-//   //     failureRedirect: "/login",
-//   //   },
-//   //   function(req, res) {
-//   //     // If this function gets called, authentication was successful.
-//   //     // `req.user` contains the authenticated user.
-//   //     res.redirect("/users/" + req.user.username)
-//   //   }
-//   // )
-//   passport.authenticate("local", function(error, user, info) {
-//     if (error) {
-//       res.status(401).send(error)
-//     } else if (!user) {
-//       res.status(401).send(info)
-//     } else {
-//       req.login(user, function(err) {
-//         if (err) {
-//           return next(err)
-//         }
-//         return res.json({ email: user.email })
-//       })
-//     }
-//   })(req, res)
-// })
+router.post("/login", function(req, res, next) {
+  // passport.authenticate(
+  //   "local",
+  //   {
+  //     successRedirect: "/",
+  //     failureRedirect: "/login",
+  //   },
+  //   function(req, res) {
+  //     // If this function gets called, authentication was successful.
+  //     // `req.user` contains the authenticated user.
+  //     res.redirect("/users/" + req.user.username)
+  //   }
+  // )
+  passport.authenticate("local", function(error, user, info) {
+    if (error) {
+      res.status(401).send(error)
+    } else if (!user) {
+      res.status(401).send(info)
+    } else {
+      req.login(user, function(err) {
+        if (err) {
+          return next(err)
+        }
+        return res.json({ email: user.email })
+      })
+    }
+  })(req, res)
+})
 
 // router.post("/logout", (req, res) => {
 //   req.logout()

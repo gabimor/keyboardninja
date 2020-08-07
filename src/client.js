@@ -25,7 +25,7 @@ const Client = () => {
 
   const [os, setOs] = useState(window.__KBN_DATA__.os)
   const [user, setUser] = useState(window.__KBN_DATA__.user)
-
+  console.log(user)
 
   const contextValue = {
     app,

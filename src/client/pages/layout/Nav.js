@@ -6,9 +6,17 @@ import Button from "../../components/Button"
 
 function Anonymous(props) {
   return (
-    <li>
-      <Button to="/contact">Help us improve</Button>
-    </li>
+    <>
+      <li>
+        <Link to="/login">Login</Link>
+      </li>
+      <li>
+        <Link to="/signup">Sign Up</Link>
+      </li>
+      <li>
+        <Button to="/contact">Help us improve</Button>
+      </li>
+    </>
   )
 }
 

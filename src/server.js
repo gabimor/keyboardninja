@@ -54,6 +54,8 @@ app.use("/", router)
 app.use(express.static(process.env.RAZZLE_PUBLIC_DIR))
 
 app.get("/404", defaultHandler)
+app.get("/login", defaultHandler)
+app.get("/signup", defaultHandler)
 app.get("/contact", defaultHandler)
 
 app.get("/:name", async (req, res, next) => {
@@ -159,26 +161,5 @@ const sendPage = (req, res, dataContext, title) => {
   const pageMarkup = page(markup, title, assets, dataContext, canonicalUrl)
   res.status(200).send(pageMarkup)
 }
-
-// const sendPage = (req, res, dataContext, title) => {
-//   const cacheKey = req.originalUrl + "-" + dataContext.os
-
-//   if (!req.user) {
-//     let cachePage = cache.get(cacheKey)
-//     if (!cachePage) {
-//       const markup = renderToString(getTemplate(req.url, dataContext))
-//       cachePage = page(markup, title, assets, dataContext)
-//       cache.set(cacheKey, cachePage)
-//     }
-//     res.status(200).send(cachePage)
-//   } else {
-//     res.write(pageStart(title, assets, dataContext))
-//     const stream = renderToNodeStream(getTemplate(req.url, dataContext))
-//     stream.pipe(res, { end: "false" })
-//     stream.on("end", () => {
-//       res.end(pageEnd())
-//     })
-//   }
-// }
 
 export default app
