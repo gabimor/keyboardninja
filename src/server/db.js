@@ -1,16 +1,9 @@
 import mongoose from "mongoose"
 import { User, UserShortcut } from "./models"
 
-mongoose.connect(
-  `mongodb+srv://gabimor:${
-    process.env.ATLAS_PASSWORD
-  }@cluster0-li1ur.mongodb.net/keyboard_ninja?retryWrites=true`,
-  {
-    useNewUrlParser: true,
-  }
-)
-
-// mongoose.set("debug", true)
+mongoose.connect(process.env.ATLAS_CONNECTION_STRING, {
+  useNewUrlParser: true,
+})
 
 export async function setPin(userId, appId, shortcutId, isPinned) {
   let update
