@@ -1,71 +1,71 @@
-import NodeCache from "node-cache"
+import NodeCache from "node-cache";
 
-import { encodeAppName } from "./helpers"
+import { encodeAppName } from "../helpers";
 
-import { App, AppCategory, UserShortcut } from "./models"
+import { App, AppCategory, UserShortcut } from "../db/models";
 
-const nodeCache = new NodeCache()
+const nodeCache = new NodeCache();
 
 export async function getAppsHash() {
-  let appsHash = nodeCache.get("appsHash")
+  let appsHash = nodeCache.get("appsHash");
   if (!appsHash) {
-    appsHash = []
-    const apps = await App.find()
+    appsHash = [];
+    const apps = await App.find();
     for (const app of apps) {
-      appsHash.push({ id: app._id.toString(), name: encodeAppName(app.name) })
+      appsHash.push({ id: app._id.toString(), name: encodeAppName(app.name) });
     }
-    nodeCache.set("appsHash", appsHash)
+    nodeCache.set("appsHash", appsHash);
   }
-  return appsHash
+  return appsHash;
 }
 
 export async function getAppCategories() {
-  let appCategories = nodeCache.get("appCategories")
+  let appCategories = nodeCache.get("appCategories");
   if (!appCategories) {
-    appCategories = await AppCategory.find().lean()
-    nodeCache.set("appHash", appCategories)
+    appCategories = await AppCategory.find().lean();
+    nodeCache.set("appHash", appCategories);
   }
-  return appCategories
+  return appCategories;
 }
 
 export async function clearApp(appId) {
-  nodeCache.del("app-" + appId)
+  nodeCache.del("app-" + appId);
 }
 
 export async function getApp(appId) {
-  let cacheApp
+  let cacheApp;
   // NO CACHE FOR NOW
   // = nodeCache.get("app-" + appId)
   if (!cacheApp) {
-    cacheApp = await App.findById(appId).lean()
-    cacheApp.shortcuts = cacheApp.shortcuts.map(shortcut => ({
+    cacheApp = await App.findById(appId).lean();
+    cacheApp.shortcuts = cacheApp.shortcuts.map((shortcut) => ({
       ...shortcut,
       pins: 0,
-    }))
+    }));
 
-    const userShortcuts = await UserShortcut.find({ appId: appId }).lean()
+    const userShortcuts = await UserShortcut.find({ appId: appId }).lean();
     // calculate pins field
     // go over every appid, userId record
     for (const userShortcut of userShortcuts) {
       // go over every shortcut in that record
       for (const shortcut of userShortcut.shortcuts) {
         const app = cacheApp.shortcuts.find(
-          e => e._id.toString() === shortcut.toString()
-        )
-        app.pins++
+          (e) => e._id.toString() === shortcut.toString()
+        );
+        app.pins++;
       }
     }
   }
 
-  return cacheApp
+  return cacheApp;
 }
 
 export function set(key, value) {
-  nodeCache.set(key, value)
+  nodeCache.set(key, value);
 }
 
 export function get(key) {
-  return nodeCache.get(key)
+  return nodeCache.get(key);
 }
 
 // export function setPin(appId, shortcutId, isPinned) {

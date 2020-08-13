@@ -1,6 +1,6 @@
 import http from "http"
 
-let app = require("./server").default
+let app = require("./server_old").default
 
 const server = http.createServer(app)
 
@@ -21,7 +21,7 @@ if (module.hot) {
     console.log("🔁  HMR Reloading `./server`...")
 
     try {
-      app = require("./server").default
+      app = require("./server_old").default
       server.removeListener("request", currentApp)
       server.on("request", app)
       currentApp = app

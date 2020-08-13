@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import { User, UserShortcut } from "./models"
+import { User, UserShortcut } from "../../server_old/models"
 
 mongoose.connect(process.env.ATLAS_CONNECTION_STRING, {
   useNewUrlParser: true,
