@@ -7,6 +7,9 @@ export class App extends Document {
   name: string;
 
   @Prop()
+  url: string;
+
+  @Prop()
   icon: string;
 
   @Prop(
@@ -23,6 +26,7 @@ export class App extends Document {
       {
         action: { type: String },
         sectionId: { type: Schema2.Types.ObjectId },
+        pins: { type: Number },
         win: { type: String },
         mac: { type: String },
         isHtml: { type: Boolean },

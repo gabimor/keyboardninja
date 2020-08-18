@@ -14,7 +14,7 @@ function Anonymous() {
         <Link to="/signup">Sign Up</Link>
       </li>
       <li>
-        <Button to="/contact">Help us improve</Button>
+        <Button to="/contact">Wanna Help?</Button>
       </li>
     </>
   );

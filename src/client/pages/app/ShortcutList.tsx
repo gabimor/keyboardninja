@@ -9,7 +9,8 @@ import { upperFirstLetter } from "../../helpers";
 interface Shortcut {
   _id: string;
   action: string;
-  keys: string[];
+  win?: string;
+  mac?: string;
   pins: number;
   isPinned?: boolean;
   isHtml?: boolean;

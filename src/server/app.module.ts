@@ -11,7 +11,7 @@ import { join } from "path";
     WebModule,
     MongooseModule.forRoot(process.env.ATLAS_CONNECTION_STRING),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, "../../../", "public"),
+      rootPath: join(__dirname, "../", "public"),
     }),
   ],
 })

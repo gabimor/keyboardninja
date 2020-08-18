@@ -1,13 +1,11 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./server/app.module";
+import cookieParser from "cookie-parser";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  // app.useGlobalFilters(new NotFoundExceptionFilter());
-  app.useStaticAssets(process.env.RAZZLE_PUBLIC_DIR!, {
-    index: false,
-    redirect: false,
-  });
+  app.use(cookieParser());
+
   await app.listen(process.env.PORT || 3000);
 
   if ((module as any).hot) {

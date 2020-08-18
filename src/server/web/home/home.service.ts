@@ -15,7 +15,7 @@ export class HomeService {
     return this.appCategoryModel.find().lean();
   }
 
-  async getAppByName(name: string): Promise<App[]> {
+  async getAppByName(name: string): Promise<App> {
     return this.appModel.findOne({ url: name }).lean();
   }
 }

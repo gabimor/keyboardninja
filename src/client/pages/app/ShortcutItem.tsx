@@ -39,10 +39,6 @@ function ShortcutItem({
 
     doPin(id, newPins, newIsPinned);
     await pin(app._id, id, newIsPinned);
-
-    // if (user) {
-    // } else {
-    // }
   }
 
   return (

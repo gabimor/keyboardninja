@@ -1,11 +1,16 @@
 import { style } from "./style";
 import { tracking } from "./tracking";
+const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
-export function page(markup, title, data, canonicalUrl) {
+export function page(
+  markup: string,
+  title: string,
+  data: string,
+  canonicalUrl: string
+) {
   return `<!doctype html>
     <html lang="">
-    <head>
-    
+    <head>    
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta property="og:url"   content="https://www.keyboardninja.me${canonicalUrl}" />
       <meta property="og:image" content="https://www.keyboardninja.me/social-preview.png" />
@@ -26,8 +31,8 @@ export function page(markup, title, data, canonicalUrl) {
       <link
         href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet" />
-
       ${style}
+      <script src="${assets.client.js}" defer crossorigin></script>
     </head>
     <body>
       <script>

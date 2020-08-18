@@ -15,9 +15,9 @@ export default function Shortcut({ pins, isPinned, onClick }: Props) {
     <Container isPinned={isPinned} onClick={onClick}>
       <IconWrapper>
         {isPinned ? (
-          <img src="/pin-on.svg" alt="" />
+          <img src="/icons/pin-on.svg" alt="" />
         ) : (
-          <img src="/pin-off.svg" alt="" />
+          <img src="/icons/pin-off.svg" alt="" />
         )}
       </IconWrapper>
       <Count isPinned={isPinned}>{pins}</Count>
