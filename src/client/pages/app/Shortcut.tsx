@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"; // eslint-disable-line no-unused-vars
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 

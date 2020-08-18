@@ -1,25 +1,25 @@
-import React from "react" // eslint-disable-line no-unused-vars
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { Form } from "react-powerplug"
-import * as EmailValidator from "email-validator"
+import { Form } from "react-powerplug";
+import * as EmailValidator from "email-validator";
 
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
-import Input from "../../components/Input"
-import Button from "../../components/Button"
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 
 export default function Login({ onSubmit }) {
   function handleSubmit(e, values, setValues) {
-    e.preventDefault()
+    e.preventDefault();
 
-    const emailValid = EmailValidator.validate(values.email)
-    const passwordValid = values.password && values.password.length >= 6
+    const emailValid = EmailValidator.validate(values.email);
+    const passwordValid = values.password && values.password.length >= 6;
 
-    setValues({ emailValid, passwordValid })
+    setValues({ emailValid, passwordValid });
 
     if (emailValid && passwordValid) {
-      onSubmit(values.email, values.password)
+      onSubmit(values.email, values.password);
     }
   }
 
@@ -34,7 +34,7 @@ export default function Login({ onSubmit }) {
     >
       {({ field, values, setValues }) => {
         return (
-          <FormContainer onSubmit={e => handleSubmit(e, values, setValues)}>
+          <FormContainer onSubmit={(e) => handleSubmit(e, values, setValues)}>
             <Header>Log in</Header>
             <Label>Email</Label>
             <Input {...field("email").bind} />
@@ -54,21 +54,21 @@ export default function Login({ onSubmit }) {
               Don't have an account ?<Link to="/signup"> Sign up</Link>
             </SignupWrapper>
           </FormContainer>
-        )
+        );
       }}
     </Form>
-  )
+  );
 }
 
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-`
+`;
 
 const Header = styled.h2`
   text-align: center;
   margin-bottom: 20px;
-`
+`;
 
 const LabelWrapper = styled.div`
   display: flex;
@@ -78,22 +78,22 @@ const LabelWrapper = styled.div`
   a {
     font-size: 13px;
   }
-`
+`;
 
 const SignupWrapper = styled.div`
   text-align: center;
   margin-top: 40px;
   color: #e9e5e5;
-`
+`;
 
 const Label = styled.label`
   color: #9d8b8b;
   font-size: 14px;
   margin-bottom: 5px;
-`
+`;
 
 const Error = styled.label`
   margin-top: 5px;
   color: #e86562;
   font-size: 14px;
-`
+`;

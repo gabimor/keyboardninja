@@ -1,19 +1,19 @@
-import React, { useState } from "react" // eslint-disable-line no-unused-vars
-import styled from "@emotion/styled"
-import ContactForm from "./contactUs/ContactForm"
+import React, { useState } from "react";
+import styled from "@emotion/styled";
+import ContactForm from "./contactUs/ContactForm";
 
 export default () => {
-  const [messageSent, setMessageSent] = useState(false)
-  const [error, setError] = useState()
+  const [messageSent, setMessageSent] = useState(false);
+  const [error, setError] = useState();
 
-  const onSend = err => {
+  const onSend = (err) => {
     if (err) {
-      setError("Sorry... something went wrong. Please try again later")
+      setError("Sorry... something went wrong. Please try again later");
     } else {
-      setError()
-      setMessageSent(true)
+      setError();
+      setMessageSent(true);
     }
-  }
+  };
   return (
     <Container>
       <div>
@@ -33,8 +33,8 @@ export default () => {
         {error && <Error>{error}</Error>}
       </div>
     </Container>
-  )
-}
+  );
+};
 
 const Container = styled.div`
   display: flex;
@@ -42,7 +42,7 @@ const Container = styled.div`
   justify-content: center;
   padding-top: 100px;
   text-align: center;
-`
+`;
 
 const Title = styled.h1`
   padding-bottom: 15px;
@@ -53,26 +53,26 @@ const Title = styled.h1`
   @media (max-width: 768px) {
     font-size: 40px;
   }
-`
+`;
 
 const TitleBold = styled.span`
   display: block;
   font-weight: bold;
-`
+`;
 
 const Text = styled.div`
   padding: 65px 0 20px 0;
   font-size: 16px;
   text-align: left;
   color: #e9e5e5;
-`
+`;
 
 const Error = styled.div`
   padding-top: 10px;
   font-size: 16px;
   text-align: left;
   color: #d1403d;
-`
+`;
 
 const ThankYou = styled.div`
   border-top: solid 1px #4f4242;
@@ -86,4 +86,4 @@ const ThankYou = styled.div`
     font-weight: bold;
     margin-bottom: 20px;
   }
-`
+`;

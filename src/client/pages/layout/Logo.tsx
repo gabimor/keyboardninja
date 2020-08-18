@@ -1,6 +1,6 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React from "react";
 
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
 export default function Logo() {
   return (
@@ -12,12 +12,12 @@ export default function Logo() {
       </span>
       <Beta> Beta</Beta>
     </H1>
-  )
+  );
 }
 
 const Beta = styled.small`
   font-size: 10px;
-`
+`;
 
 const H1 = styled.h1`
   color: #ffffff;
@@ -34,9 +34,9 @@ const H1 = styled.h1`
   @media (max-width: 768px) {
     font-size: 20px;
   }
-`
+`;
 
 const Dot = styled.span`
   color: #e86562;
   font-size: 1.35em;
-`
+`;

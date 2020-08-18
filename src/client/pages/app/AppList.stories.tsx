@@ -1,9 +1,9 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React from "react";
 
-import { storiesOf } from "@storybook/react"
-import { withKnobs } from "@storybook/addon-knobs"
+import { storiesOf } from "@storybook/react";
+import { withKnobs } from "@storybook/addon-knobs";
 
-import AppList from "./AppList"
+import AppList from "./AppList";
 
 const apps = [
   {
@@ -44,8 +44,8 @@ const apps = [
     imageUrl: "logos/photoshop.png",
   },
   { id: 8, name: "XD", companyName: "Adobe", imageUrl: "logos/xd.png" },
-]
+];
 
 storiesOf("AppList", module)
   .addDecorator(withKnobs)
-  .add("default", () => <AppList name="Graphics" apps={apps} />)
+  .add("default", () => <AppList name="Graphics" apps={apps} />);

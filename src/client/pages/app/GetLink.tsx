@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"; // eslint-disable-line no-unused-vars
+import React, { useEffect, useRef } from "react";
 
 import Button from "../../components/Button";
 import GetLinkPopup from "./GetLinkPopup";

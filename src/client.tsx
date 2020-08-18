@@ -1,13 +1,20 @@
-import React, { useState } from "react"; // eslint-disable-line no-unused-vars
+import React, { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { hydrate } from "react-dom";
 
 import * as osSelect from "./client/helpers/osSelect";
 import Layout from "./client/Layout";
 import DataContext from "./client/DataContext";
+import { IUser } from "./server/db/User.schema";
+
+declare global {
+  interface Window {
+    __KBN_DATA__: any;
+  }
+}
 
 const Client = () => {
-  const doLogin = (user) => setUser(user);
+  const doLogin = (user: IUser) => setUser(user);
   const doLogout = () => setUser(undefined);
   const doSetOs = (os: string) => {
     setOs(os);
@@ -23,9 +30,8 @@ const Client = () => {
 
   const { appCategories, app } = window.__KBN_DATA__;
 
-  const [os, setOs] = useState(window.__KBN_DATA__.os);
-  const [user, setUser] = useState(window.__KBN_DATA__.user);
-  console.log(user);
+  const [os, setOs] = useState<string>(window.__KBN_DATA__.os);
+  const [user, setUser] = useState<IUser>(window.__KBN_DATA__.user);
 
   const contextValue = {
     app,

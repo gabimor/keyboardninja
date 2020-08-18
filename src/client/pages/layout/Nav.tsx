@@ -1,4 +1,4 @@
-import React from "react"; // eslint-disable-line no-unused-vars
+import React from "react";
 
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";

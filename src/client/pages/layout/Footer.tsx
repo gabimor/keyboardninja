@@ -1,11 +1,11 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React from "react";
 
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
 export default function Footer() {
-  return <Container />
+  return <Container />;
 }
 
 const Container = styled.footer`
   height: 50px;
-`
+`;

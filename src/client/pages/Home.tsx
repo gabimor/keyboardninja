@@ -1,11 +1,11 @@
-import React, { useContext } from "react" // eslint-disable-line no-unused-vars
-import styled from "@emotion/styled"
+import React, { useContext } from "react";
+import styled from "@emotion/styled";
 
-import AppList from "./app/AppList"
-import DataContext from "../DataContext"
+import AppList from "./app/AppList";
+import DataContext from "../DataContext";
 
 const Home = () => {
-  const { appCategories } = useContext(DataContext)
+  const { appCategories } = useContext(DataContext);
 
   return (
     <Container>
@@ -13,20 +13,20 @@ const Home = () => {
         Every app, every shortcut, <b>the best ones first.</b>
       </Hero>
       <GridContainer>
-        {appCategories.map(appCategory => (
+        {appCategories.map((appCategory) => (
           <AppList key={appCategory.gridArea} {...appCategory} />
         ))}
       </GridContainer>
     </Container>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
 const Container = styled.div`
   max-width: 1024px;
   margin: 0 auto;
-`
+`;
 
 const GridContainer = styled.div`
   display: grid;
@@ -47,7 +47,7 @@ const GridContainer = styled.div`
       "graphics"
       "office";
   }
-`
+`;
 
 const Hero = styled.h1`
   color: #ffffff;
@@ -73,4 +73,4 @@ const Hero = styled.h1`
     margin-bottom: 70px;
     font-size: 30px;
   }
-`
+`;

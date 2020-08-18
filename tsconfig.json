@@ -18,11 +18,6 @@
     "lib": ["es6", "es2015", "es2017", "dom"],
     "typeRoots": ["node_modules/@types", "./typings"]
   },
-  "include": [
-    "src/**/*",
-    "./typings/**/*.d.ts",
-    "@old/server_old.js",
-    "@old/index_old.js", "utils", "@old/db.js", "@old/cache", "@old/helpers", "@old/helpers.ts"
-  ],
+  "include": ["src/**/*", "./typings/**/*.d.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

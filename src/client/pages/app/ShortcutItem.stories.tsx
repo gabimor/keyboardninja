@@ -1,9 +1,9 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React from "react";
 
-import { storiesOf } from "@storybook/react"
-import { withKnobs, text } from "@storybook/addon-knobs"
+import { storiesOf } from "@storybook/react";
+import { withKnobs, text } from "@storybook/addon-knobs";
 
-import ShortcutItem from "./ShortcutItem"
+import ShortcutItem from "./ShortcutItem";
 
 storiesOf("ShortcutItem", module)
   .addDecorator(withKnobs)
@@ -13,4 +13,4 @@ storiesOf("ShortcutItem", module)
       keys={text("keys", "ctrl+k")}
       pins={0}
     />
-  ))
+  ));

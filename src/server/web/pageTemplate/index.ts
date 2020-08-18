@@ -1,11 +1,12 @@
 import { style } from "./style";
 import { tracking } from "./tracking";
+import { IDataContext } from "../../../client/DataContext";
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
-export function page(
+export function pageTemplate(
   markup: string,
   title: string,
-  data: string,
+  dataContext: IDataContext,
   canonicalUrl: string
 ) {
   return `<!doctype html>
@@ -17,9 +18,8 @@ export function page(
       <meta property="og:description" content="Every app, every shortcut. The best ones first." />
       <meta property="og:type" content="website" />
       <meta property="fb:app_id" content="2286973354960672" />
-      <meta property="og:title" content="keyboardninja.me${
-        title ? " - " + title : ""
-      }" />
+      <meta property="og:title" 
+        content="keyboardninja.me${title ? " - " + title : ""}" />
       <meta charset="utf-8" />
       <title>${title || "Keyboard Ninja Me"}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +36,9 @@ export function page(
     </head>
     <body>
       <script>
-        window.__KBN_DATA__ = ${data ? JSON.stringify(data) : undefined};
+        window.__KBN_DATA__ = ${
+          dataContext ? JSON.stringify(dataContext) : undefined
+        };
       </script>
       <div id="root">${markup}</div>
       ${tracking}

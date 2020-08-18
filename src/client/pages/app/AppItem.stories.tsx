@@ -1,13 +1,13 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React from "react";
 
-import { storiesOf } from "@storybook/react"
-import { withKnobs, text } from "@storybook/addon-knobs"
+import { storiesOf } from "@storybook/react";
+import { withKnobs, text } from "@storybook/addon-knobs";
 
-import AppItem from "./AppItem"
+import AppItem from "./AppItem";
 
 storiesOf("AppItem", module)
   .addDecorator(withKnobs)
-  .addDecorator(story => <div style={{ width: 130 }}>{story()}</div>)
+  .addDecorator((story) => <div style={{ width: 130 }}>{story()}</div>)
   .add("photoshop", () => (
     <AppItem icon={"/logos/photoshop.png"} name={text("name", "Photoshop")} />
   ))
@@ -19,4 +19,4 @@ storiesOf("AppItem", module)
   ))
   .add("sketch", () => (
     <AppItem icon={"/logos/sketch.png"} name={text("name", "Sketch")} />
-  ))
+  ));

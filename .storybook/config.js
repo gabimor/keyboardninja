@@ -1,31 +1,31 @@
-import React from "react" // eslint-disable-line no-unused-vars
-import { configure, addDecorator } from "@storybook/react"
-import { configureViewport } from "@storybook/addon-viewport"
-import DataContext from "../src/client/DataContext"
+import React from "react";
+import { configure, addDecorator } from "@storybook/react";
+import { configureViewport } from "@storybook/addon-viewport";
+import DataContext from "../src/client/DataContext";
 
-import { style } from "../src/server/page"
+import { style } from "../src/server/page";
 
 configureViewport({
   viewports,
-})
+});
 
 // global decorator to add theme
-addDecorator(story => (
+addDecorator((story) => (
   <DataContext.Provider value={{ os: "mac" }}>
     <div style={{ padding: 40 }}>
       <style>{style}</style>
       {story()}
     </div>
   </DataContext.Provider>
-))
+));
 
 // automatically import all files ending in *.stories.js
-const pages = require.context("../src", true, /.stories.js$/)
+const pages = require.context("../src", true, /.stories.js$/);
 function loadStories() {
-  pages.keys().forEach(filename => pages(filename))
+  pages.keys().forEach((filename) => pages(filename));
 }
 
-configure(loadStories, module)
+configure(loadStories, module);
 
 const viewports = {
   responsive: {
@@ -64,4 +64,4 @@ const viewports = {
       height: "732px",
     },
   },
-}
+};

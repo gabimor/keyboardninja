@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"; // eslint-disable-line no-unused-vars
+import React, { useContext, useState } from "react";
 import styled from "@emotion/styled";
 
 import { copyToClipboard } from "../../helpers";

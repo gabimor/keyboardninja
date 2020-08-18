@@ -1,4 +1,4 @@
-import React from "react"; // eslint-disable-line no-unused-vars
+import React from "react";
 import styled from "@emotion/styled";
 
 const GetLinkPopup = React.forwardRef((props, ref) => {

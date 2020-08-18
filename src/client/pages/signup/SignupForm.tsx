@@ -1,4 +1,4 @@
-import React from "react"; // eslint-disable-line no-unused-vars
+import React from "react";
 import { Link } from "react-router-dom";
 import { Form } from "react-powerplug";
 import * as EmailValidator from "email-validator";

@@ -1,15 +1,15 @@
-import React from "react" // eslint-disable-line no-unused-vars
-import styled from "@emotion/styled"
-import { Route, Switch } from "react-router-dom"
+import React from "react";
+import styled from "@emotion/styled";
+import { Route, Switch } from "react-router-dom";
 
-import Home from "./pages/Home"
-import App from "./pages/App"
-import Login from "./pages/Login"
-import Header from "./pages/layout/Header"
-import Footer from "./pages/layout/Footer"
-import Signup from "./pages/Signup"
-import ContactUs from "./pages/ContactUs"
-import Page404 from "./pages/404"
+import Home from "./pages/Home";
+import App from "./pages/App";
+import Login from "./pages/Login";
+import Header from "./pages/layout/Header";
+import Footer from "./pages/layout/Footer";
+import Signup from "./pages/Signup";
+import ContactUs from "./pages/ContactUs";
+import Page404 from "./pages/404";
 
 const Layout = () => {
   return (
@@ -28,8 +28,8 @@ const Layout = () => {
         <Footer />
       </Container>
     </div>
-  )
-}
+  );
+};
 
 const Container = styled.div`
   max-width: 1440px;
@@ -43,6 +43,6 @@ const Container = styled.div`
   @media (max-width: 768px) {
     padding: 10px;
   }
-`
+`;
 
-export default Layout
+export default Layout;

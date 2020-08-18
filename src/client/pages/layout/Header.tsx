@@ -1,19 +1,19 @@
-import React, { useContext } from "react" // eslint-disable-line no-unused-vars
-import { Link } from "react-router-dom"
-import styled from "@emotion/styled"
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import styled from "@emotion/styled";
 
-import { logout } from "../../helpers/api"
-import DataContext from "../../DataContext"
-import Logo from "./Logo"
-import Nav from "./Nav"
+import { logout } from "../../helpers/api";
+import DataContext from "../../DataContext";
+import Logo from "./Logo";
+import Nav from "./Nav";
 
 function Header() {
-  const { user, doLogout } = useContext(DataContext)
+  const { user, doLogout } = useContext(DataContext);
 
   function handleLogout() {
-    logout()
+    logout();
 
-    doLogout()
+    doLogout();
   }
 
   return (
@@ -23,10 +23,10 @@ function Header() {
       </Link>
       <Nav />
     </Container>
-  )
+  );
 }
 
-export default Header
+export default Header;
 
 const Container = styled.header`
   display: flex;
@@ -36,4 +36,4 @@ const Container = styled.header`
   @media (max-width: 992px) {
     padding-top: 0;
   }
-`
+`;

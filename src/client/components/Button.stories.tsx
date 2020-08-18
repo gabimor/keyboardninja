@@ -1,9 +1,9 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React from "react";
 
-import { storiesOf } from "@storybook/react"
-import { withKnobs, text } from "@storybook/addon-knobs"
+import { storiesOf } from "@storybook/react";
+import { withKnobs, text } from "@storybook/addon-knobs";
 
-import Button from "./Button"
+import Button from "./Button";
 
 storiesOf("Button", module)
   .addDecorator(withKnobs)
@@ -12,4 +12,4 @@ storiesOf("Button", module)
       <Button>Primary</Button> &nbsp;
       <Button secondary={true}>Secondary</Button>
     </>
-  ))
+  ));

@@ -1,9 +1,10 @@
-import React, { useEffect } from "react"; // eslint-disable-line no-unused-vars
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
+import { OSs } from "../../../server/db/oss";
 
 interface OSSelectProps {
-  oss: string[];
-  os: string;
+  oss: OSs[];
+  os: OSs;
   onSelect: Function;
 }
 

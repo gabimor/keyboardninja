@@ -1,4 +1,4 @@
-import React, { useContext } from "react"; // eslint-disable-line no-unused-vars
+import React, { useContext } from "react";
 import styled from "@emotion/styled";
 
 import DataContext from "../DataContext";
