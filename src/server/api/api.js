@@ -4,7 +4,7 @@ import { Types } from "mongoose"
 import sgMail from "@sendgrid/mail"
 
 import { UserShortcut } from "./models"
-import * as db from "../db"
+import * as db from "../../../@old/db"
 import * as cache from "./cache"
 import md5 from "md5"
 

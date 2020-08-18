@@ -21,14 +21,3 @@ export class AppCategory extends Document {
 }
 
 export const AppCategorySchema = SchemaFactory.createForClass(AppCategory);
-
-// import mongoose, { Schema } from "mongoose";
-
-// export const AppCategory = mongoose.model(
-//   "app_categories",
-//   new Schema({
-//     name: String,
-//     icon: String,
-//     apps: [new Schema({ name: String, icon: String })],
-//   })
-// );

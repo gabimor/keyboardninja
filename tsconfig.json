@@ -22,7 +22,7 @@
     "src/**/*",
     "./typings/**/*.d.ts",
     "@old/server_old.js",
-    "@old/index_old.js"
+    "@old/index_old.js", "utils", "@old/db.js", "@old/cache", "@old/helpers", "@old/helpers.ts"
   ],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

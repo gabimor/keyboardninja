@@ -4,6 +4,6 @@ export const User = mongoose.model(
   "users",
   new Schema({
     email: String,
-    password: String,
+    password: Schema,
   })
 );

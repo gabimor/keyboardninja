@@ -1,5 +1,5 @@
 import React from "react";
-import { Get } from "@nestjs/common";
+import { Get, Param, Query } from "@nestjs/common";
 import { Controller } from "@nestjs/common";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
@@ -14,7 +14,7 @@ export class HomeController {
 
   @Get()
   async home() {
-    const appCategories = await this.homeService.get();
+    const appCategories = await this.homeService.getAppCategory();
 
     const dataContext = {
       appCategories,
@@ -31,6 +31,16 @@ export class HomeController {
     const url = "/";
 
     return pageMarkup;
+  }
+
+  @Get(":name")
+  async app(@Param("name") name: string) {
+    const app = await this.homeService.getAppByName(name);
+
+    // TODO: redirect to 404
+    if (!app) return "app not found";
+
+    return app;
   }
 }
 

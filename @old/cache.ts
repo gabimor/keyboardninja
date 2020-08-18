@@ -1,8 +1,8 @@
 import NodeCache from "node-cache";
 
-import { encodeAppName } from "../helpers";
+import { encodeAppName } from "./helpers";
 
-import { App, AppCategory, UserShortcut } from "../db/App.schema";
+import { App, AppCategory, UserShortcut } from "../src/server/db/App.schema";
 
 const nodeCache = new NodeCache();
 

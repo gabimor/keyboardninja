@@ -1,31 +1,36 @@
-import mongoose, { Schema } from "mongoose";
+import { Prop, raw, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document, Schema as Schema2 } from "mongoose";
 
-// mongoose.set("debug", function(coll, method, query, doc) {
-//   console.log(1231231)
-//   console.log(coll, method, query, doc)
-// })
+@Schema({ collection: "apps" })
+export class App extends Document {
+  @Prop()
+  name: string;
 
-// getAppUrlName, shortcut.getPins, getIdByUrlName
-export const App = mongoose.model(
-  "apps",
-  new Schema({
-    name: String,
-    icon: String,
-    sections: [
-      new Schema({
-        name: String,
-      }),
-    ],
-    oss: [String],
-    shortcuts: [
-      new Schema({
-        action: String,
-        sectionId: Schema.ObjectId,
-        win: String,
-        mac: String,
-        isHtml: Boolean,
-        note: String,
-      }),
-    ],
-  })
-);
+  @Prop()
+  icon: string;
+
+  @Prop(
+    raw([
+      {
+        name: { type: String },
+      },
+    ])
+  )
+  sections: string;
+  oss: string[];
+  @Prop(
+    raw([
+      {
+        action: { type: String },
+        sectionId: { type: Schema2.Types.ObjectId },
+        win: { type: String },
+        mac: { type: String },
+        isHtml: { type: Boolean },
+        note: { type: String },
+      },
+    ])
+  )
+  shortcuts: string;
+}
+
+export const AppSchema = SchemaFactory.createForClass(App);
