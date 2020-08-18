@@ -8,7 +8,6 @@ import styled from "@emotion/styled"
 
 import Input from "../../components/Input"
 import Button from "../../components/Button"
-// export default ""
 
 export default function Login({ onSubmit }) {
   function handleSubmit(e, values, setValues) {

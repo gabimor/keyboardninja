@@ -1,3 +1,3 @@
-export function encodeAppName(name) {
-  return name.toLowerCase().replace(new RegExp(" ", "g"), "-")
+export function encodeAppName(name: string) {
+  return name.toLowerCase().replace(new RegExp(" ", "g"), "-");
 }

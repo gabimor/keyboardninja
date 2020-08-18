@@ -1,16 +1,7 @@
 import { style } from "./style";
 import { tracking } from "./tracking";
-const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
-export function page(markup, title, assets, data, canonicalUrl) {
-  let head = assets.client.css
-    ? `<link rel="stylesheet" href="${assets.client.css}">`
-    : "";
-  head +=
-    process.env.NODE_ENV === "production"
-      ? `<script src="${assets.client.js}" defer></script>`
-      : `<script src="${assets.client.js}" defer crossorigin></script>`;
-
+export function page(markup, title, data, canonicalUrl) {
   return `<!doctype html>
     <html lang="">
     <head>
@@ -37,7 +28,6 @@ export function page(markup, title, assets, data, canonicalUrl) {
         rel="stylesheet" />
 
       ${style}
-      ${head || ""}
     </head>
     <body>
       <script>

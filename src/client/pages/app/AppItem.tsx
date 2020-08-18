@@ -1,17 +1,23 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React from "react"; // eslint-disable-line no-unused-vars
 
-import styled from "@emotion/styled"
-import { lightenDarkenColor } from "../../helpers"
+import styled from "@emotion/styled";
+import { lightenDarkenColor } from "../../helpers";
 
-export default function App({ name, icon, disabled }) {
-  const Container = disabled ? DisabledContainer : EnabledContainer
+interface Props {
+  name: string;
+  icon: string;
+  disabled?: boolean;
+}
+
+export default function App({ name, icon, disabled }: Props) {
+  const Container = disabled ? DisabledContainer : EnabledContainer;
   return (
     <Container>
       {disabled && <Soon>Soon</Soon>}
       <Image src={icon} disabled={disabled} />
       <Name disabled={disabled}>{name}</Name>
     </Container>
-  )
+  );
 }
 
 const sharedStyles = `
@@ -34,13 +40,13 @@ const sharedStyles = `
       font-size:12px;        
   }
 
-`
+`;
 
 const DisabledContainer = styled.div`
   ${sharedStyles}
   position: relative;
   overflow: hidden;
-`
+`;
 
 const Soon = styled.div`
   background: #d1403d;
@@ -53,7 +59,7 @@ const Soon = styled.div`
   width: 80px;
   text-align: center;
   z-index: 1;
-`
+`;
 
 const EnabledContainer = styled.div`
   ${sharedStyles}
@@ -64,15 +70,20 @@ const EnabledContainer = styled.div`
     background: ${lightenDarkenColor("#4F4242", 10)};
     transform: scale(1.04);
   }
-`
+`;
 
 const Name = styled.div`
   text-align: center;
   font-size: 14px;
-  opacity: ${[props => (props.disabled ? 0.3 : 1)]};
-`
+  opacity: ${[(props: DisablableProps) => (props.disabled ? 0.3 : 1)]};
+`;
+
+interface DisablableProps {
+  disabled?: boolean;
+}
+
 const Image = styled.img`
   width: 60%;
   margin-bottom: 5px;
-  opacity: ${[props => (props.disabled ? 0.3 : 1)]};
-`
+  opacity: ${[(props: DisablableProps) => (props.disabled ? 0.3 : 1)]};
+`;

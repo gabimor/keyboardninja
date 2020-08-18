@@ -2,7 +2,7 @@ import NodeCache from "node-cache";
 
 import { encodeAppName } from "../helpers";
 
-import { App, AppCategory, UserShortcut } from "../db/models";
+import { App, AppCategory, UserShortcut } from "../db/App.schema";
 
 const nodeCache = new NodeCache();
 
@@ -20,19 +20,28 @@ export async function getAppsHash() {
 }
 
 export async function getAppCategories() {
+  console.log(1);
+
   let appCategories = nodeCache.get("appCategories");
+  console.log(2);
+
   if (!appCategories) {
+    console.log(3);
+
     appCategories = await AppCategory.find().lean();
+    console.log(4);
     nodeCache.set("appHash", appCategories);
   }
+  console.log(4);
+
   return appCategories;
 }
 
-export async function clearApp(appId) {
+export async function clearApp(appId: string) {
   nodeCache.del("app-" + appId);
 }
 
-export async function getApp(appId) {
+export async function getApp(appId: string) {
   let cacheApp;
   // NO CACHE FOR NOW
   // = nodeCache.get("app-" + appId)
@@ -60,11 +69,11 @@ export async function getApp(appId) {
   return cacheApp;
 }
 
-export function set(key, value) {
+export function set(key: string, value: unknown) {
   nodeCache.set(key, value);
 }
 
-export function get(key) {
+export function get(key: string) {
   return nodeCache.get(key);
 }
 

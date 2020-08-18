@@ -1,30 +1,34 @@
-import React from "react" // eslint-disable-line no-unused-vars
-import { Link } from "react-router-dom"
-import { Form } from "react-powerplug"
-import * as EmailValidator from "email-validator"
+import React from "react"; // eslint-disable-line no-unused-vars
+import { Link } from "react-router-dom";
+import { Form } from "react-powerplug";
+import * as EmailValidator from "email-validator";
 
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
-import Input from "../../components/Input"
-import Button from "../../components/Button"
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 
-export default function Signup({ onSubmit }) {
+interface Props {
+  onSubmit: Function;
+}
+
+export default function Signup({ onSubmit }: Props) {
   function handleSubmit(e, values, setValues) {
-    e.preventDefault()
+    e.preventDefault();
 
-    const emailValid = EmailValidator.validate(values.email)
+    const emailValid = EmailValidator.validate(values.email);
     const passwordValid =
       values.password &&
       values.password.length >= 6 &&
-      values.password.length <= 12
+      values.password.length <= 12;
 
-    setValues({ emailValid, passwordValid })
+    setValues({ emailValid, passwordValid });
 
     if (emailValid && passwordValid) {
-      onSubmit(values.email, values.password)
+      onSubmit(values.email, values.password);
     }
   }
-  const mockEmail = `a${Math.floor(Math.random() * Math.floor(1000000))}@b.com`
+  const mockEmail = `a${Math.floor(Math.random() * Math.floor(1000000))}@b.com`;
 
   return (
     <Form
@@ -37,7 +41,7 @@ export default function Signup({ onSubmit }) {
     >
       {({ field, values, setValues }) => {
         return (
-          <FormContainer onSubmit={e => handleSubmit(e, values, setValues)}>
+          <FormContainer onSubmit={(e) => handleSubmit(e, values, setValues)}>
             <Header>Sign up</Header>
             <Label>Email</Label>
             <Input {...field("email").bind} />
@@ -56,21 +60,21 @@ export default function Signup({ onSubmit }) {
               Already have an account ?<Link to="/login"> Log in</Link>
             </SignupWrapper>
           </FormContainer>
-        )
+        );
       }}
     </Form>
-  )
+  );
 }
 
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-`
+`;
 
 const Header = styled.h2`
   text-align: center;
   margin-bottom: 20px;
-`
+`;
 
 const LabelWrapper = styled.div`
   display: flex;
@@ -80,22 +84,22 @@ const LabelWrapper = styled.div`
   a {
     font-size: 13px;
   }
-`
+`;
 
 const SignupWrapper = styled.div`
   text-align: center;
   margin-top: 40px;
   color: #e9e5e5;
-`
+`;
 
 const Label = styled.label`
   color: #9d8b8b;
   font-size: 14px;
   margin-bottom: 5px;
-`
+`;
 
 const Error = styled.label`
   margin-top: 5px;
   color: #e86562;
   font-size: 14px;
-`
+`;

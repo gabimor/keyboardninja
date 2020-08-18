@@ -1,10 +1,16 @@
-import React from "react" // eslint-disable-line no-unused-vars
-import PropTypes from "prop-types"
-import styled from "@emotion/styled"
+import React from "react"; // eslint-disable-line no-unused-vars
+import PropTypes from "prop-types";
+import styled from "@emotion/styled";
 
-import { lightenDarkenColor } from "../../helpers"
+import { lightenDarkenColor } from "../../helpers";
 
-export default function Shortcut({ pins, isPinned, onClick }) {
+interface Props {
+  pins: number;
+  isPinned: boolean;
+  onClick: Function;
+}
+
+export default function Shortcut({ pins, isPinned, onClick }: Props) {
   return (
     <Container isPinned={isPinned} onClick={onClick}>
       <IconWrapper>
@@ -16,20 +22,19 @@ export default function Shortcut({ pins, isPinned, onClick }) {
       </IconWrapper>
       <Count isPinned={isPinned}>{pins}</Count>
     </Container>
-  )
+  );
 }
 
-Shortcut.propTypes = {
-  pins: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
-  isPinned: PropTypes.bool.isRequired,
+interface PinnableProps {
+  isPinned: boolean;
 }
 
 const Container = styled.div`
   display: inline-flex;
   width: 100%;
   align-items: flex-start;
-  border: solid 1px ${({ isPinned }) => (isPinned ? "#ffe6ab" : "#9D8B8B")};
+  border: solid 1px
+    ${({ isPinned }: PinnableProps) => (isPinned ? "#ffe6ab" : "#9D8B8B")};
   border-radius: 3px;
   padding: 5px 0 3px;
   cursor: pointer;
@@ -41,19 +46,22 @@ const Container = styled.div`
   }
 
   :hover {
-    border-color: ${({ isPinned }) => (isPinned ? lightenDarkenColor("#ffe6ab", 50) : lightenDarkenColor("#9D8B8B", 50))};
+    border-color: ${({ isPinned }) =>
+      isPinned
+        ? lightenDarkenColor("#ffe6ab", 50)
+        : lightenDarkenColor("#9D8B8B", 50)};
   }
-`
+`;
 
 const IconWrapper = styled.span`
   line-height: 11px;
   margin-left: 7px;
-`
+`;
 
 const Count = styled.span`
   font-size: 11px;
-  color: ${({ isPinned }) => (isPinned ? "#ffe6ab" : "#E9E5E5")};
+  color: ${({ isPinned }: PinnableProps) => (isPinned ? "#ffe6ab" : "#E9E5E5")};
   margin: 0 auto;
   padding: 0 6px;
   line-height: 10px;
-`
+`;

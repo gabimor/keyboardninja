@@ -4,9 +4,9 @@ import Button from "../../components/Button"
 import styled from "@emotion/styled"
 
 export default ({ onSend }) => {
-  const [name, setName] = useState()
-  const [email, setEmail] = useState()
-  const [message, setMessage] = useState()
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
 
   async function handleSubmit() {
     event.preventDefault()

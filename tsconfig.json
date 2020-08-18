@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "esnext",
     "moduleResolution": "node",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "removeComments": true,
     "noLib": false,
     "noFallthroughCasesInSwitch": true,
@@ -16,12 +16,13 @@
     "allowJs": true,
     "jsx": "react",
     "lib": ["es6", "es2015", "es2017", "dom"],
-    "typeRoots": ["node_modules/@types", "./typings"],
-    "paths": {
-      "@client": ["src/client/*"],
-      "@server": ["src/server/*"]
-    }
+    "typeRoots": ["node_modules/@types", "./typings"]
   },
-  "include": ["src/**/*", "./typings/**/*.d.ts"],
+  "include": [
+    "src/**/*",
+    "./typings/**/*.d.ts",
+    "@old/server_old.js",
+    "@old/index_old.js"
+  ],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

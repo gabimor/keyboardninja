@@ -1,12 +1,5 @@
-import mongoose, { Schema } from "mongoose"
+import mongoose, { Schema } from "mongoose";
 
-export const User = mongoose.model(
-  "users",
-  new Schema({
-    email: String,
-    password: String,
-  })
-)
 // mongoose.set("debug", function(coll, method, query, doc) {
 //   console.log(1231231)
 //   console.log(coll, method, query, doc)
@@ -35,22 +28,4 @@ export const App = mongoose.model(
       }),
     ],
   })
-)
-
-export const AppCategory = mongoose.model(
-  "app_categories",
-  new Schema({
-    name: String,
-    icon: String,
-    apps: [new Schema({ name: String, icon: String })],
-  })
-)
-
-export const UserShortcut = mongoose.model(
-  "user_shortcuts",
-  new Schema({
-    userId: Schema.ObjectId,
-    appId: Schema.ObjectId,
-    shortcuts: [Schema.ObjectId],
-  })
-)
+);

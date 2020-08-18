@@ -1,25 +1,34 @@
-import React, { useContext, useState } from "react" // eslint-disable-line no-unused-vars
-import styled from "@emotion/styled"
+import React, { useContext, useState } from "react"; // eslint-disable-line no-unused-vars
+import styled from "@emotion/styled";
 
-import { copyToClipboard } from "../../helpers"
-import DataContext from "../../DataContext"
-import OSSelect from "./OSSelect"
-import GetLink from "./GetLink"
-import { getLink } from "../../helpers/api"
+import { copyToClipboard } from "../../helpers";
+import DataContext from "../../DataContext";
+import OSSelect from "./OSSelect";
+import GetLink from "./GetLink";
+import { getLink } from "../../helpers/api";
 
-const Controls = ({ icon, name }) => {
-  const { app, os, doSetOs } = useContext(DataContext)
-  const [publicLink, setPublicLink] = useState()
+interface Props {
+  icon: string;
+  name: string;
+}
+
+const Controls = ({ icon, name }: Props) => {
+  const { app, os, doSetOs } = useContext(DataContext);
+  const [publicLink, setPublicLink] = useState();
 
   async function handleGetLink() {
-    const shortcutIds = app.shortcuts.filter(e => e.isPinned).map(e => e._id)
-    const link = await getLink(app._id, shortcutIds).then(data => data.text())
-    setPublicLink(link)
-    copyToClipboard(link)
+    const shortcutIds = app.shortcuts
+      .filter((e) => e.isPinned)
+      .map((e) => e._id);
+    const link = await getLink(app._id, shortcutIds).then((data) =>
+      data.text()
+    );
+    setPublicLink(link);
+    copyToClipboard(link);
   }
 
   function handleGetLinkClose() {
-    setPublicLink()
+    setPublicLink(undefined);
   }
 
   return (
@@ -37,16 +46,16 @@ const Controls = ({ icon, name }) => {
         link={publicLink}
       />
     </Container>
-  )
-}
+  );
+};
 
-export default Controls
+export default Controls;
 
 const Seperator = styled.div`
   height: 39px;
   border-left: solid 1px #5a5a5a;
   margin: 0 20px;
-`
+`;
 
 const Container = styled.div`
   display: flex;
@@ -61,7 +70,7 @@ const Container = styled.div`
   @media (max-width: 768px) {
     margin: 30px 0 20px 0;
   }
-`
+`;
 
 const NameWrapper = styled.div`
   display: flex;
@@ -71,7 +80,7 @@ const NameWrapper = styled.div`
     flex-direction: column;
     align-items: center;
   }
-`
+`;
 
 const Icon = styled.img`
   width: 50px;
@@ -88,7 +97,7 @@ const Icon = styled.img`
     height: 25px;
     margin-bottom: 4px;
   }
-`
+`;
 
 const Name = styled.h1`
   font-size: 40px;
@@ -106,10 +115,10 @@ const Name = styled.h1`
     font-size: 12px;
     margin-left: 0;
   }
-`
+`;
 
 const SearchWrapper = styled.div`
   position: relative;
   margin-right: 20px;
   margin-left: auto;
-`
+`;

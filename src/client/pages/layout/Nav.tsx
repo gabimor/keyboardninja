@@ -1,10 +1,10 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React from "react"; // eslint-disable-line no-unused-vars
 
-import styled from "@emotion/styled"
-import { Link } from "react-router-dom"
-import Button from "../../components/Button"
+import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
+import Button from "../../components/Button";
 
-function Anonymous(props) {
+function Anonymous() {
   return (
     <>
       <li>
@@ -17,7 +17,12 @@ function Anonymous(props) {
         <Button to="/contact">Help us improve</Button>
       </li>
     </>
-  )
+  );
+}
+
+interface LoggedInProps {
+  user;
+  onLogout: Function;
 }
 
 function LoggedIn({ user, onLogout }) {
@@ -31,12 +36,12 @@ function LoggedIn({ user, onLogout }) {
         <a onClick={onLogout}>Logout</a>
       </li>
     </>
-  )
+  );
 }
 
-export default props => (
+export default (props) => (
   <Container>{props.user ? <LoggedIn {...props} /> : <Anonymous />}</Container>
-)
+);
 
 const Container = styled.ul`
   display: inline-block;
@@ -53,4 +58,4 @@ const Container = styled.ul`
   a {
     color: #ffffff;
   }
-`
+`;

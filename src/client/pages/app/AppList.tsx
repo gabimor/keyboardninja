@@ -1,23 +1,35 @@
-import React from "react" // eslint-disable-line no-unused-vars
-import styled from "@emotion/styled"
+import React from "react"; // eslint-disable-line no-unused-vars
+import styled from "@emotion/styled";
 
-import { encodeAppName } from "../../helpers"
-import AppItem from "./AppItem"
+import { encodeAppName } from "../../helpers";
+import AppItem from "./AppItem";
 
-export default function AppList({ name, apps, gridArea }) {
+interface App {
+  name: string;
+  companyName: string;
+  imageUrl: string;
+  disabled?: boolean;
+}
+interface Props {
+  name: string;
+  apps: App[];
+  gridArea?: string;
+}
+
+export default function AppList({ name, apps, gridArea }: Props) {
   return (
     <Container gridArea={gridArea}>
       <Header>{name}</Header>
       <InnerContainer className={gridArea}>
-        {apps.map(app => {
-          const encodedName = encodeAppName(app.name)
+        {apps.map((app) => {
+          const encodedName = encodeAppName(app.name);
           const CurrItem = () => (
             <AppItem
               icon={"/logos/" + encodedName + ".png"}
               name={app.name}
               disabled={app.disabled}
             />
-          )
+          );
 
           return app.disabled ? (
             <CurrItem key={app.name} />
@@ -25,16 +37,19 @@ export default function AppList({ name, apps, gridArea }) {
             <a href={"/" + encodedName} key={app.name}>
               <CurrItem />
             </a>
-          )
+          );
         })}
       </InnerContainer>
     </Container>
-  )
+  );
 }
 
+interface ContainerProps {
+  gridArea: string;
+}
 const Container = styled.div`
   background: #2c2525;
-  grid-area: ${props => props.gridArea};
+  grid-area: ${(props: ContainerProps) => props.gridArea};
   padding: 20px;
 
   @media (max-width: 992px) {
@@ -44,7 +59,7 @@ const Container = styled.div`
   @media (max-width: 767px) {
     padding: 10px 6px;
   }
-`
+`;
 
 const InnerContainer = styled.div`
   display: grid;
@@ -91,7 +106,7 @@ const InnerContainer = styled.div`
   @media (max-width: 375px) {
     --appItemSize: 106px;
   }
-`
+`;
 
 const Header = styled.h2`
   color: #e9e5e5;
@@ -99,4 +114,4 @@ const Header = styled.h2`
   font-size: 16px;
   margin-bottom: 15px;
   margin-left: 5px;
-`
+`;

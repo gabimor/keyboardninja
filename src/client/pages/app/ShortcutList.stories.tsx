@@ -1,8 +1,8 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React from "react"; // eslint-disable-line no-unused-vars
 
-import { storiesOf } from "@storybook/react"
+import { storiesOf } from "@storybook/react";
 
-import ShortcutList from "./ShortcutList"
+import ShortcutList from "./ShortcutList";
 
 const shortcutList = [
   { action: "test", mac: "ctrl+s", pins: 0 },
@@ -15,7 +15,8 @@ const shortcutList = [
     pins: 0,
   },
   {
-    action: "Start up from the built-in macOS Recovery system. Or use Option-Command-R or Shift-Option-Command-R to start up from macOS Recovery over the Internet. macOS Recovery installs different versions of macOS, depending on the key combination you use while starting up. If your Mac is using a firmware password, you're asked to enter the password.",
+    action:
+      "Start up from the built-in macOS Recovery system. Or use Option-Command-R or Shift-Option-Command-R to start up from macOS Recovery over the Internet. macOS Recovery installs different versions of macOS, depending on the key combination you use while starting up. If your Mac is using a firmware password, you're asked to enter the password.",
     mac:
       "**Ctrl** then move two fingers on the trackpad to move the image around in the preview",
     isHtml: true,
@@ -38,7 +39,7 @@ const shortcutList = [
     pins: 102,
     isPinned: true,
   },
-]
+];
 
 storiesOf("ShortcutList", module).add("default", () => (
   <div>
@@ -52,4 +53,4 @@ storiesOf("ShortcutList", module).add("default", () => (
       <ShortcutList title={"General"} shortcuts={shortcutList} />
     </div>
   </div>
-))
+));

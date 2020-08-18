@@ -16,11 +16,11 @@ const RedisStore = require("connect-redis")(session);
 dotenv.config();
 
 import * as cache from "./server_old/cache";
-import Layout from "./client/Layout";
-import DataContext from "./client/DataContext";
+import Layout from "../src/client/Layout";
+import DataContext from "../src/client/DataContext";
 import { page, pageStart, pageEnd } from "./server_old/page";
-import "./server/api/auth";
-import api from "./server/api/api";
+import "../src/server/api/auth";
+import api from "../src/server/api/api";
 import { UserShortcut } from "./server_old/models";
 
 const app = express();

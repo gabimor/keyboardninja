@@ -1,22 +1,28 @@
-import React, { useEffect, useRef } from "react" // eslint-disable-line no-unused-vars
+import React, { useEffect, useRef } from "react"; // eslint-disable-line no-unused-vars
 
-import Button from "../../components/Button"
-import GetLinkPopup from "./GetLinkPopup"
+import Button from "../../components/Button";
+import GetLinkPopup from "./GetLinkPopup";
 
-const GetLink = ({ link, onGetLink, onClose }) => {
-  const popupElm = useRef(null)
+interface Props {
+  link: string;
+  onGetLink: Function;
+  onClose: Function;
+}
+
+const GetLink = ({ link, onGetLink, onClose }: Props) => {
+  const popupElm = useRef(null);
 
   function handleClickAway(e) {
-    if (popupElm.current && !popupElm.current.contains(e.target)) onClose()
+    if (popupElm.current && !popupElm.current.contains(e.target)) onClose();
   }
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickAway)
+    document.addEventListener("mousedown", handleClickAway);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickAway)
-    }
-  }, [])
+      document.removeEventListener("mousedown", handleClickAway);
+    };
+  }, []);
 
   return (
     <div>
@@ -26,7 +32,7 @@ const GetLink = ({ link, onGetLink, onClose }) => {
       </Button>
       {link && <GetLinkPopup link={link} ref={popupElm} />}
     </div>
-  )
-}
+  );
+};
 
-export default GetLink
+export default GetLink;

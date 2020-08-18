@@ -1,4 +1,4 @@
-import React from "react" // eslint-disable-line no-unused-vars
+import React from "react";
 
-const DataContext = React.createContext()
-export default DataContext
+const DataContext = React.createContext(undefined);
+export default DataContext;

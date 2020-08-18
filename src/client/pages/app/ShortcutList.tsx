@@ -1,19 +1,34 @@
-import React, { useContext } from "react" // eslint-disable-line no-unused-vars
+import React, { useContext } from "react"; // eslint-disable-line no-unused-vars
 
-import ShortcutItem from "./ShortcutItem"
-import styled from "@emotion/styled"
-import DataContext from "../../DataContext"
+import ShortcutItem from "./ShortcutItem";
+import styled from "@emotion/styled";
+import DataContext from "../../DataContext";
 
-import { upperFirstLetter } from "../../helpers"
+import { upperFirstLetter } from "../../helpers";
 
-export default function ShortcutList({ title, shortcuts }) {
-  const { os } = useContext(DataContext)
+interface Shortcut {
+  _id: string;
+  action: string;
+  keys: string[];
+  pins: number;
+  isPinned?: boolean;
+  isHtml?: boolean;
+  note?: string;
+}
+
+interface Props {
+  title: string;
+  shortcuts: Shortcut[];
+}
+
+export default function ShortcutList({ title, shortcuts }: Props) {
+  const { os } = useContext(DataContext);
 
   return (
     <Container>
       <Title>{upperFirstLetter(title)}</Title>
-      <Table cellSpacing={0}>
-        {shortcuts.map(shortcut => {
+      <Table>
+        {shortcuts.map((shortcut) => {
           return (
             <ShortcutItem
               key={shortcut._id}
@@ -25,11 +40,11 @@ export default function ShortcutList({ title, shortcuts }) {
               isHtml={shortcut.isHtml}
               isPinned={!!shortcut.isPinned}
             />
-          )
+          );
         })}
       </Table>
     </Container>
-  )
+  );
 }
 
 const Container = styled.div`
@@ -39,14 +54,14 @@ const Container = styled.div`
   border-radius: 5px;
   overflow: hidden;
   width: 100%;
-`
+`;
 
 const Title = styled.header`
   color: #e9e5e5;
   background: #a12d2a;
   padding: 5px 10px 7px 15px;
   font-size: 16px;
-`
+`;
 
 const Table = styled.div`
   display: grid;
@@ -61,4 +76,4 @@ const Table = styled.div`
     border-bottom: solid 1px #453a3a;
     padding-bottom: 8px;
   }
-`
+`;

@@ -1,5 +1,5 @@
-import React from "react" // eslint-disable-line no-unused-vars
-import styled from "@emotion/styled"
+import React from "react"; // eslint-disable-line no-unused-vars
+import styled from "@emotion/styled";
 
 const GetLinkPopup = React.forwardRef((props, ref) => {
   return (
@@ -13,17 +13,17 @@ const GetLinkPopup = React.forwardRef((props, ref) => {
         <Input
           type="text"
           value={props.link}
-          onFocus={event => event.target.select()}
+          onFocus={(event) => event.target.select()}
           readOnly
         />
         <br />
         <small>Link copied to clipboard</small>
       </InputWrapper>
     </Container>
-  )
-})
+  );
+});
 
-export default GetLinkPopup
+export default GetLinkPopup;
 
 const Container = styled.div`
   background: #2e2424;
@@ -56,7 +56,7 @@ const Container = styled.div`
   small {
     color: #9d8b8b;
   }
-`
+`;
 
 const Input = styled.input`
   padding: 6px;
@@ -66,15 +66,15 @@ const Input = styled.input`
   border-radius: 5px;
   font-size: 12px;
   width: 100%;
-`
+`;
 
 const InputWrapper = styled.div`
   margin: 20px 0 10px;
-`
+`;
 
 const Text = styled.div`
   font-weight: 300;
-`
+`;
 
 // const Seperator = styled.hr`
 //   border: 0;

@@ -1,18 +1,31 @@
-import React from "react" // eslint-disable-line no-unused-vars
-import PropTypes from "prop-types"
-import { useHistory } from "react-router-dom"
-import styled from "@emotion/styled"
+import React, { CSSProperties } from "react";
+import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
+import styled from "@emotion/styled";
 
-export default function Button({ children, secondary, style, onClick, to }) {
-  let history = useHistory()
+interface Props {
+  children: React.ReactNode;
+  secondary?: boolean;
+  style?: CSSProperties;
+  onClick?: Function;
+  to?: string;
+}
+export default function Button({
+  children,
+  secondary,
+  style,
+  onClick,
+  to,
+}: Props) {
+  let history = useHistory();
 
   const handleClick = () => {
     if (to) {
-      history.push(to)
+      history.push(to);
     } else if (onClick) {
-      onClick()
+      onClick();
     }
-  }
+  };
 
   return secondary ? (
     <SecondaryButton style={style} onClick={handleClick}>
@@ -22,12 +35,12 @@ export default function Button({ children, secondary, style, onClick, to }) {
     <PrimaryButton style={style} onClick={handleClick}>
       {children}
     </PrimaryButton>
-  )
+  );
 }
 
 Button.propTypes = {
   onClick: PropTypes.func,
-}
+};
 
 const style = `
   display: inline-block;
@@ -36,7 +49,7 @@ const style = `
   padding: 8px 15px;
   border-radius: 4px;
   line-height: 100%;
-`
+`;
 
 const PrimaryButton = styled.button`
   ${style}
@@ -48,7 +61,7 @@ const PrimaryButton = styled.button`
   &:hover {
     background-color: #e86562;
   }
-`
+`;
 
 const SecondaryButton = styled.button`
   ${style}
@@ -59,4 +72,4 @@ const SecondaryButton = styled.button`
   &:hover {
     background: #9d8b8b;
   }
-`
+`;

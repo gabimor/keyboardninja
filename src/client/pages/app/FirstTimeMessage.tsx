@@ -1,7 +1,11 @@
-import React from "react" // eslint-disable-line no-unused-vars
-import styled from "@emotion/styled"
+import React from "react"; // eslint-disable-line no-unused-vars
+import styled from "@emotion/styled";
 
-const FirstTimeMessage = ({ onDismiss }) => (
+interface Props {
+  onDismiss: Function;
+}
+
+const FirstTimeMessage = ({ onDismiss }: Props) => (
   <Container>
     <b>Welcome!</b> Here's a few things to try: <br />
     <TextWrapper>
@@ -18,9 +22,9 @@ const FirstTimeMessage = ({ onDismiss }) => (
     </TextWrapper>
     <Dismiss onClick={onDismiss}>&times;</Dismiss>
   </Container>
-)
+);
 
-export default FirstTimeMessage
+export default FirstTimeMessage;
 
 const Container = styled.div`
   background: #742f2d;
@@ -36,10 +40,10 @@ const Container = styled.div`
     font-size: 20px;
     margin-top: -20px;
   }
-`
+`;
 const TextWrapper = styled.div`
   margin: 0.5em 0;
-`
+`;
 
 const Dismiss = styled.span`
   cursor: pointer;
@@ -49,8 +53,8 @@ const Dismiss = styled.span`
   font-size: 28px;
   font-weight: 200;
   color: #e9e5e5;
-`
+`;
 
 const Highlight = styled.span`
   color: #ffe6ab;
-`
+`;
