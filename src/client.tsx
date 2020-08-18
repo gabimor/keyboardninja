@@ -4,19 +4,20 @@ import { hydrate } from "react-dom";
 
 import * as osSelect from "./client/helpers/osSelect";
 import Layout from "./client/Layout";
-import DataContext from "./client/DataContext";
+import DataContext, { IDataContext } from "./client/DataContext";
 import { IUser } from "./server/db/User.schema";
+import { OSs } from "./server/db/oss";
 
 declare global {
   interface Window {
-    __KBN_DATA__: any;
+    __KBN_DATA__: IDataContext;
   }
 }
 
 const Client = () => {
   const doLogin = (user: IUser) => setUser(user);
   const doLogout = () => setUser(undefined);
-  const doSetOs = (os: string) => {
+  const doSetOs = (os: OSs) => {
     setOs(os);
     osSelect.setSelectedOS(os);
   };
@@ -30,10 +31,10 @@ const Client = () => {
 
   const { appCategories, app } = window.__KBN_DATA__;
 
-  const [os, setOs] = useState<string>(window.__KBN_DATA__.os);
+  const [os, setOs] = useState<OSs>(window.__KBN_DATA__.os);
   const [user, setUser] = useState<IUser>(window.__KBN_DATA__.user);
 
-  const contextValue = {
+  const contextValue: IDataContext = {
     app,
     appCategories,
     user,

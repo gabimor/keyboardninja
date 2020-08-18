@@ -1,3 +1,5 @@
+import { OSs } from "src/server/db/oss";
+
 export function init() {
   if (!document.cookie.includes("os=")) {
     setSelectedOS(getClientOS());
@@ -13,7 +15,7 @@ export function getSelectedOS() {
   return selectedOS;
 }
 
-export function setSelectedOS(os: string) {
+export function setSelectedOS(os: OSs) {
   document.cookie = "os=" + os + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
 }
 

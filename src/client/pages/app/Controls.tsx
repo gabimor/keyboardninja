@@ -14,7 +14,7 @@ interface Props {
 
 const Controls = ({ icon, name }: Props) => {
   const { app, os, doSetOs } = useContext(DataContext);
-  const [publicLink, setPublicLink] = useState();
+  const [publicLink, setPublicLink] = useState("");
 
   async function handleGetLink() {
     const shortcutIds = app.shortcuts

@@ -8,7 +8,7 @@ import LoginForm from "./login/LoginForm";
 const Login = () => {
   const { doLogin } = useContext(DataContext);
 
-  async function handleSubmit(email, password) {
+  async function handleSubmit(email: string, password: string) {
     const userJson = await login(email, password);
     doLogin(userJson);
   }

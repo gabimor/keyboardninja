@@ -9,6 +9,10 @@ export interface IDataContext {
   app?: App;
   os?: OSs;
   user?: IUser;
+  doLogin?: Function;
+  doLogout?: Function;
+  doPin?: Function;
+  doSetOs?: Function;
 }
 
 const DataContext = React.createContext<IDataContext>(undefined);
