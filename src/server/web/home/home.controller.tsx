@@ -9,10 +9,11 @@ import { DBService } from "@server/db/db.service";
 import { pageTemplate } from "@server/web/pageTemplate";
 import { OSs } from "@server/db/OSs";
 import { Request, Response } from "express";
+import { HomeService } from "./home.service";
 
 @Controller("/")
 export class HomeController {
-  constructor(private dbService: DBService) {}
+  constructor(private dbService: DBService, private homeService: HomeService) {}
 
   @Get()
   async home() {
@@ -61,7 +62,7 @@ export class HomeController {
 
     const dataContext: IDataContext = {
       app,
-      os: app.oss[0] as OSs,
+      os: this.homeService.getAppOS(app, req),
       appCategories,
     };
 
