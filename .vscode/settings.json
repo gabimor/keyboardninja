@@ -13,7 +13,7 @@
   },
   "peacock.affectActivityBar": true,
   "editor.tabSize": 2,
-  "debug.node.autoAttach": "on",
+  "debug.node.autoAttach": "off",
   "files.exclude": {
     "**/build": true
   }
