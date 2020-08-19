@@ -1,73 +1,75 @@
-// @ts-nocheck
 import React from "react";
 import { Link } from "react-router-dom";
-import { Form } from "react-powerplug";
-import * as EmailValidator from "email-validator";
 
 import styled from "@emotion/styled";
 
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import { useForm } from "react-hook-form";
+import { emailRegex } from "@client/helpers";
 
 interface Props {
-  onSubmit: () => void;
+  onSubmit: (data: SignupFormData) => Promise<void>;
 }
 
-export default function Signup({ onSubmit }: Props) {
-  function handleSubmit(e, values, setValues) {
-    e.preventDefault();
+export interface SignupFormData {
+  email: string;
+  password: string;
+}
 
-    const emailValid = EmailValidator.validate(values.email);
-    const passwordValid =
-      values.password &&
-      values.password.length >= 6 &&
-      values.password.length <= 12;
+export default function SignupForm({ onSubmit }: Props) {
+  // TODO: remove this
+  const defaultValues = {
+    email: `a${Math.floor(Math.random() * Math.floor(1000000))}@b.com`,
+    password: "123456",
+  };
 
-    setValues({ emailValid, passwordValid });
-
-    if (emailValid && passwordValid) {
-      onSubmit(values.email, values.password);
-    }
-  }
-  const mockEmail = `a${Math.floor(Math.random() * Math.floor(1000000))}@b.com`;
+  const { register, handleSubmit, errors } = useForm<SignupFormData>({
+    defaultValues,
+  });
 
   return (
-    <Form
-      initial={{
-        email: mockEmail,
-        password: "123456",
-        emailValid: true,
-        passwordValid: true,
-      }}
-    >
-      {({ field, values, setValues }) => {
-        return (
-          <FormContainer onSubmit={(e) => handleSubmit(e, values, setValues)}>
-            <Header>Sign up</Header>
-            <Label>Email</Label>
-            <Input {...field("email").bind} />
-            {!values.emailValid && <Error>Please enter a valid email</Error>}
-            <LabelWrapper>
-              <Label>Password</Label>
-            </LabelWrapper>
-            <Input {...field("password").bind} />
-            {!values.passwordValid && (
-              <Error>Please choose a password of 6-12 charecters</Error>
-            )}
-            <Button type="submit" style={{ marginTop: 20 }}>
-              Sign Up
-            </Button>
-            <SignupWrapper>
-              Already have an account ?<Link to="/login"> Log in</Link>
-            </SignupWrapper>
-          </FormContainer>
-        );
-      }}
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <Header>Sign up</Header>
+      <Label>Email</Label>
+      <Input
+        name="email"
+        ref={register({
+          required: "Please enter your email",
+          pattern: {
+            value: emailRegex,
+            message: "Please enter a valid email",
+          },
+        })}
+      ></Input>
+      {errors.email && <Error>{errors.email.message}</Error>}
+      <LabelWrapper>
+        <Label>Password</Label>
+      </LabelWrapper>
+      <Input
+        name="password"
+        ref={register({
+          required: "Please choose a password",
+          minLength: {
+            value: 6,
+            message: "Please choose a password of 6-12 charecters",
+          },
+          maxLength: {
+            value: 12,
+            message: "Please choose a password of 6-12 charecters",
+          },
+        })}
+      ></Input>
+      {errors.password && <Error>{errors.password.message}</Error>}
+      <Button style={{ marginTop: 20 }}>Sign Up</Button>
+      <SignupWrapper>
+        Already have an account ?<Link to="/login"> Log in</Link>
+      </SignupWrapper>
     </Form>
   );
 }
 
-const FormContainer = styled.form`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
 `;

@@ -3,12 +3,12 @@ import styled from "@emotion/styled";
 
 import { login } from "../helpers/api";
 import { DataContext } from "../DataContext";
-import LoginForm from "./login/LoginForm";
+import LoginForm, { LoginFormData } from "./login/LoginForm";
 
 const Login = () => {
   const { doLogin } = useContext(DataContext);
 
-  async function handleSubmit(email: string, password: string) {
+  async function handleSubmit({ email, password }: LoginFormData) {
     const userJson = await login(email, password);
     doLogin(userJson);
   }
