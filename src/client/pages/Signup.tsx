@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "@emotion/styled";
 
-import DataContext from "../DataContext";
+import { DataContext } from "../DataContext";
 import { signup } from "../helpers/api";
 
 import SignupForm from "./signup/SignupForm";

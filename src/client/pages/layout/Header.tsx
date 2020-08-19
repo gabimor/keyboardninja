@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 
 import { logout } from "../../helpers/api";
-import DataContext from "../../DataContext";
+import { DataContext } from "../../DataContext";
 import Logo from "./Logo";
 import Nav from "./Nav";
 

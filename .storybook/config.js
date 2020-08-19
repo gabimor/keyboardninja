@@ -1,7 +1,7 @@
 import React from "react";
 import { configure, addDecorator } from "@storybook/react";
 import { configureViewport } from "@storybook/addon-viewport";
-import DataContext from "../src/client/DataContext";
+import { DataContext } from "../src/client/DataContext";
 
 import { style } from "../src/server/page";
 

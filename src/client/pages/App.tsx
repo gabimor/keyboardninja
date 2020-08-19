@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import DataContext from "../DataContext";
+import { DataContext } from "../DataContext";
 
 import styled from "@emotion/styled";
 

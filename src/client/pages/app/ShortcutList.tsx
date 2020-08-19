@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import ShortcutItem from "./ShortcutItem";
 import styled from "@emotion/styled";
-import DataContext from "../../DataContext";
+import { DataContext } from "../../DataContext";
 
 import { upperFirstLetter } from "../../helpers";
 

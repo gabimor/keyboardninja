@@ -15,5 +15,4 @@ export interface IDataContext {
   doSetOs?: Function;
 }
 
-const DataContext = React.createContext<IDataContext>(undefined);
-export default DataContext;
+export const DataContext = React.createContext<IDataContext>(undefined);

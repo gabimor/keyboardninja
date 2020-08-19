@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import styled from "@emotion/styled";
 
 import { copyToClipboard } from "../../helpers";
-import DataContext from "../../DataContext";
+import { DataContext } from "../../DataContext";
 import OSSelect from "./OSSelect";
 import GetLink from "./GetLink";
 import { getLink } from "../../helpers/api";

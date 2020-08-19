@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "@emotion/styled";
 
 import AppList from "./app/AppList";
-import DataContext from "../DataContext";
+import { DataContext } from "../DataContext";
 
 const Home = () => {
   const { appCategories } = useContext(DataContext);

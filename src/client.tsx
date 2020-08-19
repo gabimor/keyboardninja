@@ -4,7 +4,7 @@ import { hydrate } from "react-dom";
 
 import * as osSelect from "./client/helpers/osSelect";
 import Layout from "./client/Layout";
-import DataContext, { IDataContext } from "./client/DataContext";
+import { DataContext, IDataContext } from "./client/DataContext";
 import { IUser } from "./server/db/User.schema";
 import { OSs } from "./server/db/oss";
 
