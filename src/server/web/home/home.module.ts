@@ -2,7 +2,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { Module } from "@nestjs/common";
 import { HomeController } from "./home.controller";
 import { AppCategory, AppCategorySchema } from "../../db/AppCategory.schema";
-import { HomeService } from "./home.service";
+import { DBService } from "../../db/db.service";
 import { App, AppSchema } from "../../db/App.schema";
 
 @Module({
@@ -12,7 +12,7 @@ import { App, AppSchema } from "../../db/App.schema";
     ]),
     MongooseModule.forFeature([{ name: App.name, schema: AppSchema }]),
   ],
-  providers: [HomeService],
+  providers: [DBService],
   controllers: [HomeController],
 })
 export class HomeModule {}

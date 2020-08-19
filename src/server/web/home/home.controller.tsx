@@ -5,18 +5,18 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import Layout from "../../../client/Layout";
 import { DataContext, IDataContext } from "../../../client/DataContext";
-import { HomeService } from "./home.service";
+import { DBService } from "../../db/db.service";
 import { pageTemplate } from "../pageTemplate";
 import { OSs } from "../../../server/db/oss";
 import { Request, Response } from "express";
 
 @Controller("/")
 export class HomeController {
-  constructor(private homeService: HomeService) {}
+  constructor(private dbService: DBService) {}
 
   @Get()
   async home() {
-    const appCategories = await this.homeService.getAppCategory();
+    const appCategories = await this.dbService.getAppCategory();
 
     const dataContext: IDataContext = {
       appCategories,
@@ -32,16 +32,25 @@ export class HomeController {
     return renderPage("/404", "Page Not found", "/404", {});
   }
 
+  @Get("login")
+  async login() {
+    return renderPage("/login", "Login", "/login", {});
+  }
+
+  @Get("signup")
+  async signup() {
+    return renderPage("/signup", "Sign Up", "/signup", {});
+  }
+
   @Get(":name")
   async app(
     @Param("name") name: string,
-    @Req() req: Request
+    @Req() req: Request,
     @Res() res: Response
   ) {
+    const app = await this.dbService.getAppByName(name);
 
-    const app = await this.homeService.getAppByName(name);
-
-    const appCategories = await this.homeService.getAppCategory();
+    const appCategories = await this.dbService.getAppCategory();
 
     if (!app) return res.redirect("/404");
 
@@ -50,8 +59,8 @@ export class HomeController {
       os: app.oss[0] as OSs,
       appCategories,
     };
-    
-    return res.send(renderPage(req.url, app.name, app.url, dataContext))
+
+    return res.send(renderPage(req.url, app.name, app.url, dataContext));
   }
 }
 

@@ -52,7 +52,7 @@ export default function Login({ onSubmit }) {
               Log in
             </Button>
             <SignupWrapper>
-              Don't have an account ?<Link to="/signup"> Sign up</Link>
+              Don't have an account ?<Link to="/signup"> Sign Up</Link>
             </SignupWrapper>
           </FormContainer>
         );

@@ -22,8 +22,8 @@ function Anonymous() {
 }
 
 interface LoggedInProps {
-  user: IUser;
-  onLogout: () => void;
+  user?: IUser;
+  onLogout?: () => void;
 }
 
 function LoggedIn({ user, onLogout }: LoggedInProps) {
@@ -40,7 +40,7 @@ function LoggedIn({ user, onLogout }: LoggedInProps) {
   );
 }
 
-export default (props) => (
+export default (props: LoggedInProps) => (
   <Container>{props.user ? <LoggedIn {...props} /> : <Anonymous />}</Container>
 );
 

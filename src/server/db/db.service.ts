@@ -1,11 +1,11 @@
 import { InjectModel } from "@nestjs/mongoose";
-import { AppCategory } from "../../db/AppCategory.schema";
+import { AppCategory } from "./AppCategory.schema";
 import { Model } from "mongoose";
 import { Injectable } from "@nestjs/common";
-import { App } from "../../db/App.schema";
+import { App } from "./App.schema";
 
 @Injectable()
-export class HomeService {
+export class DBService {
   constructor(
     @InjectModel(AppCategory.name) private appCategoryModel: Model<AppCategory>,
     @InjectModel(App.name) private appModel: Model<App>

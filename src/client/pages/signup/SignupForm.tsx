@@ -55,7 +55,7 @@ export default function Signup({ onSubmit }: Props) {
               <Error>Please choose a password of 6-12 charecters</Error>
             )}
             <Button type="submit" style={{ marginTop: 20 }}>
-              Sign up
+              Sign Up
             </Button>
             <SignupWrapper>
               Already have an account ?<Link to="/login"> Log in</Link>

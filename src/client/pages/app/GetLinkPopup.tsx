@@ -1,27 +1,33 @@
-import React from "react";
+import React, { LegacyRef } from "react";
 import styled from "@emotion/styled";
 
-const GetLinkPopup = React.forwardRef((props, ref) => {
-  return (
-    <Container ref={ref}>
-      <b>Done! </b>
-      <Text>
-        Your selected shortcuts are saved with this link. You can share it with
-        friends or save it for future reference.
-      </Text>
-      <InputWrapper>
-        <Input
-          type="text"
-          value={props.link}
-          onFocus={(event) => event.target.select()}
-          readOnly
-        />
-        <br />
-        <small>Link copied to clipboard</small>
-      </InputWrapper>
-    </Container>
-  );
-});
+interface Props {
+  link: string;
+}
+
+const GetLinkPopup = React.forwardRef(
+  (props: Props, ref: LegacyRef<HTMLDivElement>) => {
+    return (
+      <Container ref={ref}>
+        <b>Done! </b>
+        <Text>
+          Your selected shortcuts are saved with this link. You can share it
+          with friends or save it for future reference.
+        </Text>
+        <InputWrapper>
+          <Input
+            type="text"
+            value={props.link}
+            onFocus={(event) => event.target.select()}
+            readOnly
+          />
+          <br />
+          <small>Link copied to clipboard</small>
+        </InputWrapper>
+      </Container>
+    );
+  }
+);
 
 export default GetLinkPopup;
 
