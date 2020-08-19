@@ -1,9 +1,9 @@
 import { MongooseModule } from "@nestjs/mongoose";
 import { Module } from "@nestjs/common";
 import { HomeController } from "./home.controller";
-import { AppCategory, AppCategorySchema } from "../../db/AppCategory.schema";
-import { DBService } from "../../db/db.service";
-import { App, AppSchema } from "../../db/App.schema";
+import { AppCategory, AppCategorySchema } from "@server/db/AppCategory.schema";
+import { DBService } from "@server/db/db.service";
+import { App, AppSchema } from "@server/db/App.schema";
 
 @Module({
   imports: [

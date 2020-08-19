@@ -3,11 +3,11 @@ import { Get, Param, Req, Res } from "@nestjs/common";
 import { Controller } from "@nestjs/common";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
-import Layout from "../../../client/Layout";
-import { DataContext, IDataContext } from "../../../client/DataContext";
-import { DBService } from "../../db/db.service";
-import { pageTemplate } from "../pageTemplate";
-import { OSs } from "../../../server/db/OSs";
+import Layout from "@client/Layout";
+import { DataContext, IDataContext } from "@client/DataContext";
+import { DBService } from "@server/db/db.service";
+import { pageTemplate } from "@server/web/pageTemplate";
+import { OSs } from "@server/db/OSs";
 import { Request, Response } from "express";
 
 @Controller("/")

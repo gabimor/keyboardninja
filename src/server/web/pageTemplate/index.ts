@@ -1,6 +1,6 @@
 import { style } from "./style";
 import { tracking } from "./tracking";
-import { IDataContext } from "../../../client/DataContext";
+import { IDataContext } from "@client/DataContext";
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 export function pageTemplate(

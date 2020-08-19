@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { hydrate } from "react-dom";
 
-import * as osSelect from "./client/helpers/osSelect";
-import Layout from "./client/Layout";
-import { DataContext, IDataContext } from "./client/DataContext";
-import { IUser } from "./server/db/User.schema";
-import { OSs } from "./server/db/OSs";
+import * as osSelect from "@client/helpers/osSelect";
+import Layout from "@client/Layout";
+import { DataContext, IDataContext } from "@client/DataContext";
+import { IUser } from "@server/db/User.schema";
+import { OSs } from "@server/db/OSs";
 
 declare global {
   interface Window {
