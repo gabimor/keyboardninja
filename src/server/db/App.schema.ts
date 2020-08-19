@@ -1,6 +1,6 @@
 import { Prop, raw, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Schema as Schema2 } from "mongoose";
-import { OSs } from "./oss";
+import { OSs } from "./OSs";
 import { ISection } from "./ISection";
 import { IShortcut } from "./IShortcut";
 

@@ -8,5 +8,8 @@ import Controls from "./Controls";
 storiesOf("Controls", module)
   .addDecorator(withKnobs)
   .add("default", () => (
-    <Controls name={text("name", "Visual Studio Code")} icon="vscode.png" />
+    <Controls
+      name={text("name", "Visual Studio Code")}
+      icon="visual-studio-code.png"
+    />
   ));

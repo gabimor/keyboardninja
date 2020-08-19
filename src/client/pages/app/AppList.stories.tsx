@@ -9,12 +9,12 @@ const apps = [
   {
     id: 1,
     name: "Visual Studio Code",
-    icon: "vscode.png",
+    icon: "visual-studio-code.png",
   },
   {
     id: 2,
     name: "Visual Studio",
-    icon: "visualstudio.png",
+    icon: "visual-studio.png",
   },
   {
     id: 3,
@@ -25,12 +25,12 @@ const apps = [
   {
     id: 5,
     name: "Visual Studio Code",
-    icon: "vscode.png",
+    icon: "visual-studio-code.png",
   },
   {
     id: 6,
     name: "Visual Studio",
-    icon: "visualstudio.png",
+    icon: "visual-studio.png",
   },
   {
     id: 7,

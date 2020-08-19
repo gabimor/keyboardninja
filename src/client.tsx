@@ -6,7 +6,7 @@ import * as osSelect from "./client/helpers/osSelect";
 import Layout from "./client/Layout";
 import { DataContext, IDataContext } from "./client/DataContext";
 import { IUser } from "./server/db/User.schema";
-import { OSs } from "./server/db/oss";
+import { OSs } from "./server/db/OSs";
 
 declare global {
   interface Window {

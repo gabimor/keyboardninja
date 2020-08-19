@@ -13,7 +13,7 @@ storiesOf("AppItem", module)
   ))
   .add("vscode", () => (
     <AppItem
-      icon={"/logos/vscode.png"}
+      icon={"/logos/visual-studio-code.png"}
       name={text("name", "Visual Studio Code")}
     />
   ))

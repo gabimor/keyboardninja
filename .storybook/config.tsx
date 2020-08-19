@@ -1,14 +1,9 @@
 import React from "react";
 import { configure, addDecorator } from "@storybook/react";
-import { configureViewport } from "@storybook/addon-viewport";
 import { DataContext } from "../src/client/DataContext";
 
 import { style } from "../src/server/web/pageTemplate/style";
-import { OSs } from "../src/server/db/oss";
-
-// configureViewport({
-//   viewports,
-// });
+import { OSs } from "../src/server/db/OSs";
 
 // global decorator to add theme
 addDecorator((story) => (
@@ -21,7 +16,7 @@ addDecorator((story) => (
 ));
 
 // automatically import all files ending in *.stories.js
-const pages = require.context("../src", true, /.stories.js$/);
+const pages = require.context("../src", true, /.stories.tsx$/);
 function loadStories() {
   pages.keys().forEach((filename) => pages(filename));
 }
@@ -65,4 +60,8 @@ const viewports = {
       height: "732px",
     },
   },
+};
+
+export const parameters = {
+  viewport: { viewports },
 };

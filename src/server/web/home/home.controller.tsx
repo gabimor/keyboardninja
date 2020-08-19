@@ -7,7 +7,7 @@ import Layout from "../../../client/Layout";
 import { DataContext, IDataContext } from "../../../client/DataContext";
 import { DBService } from "../../db/db.service";
 import { pageTemplate } from "../pageTemplate";
-import { OSs } from "../../../server/db/oss";
+import { OSs } from "../../../server/db/OSs";
 import { Request, Response } from "express";
 
 @Controller("/")
@@ -40,6 +40,11 @@ export class HomeController {
   @Get("signup")
   async signup() {
     return renderPage("/signup", "Sign Up", "/signup", {});
+  }
+
+  @Get("contact")
+  async contact() {
+    return renderPage("/contact", "Wanna Help?", "/contact", {});
   }
 
   @Get(":name")

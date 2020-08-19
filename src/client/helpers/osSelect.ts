@@ -1,4 +1,4 @@
-import { OSs } from "../../server/db/oss";
+import { OSs } from "../../server/db/OSs";
 
 export function init() {
   if (!document.cookie.includes("os=")) {
