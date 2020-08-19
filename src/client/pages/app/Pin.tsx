@@ -7,7 +7,7 @@ import { lightenDarkenColor } from "../../helpers";
 interface Props {
   pins: number;
   isPinned: boolean;
-  onClick: Function;
+  onClick: () => void;
 }
 
 export default function Shortcut({ pins, isPinned, onClick }: Props) {

@@ -1,4 +1,4 @@
-import { OSs } from "src/server/db/oss";
+import { OSs } from "../../server/db/oss";
 
 export function init() {
   if (!document.cookie.includes("os=")) {
@@ -19,9 +19,9 @@ export function setSelectedOS(os: OSs) {
   document.cookie = "os=" + os + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
 }
 
-function getClientOS() {
+function getClientOS(): OSs {
   const isWin = navigator.platform.toLowerCase().includes("win");
-  return isWin ? "win" : "mac";
+  return isWin ? OSs.Win : OSs.Mac;
 }
 
 function getCookie(name: string) {

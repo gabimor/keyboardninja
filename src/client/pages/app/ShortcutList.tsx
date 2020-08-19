@@ -33,7 +33,7 @@ export default function ShortcutList({ title, shortcuts }: Props) {
           return (
             <ShortcutItem
               key={shortcut._id}
-              id={shortcut._id}
+              _id={shortcut._id}
               keys={shortcut[os]}
               action={shortcut.action}
               note={shortcut.note}

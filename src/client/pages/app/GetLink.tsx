@@ -12,7 +12,7 @@ interface Props {
 const GetLink = ({ link, onGetLink, onClose }: Props) => {
   const popupElm = useRef(null);
 
-  function handleClickAway(e) {
+  function handleClickAway(e: MouseEvent) {
     if (popupElm.current && !popupElm.current.contains(e.target)) onClose();
   }
 

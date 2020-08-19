@@ -3,15 +3,16 @@ import { configure, addDecorator } from "@storybook/react";
 import { configureViewport } from "@storybook/addon-viewport";
 import { DataContext } from "../src/client/DataContext";
 
-import { style } from "../src/server/page";
+import { style } from "../src/server/web/pageTemplate/style";
+import { OSs } from "../src/server/db/oss";
 
-configureViewport({
-  viewports,
-});
+// configureViewport({
+//   viewports,
+// });
 
 // global decorator to add theme
 addDecorator((story) => (
-  <DataContext.Provider value={{ os: "mac" }}>
+  <DataContext.Provider value={{ os: OSs.Mac }}>
     <div style={{ padding: 40 }}>
       <style>{style}</style>
       {story()}

@@ -3,13 +3,13 @@ import React from "react";
 import styled from "@emotion/styled";
 import { lightenDarkenColor } from "../../helpers";
 
-interface Props {
+export interface IAppItemProps {
   name: string;
   icon: string;
   disabled?: boolean;
 }
 
-export default function App({ name, icon, disabled }: Props) {
+export default function AppItem({ name, icon, disabled }: IAppItemProps) {
   const Container = disabled ? DisabledContainer : EnabledContainer;
   return (
     <Container>

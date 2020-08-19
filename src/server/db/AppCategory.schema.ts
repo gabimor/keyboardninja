@@ -1,5 +1,6 @@
 import { Prop, raw, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
+import { App } from "./App.schema";
 
 @Schema({ collection: "app_categories" })
 export class AppCategory extends Document {
@@ -7,7 +8,7 @@ export class AppCategory extends Document {
   name: string;
 
   @Prop()
-  icon: string;
+  gridArea: string;
 
   @Prop(
     raw([
@@ -17,7 +18,7 @@ export class AppCategory extends Document {
       },
     ])
   )
-  apps: string;
+  apps: App[];
 }
 
 export const AppCategorySchema = SchemaFactory.createForClass(AppCategory);

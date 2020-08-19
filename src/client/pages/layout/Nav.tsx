@@ -3,7 +3,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
-import { IUser } from "src/server/db/User.schema";
+import { IUser } from "../../../server/db/User.schema";
 
 function Anonymous() {
   return (
@@ -23,7 +23,7 @@ function Anonymous() {
 
 interface LoggedInProps {
   user: IUser;
-  onLogout: Function;
+  onLogout: () => void;
 }
 
 function LoggedIn({ user, onLogout }: LoggedInProps) {

@@ -9,41 +9,35 @@ const apps = [
   {
     id: 1,
     name: "Visual Studio Code",
-    companyName: "Microsoft",
-    imageUrl: "logos/vscode.png",
+    icon: "vscode.png",
   },
   {
     id: 2,
     name: "Visual Studio",
-    companyName: "Microsoft",
-    imageUrl: "logos/visualstudio.png",
+    icon: "visualstudio.png",
   },
   {
     id: 3,
     name: "Photoshop",
-    companyName: "Adobe",
-    imageUrl: "logos/photoshop.png",
+    icon: "photoshop.png",
   },
-  { id: 4, name: "XD", companyName: "Adobe", imageUrl: "logos/xd.png" },
+  { id: 4, name: "XD", icon: "xd.png" },
   {
     id: 5,
     name: "Visual Studio Code",
-    companyName: "Microsoft",
-    imageUrl: "logos/vscode.png",
+    icon: "vscode.png",
   },
   {
     id: 6,
     name: "Visual Studio",
-    companyName: "Microsoft",
-    imageUrl: "logos/visualstudio.png",
+    icon: "visualstudio.png",
   },
   {
     id: 7,
     name: "Photoshop",
-    companyName: "Adobe",
-    imageUrl: "logos/photoshop.png",
+    icon: "photoshop.png",
   },
-  { id: 8, name: "XD", companyName: "Adobe", imageUrl: "logos/xd.png" },
+  { id: 8, name: "XD", icon: "xd.png" },
 ];
 
 storiesOf("AppList", module)

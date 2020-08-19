@@ -45,7 +45,7 @@ const Container = styled.div`
     display: block;
     position: absolute;
     right: 20px;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     content: "";
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;

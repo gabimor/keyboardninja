@@ -7,18 +7,18 @@ import { upperFirstLetter } from "../../helpers";
 import Shortcut from "./Shortcut";
 import Pin from "./Pin";
 
-interface Props {
-  id: string;
+export interface Props {
+  _id: string;
   action: string;
-  keys: string[];
   pins: number;
-  isPinned: boolean;
-  isHtml: boolean;
-  note: string;
+  keys: string;
+  isHtml?: boolean;
+  isPinned?: boolean;
+  note?: string;
 }
 
 function ShortcutItem({
-  id,
+  _id,
   action,
   keys,
   pins,
@@ -37,8 +37,8 @@ function ShortcutItem({
     setPinsState(newPins);
     setIsPinnedState(newIsPinned);
 
-    doPin(id, newPins, newIsPinned);
-    await pin(app._id, id, newIsPinned);
+    doPin(_id, newPins, newIsPinned);
+    await pin(app._id, _id, newIsPinned);
   }
 
   return (
@@ -78,8 +78,13 @@ const InfoContainer = styled.div`
   margin-top: 3px;
 `;
 
+interface ActionContainerProps {
+  isPinned: boolean;
+}
+
 const ActionContainer = styled.div`
-  color: ${(props) => (props.isPinned ? "#ffe6ab" : "inherit")};
+  color: ${(props: ActionContainerProps) =>
+    props.isPinned ? "#ffe6ab" : "inherit"};
   user-select: none;
   padding-right: 20px;
 `;

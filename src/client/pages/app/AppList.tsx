@@ -2,17 +2,11 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import { encodeAppName } from "../../helpers";
-import AppItem from "./AppItem";
+import AppItem, { IAppItemProps } from "./AppItem";
 
-interface App {
-  name: string;
-  companyName: string;
-  imageUrl: string;
-  disabled?: boolean;
-}
 interface Props {
   name: string;
-  apps: App[];
+  apps: IAppItemProps[];
   gridArea?: string;
 }
 
@@ -25,7 +19,7 @@ export default function AppList({ name, apps, gridArea }: Props) {
           const encodedName = encodeAppName(app.name);
           const CurrItem = () => (
             <AppItem
-              icon={"/logos/" + encodedName + ".png"}
+              icon={"/logos/" + app.icon}
               name={app.name}
               disabled={app.disabled}
             />
@@ -47,6 +41,7 @@ export default function AppList({ name, apps, gridArea }: Props) {
 interface ContainerProps {
   gridArea: string;
 }
+
 const Container = styled.div`
   background: #2c2525;
   grid-area: ${(props: ContainerProps) => props.gridArea};

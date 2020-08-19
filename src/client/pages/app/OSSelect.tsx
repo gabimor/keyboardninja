@@ -12,13 +12,13 @@ function OSSelect({ oss, os, onSelect }: OSSelectProps) {
   return (
     <Container>
       <OSButton
-        buttonOS="win"
+        buttonOS={OSs.Win}
         selectedOS={os}
         supportedOSS={oss}
         onClick={onSelect}
       />
       <OSButton
-        buttonOS="mac"
+        buttonOS={OSs.Mac}
         selectedOS={os}
         supportedOSS={oss}
         onClick={onSelect}
@@ -28,9 +28,9 @@ function OSSelect({ oss, os, onSelect }: OSSelectProps) {
 }
 
 interface OSButtonProps {
-  buttonOS: string;
-  selectedOS: string;
-  supportedOSS: string[];
+  buttonOS: OSs;
+  selectedOS: OSs;
+  supportedOSS: OSs[];
   onClick: Function;
 }
 

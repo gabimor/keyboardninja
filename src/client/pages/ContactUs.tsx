@@ -4,13 +4,13 @@ import ContactForm from "./contactUs/ContactForm";
 
 export default () => {
   const [messageSent, setMessageSent] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
 
-  const onSend = (err) => {
+  const onSend = (err: Error) => {
     if (err) {
       setError("Sorry... something went wrong. Please try again later");
     } else {
-      setError();
+      setError("");
       setMessageSent(true);
     }
   };
