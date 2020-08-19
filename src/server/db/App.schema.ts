@@ -1,5 +1,5 @@
 import { Prop, raw, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document, Schema as Schema2 } from "mongoose";
+import { Document, Schema as MongooseNativeSchema } from "mongoose";
 import { OSs } from "./OSs";
 import { ISection } from "./ISection";
 import { IShortcut } from "./IShortcut";
@@ -28,7 +28,7 @@ export class App extends Document {
     raw([
       {
         action: { type: String },
-        sectionId: { type: Schema2.Types.ObjectId },
+        sectionId: { type: MongooseNativeSchema.Types.ObjectId },
         pins: { type: Number },
         win: { type: String },
         mac: { type: String },
