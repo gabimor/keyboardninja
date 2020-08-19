@@ -1,5 +1,4 @@
 const headers = {
-  // credentials: "include",
   Accept: "application/json",
   Cache: "no-cache",
   "Content-Type": "application/json",
@@ -28,7 +27,7 @@ export async function contactUs(name: string, email: string, message: string) {
       headers,
     });
 
-    if (res.status != 200) throw new Error();
+    if (res.status !== 200) throw new Error();
   } catch (e) {
     throw e;
   }

@@ -8,7 +8,7 @@ html {
 }
 
 body {
-  background: linear-gradient(#442323, #270505) no-repeat;    
+  background: linear-gradient(#442323, #270505) no-repeat;
   background-size: 100% 400px;
   color: #FFFFFF;
   margin: 0;

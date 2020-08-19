@@ -10,7 +10,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 
 interface Props {
-  onSubmit: Function;
+  onSubmit: () => void;
 }
 
 export default function Signup({ onSubmit }: Props) {

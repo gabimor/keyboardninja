@@ -1,8 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "@emotion/styled";
-
-import { lightenDarkenColor } from "../../helpers";
 
 interface Props {
   pins: number;
@@ -46,10 +43,7 @@ const Container = styled.div`
   }
 
   :hover {
-    border-color: ${({ isPinned }) =>
-      isPinned
-        ? lightenDarkenColor("#ffe6ab", 50)
-        : lightenDarkenColor("#9D8B8B", 50)};
+    border-color: ${({ isPinned }) => (isPinned ? "#ffffdd" : "#cfbdbd")};
   }
 `;
 

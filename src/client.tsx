@@ -14,14 +14,23 @@ declare global {
   }
 }
 
+export type IDoPin = (
+  shortcutId: string,
+  pins: number,
+  isPinned: boolean
+) => void;
+
+export type IDoSetOs = (os: OSs) => void;
+
 const Client = () => {
-  const doLogin = (user: IUser) => setUser(user);
+  const doLogin = (userData: IUser) => setUser(userData);
   const doLogout = () => setUser(undefined);
-  const doSetOs = (os: OSs) => {
-    setOs(os);
-    osSelect.setSelectedOS(os);
+  const doSetOs: IDoSetOs = (osData) => {
+    setOs(osData);
+    osSelect.setSelectedOS(osData);
   };
-  const doPin = (shortcutId: string, pins: number, isPinned: boolean) => {
+
+  const doPin: IDoPin = (shortcutId, pins, isPinned) => {
     const shortcut = app.shortcuts.find(
       (e) => e._id.toString() === shortcutId.toString()
     );

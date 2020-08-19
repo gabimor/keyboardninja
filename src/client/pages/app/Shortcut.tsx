@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 
 import { upperFirstLetter } from "../../helpers";
@@ -18,7 +17,7 @@ export default function Shortcut({ keys, isHtml }: ShortcutProps) {
       />
     );
 
-  let keysArr = split([keys], " or ");
+  const keysArr = split([keys], " or ");
 
   return (
     <>

@@ -1,7 +1,6 @@
 import React from "react";
 
 import styled from "@emotion/styled";
-import { lightenDarkenColor } from "../../helpers";
 
 export interface IAppItemProps {
   name: string;
@@ -25,9 +24,8 @@ const sharedStyles = `
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: var(--appItemSize);  
+  height: var(--appItemSize);
   padding: 10px;
-  
   background-color: #403434;
   color: #d1b4b4;
   transition: all 0.5s;
@@ -37,7 +35,7 @@ const sharedStyles = `
   }
 
   @media (max-width: 768px) {
-      font-size:12px;        
+      font-size:12px;
   }
 
 `;
@@ -67,7 +65,7 @@ const EnabledContainer = styled.div`
 
   :hover {
     color: #e9e5e5;
-    background: ${lightenDarkenColor("#4F4242", 10)};
+    background: "#594c4c";
     transform: scale(1.04);
   }
 `;

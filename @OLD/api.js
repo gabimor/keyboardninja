@@ -1,61 +1,61 @@
-import passport from "passport"
-import express from "express"
-import { Types } from "mongoose"
-import sgMail from "@sendgrid/mail"
+import passport from "passport";
+import express from "express";
+import { Types } from "mongoose";
+import sgMail from "@sendgrid/mail";
 
-import { UserShortcut } from "./models"
-import * as db from "../../../@old/db"
-import * as cache from "./cache"
-import md5 from "md5"
+import { UserShortcut } from "./models";
+import * as db from "../../../@old/db";
+import * as cache from "./cache";
+import md5 from "md5";
 
-const router = express.Router()
+const router = express.Router();
 
 router.post("/contactus", (req, res, next) => {
-  const { name, email, message } = req.body
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+  const { name, email, message } = req.body;
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   const msg = {
     to: process.env.CONTACT_EMAIL,
     from: email,
     subject: "KeyboardNinja - from " + name,
     text: message,
-  }
-  sgMail.send(msg)
-  res.sendStatus(200)
-})
+  };
+  sgMail.send(msg);
+  res.sendStatus(200);
+});
 
 router.post("/getlink", async (req, res) => {
-  const appsHash = await cache.getAppsHash()
-  const { appId, shortcutIds } = req.body
-  const appName = appsHash.find(e => e.id.toString() === appId).name
+  const appsHash = await cache.getAppsHash();
+  const { appId, shortcutIds } = req.body;
+  const appName = appsHash.find((e) => e.id.toString() === appId).name;
 
-  let link = process.env.APP_URL + appName
+  let link = process.env.APP_URL + appName;
   if (shortcutIds.length > 0) {
     const userShortcut = new UserShortcut({
       _id: Types.ObjectId(),
       appId,
       shortcuts: shortcutIds,
-    })
-    userShortcut.save()
+    });
+    userShortcut.save();
 
-    link += "?h=" + userShortcut._id
+    link += "?h=" + userShortcut._id;
 
-    cache.clearApp(appId)
+    cache.clearApp(appId);
   }
 
-  res.status(200).send(link)
-})
+  res.status(200).send(link);
+});
 
 router.post("/signup", async (req, res, next) => {
-  const { email, password } = req.body
+  const { email, password } = req.body;
 
-  await db.signupUser(email, password)
-  req.login({ email, password }, err => {
+  await db.signupUser(email, password);
+  req.login({ email, password }, (err) => {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    return res.json({ email })
-  })
-})
+    return res.json({ email });
+  });
+});
 
 // router.post(
 //   "/login",
@@ -81,7 +81,7 @@ router.post("/signup", async (req, res, next) => {
 //   })
 // )
 
-router.post("/login", function(req, res, next) {
+router.post("/login", function (req, res, next) {
   // passport.authenticate(
   //   "local",
   //   {
@@ -94,21 +94,21 @@ router.post("/login", function(req, res, next) {
   //     res.redirect("/users/" + req.user.username)
   //   }
   // )
-  passport.authenticate("local", function(error, user, info) {
+  passport.authenticate("local", function (error, user, info) {
     if (error) {
-      res.status(401).send(error)
+      res.status(401).send(error);
     } else if (!user) {
-      res.status(401).send(info)
+      res.status(401).send(info);
     } else {
-      req.login(user, function(err) {
+      req.login(user, function (err) {
         if (err) {
-          return next(err)
+          return next(err);
         }
-        return res.json({ email: user.email })
-      })
+        return res.json({ email: user.email });
+      });
     }
-  })(req, res)
-})
+  })(req, res);
+});
 
 // router.post("/logout", (req, res) => {
 //   req.logout()
@@ -126,4 +126,4 @@ router.post("/login", function(req, res, next) {
 //   res.status(200).send()
 // })
 
-export default router
+export default router;

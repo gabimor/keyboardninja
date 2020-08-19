@@ -5,8 +5,8 @@ import GetLinkPopup from "./GetLinkPopup";
 
 interface Props {
   link: string;
-  onGetLink: Function;
-  onClose: Function;
+  onGetLink: () => void;
+  onClose: () => void;
 }
 
 const GetLink = ({ link, onGetLink, onClose }: Props) => {

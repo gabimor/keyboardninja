@@ -1,5 +1,4 @@
 import React, { CSSProperties } from "react";
-import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import styled from "@emotion/styled";
 
@@ -7,7 +6,7 @@ interface Props {
   children: React.ReactNode;
   secondary?: boolean;
   style?: CSSProperties;
-  onClick?: Function;
+  onClick?: () => void;
   to?: string;
 }
 export default function Button({
@@ -17,7 +16,7 @@ export default function Button({
   onClick,
   to,
 }: Props) {
-  let history = useHistory();
+  const history = useHistory();
 
   const handleClick = () => {
     if (to) {
@@ -38,11 +37,7 @@ export default function Button({
   );
 }
 
-Button.propTypes = {
-  onClick: PropTypes.func,
-};
-
-const style = `
+const btnStyle = `
   display: inline-block;
   cursor:pointer;
   color: #E9E5E5;
@@ -52,7 +47,7 @@ const style = `
 `;
 
 const PrimaryButton = styled.button`
-  ${style}
+  ${btnStyle}
 
   background-color: #D1403D;
   color: #ffffff;
@@ -64,7 +59,7 @@ const PrimaryButton = styled.button`
 `;
 
 const SecondaryButton = styled.button`
-  ${style}
+  ${btnStyle}
   background:transparent;
   color: #a4a3a6;
   border: 1px solid #a4a3a6;
