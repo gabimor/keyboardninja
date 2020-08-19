@@ -35,13 +35,14 @@ export class HomeController {
   @Get(":name")
   async app(
     @Param("name") name: string,
-    @Req() req: Request,
+    @Req() req: Request
     @Res() res: Response
   ) {
+
     const app = await this.homeService.getAppByName(name);
+
     const appCategories = await this.homeService.getAppCategory();
 
-    // TODO: redirect to 404
     if (!app) return res.redirect("/404");
 
     const dataContext: IDataContext = {
@@ -49,8 +50,8 @@ export class HomeController {
       os: app.oss[0] as OSs,
       appCategories,
     };
-
-    return renderPage(req.url, app.name, app.url, dataContext);
+    
+    return res.send(renderPage(req.url, app.name, app.url, dataContext))
   }
 }
 
