@@ -3,9 +3,9 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 
 import ShortcutList from "./ShortcutList";
-import { IShortcut } from "../../../server/db/IShortcut";
+import { Shortcut } from "@server/db/Shortcut";
 
-const shortcutList: IShortcut[] = [
+const shortcutList: Shortcut[] = [
   { _id: "1", sectionId: "1", action: "test", mac: "ctrl+s", pins: 0 },
   {
     _id: "2",

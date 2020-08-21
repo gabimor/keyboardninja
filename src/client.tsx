@@ -5,7 +5,7 @@ import { hydrate } from "react-dom";
 import * as osSelect from "@client/helpers/osSelect";
 import Layout from "@client/Layout";
 import { DataContext, IDataContext } from "@client/DataContext";
-import { IUser } from "@server/db/User.schema";
+import { User } from "@server/db/User.schema";
 import { OSs } from "@server/db/OSs";
 
 declare global {
@@ -14,23 +14,23 @@ declare global {
   }
 }
 
-export type IDoPin = (
+export type DoPin = (
   shortcutId: string,
   pins: number,
   isPinned: boolean
 ) => void;
 
-export type IDoSetOs = (os: OSs) => void;
+export type DoSetOs = (os: OSs) => void;
 
 const Client = () => {
-  const doLogin = (userData: IUser) => setUser(userData);
+  const doLogin = (userData: User) => setUser(userData);
   const doLogout = () => setUser(undefined);
-  const doSetOs: IDoSetOs = (osData) => {
+  const doSetOs: DoSetOs = (osData) => {
     setOs(osData);
     osSelect.setSelectedOS(osData);
   };
 
-  const doPin: IDoPin = (shortcutId, pins, isPinned) => {
+  const doPin: DoPin = (shortcutId, pins, isPinned) => {
     const shortcut = app.shortcuts.find(
       (e) => e._id.toString() === shortcutId.toString()
     );
@@ -41,7 +41,7 @@ const Client = () => {
   const { appCategories, app } = window.__KBN_DATA__;
 
   const [os, setOs] = useState<OSs>(window.__KBN_DATA__.os);
-  const [user, setUser] = useState<IUser>(window.__KBN_DATA__.user);
+  const [user, setUser] = useState<User>(window.__KBN_DATA__.user);
 
   const contextValue: IDataContext = {
     app,

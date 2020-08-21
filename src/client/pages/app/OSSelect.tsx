@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import { OSs } from "../../../server/db/OSs";
-import { IDoSetOs } from "src/client";
+import { DoSetOs } from "src/client";
 
 interface OSSelectProps {
   oss: OSs[];
   os: OSs;
-  onSelect: IDoSetOs;
+  onSelect: DoSetOs;
 }
 
 function OSSelect({ oss, os, onSelect }: OSSelectProps) {
@@ -32,7 +32,7 @@ interface OSButtonProps {
   buttonOS: OSs;
   selectedOS: OSs;
   supportedOSS: OSs[];
-  onClick: IDoSetOs;
+  onClick: DoSetOs;
 }
 
 const OSButton = ({

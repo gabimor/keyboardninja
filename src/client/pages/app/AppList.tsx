@@ -2,11 +2,11 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import { encodeAppName } from "../../helpers";
-import AppItem, { IAppItemProps } from "./AppItem";
+import AppItem, { AppItemProps } from "./AppItem";
 
 interface Props {
   name: string;
-  apps: IAppItemProps[];
+  apps: AppItemProps[];
   gridArea?: string;
 }
 

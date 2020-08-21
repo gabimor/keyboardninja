@@ -2,13 +2,13 @@ import React from "react";
 
 import styled from "@emotion/styled";
 
-export interface IAppItemProps {
+export interface AppItemProps {
   name: string;
   icon: string;
   disabled?: boolean;
 }
 
-export default function AppItem({ name, icon, disabled }: IAppItemProps) {
+export default function AppItem({ name, icon, disabled }: AppItemProps) {
   const Container = disabled ? DisabledContainer : EnabledContainer;
   return (
     <Container>

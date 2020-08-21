@@ -1,4 +1,4 @@
-export interface IShortcut {
+export interface Shortcut {
   _id: string;
   action: string;
   sectionId: string;
