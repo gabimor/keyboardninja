@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
-import { OSs } from "../../../server/db/OSs";
+import { OSs } from "../../../types/OSs.enum";
 import { DoSetOs } from "src/client";
 
 interface OSSelectProps {

@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import styled from "@emotion/styled";
 
 import { DataContext } from "../../DataContext";
-import { pin } from "../../helpers/api";
+import { pin } from "../../api";
 import { upperFirstLetter } from "../../helpers";
 import Shortcut from "./Shortcut";
 import Pin from "./Pin";

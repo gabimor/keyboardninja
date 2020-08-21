@@ -5,18 +5,21 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import Layout from "@client/Layout";
 import { DataContext, IDataContext } from "@client/DataContext";
-import { DBService } from "@server/db/db.service";
 import { pageTemplate } from "@server/web/pageTemplate";
 import { Request, Response } from "express";
 import { HomeService } from "./home.service";
+import { AppsService } from "@server/apps/apps.service";
 
 @Controller("/")
 export class HomeController {
-  constructor(private dbService: DBService, private homeService: HomeService) {}
+  constructor(
+    private appsService: AppsService,
+    private homeService: HomeService
+  ) {}
 
   @Get()
   async home() {
-    const appCategories = await this.dbService.getAppCategory();
+    const appCategories = await this.appsService.getAppCategory();
 
     const dataContext: IDataContext = {
       appCategories,
@@ -53,9 +56,9 @@ export class HomeController {
     @Req() req: Request,
     @Res() res: Response
   ) {
-    const app = await this.dbService.getAppByName(name);
+    const app = await this.appsService.getAppByName(name);
 
-    const appCategories = await this.dbService.getAppCategory();
+    const appCategories = await this.appsService.getAppCategory();
 
     if (!app) return res.redirect("/404");
 

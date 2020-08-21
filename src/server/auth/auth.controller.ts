@@ -16,6 +16,11 @@ export class AuthController {
     return this.authService.login(req.user);
   }
 
+  @Post("signup")
+  async signup(username: string, password: string) {
+    // return this.userService.signup(username, password);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Get("profile")
   getProfile(@Request() req: RequestAuth) {

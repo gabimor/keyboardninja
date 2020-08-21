@@ -9,7 +9,6 @@ export class AuthService {
     private jwtService: JwtService
   ) {}
 
-  // TODO: change any
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.usersService.findOne(username);
     if (user && user.password === pass) {
@@ -25,4 +24,5 @@ export class AuthService {
       access_token: this.jwtService.sign(payload),
     };
   }
+
 }

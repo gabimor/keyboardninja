@@ -1,33 +1,43 @@
 import { Injectable } from "@nestjs/common";
-
-// TODO: change any
-export type User = any;
+import { UserType } from "@src/types/User.type";
+import emailValidator from "email-validator";
+import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH } from "@src/consts";
 
 @Injectable()
 export class UsersService {
-  private readonly users: User[];
+  private readonly users: UserType[];
 
   constructor() {
     this.users = [
       {
-        userId: 1,
-        username: "john",
+        email: "john",
         password: "changeme",
       },
       {
-        userId: 2,
-        username: "chris",
+        email: "chris",
         password: "secret",
       },
       {
-        userId: 3,
-        username: "maria",
+        email: "maria",
         password: "guess",
       },
     ];
   }
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find((user) => user.username === username);
+  async findOne(email: string): Promise<UserType | undefined> {
+    return this.users.find((user) => user.email === email);
+  }
+
+  async signup(email: string, password: string) {
+    if (!emailValidator.validate(email)) {
+      throw new Error("email is not valid");
+    } else if (
+      !password ||
+      password.length >= PASSWORD_MIN_LENGTH ||
+      password.length <= PASSWORD_MAX_LENGTH
+    ) {
+      throw new Error("password is not valid");
+    } else {
+    }
   }
 }

@@ -6,6 +6,7 @@ import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
 import { AuthModule } from "./auth/auth.module";
 import { UsersModule } from "./users/users.module";
+import { AppsModule } from "./apps/apps.module";
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { UsersModule } from "./users/users.module";
     }),
     UsersModule,
     AuthModule,
+    AppsModule,
   ],
 })
 export class AppModule {}

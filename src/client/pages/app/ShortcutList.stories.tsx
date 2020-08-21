@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 
 import ShortcutList from "./ShortcutList";
-import { Shortcut } from "@server/db/Shortcut";
+import { Shortcut } from "@src/types/Shortcut.type";
 
 const shortcutList: Shortcut[] = [
   { _id: "1", sectionId: "1", action: "test", mac: "ctrl+s", pins: 0 },

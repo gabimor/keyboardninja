@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { contactUs } from "../../helpers/api";
+import { contactUs } from "../../api";
 import Button from "../../components/Button";
 import styled from "@emotion/styled";
 

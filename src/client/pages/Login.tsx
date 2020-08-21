@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "@emotion/styled";
 
-import { login } from "../helpers/api";
+import { login } from "@client/api/auth";
 import { DataContext } from "../DataContext";
 import LoginForm, { LoginFormData } from "./login/LoginForm";
 

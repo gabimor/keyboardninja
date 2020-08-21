@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "@emotion/styled";
 
 import { DataContext } from "../DataContext";
-import { signup } from "../helpers/api";
+import { signup } from "@client/api/auth";
 
 import SignupForm, { SignupFormData } from "./signup/SignupForm";
 
