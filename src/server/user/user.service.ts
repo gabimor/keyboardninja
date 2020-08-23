@@ -1,6 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { UserType } from "@src/types/User.type";
-import emailValidator from "email-validator";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import * as emailValidator from "email-validator";
 import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH } from "@src/consts";
 import { User } from "@server/db/User.schema";
 import { Model } from "mongoose";
@@ -16,17 +15,22 @@ export class UserService {
 
   async signup(email: string, password: string) {
     if (!emailValidator.validate(email)) {
-      throw new Error("email is not valid");
+      throw new HttpException(
+        "email is not valid",
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );
     } else if (
-      !password ||
-      password.length >= PASSWORD_MIN_LENGTH ||
-      password.length <= PASSWORD_MAX_LENGTH
+      password.length < PASSWORD_MIN_LENGTH ||
+      password.length > PASSWORD_MAX_LENGTH
     ) {
-      throw new Error("password is not valid");
+      throw new HttpException(
+        "password is not valid",
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );
     } else if (this.userModel.findOne({ email })) {
-      throw new Error("user exists");
+      throw new HttpException("user exists", HttpStatus.INTERNAL_SERVER_ERROR);
     } else {
-      this.userModel.create();
+      this.userModel.create({ email, password });
     }
   }
 }
