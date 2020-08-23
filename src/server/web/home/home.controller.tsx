@@ -8,12 +8,12 @@ import { DataContext, IDataContext } from "@client/DataContext";
 import { pageTemplate } from "@server/web/pageTemplate";
 import { Request, Response } from "express";
 import { HomeService } from "./home.service";
-import { AppsService } from "@server/apps/apps.service";
+import { AppService } from "@server/app/app.service";
 
 @Controller("/")
 export class HomeController {
   constructor(
-    private appsService: AppsService,
+    private appsService: AppService,
     private homeService: HomeService
   ) {}
 

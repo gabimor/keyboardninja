@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { App, AppSchema } from "@server/db/App.schema";
 import { AppCategory, AppCategorySchema } from "@server/db/AppCategory.schema";
-import { AppsService } from "./apps.service";
+import { AppService } from "./app.service";
 
 @Module({
   imports: [
@@ -11,7 +11,7 @@ import { AppsService } from "./apps.service";
     ]),
     MongooseModule.forFeature([{ name: App.name, schema: AppSchema }]),
   ],
-  providers: [AppsService],
-  exports: [AppsService],
+  providers: [AppService],
+  exports: [AppService],
 })
 export class AppsModule {}

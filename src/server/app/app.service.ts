@@ -5,7 +5,7 @@ import { AppCategory } from "@server/db/AppCategory.schema";
 import { Model } from "mongoose";
 
 @Injectable()
-export class AppsService {
+export class AppService {
   constructor(
     @InjectModel(AppCategory.name) private appCategoryModel: Model<AppCategory>,
     @InjectModel(App.name) private appModel: Model<App>

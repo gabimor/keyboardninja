@@ -6,26 +6,16 @@ import { useForm } from "react-hook-form";
 import { emailRegex } from "@client/helpers";
 import Input from "@client/components/Input";
 import Button from "@client/components/Button";
+import { UserType } from "@src/types/User.type";
+
+type FormData = Pick<UserType, "email" | "password">;
 
 interface Props {
-  onSubmit: (data: LoginFormData) => Promise<void>;
-}
-
-export interface LoginFormData {
-  email: string;
-  password: string;
+  onSubmit: (data: FormData) => Promise<void>;
 }
 
 export default function LoginForm({ onSubmit }: Props) {
-  // TODO: remove this
-  const defaultValues = {
-    email: `a${Math.floor(Math.random() * Math.floor(1000000))}@b.com`,
-    password: "123456",
-  };
-
-  const { register, handleSubmit, errors } = useForm<LoginFormData>({
-    defaultValues,
-  });
+  const { register, handleSubmit, errors } = useForm<FormData>();
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
