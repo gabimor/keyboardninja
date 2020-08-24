@@ -3,7 +3,7 @@ import { configure, addDecorator } from "@storybook/react";
 import { DataContext } from "../src/client/DataContext";
 
 import { style } from "../src/server/web/pageTemplate/style";
-import { OSs } from "../src/server/db/OSs";
+import { OSs } from "../src/types/OSs.enum";
 
 // global decorator to add theme
 addDecorator((story) => (

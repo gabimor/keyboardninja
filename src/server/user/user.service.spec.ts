@@ -1,18 +1,10 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { UserService } from "./user.service";
-import { User } from "../../server/db/User.schema";
+import { User } from "./User.schema";
 import { getModelToken } from "@nestjs/mongoose";
+import { EXISTING_EMAIL, userModelMock } from "./__mocks__/user.schema";
 
-const EXISTING_EMAIL = "existing@email.com";
-
-const mockUserService = {
-  findOne: jest.fn(({ email }) => {
-    if (email === EXISTING_EMAIL) return true;
-  }),
-  create: jest.fn(),
-};
-
-describe("UsersService", () => {
+describe("UserService", () => {
   let userService: UserService;
 
   beforeEach(async () => {
@@ -21,7 +13,7 @@ describe("UsersService", () => {
         UserService,
         {
           provide: getModelToken(User.name),
-          useValue: mockUserService,
+          useValue: userModelMock,
         },
       ],
     }).compile();
@@ -52,8 +44,8 @@ describe("UsersService", () => {
     const password = "12345678";
 
     await expect(userService.signup(email, password)).resolves.not.toThrow();
-    expect(mockUserService.findOne).toHaveBeenCalledWith({ email });
-    expect(mockUserService.create).toHaveBeenCalledWith({
+    expect(userModelMock.findOne).toHaveBeenCalledWith({ email });
+    expect(userModelMock.create).toHaveBeenCalledWith({
       email,
       password,
     });
@@ -65,6 +57,6 @@ describe("UsersService", () => {
     await expect(userService.signup(email, "12345678")).rejects.toThrow(
       "user exists"
     );
-    expect(mockUserService.findOne).toHaveBeenCalledWith({ email });
+    expect(userModelMock.findOne).toHaveBeenCalledWith({ email });
   });
 });

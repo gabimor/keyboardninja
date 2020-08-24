@@ -1,7 +1,7 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "@server/app.module";
 import cookieParser from "cookie-parser";
-//@ts-ignore
+// @ts-ignore
 import expressListRoutes from "express-list-routes";
 
 async function bootstrap() {

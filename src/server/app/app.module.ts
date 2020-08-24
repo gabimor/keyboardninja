@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { App, AppSchema } from "@server/db/App.schema";
-import { AppCategory, AppCategorySchema } from "@server/db/AppCategory.schema";
+import { App, AppSchema } from "@server/app/App.schema";
+import { AppCategory, AppCategorySchema } from "@server/app/AppCategory.schema";
 import { AppService } from "./app.service";
 
 @Module({

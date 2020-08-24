@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import * as emailValidator from "email-validator";
 import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH } from "@src/consts";
-import { User } from "@server/db/User.schema";
+import { User } from "@server/user/User.schema";
 import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
 
@@ -10,7 +10,7 @@ export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
   async findOne(email: string): Promise<User | undefined> {
-    return this.userModel.findOne((user: User) => user.email === email);
+    return this.userModel.findOne({ email });
   }
 
   async signup(email: string, password: string) {
