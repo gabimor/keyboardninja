@@ -1,12 +1,17 @@
 import {
+  BadRequestException,
+  Body,
   Controller,
   Get,
+  HttpStatus,
   Post,
   Request,
   UnauthorizedException,
   UseGuards,
 } from "@nestjs/common";
+import { HttpAdapterHost } from "@nestjs/core";
 import { User } from "@server/user/User.schema";
+import { UserService } from "@server/user/user.service";
 import { Request as RequestExpress } from "express";
 import { AuthService } from "./auth.service";
 import { JwtAuthGuard } from "./jwt-auth.guard";
@@ -16,7 +21,10 @@ type RequestAuth = RequestExpress & { user: Partial<User> };
 
 @Controller("auth")
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
   @UseGuards(LocalAuthGuard)
   @Post("login")
@@ -29,8 +37,12 @@ export class AuthController {
   }
 
   @Post("signup")
-  async signup(email: string, password: string) {
-    // return this.userService.signup(email, password);
+  async signup(
+    @Body("email") email: string,
+    @Body("password") password: string
+  ) {
+    await this.authService.signup(email, password);
+    return HttpStatus.CREATED;
   }
 
   @UseGuards(JwtAuthGuard)

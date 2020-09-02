@@ -18,6 +18,7 @@ import {
   EXISTING_EMAIL,
   EXISTING_PASSWORD,
 } from "../user/__mocks__/user.service";
+import { UserService } from "../user/user.service";
 
 describe("Auth Controller", () => {
   let app: INestApplication;
@@ -29,7 +30,7 @@ describe("Auth Controller", () => {
         AuthService,
         { provide: JwtService, useValue: jwtServiceMock },
         {
-          provide: "UserService",
+          provide: UserService,
           useValue: userServiceMock,
         },
         LocalAuthGuard,
@@ -71,10 +72,51 @@ describe("Auth Controller", () => {
     it("should return 401 for a bad request", () => {
       return request(app.getHttpServer())
         .post("/auth/login")
-        .send({ garbade: 1 })
+        .send({ garbage: 1 })
         .expect(HttpStatus.UNAUTHORIZED);
     });
   });
 
-  describe("signup", () => {});
+  describe("signup", () => {
+    it("should return 400 for existing email", () => {
+      return request(app.getHttpServer())
+        .post("/auth/signup")
+        .send({ email: EXISTING_EMAIL, password: "123456" })
+        .expect(HttpStatus.BAD_REQUEST);
+    });
+
+    it("should return 400 for short password", () => {
+      return request(app.getHttpServer())
+        .post("/auth/signup")
+        .send({ email: NON_EXISTING_EMAIL, password: "1234" })
+        .expect(HttpStatus.BAD_REQUEST);
+    });
+
+    it("should return 400 for long password", () => {
+      return request(app.getHttpServer())
+        .post("/auth/signup")
+        .send({ email: NON_EXISTING_EMAIL, password: "12341231232312312" })
+        .expect(HttpStatus.BAD_REQUEST);
+    });
+
+    it("should return 400 for missing email", () => {
+      return request(app.getHttpServer())
+        .post("/auth/signup")
+        .send({})
+        .expect(HttpStatus.BAD_REQUEST);
+    });
+    it("should return 400 for missing password", () => {
+      return request(app.getHttpServer())
+        .post("/auth/signup")
+        .send({ email: NON_EXISTING_EMAIL })
+        .expect(HttpStatus.BAD_REQUEST);
+    });
+
+    it("should return 201 for valid email and password", () => {
+      return request(app.getHttpServer())
+        .post("/auth/signup")
+        .send({ email: NON_EXISTING_EMAIL, password: "12345678" })
+        .expect(HttpStatus.CREATED);
+    });
+  });
 });
