@@ -63,6 +63,7 @@
     "webpack-cli": "^3.3.0"
   },
   "jest": {
+    "testEnvironment": "node",
     "transform": {
       "\\.(ts|tsx)$": "ts-jest",
       "\\.css$": "ts-jest",
@@ -71,6 +72,9 @@
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.(ts|js)?(x)",
       "<rootDir>/src/**/?(*.)(spec|test).(ts|js)?(x)"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/build/*"
     ],
     "moduleNameMapper": {
       "@server(.*)": "<rootDir>/src/server$1",
@@ -85,7 +89,8 @@
     ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}"
-    ]
+    ],
+    "verbose": true
   },
   "scripts": {
     "start": "razzle start",

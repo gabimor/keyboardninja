@@ -2,7 +2,8 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { UserService } from "./user.service";
 import { User } from "./User.schema";
 import { getModelToken } from "@nestjs/mongoose";
-import { EXISTING_EMAIL, userModelMock } from "./__mocks__/user.schema";
+import { userModelMock } from "./__mocks__/user.schema";
+import { EXISTING_EMAIL, NEW_EMAIL, BAD_EMAIL } from "./__mocks__/user.service";
 
 describe("UserService", () => {
   let userService: UserService;
@@ -22,7 +23,7 @@ describe("UserService", () => {
   });
 
   it("should not allow signup of bad email", async () => {
-    const email = "bademail";
+    const email = BAD_EMAIL;
     const password = "goodpassword";
 
     await expect(userService.signup(email, password)).rejects.toThrow(
@@ -31,7 +32,7 @@ describe("UserService", () => {
   });
 
   it("should not allow short password", async () => {
-    const email = "good@email.com";
+    const email = NEW_EMAIL;
     const password = "good";
 
     await expect(userService.signup(email, password)).rejects.toThrow(
@@ -40,7 +41,7 @@ describe("UserService", () => {
   });
 
   it("should signup a valid user", async () => {
-    const email = "good@email.com";
+    const email = NEW_EMAIL;
     const password = "12345678";
 
     await expect(userService.signup(email, password)).resolves.not.toThrow();

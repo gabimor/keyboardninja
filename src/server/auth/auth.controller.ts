@@ -1,10 +1,18 @@
-import { Controller, Get, Post, Request, UseGuards } from "@nestjs/common";
+import {
+  Controller,
+  Get,
+  Post,
+  Request,
+  UnauthorizedException,
+  UseGuards,
+} from "@nestjs/common";
+import { User } from "@server/user/User.schema";
 import { Request as RequestExpress } from "express";
 import { AuthService } from "./auth.service";
 import { JwtAuthGuard } from "./jwt-auth.guard";
 import { LocalAuthGuard } from "./local-auth.guard";
 
-type RequestAuth = RequestExpress & { user: any };
+type RequestAuth = RequestExpress & { user: Partial<User> };
 
 @Controller("auth")
 export class AuthController {
@@ -13,15 +21,16 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post("login")
   async login(@Request() req: RequestAuth) {
-    console.log("AuthController.login");
-    console.log(req.user._doc.email);
 
-    return this.authService.login(req.user);
+    const { user } = req;
+
+    if (!user) throw new UnauthorizedException();
+
+    return this.authService.generateJwt(req.user);
   }
 
   @Post("signup")
   async signup(email: string, password: string) {
-    console.log("AuthController.signup");
 
     // return this.userService.signup(email, password);
   }
@@ -29,7 +38,6 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Get("profile")
   getProfile(@Request() req: RequestAuth) {
-    console.log("AuthController.getProfile");
     return req.user;
   }
 }
