@@ -21,7 +21,6 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post("login")
   async login(@Request() req: RequestAuth) {
-
     const { user } = req;
 
     if (!user) throw new UnauthorizedException();
@@ -31,7 +30,6 @@ export class AuthController {
 
   @Post("signup")
   async signup(email: string, password: string) {
-
     // return this.userService.signup(email, password);
   }
 

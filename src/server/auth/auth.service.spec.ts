@@ -8,6 +8,8 @@ import { UserService } from "../user/user.service";
 import {
   EXISTING_EMAIL,
   EXISTING_PASSWORD,
+  NON_EXISTING_EMAIL,
+  userServiceMock,
 } from "../user/__mocks__/user.service";
 
 describe("AuthService", () => {
@@ -18,7 +20,7 @@ describe("AuthService", () => {
       providers: [
         AuthService,
         { provide: JwtService, useValue: {} },
-        UserService,
+        { provide: UserService, useValue: userServiceMock },
         {
           provide: getModelToken(User.name),
           useValue: userModelMock,
@@ -37,7 +39,7 @@ describe("AuthService", () => {
 
   it("should return null if user isn't valid", () => {
     expect(
-      authService.validateUser("non.existing@email.com", "1234")
+      authService.validateUser(NON_EXISTING_EMAIL, "1234")
     ).resolves.toBeNull();
   });
 });

@@ -45,32 +45,36 @@ describe("Auth Controller", () => {
     await app.init();
   });
 
-  it("should login existing user", () => {
-    return request(app.getHttpServer())
-      .post("/auth/login")
-      .send({ email: EXISTING_EMAIL, password: EXISTING_PASSWORD })
+  describe("login", () => {
+    it("should login existing user", () => {
+      return request(app.getHttpServer())
+        .post("/auth/login")
+        .send({ email: EXISTING_EMAIL, password: EXISTING_PASSWORD })
 
-      .expect(HttpStatus.CREATED);
+        .expect(HttpStatus.CREATED);
+    });
+
+    it("should return 401 for non existing user", () => {
+      return request(app.getHttpServer())
+        .post("/auth/login")
+        .send({ email: NON_EXISTING_EMAIL, password: EXISTING_PASSWORD })
+
+        .expect(HttpStatus.UNAUTHORIZED);
+    });
+
+    it("should return 401 for an empty request", () => {
+      return request(app.getHttpServer())
+        .post("/auth/login")
+        .expect(HttpStatus.UNAUTHORIZED);
+    });
+
+    it("should return 401 for a bad request", () => {
+      return request(app.getHttpServer())
+        .post("/auth/login")
+        .send({ garbade: 1 })
+        .expect(HttpStatus.UNAUTHORIZED);
+    });
   });
 
-  it("should return 401 for non existing user", () => {
-    return request(app.getHttpServer())
-      .post("/auth/login")
-      .send({ email: NON_EXISTING_EMAIL, password: EXISTING_PASSWORD })
-
-      .expect(HttpStatus.UNAUTHORIZED);
-  });
-
-  it("should return 401 for an empty request", () => {
-    return request(app.getHttpServer())
-      .post("/auth/login")
-      .expect(HttpStatus.UNAUTHORIZED);
-  });
-
-  it("should return 401 for a bad request", () => {
-    return request(app.getHttpServer())
-      .post("/auth/login")
-      .send({ garbade: 1 })
-      .expect(HttpStatus.UNAUTHORIZED);
-  });
+  describe("signup", () => {});
 });
