@@ -165,7 +165,6 @@ describe("Auth Controller", () => {
       let email = "user@email.com";
       const token = await authService.generateJwt({
         email,
-        _id: "mockId",
       });
 
       return request(app.getHttpServer())
