@@ -17,9 +17,9 @@ import { getModelToken, MongooseModule } from "@nestjs/mongoose";
 describe("Auth Controller", () => {
   let app: INestApplication;
   const jwtSecret = "secretKey";
-  let userService: UserService;
   let userModel: Model<User>;
   let mongod: MongoMemoryServer;
+  let authService: AuthService;
 
   beforeAll(async () => {
     mongod = new MongoMemoryServer();
@@ -51,6 +51,7 @@ describe("Auth Controller", () => {
     }).compile();
 
     userModel = module.get<Model<User>>(getModelToken(User.name));
+    authService = module.get<AuthService>(AuthService);
 
     app = module.createNestApplication();
     await app.init();
@@ -65,16 +66,18 @@ describe("Auth Controller", () => {
   });
 
   describe("login", () => {
-    it("should login existing user", () => {
+    it("should login existing user", async () => {
       const email = "user@email.com";
       const password = "password";
 
-      userModel.create({ email, password });
+      const user = await userModel.create({ email, password });
+      const token = await authService.generateJwt(user);
+
       return request(app.getHttpServer())
         .post("/auth/login")
         .send({ email, password })
         .expect(HttpStatus.CREATED)
-        .expect(/access_token/);
+        .expect(token);
     });
 
     it("should return 401 for non existing user", () => {
@@ -138,12 +141,17 @@ describe("Auth Controller", () => {
         .expect(HttpStatus.BAD_REQUEST);
     });
 
-    it("should return 201 for valid email and password", () => {
+    it("should return 201 for valid email and password", async () => {
+      const email = "existing@email.com";
+      const password = "password";
+
+      const token = await authService.generateJwt({ email });
+
       return request(app.getHttpServer())
         .post("/auth/signup")
-        .send({ email: "user@email.com", password: "password" })
+        .send({ email, password })
         .expect(HttpStatus.CREATED)
-        .expect(/access_token/);
+        .expect(token);
     });
   });
 
@@ -153,10 +161,17 @@ describe("Auth Controller", () => {
         .get("/auth/profile")
         .expect(HttpStatus.UNAUTHORIZED);
     });
-    // it("should be able to access profile if logged it", () => {
-    //   return request(app.getHttpServer())
-    //     .get("/auth/profile")
-    //     .expect(HttpStatus.OK);
-    // });
+    it("should allow access if logged it", async () => {
+      let email = "user@email.com";
+      const token = await authService.generateJwt({
+        email,
+        _id: "mockId",
+      });
+
+      return request(app.getHttpServer())
+        .get("/auth/profile")
+        .set("Authorization", "Bearer " + token)
+        .expect(HttpStatus.OK);
+    });
   });
 });

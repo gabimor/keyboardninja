@@ -34,9 +34,7 @@ export class AuthService {
   }
 
   async generateJwt(user: Partial<User>) {
-    const payload = { email: user.email, sub: user._id };
-    return {
-      access_token: this.jwtService.sign(payload),
-    };
+    const payload = { email: user.email };
+    return this.jwtService.sign(payload);
   }
 }
