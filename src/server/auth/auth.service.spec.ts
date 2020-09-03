@@ -55,13 +55,4 @@ describe("AuthService", () => {
 
     expect(user).toBeNull();
   });
-
-  it("should signup a user and return it", async () => {
-    const email = "new@email.com";
-    const password = "password";
-
-    const user = await authService.signup(email, password);
-
-    expect(user).toHaveProperty("email", email);
-  });
 });

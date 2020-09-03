@@ -15,27 +15,24 @@ export class UserService {
     return user && user.toJSON ? user.toJSON() : undefined;
   }
 
-  async signup(email: string, password: string): Promise<User> {
+  async signup(email: string, password: string): Promise<Partial<User>> {
     if (!emailValidator.validate(email)) {
       throw new HttpException(
         "email is not valid: " + email,
-        HttpStatus.INTERNAL_SERVER_ERROR
+        HttpStatus.BAD_REQUEST
       );
     } else if (
+      !password ||
       password.length < PASSWORD_MIN_LENGTH ||
       password.length > PASSWORD_MAX_LENGTH
     ) {
-      throw new HttpException(
-        "password is not valid",
-        HttpStatus.INTERNAL_SERVER_ERROR
-      );
+      throw new HttpException("password is not valid", HttpStatus.BAD_REQUEST);
     } else if (await this.userModel.findOne({ email })) {
-      throw new HttpException(
-        "user exists: " + email,
-        HttpStatus.INTERNAL_SERVER_ERROR
-      );
+      throw new HttpException("user exists: " + email, HttpStatus.BAD_REQUEST);
     }
 
-    return this.userModel.create({ email, password });
+    const user = await this.userModel.create({ email, password });
+
+    return { email: user.email };
   }
 }

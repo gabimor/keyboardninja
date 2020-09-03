@@ -20,19 +20,6 @@ export class AuthService {
     return null;
   }
 
-  async signup(email: string, password: string): Promise<Partial<User>> {
-    if (!email || !password) {
-      throw new BadRequestException("no email or password supplied");
-    } else if (await this.userService.findOne(email)) {
-      throw new BadRequestException("user exists");
-    } else if (password.length < 6 || password.length > 12) {
-      throw new BadRequestException("password not leagal");
-    }
-
-    const user = await this.userService.signup(email, password);
-    return { email: user.email };
-  }
-
   async generateJwt(user: Partial<User>) {
     const payload = { email: user.email };
     return this.jwtService.sign(payload);

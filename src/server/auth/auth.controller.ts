@@ -19,7 +19,10 @@ type RequestAuth = RequestExpress & { user: Partial<User> };
 
 @Controller("auth")
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
   @UseGuards(LocalAuthGuard)
   @Post("login")
@@ -36,7 +39,7 @@ export class AuthController {
     @Body("email") email: string,
     @Body("password") password: string
   ) {
-    const user = await this.authService.signup(email, password);
+    const user = await this.userService.signup(email, password);
     return this.authService.generateJwt(user);
   }
 

@@ -2,7 +2,6 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { UserService } from "./user.service";
 import { User, UserSchema } from "./User.schema";
 import { getModelToken, MongooseModule } from "@nestjs/mongoose";
-import { EXISTING_EMAIL, NEW_EMAIL, BAD_EMAIL } from "./__mocks__/user.service";
 import { Model } from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 
@@ -36,7 +35,7 @@ describe("UserService", () => {
   });
 
   it("should not allow signup of bad email", async () => {
-    const email = BAD_EMAIL;
+    const email = "bademail";
     const password = "goodpassword";
 
     await expect(userService.signup(email, password)).rejects.toThrow(
@@ -45,7 +44,7 @@ describe("UserService", () => {
   });
 
   it("should not allow short password", async () => {
-    const email = NEW_EMAIL;
+    const email = "user@email.com";
     const password = "good";
 
     await expect(userService.signup(email, password)).rejects.toThrow(
@@ -56,7 +55,16 @@ describe("UserService", () => {
   it("should signup a valid user", async () => {
     const user = await userService.signup("new@email.com", "password");
 
-    expect(user).toHaveProperty("_id");
+    expect(user).toHaveProperty("email", user.email);
+  });
+
+  it("should signup a user and return it", async () => {
+    const email = "new@email.com";
+    const password = "password";
+
+    const user = await userService.signup(email, password);
+
+    expect(user).toHaveProperty("email", email);
   });
 
   it("should not find a user before signup", async () => {
