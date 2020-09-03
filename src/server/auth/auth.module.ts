@@ -8,6 +8,10 @@ import { jwtConsts } from "./consts";
 import { JwtStrategy } from "./jwt.strategy";
 import { AuthController } from "./auth.controller";
 
+const jwtStrategy = {
+  provide: JwtStrategy,
+  useFactory: () => new JwtStrategy(jwtConsts.secret),
+};
 @Module({
   imports: [
     UsersModule,
@@ -18,6 +22,6 @@ import { AuthController } from "./auth.controller";
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
+  providers: [AuthService, LocalStrategy, jwtStrategy],
 })
 export class AuthModule {}

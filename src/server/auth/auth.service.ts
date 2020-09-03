@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
 import { UserService } from "../user/user.service";
 import { JwtService } from "@nestjs/jwt";
-import { UserDTO } from "@server/user/user.dto";
 import { User } from "@server/user/User.schema";
 
 @Injectable()
@@ -21,7 +20,7 @@ export class AuthService {
     return null;
   }
 
-  async signup(email: string, password: string) {
+  async signup(email: string, password: string): Promise<Partial<User>> {
     if (!email || !password) {
       throw new BadRequestException("no email or password supplied");
     } else if (await this.userService.findOne(email)) {
@@ -29,6 +28,9 @@ export class AuthService {
     } else if (password.length < 6 || password.length > 12) {
       throw new BadRequestException("password not leagal");
     }
+
+    const user = await this.userService.signup(email, password);
+    return { email: user.email };
   }
 
   async generateJwt(user: Partial<User>) {

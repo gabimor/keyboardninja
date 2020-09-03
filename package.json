@@ -56,47 +56,18 @@
     "babel-loader": "^8.0.5",
     "express-list-routes": "^0.1.4",
     "jest": "^26.4.2",
+    "mongodb-memory-server": "^6.6.7",
     "supertest": "^4.0.2",
     "ts-jest": "^26.2.0",
     "tslint": "^6.1.3",
     "typescript": "3.9",
     "webpack-cli": "^3.3.0"
   },
-  "jest": {
-    "testEnvironment": "node",
-    "transform": {
-      "\\.(ts|tsx)$": "ts-jest",
-      "\\.css$": "ts-jest",
-      "^(?!.*\\.(js|jsx|css|json)$)": "ts-jest"
-    },
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.(ts|js)?(x)",
-      "<rootDir>/src/**/?(*.)(spec|test).(ts|js)?(x)"
-    ],
-    "modulePathIgnorePatterns": [
-      "<rootDir>/build/*"
-    ],
-    "moduleNameMapper": {
-      "@server(.*)": "<rootDir>/src/server$1",
-      "@client(.*)": "<rootDir>/src/client$1",
-      "@src(.*)": "<rootDir>/src$1"
-    },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "json"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}"
-    ],
-    "verbose": true
-  },
   "scripts": {
     "start": "razzle start",
     "dev": "razzle start -- --inspect-brk",
     "build": "yarn version && razzle build",
-    "test": "razzle test",
+    "test": "yarn jest --watch --runInBand --detectOpenHandles",
     "deploy": "git push heroku master",
     "start:prod": "NODE_ENV=production node build/server.js",
     "sb": "start-storybook -s ./public -p 6006",

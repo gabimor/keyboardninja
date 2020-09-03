@@ -15,10 +15,10 @@ export class UserService {
     return user && user.toJSON ? user.toJSON() : undefined;
   }
 
-  async signup(email: string, password: string) {
+  async signup(email: string, password: string): Promise<User> {
     if (!emailValidator.validate(email)) {
       throw new HttpException(
-        "email is not valid",
+        "email is not valid: " + email,
         HttpStatus.INTERNAL_SERVER_ERROR
       );
     } else if (
@@ -29,10 +29,13 @@ export class UserService {
         "password is not valid",
         HttpStatus.INTERNAL_SERVER_ERROR
       );
-    } else if (this.userModel.findOne({ email })) {
-      throw new HttpException("user exists", HttpStatus.INTERNAL_SERVER_ERROR);
-    } else {
-      this.userModel.create({ email, password });
+    } else if (await this.userModel.findOne({ email })) {
+      throw new HttpException(
+        "user exists: " + email,
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );
     }
+
+    return this.userModel.create({ email, password });
   }
 }
