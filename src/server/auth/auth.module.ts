@@ -7,6 +7,7 @@ import { JwtModule } from "@nestjs/jwt";
 import { jwtConsts } from "./consts";
 import { JwtStrategy } from "./jwt.strategy";
 import { AuthController } from "./auth.controller";
+import { FacebookStrategy } from "./facebook.strategy";
 
 const jwtStrategy = {
   provide: JwtStrategy,
@@ -22,6 +23,6 @@ const jwtStrategy = {
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, jwtStrategy],
+  providers: [FacebookStrategy, AuthService, LocalStrategy, jwtStrategy],
 })
 export class AuthModule {}

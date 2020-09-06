@@ -71,7 +71,7 @@ describe("Auth Controller", () => {
       const password = "password";
 
       const user = await userModel.create({ email, password });
-      const token = await authService.generateJwt(user);
+      const token = await authService.generateJwt(user.email);
 
       return request(app.getHttpServer())
         .post("/auth/login")
@@ -145,7 +145,7 @@ describe("Auth Controller", () => {
       const email = "existing@email.com";
       const password = "password";
 
-      const token = await authService.generateJwt({ email });
+      const token = await authService.generateJwt(email);
 
       return request(app.getHttpServer())
         .post("/auth/signup")
@@ -163,9 +163,7 @@ describe("Auth Controller", () => {
     });
     it("should allow access if logged it", async () => {
       let email = "user@email.com";
-      const token = await authService.generateJwt({
-        email,
-      });
+      const token = await authService.generateJwt(email);
 
       return request(app.getHttpServer())
         .get("/auth/profile")

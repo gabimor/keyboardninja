@@ -20,8 +20,8 @@ export class AuthService {
     return null;
   }
 
-  async generateJwt(user: Partial<User>) {
-    const payload = { email: user.email };
+  async generateJwt(email: string) {
+    const payload = { email };
     return this.jwtService.sign(payload);
   }
 }
