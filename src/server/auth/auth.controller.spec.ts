@@ -3,7 +3,7 @@ import * as request from "supertest";
 import { Test, TestingModule } from "@nestjs/testing";
 import { HttpStatus, INestApplication } from "@nestjs/common";
 import { AuthService } from "./auth.service";
-import { JwtModule } from "@nestjs/jwt";
+import { JwtModule, JwtService } from "@nestjs/jwt";
 import { User, UserSchema } from "../user/User.schema";
 import { LocalAuthGuard } from "./local-auth.guard";
 import { LocalStrategy } from "./local.strategy";
@@ -20,6 +20,7 @@ describe("Auth Controller", () => {
   let userModel: Model<User>;
   let mongod: MongoMemoryServer;
   let authService: AuthService;
+  let jwtService: JwtService;
 
   beforeAll(async () => {
     mongod = new MongoMemoryServer();
@@ -52,6 +53,7 @@ describe("Auth Controller", () => {
 
     userModel = module.get<Model<User>>(getModelToken(User.name));
     authService = module.get<AuthService>(AuthService);
+    jwtService = module.get<JwtService>(JwtService);
 
     app = module.createNestApplication();
     await app.init();
@@ -71,7 +73,7 @@ describe("Auth Controller", () => {
       const password = "password";
 
       const user = await userModel.create({ email, password });
-      const token = await authService.generateJwt(user.email);
+      const token = await authService.generateJwt(user);
 
       return request(app.getHttpServer())
         .post("/auth/login")
@@ -142,16 +144,17 @@ describe("Auth Controller", () => {
     });
 
     it("should return 201 for valid email and password", async () => {
-      const email = "existing@email.com";
+      const email = "new@email.com";
       const password = "password";
 
-      const token = await authService.generateJwt(email);
-
-      return request(app.getHttpServer())
+      const res = await request(app.getHttpServer())
         .post("/auth/signup")
         .send({ email, password })
-        .expect(HttpStatus.CREATED)
-        .expect(token);
+        .expect(HttpStatus.CREATED);
+
+      const jwt = jwtService.decode(res.text);
+
+      expect(jwt).toHaveProperty("_id");
     });
   });
 
@@ -162,8 +165,12 @@ describe("Auth Controller", () => {
         .expect(HttpStatus.UNAUTHORIZED);
     });
     it("should allow access if logged it", async () => {
-      let email = "user@email.com";
-      const token = await authService.generateJwt(email);
+      const email = "user@email.com";
+      const password = "123456";
+
+      const user = await userModel.create({ email, password });
+
+      const token = await authService.generateJwt(user);
 
       return request(app.getHttpServer())
         .get("/auth/profile")

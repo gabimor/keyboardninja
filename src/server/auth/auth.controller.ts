@@ -34,7 +34,7 @@ export class AuthController {
 
     if (!user) throw new UnauthorizedException();
 
-    return this.authService.generateJwt(req.user.email);
+    return this.authService.generateJwt(req.user);
   }
 
   @Post("signup")
@@ -43,7 +43,7 @@ export class AuthController {
     @Body("password") password: string
   ) {
     const user = await this.userService.signup(email, password);
-    return this.authService.generateJwt(user.email);
+    return this.authService.generateJwt(user);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -55,6 +55,6 @@ export class AuthController {
   @UseGuards(FacebookAuthGuard)
   @Get("facebook")
   async facebook(@Req() req: any) {
-    return this.authService.generateJwt(req.user.email);
+    return this.authService.generateJwt(req.user);
   }
 }

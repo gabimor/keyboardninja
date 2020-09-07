@@ -33,6 +33,6 @@ export class UserService {
 
     const user = await this.userModel.create({ email, password });
 
-    return { email: user.email };
+    return { _id: user._id, email: user.email };
   }
 }
