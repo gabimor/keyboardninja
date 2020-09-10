@@ -4,10 +4,10 @@
     "reportVersion": 2,
     "event": "Allocation failed - JavaScript heap out of memory",
     "trigger": "FatalError",
-    "filename": "report.20200907.130920.42625.0.001.json",
-    "dumpEventTime": "2020-09-07T13:09:20Z",
-    "dumpEventTimeStamp": "1599473360387",
-    "processId": 42625,
+    "filename": "report.20200910.171129.26818.0.001.json",
+    "dumpEventTime": "2020-09-10T17:11:29Z",
+    "dumpEventTimeStamp": "1599747089302",
+    "processId": 26818,
     "threadId": null,
     "cwd": "/Users/gabimor/Code/keyboardninja",
     "commandLine": [
@@ -53,145 +53,145 @@
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 19840860,
+        "user": 2909300,
         "nice": 0,
-        "sys": 13758880,
-        "idle": 150126080,
+        "sys": 1449710,
+        "idle": 15438740,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 860570,
+        "user": 153160,
         "nice": 0,
-        "sys": 805750,
-        "idle": 181951410,
+        "sys": 92860,
+        "idle": 19548910,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 17146080,
+        "user": 2681510,
         "nice": 0,
-        "sys": 9744850,
-        "idle": 156729200,
+        "sys": 1119090,
+        "idle": 15994340,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 806790,
+        "user": 135180,
         "nice": 0,
-        "sys": 682970,
-        "idle": 182127880,
+        "sys": 75670,
+        "idle": 19584080,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 14310500,
+        "user": 2329360,
         "nice": 0,
-        "sys": 7828910,
-        "idle": 161480650,
+        "sys": 941580,
+        "idle": 16524000,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 808960,
+        "user": 139460,
         "nice": 0,
-        "sys": 530750,
-        "idle": 182277850,
+        "sys": 64520,
+        "idle": 19590950,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 11955070,
+        "user": 2056640,
         "nice": 0,
-        "sys": 6372000,
-        "idle": 165292920,
+        "sys": 790340,
+        "idle": 16947970,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 800530,
+        "user": 142290,
         "nice": 0,
-        "sys": 407210,
-        "idle": 182409730,
+        "sys": 54830,
+        "idle": 19597810,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 10485870,
+        "user": 1893800,
         "nice": 0,
-        "sys": 5372910,
-        "idle": 167761130,
+        "sys": 684790,
+        "idle": 17216350,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 793210,
+        "user": 141290,
         "nice": 0,
-        "sys": 330750,
-        "idle": 182493420,
+        "sys": 45030,
+        "idle": 19608600,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 8584520,
+        "user": 1634200,
         "nice": 0,
-        "sys": 4067210,
-        "idle": 170968100,
+        "sys": 518030,
+        "idle": 17642710,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 778610,
+        "user": 138720,
         "nice": 0,
-        "sys": 279610,
-        "idle": 182559080,
+        "sys": 38950,
+        "idle": 19617260,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 7546780,
+        "user": 1506990,
         "nice": 0,
-        "sys": 3229660,
-        "idle": 172843310,
+        "sys": 435940,
+        "idle": 17852010,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 770610,
+        "user": 136050,
         "nice": 0,
-        "sys": 244150,
-        "idle": 182602440,
+        "sys": 34660,
+        "idle": 19624210,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 6727480,
+        "user": 1410640,
         "nice": 0,
-        "sys": 2551190,
-        "idle": 174340990,
+        "sys": 367700,
+        "idle": 18016590,
         "irq": 0
       },
       {
         "model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
         "speed": 2300,
-        "user": 754710,
+        "user": 132730,
         "nice": 0,
-        "sys": 216530,
-        "idle": 182645870,
+        "sys": 31520,
+        "idle": 19630670,
         "irq": 0
       }
     ],
@@ -235,7 +235,7 @@
         "name": "en0",
         "internal": false,
         "mac": "f8:ff:c2:11:54:c1",
-        "address": "fe80::cc7:5ea1:e699:d26f",
+        "address": "fe80::4b1:c58b:9a75:d9ce",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 6
@@ -244,15 +244,15 @@
         "name": "en0",
         "internal": false,
         "mac": "f8:ff:c2:11:54:c1",
-        "address": "172.16.0.55",
+        "address": "192.168.43.223",
         "netmask": "255.255.255.0",
         "family": "IPv4"
       },
       {
         "name": "awdl0",
         "internal": false,
-        "mac": "fe:06:59:da:65:57",
-        "address": "fe80::fc06:59ff:feda:6557",
+        "mac": "32:d7:5a:e7:f4:77",
+        "address": "fe80::30d7:5aff:fee7:f477",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 13
@@ -260,8 +260,8 @@
       {
         "name": "llw0",
         "internal": false,
-        "mac": "fe:06:59:da:65:57",
-        "address": "fe80::fc06:59ff:feda:6557",
+        "mac": "32:d7:5a:e7:f4:77",
+        "address": "fe80::30d7:5aff:fee7:f477",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 14
@@ -270,7 +270,7 @@
         "name": "utun0",
         "internal": false,
         "mac": "00:00:00:00:00:00",
-        "address": "fe80::a250:efcf:f0ce:77d2",
+        "address": "fe80::c3f4:1b5e:9378:8ce2",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 15
@@ -279,7 +279,7 @@
         "name": "utun1",
         "internal": false,
         "mac": "00:00:00:00:00:00",
-        "address": "fe80::15d9:1022:4927:76c",
+        "address": "fe80::4568:2137:803b:b500",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 16
@@ -345,33 +345,13 @@
     {
       "pc": "0x000000010097cc39",
       "symbol": "Builtins_CEntry_Return1_DontSaveFPRegs_ArgvOnStack_NoBuiltinExit [/Users/gabimor/.nvm/versions/node/v12.16.3/bin/node]"
-    },
-    {
-      "pc": "0x000000010097db0d",
-      "symbol": "Builtins_StringAdd_CheckNone [/Users/gabimor/.nvm/versions/node/v12.16.3/bin/node]"
-    },
-    {
-      "pc": "0x000019266bbda92e",
-      "symbol": ""
-    },
-    {
-      "pc": "0x000000010090428f",
-      "symbol": "Builtins_OrdinaryToPrimitive_Number [/Users/gabimor/.nvm/versions/node/v12.16.3/bin/node]"
-    },
-    {
-      "pc": "0x00000001009be6d4",
-      "symbol": "Builtins_StringAddConvertRight [/Users/gabimor/.nvm/versions/node/v12.16.3/bin/node]"
-    },
-    {
-      "pc": "0x00000001009d92cb",
-      "symbol": "Builtins_AddHandler [/Users/gabimor/.nvm/versions/node/v12.16.3/bin/node]"
     }
   ],
   "javascriptHeap": {
-    "totalMemory": 2178433024,
-    "totalCommittedMemory": 2170469928,
-    "usedMemory": 2028593408,
-    "availableMemory": 57694656,
+    "totalMemory": 2151550976,
+    "totalCommittedMemory": 2149622264,
+    "usedMemory": 2035719424,
+    "availableMemory": 68430408,
     "memoryLimit": 2197815296,
     "heapSpaces": {
       "read_only_space": {
@@ -382,38 +362,38 @@
         "available": 0
       },
       "new_space": {
-        "memorySize": 33554432,
-        "committedMemory": 26676088,
-        "capacity": 16759296,
-        "used": 1595704,
-        "available": 15163592
+        "memorySize": 2097152,
+        "committedMemory": 1067736,
+        "capacity": 1047456,
+        "used": 18912,
+        "available": 1028544
       },
       "old_space": {
-        "memorySize": 1699880960,
-        "committedMemory": 1699230632,
-        "capacity": 1595078888,
-        "used": 1588689392,
-        "available": 6389496
+        "memorySize": 1666850816,
+        "committedMemory": 1666790344,
+        "capacity": 1580359448,
+        "used": 1561813360,
+        "available": 18546088
       },
       "code_space": {
-        "memorySize": 9867264,
-        "committedMemory": 9669728,
-        "capacity": 8743904,
-        "used": 8743904,
-        "available": 0
+        "memorySize": 19828736,
+        "committedMemory": 19227136,
+        "capacity": 18894848,
+        "used": 17350848,
+        "available": 1544000
       },
       "map_space": {
-        "memorySize": 84938752,
-        "committedMemory": 84930920,
-        "capacity": 84504160,
-        "used": 84504160,
+        "memorySize": 88608768,
+        "committedMemory": 88600600,
+        "capacity": 87861200,
+        "used": 87861200,
         "available": 0
       },
       "large_object_space": {
-        "memorySize": 349880320,
-        "committedMemory": 349880320,
-        "capacity": 345024656,
-        "used": 345024656,
+        "memorySize": 373854208,
+        "committedMemory": 373854208,
+        "capacity": 368639512,
+        "used": 368639512,
         "available": 0
       },
       "code_large_object_space": {
@@ -426,20 +406,20 @@
       "new_large_object_space": {
         "memorySize": 0,
         "committedMemory": 0,
-        "capacity": 16759296,
+        "capacity": 1047456,
         "used": 0,
-        "available": 16759296
+        "available": 1047456
       }
     }
   },
   "resourceUsage": {
-    "userCpuSeconds": 362.663,
-    "kernelCpuSeconds": 98.1715,
-    "cpuConsumptionPercent": 37.7424,
-    "maxRss": 2304715522048,
+    "userCpuSeconds": 399.217,
+    "kernelCpuSeconds": 91.6932,
+    "cpuConsumptionPercent": 34.5468,
+    "maxRss": 2303557894144,
     "pageFaults": {
-      "IORequired": 50,
-      "IONotRequired": 17681874
+      "IORequired": 0,
+      "IONotRequired": 18610704
     },
     "fsActivity": {
       "reads": 0,
@@ -482,7 +462,7 @@
     "npm_package_devDependencies_mongodb_memory_server": "^6.6.7",
     "npm_package_scripts_dev": "razzle start -- --inspect-brk",
     "npm_package_dependencies_razzle": "3.0.0",
-    "TERM_SESSION_ID": "w0t0p4:8896C874-47C6-4C06-937A-2966E0FAF42D",
+    "TERM_SESSION_ID": "w0t0p1:8896C874-47C6-4C06-937A-2966E0FAF42D",
     "npm_package_dependencies__nestjs_mongoose": "^7.0.2",
     "npm_config_registry": "https://registry.yarnpkg.com",
     "ZSH": "/Users/gabimor/.oh-my-zsh",
@@ -494,29 +474,33 @@
     "npm_config_python": "/usr/bin/python",
     "npm_package_devDependencies_webpack_cli": "^3.3.0",
     "npm_package_license": "MIT",
+    "COMMAND_MODE": "unix2003",
     "npm_package_scripts_build_storybook": "build-storybook",
     "npm_package_scripts_deploy": "git push heroku master",
     "npm_package_devDependencies__babel_core": "^7.3.4",
+    "npm_package_dependencies_passport_google_oauth20": "^2.0.0",
     "npm_package_dependencies_compression": "^1.7.4",
     "npm_config_jolt_us_registry": "https://registry.yarnpkg.com/",
-    "SSH_AUTH_SOCK": "/private/tmp/com.apple.launchd.A9d3pNvl5D/Listeners",
+    "SSH_AUTH_SOCK": "/private/tmp/com.apple.launchd.u6budFpkW1/Listeners",
     "npm_package_devDependencies_babel_loader": "^8.0.5",
     "npm_package_devDependencies__storybook_addon_actions": "^6.0.13",
     "__CF_USER_TEXT_ENCODING": "0x1F7:0x0:0x0",
     "npm_package_devDependencies__types_jest": "^26.0.10",
     "npm_execpath": "/usr/local/Cellar/yarn/1.22.0/libexec/bin/yarn.js",
     "PAGER": "less",
+    "npm_package_devDependencies__types_passport_google_oauth20": "^2.0.3",
     "npm_package_dependencies__nestjs_jwt": "^7.1.0",
     "npm_package_devDependencies__types_supertest": "^2.0.10",
     "npm_package_dependencies__nestjs_testing": "^7.4.2",
     "LSCOLORS": "Gxfxcxdxbxegedabagacad",
     "npm_package_devDependencies__types_react_dom": "^16.9.8",
     "NPM_TOKEN": "9b7126e9-315a-4095-9c80-8b980c67ddae",
-    "PATH": "/var/folders/d6/c_gsy23n0snd2826ypy4k8180000gq/T/yarn--1599472138495-0.5455615619905119:/Users/gabimor/Code/keyboardninja/node_modules/.bin:/Users/gabimor/.config/yarn/link/node_modules/.bin:/Users/gabimor/.nvm/versions/node/v12.16.3/libexec/lib/node_modules/npm/bin/node-gyp-bin:/Users/gabimor/.nvm/versions/node/v12.16.3/lib/node_modules/npm/bin/node-gyp-bin:/Users/gabimor/.nvm/versions/node/v12.16.3/bin/node_modules/npm/bin/node-gyp-bin:/var/folders/d6/c_gsy23n0snd2826ypy4k8180000gq/T/yarn--1599472137622-0.5672833627454061:/Users/gabimor/Code/keyboardninja/node_modules/.bin:/Users/gabimor/.config/yarn/link/node_modules/.bin:/Users/gabimor/.nvm/versions/node/v12.16.3/libexec/lib/node_modules/npm/bin/node-gyp-bin:/Users/gabimor/.nvm/versions/node/v12.16.3/lib/node_modules/npm/bin/node-gyp-bin:/Users/gabimor/.nvm/versions/node/v12.16.3/bin/node_modules/npm/bin/node-gyp-bin:/Users/gabimor/.nvm/versions/node/v12.16.3/bin:/Users/gabimor/Library/Python/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin",
+    "PATH": "/var/folders/d6/c_gsy23n0snd2826ypy4k8180000gq/T/yarn--1599745667492-0.699048198950629:/Users/gabimor/Code/keyboardninja/node_modules/.bin:/Users/gabimor/.config/yarn/link/node_modules/.bin:/Users/gabimor/.nvm/versions/node/v12.16.3/libexec/lib/node_modules/npm/bin/node-gyp-bin:/Users/gabimor/.nvm/versions/node/v12.16.3/lib/node_modules/npm/bin/node-gyp-bin:/Users/gabimor/.nvm/versions/node/v12.16.3/bin/node_modules/npm/bin/node-gyp-bin:/var/folders/d6/c_gsy23n0snd2826ypy4k8180000gq/T/yarn--1599745666340-0.9415990667422371:/Users/gabimor/Code/keyboardninja/node_modules/.bin:/Users/gabimor/.config/yarn/link/node_modules/.bin:/Users/gabimor/.nvm/versions/node/v12.16.3/libexec/lib/node_modules/npm/bin/node-gyp-bin:/Users/gabimor/.nvm/versions/node/v12.16.3/lib/node_modules/npm/bin/node-gyp-bin:/Users/gabimor/.nvm/versions/node/v12.16.3/bin/node_modules/npm/bin/node-gyp-bin:/Users/gabimor/.nvm/versions/node/v12.16.3/bin:/Users/gabimor/Library/Python/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin",
     "npm_config_argv": "{\"remain\":[],\"cooked\":[\"run\",\"test\"],\"original\":[\"test\"]}",
     "npm_package_dependencies_passport_facebook": "^3.0.0",
     "npm_config_workspaces_experimental": "true",
     "_": "/Users/gabimor/Code/keyboardninja/node_modules/.bin/jest",
+    "LaunchInstanceID": "4D2032C1-1A2A-4914-8A8D-E00D41314FBF",
     "npm_package_dependencies_razzle_plugin_typescript": "^3.1.6",
     "npm_package_devDependencies_ts_jest": "^26.2.0",
     "PWD": "/Users/gabimor/Code/keyboardninja",
@@ -560,7 +544,7 @@
     "npm_config_strict_ssl": "true",
     "npm_config_version_git_message": "v%s",
     "NPM_CONFIG_PYTHON": "/usr/bin/python",
-    "ITERM_SESSION_ID": "w0t0p4:8896C874-47C6-4C06-937A-2966E0FAF42D",
+    "ITERM_SESSION_ID": "w0t0p1:8896C874-47C6-4C06-937A-2966E0FAF42D",
     "LESS": "-R",
     "LOGNAME": "gabimor",
     "YARN_WRAP_OUTPUT": "false",
@@ -578,12 +562,13 @@
     "npm_config_user_agent": "yarn/1.22.0 npm/? node/v12.16.3 darwin x64",
     "npm_package_scripts_sb": "start-storybook -s ./public -p 6006",
     "LC_TERMINAL": "iTerm2",
-    "DISPLAY": "/private/tmp/com.apple.launchd.Zi57mUHP6Y/org.macosforge.xquartz:0",
+    "DISPLAY": "/private/tmp/com.apple.launchd.nieWP1TtQo/org.macosforge.xquartz:0",
     "npm_package_dependencies__nestjs_platform_express": "^7.4.2",
     "npm_package_dependencies_express": "4.16.4",
     "npm_config_init_version": "1.0.0",
     "npm_config_ignore_optional": "",
     "npm_config__jolt_us_registry": "https://registry.yarnpkg.com/",
+    "SECURITYSESSIONID": "186a6",
     "npm_config_scope": "@jolt-us",
     "COLORTERM": "truecolor",
     "npm_node_execpath": "/Users/gabimor/.nvm/versions/node/v12.16.3/bin/node",

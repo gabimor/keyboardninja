@@ -8,7 +8,19 @@ export class User extends Document {
   email: UserType["email"];
 
   @Prop()
-  password: UserType["password"];
+  password?: UserType["password"];
+
+  @Prop()
+  firstName?: UserType["firstName"];
+
+  @Prop()
+  lastName?: UserType["lastName"];
+
+  @Prop()
+  facebookId?: UserType["facebookId"];
+  
+  @Prop()
+  googleId?: UserType["googleId"];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
