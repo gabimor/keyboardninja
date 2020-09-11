@@ -1,13 +1,25 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "@server/app.module";
 import cookieParser from "cookie-parser";
+import * as helmet from "helmet";
+import * as csurf from "csurf";
 // @ts-ignore
 import expressListRoutes from "express-list-routes";
+import * as rateLimit from "express-rate-limit";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
-
+  app.use(helmet());
+  app.use(csurf());
+  app.use(
+    "/auth/",
+    rateLimit({
+      windowMs: 15 * 60 * 1000, // 15 minutes
+      max: 100,
+    })
+  );
+  
   await app.listen(process.env.PORT || 3000);
 
   const server = app.getHttpServer();

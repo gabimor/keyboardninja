@@ -5,12 +5,13 @@ import {
   Post,
   Req,
   Request,
+  Res,
   UnauthorizedException,
   UseGuards,
 } from "@nestjs/common";
 import { User } from "@server/user/User.schema";
 import { UserService } from "@server/user/user.service";
-import { Request as RequestExpress } from "express";
+import { Request as RequestExpress, Response } from "express";
 import { AuthService } from "./auth.service";
 import { JwtAuthGuard } from "./jwt/jwt-auth.guard";
 import { FacebookAuthGuard } from "./facebook/facebook-auth.guard";
@@ -28,20 +29,22 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post("login")
-  async login(@Request() req: RequestAuth) {
+  async login(@Request() req: RequestAuth, @Res() res: Response) {
     const { user } = req;
 
     if (!user) throw new UnauthorizedException();
-
+    res.cookie("auth", this.authService.generateJwt(req.user));
     return this.authService.generateJwt(req.user);
   }
 
   @Post("signup")
   async signup(
     @Body("email") email: string,
-    @Body("password") password: string
+    @Body("password") password: string,
+    @Res() res: Response
   ) {
     const user = await this.userService.signup(email, password);
+    res.cookie("auth", this.authService.generateJwt(user));
     return this.authService.generateJwt(user);
   }
 
@@ -53,13 +56,15 @@ export class AuthController {
 
   @UseGuards(FacebookAuthGuard)
   @Get("facebook")
-  async facebook(@Req() req: any) {
-    return this.authService.generateJwt(req.user);
+  async facebook(@Req() req: any, @Res() res: Response) {
+    res.cookie("auth", this.authService.generateJwt(req.user));
+    return "";
   }
 
   @UseGuards(GoogleAuthGuard)
   @Get("google")
-  async google(@Req() req: any) {
+  async google(@Req() req: any, @Res() res: Response) {
+    res.cookie("auth", this.authService.generateJwt(req.user));
     return this.authService.generateJwt(req.user);
   }
 }
