@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Redirect,
   Req,
   Request,
   Res,
@@ -29,23 +30,31 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post("login")
-  async login(@Request() req: RequestAuth, @Res() res: Response) {
+  async login(@Request() req: RequestAuth) {
     const { user } = req;
 
     if (!user) throw new UnauthorizedException();
-    res.cookie("auth", this.authService.generateJwt(req.user));
-    return this.authService.generateJwt(req.user);
+    // res.cookie("auth", this.authService.generateJwt(req.user));
+
+    return this.authService.generateJwt(user);
   }
 
   @Post("signup")
   async signup(
     @Body("email") email: string,
-    @Body("password") password: string,
-    @Res() res: Response
+    @Body("password") password: string
   ) {
     const user = await this.userService.signup(email, password);
-    res.cookie("auth", this.authService.generateJwt(user));
+    // res.cookie("auth", this.authService.generateJwt(user));
+
     return this.authService.generateJwt(user);
+  }
+
+  @UseGuards(FacebookAuthGuard)
+  @Get("facebook")
+  async facebook(@Req() req: any, @Res() res: Response) {
+    // res.cookie("auth", this.authService.generateJwt(req.user));
+    return this.authService.generateJwt(req.user);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -54,17 +63,10 @@ export class AuthController {
     return req.user;
   }
 
-  @UseGuards(FacebookAuthGuard)
-  @Get("facebook")
-  async facebook(@Req() req: any, @Res() res: Response) {
-    res.cookie("auth", this.authService.generateJwt(req.user));
-    return "";
-  }
-
   @UseGuards(GoogleAuthGuard)
   @Get("google")
   async google(@Req() req: any, @Res() res: Response) {
-    res.cookie("auth", this.authService.generateJwt(req.user));
+    // res.cookie("auth", this.authService.generateJwt(req.user));
     return this.authService.generateJwt(req.user);
   }
 }

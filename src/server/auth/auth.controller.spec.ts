@@ -16,7 +16,7 @@ import { getModelToken, MongooseModule } from "@nestjs/mongoose";
 
 describe("Auth Controller", () => {
   let app: INestApplication;
-  const jwtSecret = "secretKey";
+  const jwtSecret = "jwtSecret";
   let userModel: Model<User>;
   let mongod: MongoMemoryServer;
   let authService: AuthService;
@@ -24,6 +24,7 @@ describe("Auth Controller", () => {
 
   beforeAll(async () => {
     mongod = new MongoMemoryServer();
+
     const uri = await mongod.getUri();
 
     const jwtStrategy = {
@@ -59,12 +60,13 @@ describe("Auth Controller", () => {
     await app.init();
   });
 
-  beforeEach(() => {
-    userModel.db.dropDatabase();
+  beforeEach(async () => {
+    await userModel.db.dropDatabase();
   });
 
   afterAll(async () => {
     await mongod.stop();
+    await app.close();
   });
 
   describe("login", () => {
@@ -73,28 +75,24 @@ describe("Auth Controller", () => {
       const password = "password";
 
       const user = await userModel.create({ email, password });
-      const token = await authService.generateJwt(user);
-
+      const token = await authService.generateJwt(user.toJSON());
       return request(app.getHttpServer())
         .post("/auth/login")
         .send({ email, password })
         .expect(HttpStatus.CREATED)
         .expect(token);
     });
-
     it("should return 401 for non existing user", () => {
       return request(app.getHttpServer())
         .post("/auth/login")
         .send({ email: "missing@user.com", password: "1231232" })
         .expect(HttpStatus.UNAUTHORIZED);
     });
-
     it("should return 401 for an empty request", () => {
       return request(app.getHttpServer())
         .post("/auth/login")
         .expect(HttpStatus.UNAUTHORIZED);
     });
-
     it("should return 401 for a bad request", () => {
       return request(app.getHttpServer())
         .post("/auth/login")

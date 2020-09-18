@@ -44,12 +44,13 @@ describe("facebook strategy", () => {
     await app.init();
   });
 
-  beforeEach(() => {
-    userModel.db.dropDatabase();
+  beforeEach(async () => {
+    await userModel.db.dropDatabase();
   });
 
   afterAll(async () => {
     await mongod.stop();
+    await app.close();
   });
 
   it("should augment an existing user with fb data", async () => {

@@ -32,8 +32,8 @@ describe("AuthService", () => {
     userModel = module.get<Model<User>>(getModelToken(User.name));
   });
 
-  beforeEach(() => {
-    userModel.db.dropDatabase();
+  beforeEach(async () => {
+    await userModel.db.dropDatabase();
   });
 
   afterAll(() => {

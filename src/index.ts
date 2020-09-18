@@ -11,7 +11,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
   app.use(helmet());
-  app.use(csurf());
+  // TODO: configure csrf
+  // app.use(csurf());
   app.use(
     "/auth/",
     rateLimit({
@@ -19,12 +20,13 @@ async function bootstrap() {
       max: 100,
     })
   );
-  
+
   await app.listen(process.env.PORT || 3000);
 
   const server = app.getHttpServer();
   const router = server._events.request._router;
   console.log(expressListRoutes({}, "API:", router));
+  console.log("------------------");
 
   if ((module as any).hot) {
     (module as any).hot.accept();
