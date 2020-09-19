@@ -35,24 +35,6 @@ describe("UserService", () => {
   });
 
   describe("signup", () => {
-    it("should not allow signup of bad email", async () => {
-      const email = "bademail";
-      const password = "goodpassword";
-
-      await expect(userService.signup(email, password)).rejects.toThrow(
-        "email is not valid"
-      );
-    });
-
-    it("should not allow short password", async () => {
-      const email = "user@email.com";
-      const password = "good";
-
-      await expect(userService.signup(email, password)).rejects.toThrow(
-        "password is not valid"
-      );
-    });
-
     it("should signup a valid user", async () => {
       const user = await userService.signup("new@email.com", "password");
 

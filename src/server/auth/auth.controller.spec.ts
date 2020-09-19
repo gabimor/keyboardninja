@@ -1,7 +1,7 @@
 import { AuthController } from "./auth.controller";
 import * as request from "supertest";
 import { Test, TestingModule } from "@nestjs/testing";
-import { HttpStatus, INestApplication } from "@nestjs/common";
+import { HttpStatus, INestApplication, ValidationPipe } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { JwtModule, JwtService } from "@nestjs/jwt";
 import { User, UserSchema } from "../user/User.schema";
@@ -57,6 +57,8 @@ describe("Auth Controller", () => {
     jwtService = module.get<JwtService>(JwtService);
 
     app = module.createNestApplication();
+    app.useGlobalPipes(new ValidationPipe());
+
     await app.init();
   });
 
@@ -124,7 +126,7 @@ describe("Auth Controller", () => {
     it("should return 400 for long password", () => {
       return request(app.getHttpServer())
         .post("/auth/signup")
-        .send({ email: "user@email.com", password: "too_long_a_password" })
+        .send({ email: "user@email.com", password: "too_long_a_password1234" })
         .expect(HttpStatus.BAD_REQUEST);
     });
 

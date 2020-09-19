@@ -6,11 +6,13 @@ import * as csurf from "csurf";
 // @ts-ignore
 import expressListRoutes from "express-list-routes";
 import * as rateLimit from "express-rate-limit";
+import { ValidationPipe } from "@nestjs/common";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
   app.use(helmet());
+  app.useGlobalPipes(new ValidationPipe());
   // TODO: configure csrf
   // app.use(csurf());
   app.use(

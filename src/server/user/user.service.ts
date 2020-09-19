@@ -16,18 +16,22 @@ export class UserService {
   }
 
   async signup(email: string, password: string): Promise<Partial<User>> {
-    if (!emailValidator.validate(email)) {
-      throw new HttpException(
-        "email is not valid: " + email,
-        HttpStatus.BAD_REQUEST
-      );
-    } else if (
-      !password ||
-      password.length < PASSWORD_MIN_LENGTH ||
-      password.length > PASSWORD_MAX_LENGTH
-    ) {
-      throw new HttpException("password is not valid", HttpStatus.BAD_REQUEST);
-    } else if (await this.userModel.findOne({ email })) {
+    // if (!emailValidator.validate(email)) {
+    //   throw new HttpException(
+    //     "email is not valid: " + email,
+    //     HttpStatus.BAD_REQUEST
+    //   );
+    // } else if (
+    //   !password ||
+    //   password.length < PASSWORD_MIN_LENGTH ||
+    //   password.length > PASSWORD_MAX_LENGTH
+    // ) {
+    //   throw new HttpException("password is not valid", HttpStatus.BAD_REQUEST);
+    // } else if (await this.userModel.findOne({ email })) {
+    //   throw new HttpException("user exists: " + email, HttpStatus.BAD_REQUEST);
+    // }
+
+    if (await this.userModel.findOne({ email })) {
       throw new HttpException("user exists: " + email, HttpStatus.BAD_REQUEST);
     }
 
