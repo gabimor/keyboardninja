@@ -15,7 +15,10 @@ interface Props {
 }
 
 export default function LoginForm({ onSubmit }: Props) {
-  const { register, handleSubmit, errors } = useForm<FormData>();
+  // TPDP: remove the defaults
+  const { register, handleSubmit, errors } = useForm<FormData>({
+    defaultValues: { email: "gabimor@gmail.com", password: "12345678" },
+  });
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

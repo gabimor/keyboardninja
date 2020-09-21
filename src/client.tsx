@@ -22,9 +22,7 @@ export type DoPin = (
 
 export type DoSetOs = (os: OSs) => void;
 
-const Client = () => {
-  const doLogin = (userData: UserType) => setUser(userData);
-  const doLogout = () => setUser(undefined);
+const Client = () => {    
   const doSetOs: DoSetOs = (osData) => {
     setOs(osData);
     osSelect.setSelectedOS(osData);
@@ -48,8 +46,6 @@ const Client = () => {
     appCategories,
     user,
     os,
-    doLogin,
-    doLogout,
     doPin,
     doSetOs,
   };

@@ -6,9 +6,9 @@ import { Request, Response } from "express";
 export class JwtMiddleware implements NestMiddleware {
   constructor(private jwtService: JwtService) {}
 
+  // TODO: finish implemeting this
   use(req: Request, res: Response, next: Function) {
-    
-    req.
+    // req
 
     next();
   }

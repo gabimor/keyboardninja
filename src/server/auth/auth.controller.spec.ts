@@ -13,6 +13,7 @@ import { JwtAuthGuard } from "./jwt/jwt-auth.guard";
 import { Model } from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { getModelToken, MongooseModule } from "@nestjs/mongoose";
+import * as cookieParser from "cookie-parser";
 
 describe("Auth Controller", () => {
   let app: INestApplication;
@@ -57,6 +58,7 @@ describe("Auth Controller", () => {
     jwtService = module.get<JwtService>(JwtService);
 
     app = module.createNestApplication();
+    app.use(cookieParser());
     app.useGlobalPipes(new ValidationPipe());
 
     await app.init();
@@ -77,12 +79,13 @@ describe("Auth Controller", () => {
       const password = "password";
 
       const user = await userModel.create({ email, password });
-      const token = await authService.generateJwt(user.toJSON());
-      return request(app.getHttpServer())
+      const token = authService.generateJwt(user.toJSON());
+      const res = await request(app.getHttpServer())
         .post("/auth/login")
         .send({ email, password })
-        .expect(HttpStatus.CREATED)
-        .expect(token);
+        .expect(HttpStatus.CREATED);
+
+      expect(res.header["set-cookie"][0]).toContain(token);
     });
     it("should return 401 for non existing user", () => {
       return request(app.getHttpServer())
@@ -152,13 +155,17 @@ describe("Auth Controller", () => {
         .send({ email, password })
         .expect(HttpStatus.CREATED);
 
-      const jwt = jwtService.decode(res.text);
+      const cookie: string = res.header["set-cookie"][0];
+      const regex = /(?<=jwt=)(.*)(?=;)/;
+      const jwt = cookie.match(regex)[0];
 
-      expect(jwt).toHaveProperty("_id");
+      const user = jwtService.decode(jwt);
+
+      expect(user).toHaveProperty("_id");
     });
   });
 
-  describe("logged in", () => {
+  describe("logged in user", () => {
     it("should not be able to access profile if not logged it", () => {
       return request(app.getHttpServer())
         .get("/auth/profile")
@@ -170,11 +177,11 @@ describe("Auth Controller", () => {
 
       const user = await userModel.create({ email, password });
 
-      const token = await authService.generateJwt(user);
+      const token = authService.generateJwt(user);
 
       return request(app.getHttpServer())
         .get("/auth/profile")
-        .set("Authorization", "Bearer " + token)
+        .set("Cookie", ["jwt=" + token])
         .expect(HttpStatus.OK);
     });
   });

@@ -9,11 +9,8 @@ import SignupForm from "./signup/SignupForm";
 type SubmitData = Pick<UserType, "email" | "password">;
 
 const Signup = () => {
-  const { doLogin } = useContext(DataContext);
-
   async function handleSubmit({ email, password }: SubmitData) {
-    const userJson = await signup(email, password);
-    doLogin(userJson);
+    await signup(email, password);
   }
 
   return (

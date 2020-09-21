@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  HttpStatus,
   Post,
   Redirect,
   Req,
@@ -33,32 +34,39 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post("login")
-  async login(@Request() req: RequestAuth) {
+  async login(@Request() req: RequestAuth, @Res() res: Response) {
     const { user } = req;
 
     if (!user) throw new UnauthorizedException();
-    // res.cookie("auth", this.authService.generateJwt(req.user));
 
-    return this.authService.generateJwt(user);
+    const jwt = this.authService.generateJwt(user);
+
+    res.cookie("jwt", jwt);
+    res.sendStatus(HttpStatus.CREATED);
   }
 
   @Post("signup")
-  async signup(@Body() createUserDto: CreateUserDto) {
+  async signup(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
     const user = await this.userService.signup(
       createUserDto.email,
       createUserDto.password
     );
-    // res.cookie("auth", this.authService.generateJwt(user));
-    return this.authService.generateJwt(user);
+    const jwt = this.authService.generateJwt(user);
+
+    res.cookie("jwt", jwt);
+    res.sendStatus(HttpStatus.CREATED);
   }
 
   @UseGuards(FacebookAuthGuard)
   @Get("facebook")
   async facebook(@Req() req: any, @Res() res: Response) {
-    // res.cookie("auth", this.authService.generateJwt(req.user));
-    return this.authService.generateJwt(req.user);
+    const jwt = this.authService.generateJwt(req.user);
+
+    res.cookie("jwt", jwt);
+    res.sendStatus(HttpStatus.CREATED);
   }
 
+  // TODO: remove this endpoint
   @UseGuards(JwtAuthGuard)
   @Get("profile")
   getProfile(@Request() req: RequestAuth) {
@@ -68,7 +76,9 @@ export class AuthController {
   @UseGuards(GoogleAuthGuard)
   @Get("google")
   async google(@Req() req: any, @Res() res: Response) {
-    // res.cookie("auth", this.authService.generateJwt(req.user));
-    return this.authService.generateJwt(req.user);
+    const jwt = this.authService.generateJwt(req.user);
+
+    res.cookie("jwt", jwt);
+    res.sendStatus(HttpStatus.CREATED);
   }
 }

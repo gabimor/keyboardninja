@@ -10,8 +10,6 @@ export interface IDataContext {
   app?: App;
   os?: OSs;
   user?: UserType;
-  doLogin?: (user: UserType) => void;
-  doLogout?: () => void;
   doPin?: DoPin;
   doSetOs?: DoSetOs;
 }

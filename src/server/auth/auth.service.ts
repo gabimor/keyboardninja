@@ -20,11 +20,13 @@ export class AuthService {
     return null;
   }
 
-  async generateJwt(user: Partial<User>) {
+  generateJwt(user: Partial<User>) {
     if (!user._id) {
       throw new BadRequestException("user doesn't include _id property");
     }
-    const payload = { _id: user._id };
-    return this.jwtService.sign(payload);
+
+    const { _id, email, firstName, lastName } = user;
+
+    return this.jwtService.sign({ _id, email, firstName, lastName });
   }
 }

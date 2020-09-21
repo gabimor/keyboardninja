@@ -10,14 +10,9 @@ export default function Logo() {
         ninja<Dot>.</Dot>
         me
       </span>
-      <Beta> Beta</Beta>
     </H1>
   );
 }
-
-const Beta = styled.small`
-  font-size: 10px;
-`;
 
 const H1 = styled.h1`
   color: #ffffff;

@@ -11,9 +11,9 @@ import { ValidationPipe } from "@nestjs/common";
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
-  app.use(helmet());
+  // app.use(helmet());
   app.useGlobalPipes(new ValidationPipe());
-  // TODO: configure csrf
+  // TODO: configure csrf & helmet
   // app.use(csurf());
   app.use(
     "/auth/",

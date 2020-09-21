@@ -18,7 +18,7 @@ export class User extends Document {
 
   @Prop()
   facebookId?: UserType["facebookId"];
-  
+
   @Prop()
   googleId?: UserType["googleId"];
 }
