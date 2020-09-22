@@ -3,7 +3,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
-import { UserType } from "@src/types/User.type";
+import { JwtUser } from "@src/types/User.type";
 
 function Anonymous() {
   return (
@@ -22,7 +22,7 @@ function Anonymous() {
 }
 
 interface LoggedInProps {
-  user?: UserType;
+  user?: JwtUser;
   onLogout?: () => void;
 }
 

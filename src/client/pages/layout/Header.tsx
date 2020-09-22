@@ -1,22 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 
-import { logout } from "@client/api/auth";
 import Logo from "./Logo";
 import Nav from "./Nav";
+import { DataContext } from "@client/DataContext";
+import { logout } from "@client/api/auth";
 
 function Header() {
-  function handleLogout() {
-    logout();
-  }
+  const { user } = useContext(DataContext);
 
   return (
     <Container>
       <Link to="/">
         <Logo />
       </Link>
-      <Nav />
+      <Nav user={user} onLogout={logout} />
     </Container>
   );
 }

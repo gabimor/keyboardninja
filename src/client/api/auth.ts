@@ -1,13 +1,5 @@
 import { sendApiRequest } from ".";
 
-function storeJwt(jwt: string) {
-  localStorage.jwt = jwt;
-
-  localStorage.user = atob(jwt.split(".")[1]);
-
-  return JSON.parse(localStorage.user);
-}
-
 export async function signup(email: string, password: string) {
   const res = await sendApiRequest("/auth/signup", {
     method: "POST",
@@ -18,8 +10,6 @@ export async function signup(email: string, password: string) {
   });
 
   location.href = "/";
-
-  return storeJwt(await res.text());
 }
 
 export async function login(email: string, password: string) {
@@ -32,15 +22,10 @@ export async function login(email: string, password: string) {
   });
 
   location.href = "/";
-
-  return storeJwt(await res.text());
 }
 
 export function logout() {
-  localStorage.removeItem("jwt");
-  localStorage.removeItem("user");
+  document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 
-  return sendApiRequest("/auth/logout", {
-    method: "POST",
-  });
+  location.href = "/";
 }

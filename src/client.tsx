@@ -5,7 +5,7 @@ import { hydrate } from "react-dom";
 import * as osSelect from "@client/helpers/osSelect";
 import Layout from "@client/Layout";
 import { DataContext, IDataContext } from "@client/DataContext";
-import { UserType } from "@src/types/User.type";
+import { JwtUser, UserType } from "@src/types/User.type";
 import { OSs } from "@src/types/OSs.enum";
 
 declare global {
@@ -22,7 +22,7 @@ export type DoPin = (
 
 export type DoSetOs = (os: OSs) => void;
 
-const Client = () => {    
+const Client = () => {
   const doSetOs: DoSetOs = (osData) => {
     setOs(osData);
     osSelect.setSelectedOS(osData);
@@ -39,7 +39,7 @@ const Client = () => {
   const { appCategories, app } = window.__KBN_DATA__;
 
   const [os, setOs] = useState<OSs>(window.__KBN_DATA__.os);
-  const [user, setUser] = useState<UserType>(window.__KBN_DATA__.user);
+  const [user] = useState<JwtUser>(window.__KBN_DATA__.user);
 
   const contextValue: IDataContext = {
     app,
