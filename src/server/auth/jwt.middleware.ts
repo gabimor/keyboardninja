@@ -6,10 +6,10 @@ import { Request, Response } from "express";
 export class JwtMiddleware implements NestMiddleware {
   constructor(private jwtService: JwtService) {}
 
-  // TODO: finish implemeting this
   use(req: Request, res: Response, next: Function) {
-    // req
-
+    if (req?.cookies?.jwt) {
+      req.user = this.jwtService.decode(req?.cookies?.jwt);
+    }
     next();
   }
 }

@@ -18,7 +18,7 @@ export class HomeController {
   ) {}
 
   @Get()
-  async home() {
+  async home(@Req() req: Request) {
     const appCategories = await this.appsService.getAppCategory();
 
     const dataContext: IDataContext = {

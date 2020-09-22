@@ -166,6 +166,12 @@ describe("Auth Controller", () => {
   });
 
   describe("logged in user", () => {
+    it("should return 404 for non existing endpoint", () => {
+      return request(app.getHttpServer())
+        .get("/auth/login")
+        .expect(HttpStatus.NOT_FOUND);
+    });
+
     it("should not be able to access profile if not logged it", () => {
       return request(app.getHttpServer())
         .get("/auth/profile")
