@@ -1,10 +1,13 @@
 import React from "react";
 
-import { storiesOf } from "@storybook/react";
-
 import Shortcut from "./Shortcut";
 
-storiesOf("Shortcut", module).add("default", () => (
+export default {
+  component: Shortcut,
+  title: "Shortcut",
+};
+
+export const Default = (
   <>
     <hr /> <Shortcut keys="ctrl+k" />
     <hr /> <Shortcut keys="ctrl+shift+k" />
@@ -21,4 +24,4 @@ storiesOf("Shortcut", module).add("default", () => (
       isHtml={true}
     />
   </>
-));
+);

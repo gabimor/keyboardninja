@@ -1,9 +1,14 @@
+import { Story } from "@storybook/react";
 import React from "react";
 
-import { storiesOf } from "@storybook/react";
-import { withKnobs } from "@storybook/addon-knobs";
+import AppList, { AppListProps } from "./AppList";
 
-import AppList from "./AppList";
+export default {
+  title: "AppList",
+  component: AppList,
+};
+
+const Template: Story<AppListProps> = (args) => <AppList {...args} />;
 
 const apps = [
   {
@@ -40,6 +45,8 @@ const apps = [
   { id: 8, name: "XD", icon: "xd.png" },
 ];
 
-storiesOf("AppList", module)
-  .addDecorator(withKnobs)
-  .add("default", () => <AppList name="Graphics" apps={apps} />);
+export const Default = Template.bind({});
+Default.args = {
+  name: "Graphics",
+  apps,
+};

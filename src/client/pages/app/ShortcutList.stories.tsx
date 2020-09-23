@@ -1,9 +1,23 @@
 import React from "react";
 
-import { storiesOf } from "@storybook/react";
-
 import ShortcutList from "./ShortcutList";
 import { Shortcut } from "@src/types/Shortcut.type";
+
+export default { title: "ShortcutList", component: ShortcutList };
+
+export const Default = () => (
+  <div>
+    <div style={{ width: "992px" }}>
+      <ShortcutList title={"General"} shortcuts={shortcutList} />
+    </div>
+    <div style={{ width: "768px" }}>
+      <ShortcutList title={"General"} shortcuts={shortcutList} />
+    </div>
+    <div style={{ width: "360px" }}>
+      <ShortcutList title={"General"} shortcuts={shortcutList} />
+    </div>
+  </div>
+);
 
 const shortcutList: Shortcut[] = [
   { _id: "1", sectionId: "1", action: "test", mac: "ctrl+s", pins: 0 },
@@ -63,17 +77,3 @@ const shortcutList: Shortcut[] = [
     isPinned: true,
   },
 ];
-
-storiesOf("ShortcutList", module).add("default", () => (
-  <div>
-    <div style={{ width: "992px" }}>
-      <ShortcutList title={"General"} shortcuts={shortcutList} />
-    </div>
-    <div style={{ width: "768px" }}>
-      <ShortcutList title={"General"} shortcuts={shortcutList} />
-    </div>
-    <div style={{ width: "360px" }}>
-      <ShortcutList title={"General"} shortcuts={shortcutList} />
-    </div>
-  </div>
-));

@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { encodeAppName } from "../../helpers";
 import AppItem, { AppItemProps } from "./AppItem";
 
-interface Props {
+export interface AppListProps {
   name: string;
   apps: AppItemProps[];
   gridArea?: string;

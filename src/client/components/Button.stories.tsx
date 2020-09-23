@@ -1,15 +1,21 @@
 import React from "react";
 
-import { storiesOf } from "@storybook/react";
-import { withKnobs, text } from "@storybook/addon-knobs";
-
 import Button from "./Button";
 
-storiesOf("Button", module)
-  .addDecorator(withKnobs)
-  .add("default", () => (
-    <>
-      <Button>Primary</Button> &nbsp;
-      <Button secondary={true}>Secondary</Button>
-    </>
-  ));
+export default {
+  component: Button,
+  title: "Button",
+};
+
+const Template = (args: any) => <Button {...args} />;
+
+export const Primary = Template.bind({});
+Primary.args = {
+  children: "Primary",
+};
+
+export const Secondary = Template.bind({});
+Primary.args = {
+  children: "Secondary",
+  secondary: true,
+};
