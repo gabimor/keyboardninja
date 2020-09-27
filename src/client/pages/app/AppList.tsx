@@ -10,7 +10,7 @@ export interface AppListProps {
   gridArea?: string;
 }
 
-export default function AppList({ name, apps, gridArea }: Props) {
+export default function AppList({ name, apps, gridArea }: AppListProps) {
   return (
     <Container gridArea={gridArea}>
       <Header>{name}</Header>

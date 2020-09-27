@@ -1,27 +1,40 @@
+import styled from "@emotion/styled";
 import React from "react";
 
-import Shortcut from "./Shortcut";
+import Shortcut, { ShortcutProps } from "./Shortcut";
 
 export default {
   component: Shortcut,
   title: "Shortcut",
 };
 
-export const Default = (
-  <>
-    <hr /> <Shortcut keys="ctrl+k" />
-    <hr /> <Shortcut keys="ctrl+shift+k" />
-    <hr /> <Shortcut keys="ctrl+left|right|up|down" />
-    <hr /> <Shortcut keys="ctrl+up" />
-    <hr /> <Shortcut keys="alt+`" />
-    <hr /> <Shortcut keys="ctrl+k f" />
-    <hr /> <Shortcut keys="ctrl+k f or F12" />
-    <hr /> <Shortcut keys="ctrl+1..4" />
-    <hr /> <Shortcut keys="ctrl+c 1..4" />
-    <hr />
-    <Shortcut
-      keys="press <kbd>Cmd</kbd>+<kbd>O</kbd> to open the command menu, type <kbd>!</kbd> followed by the name of the script, then press <kbd>Enter</kbd>"
-      isHtml={true}
-    />
-  </>
-);
+const data: ShortcutProps[] = [
+  { keys: "ctrl+k" },
+  { keys: "ctrl+shift+k" },
+  { keys: "ctrl+left|right|up|down" },
+  { keys: "ctrl+up" },
+  { keys: "alt+`" },
+  { keys: "ctrl+k f" },
+  { keys: "ctrl+k f or F12" },
+  { keys: "ctrl+1..4" },
+  { keys: "ctrl+c 1..4" },
+  {
+    keys:
+      "press <kbd>Cmd</kbd>+<kbd>O</kbd> to open the command menu, type <kbd>!</kbd> followed by the name of the script, then press <kbd>Enter</kbd>",
+    isHtml: true,
+  },
+];
+
+const Template = ({ items, ...args }: { items: typeof data }) =>
+  items.map((item: any) => (
+    <Wrapper>
+      <Shortcut {...item} />
+    </Wrapper>
+  ));
+
+export const Default = Template.bind({});
+Default.args = { items: data };
+
+const Wrapper = styled.div`
+  margin-top: 15px;
+`;

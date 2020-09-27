@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 import { emailRegex } from "@client/helpers";
 import Input from "@client/components/Input";
-import Button from "@client/components/Button";
+import { PrimaryButton } from "@client/components/Buttons";
 import { UserType } from "@src/types/User.type";
 
 type FormData = Pick<UserType, "email" | "password">;
@@ -46,7 +46,7 @@ export default function LoginForm({ onSubmit }: Props) {
         })}
       ></Input>
       {errors.password && <Error>{errors.password.message}</Error>}
-      <Button style={{ marginTop: 20 }}>Log in</Button>
+      <PrimaryButton style={{ marginTop: 20 }}>Log in</PrimaryButton>
       <SignupWrapper>
         Don't have an account ?<Link to="/signup"> Sign Up</Link>
       </SignupWrapper>

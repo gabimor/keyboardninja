@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 
 import Input from "@client/components/Input";
-import Button from "@client/components/Button";
+import { PrimaryButton } from "@client/components/Buttons";
 import { useForm } from "react-hook-form";
 import { emailRegex } from "@client/helpers";
 import { UserType } from "@src/types/User.type";
@@ -50,7 +50,7 @@ export default function SignupForm({ onSubmit }: Props) {
         })}
       ></Input>
       {errors.password && <Error>{errors.password.message}</Error>}
-      <Button style={{ marginTop: 20 }}>Sign Up</Button>
+      <PrimaryButton style={{ marginTop: 20 }}>Sign Up</PrimaryButton>
       <SignupWrapper>
         Already have an account ?<Link to="/login"> Log in</Link>
       </SignupWrapper>

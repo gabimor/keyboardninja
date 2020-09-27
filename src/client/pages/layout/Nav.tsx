@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import Button from "../../components/Button";
+import { PrimaryButton } from "../../components/Buttons";
 import { JwtUser } from "@src/types/User.type";
 
 function Anonymous() {
@@ -15,7 +15,9 @@ function Anonymous() {
         <Link to="/signup">Sign Up</Link>
       </li>
       <li>
-        <Button to="/contact">Wanna Help?</Button>
+        <Link to="/contact">
+          <PrimaryButton>Wanna Help?</PrimaryButton>
+        </Link>
       </li>
     </>
   );

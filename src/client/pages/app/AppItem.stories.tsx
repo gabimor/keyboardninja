@@ -5,6 +5,13 @@ import AppItem from "./AppItem";
 export default {
   title: "AppItem",
   component: AppItem,
+  decorators: [
+    (Story: any) => (
+      <div style={{ width: 100 }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 const Template = (args: any) => <AppItem {...args} />;

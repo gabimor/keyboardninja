@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-import Button from "../../components/Button";
+import { PrimaryButton } from "../../components/Buttons";
 import GetLinkPopup from "./GetLinkPopup";
 
 interface Props {
@@ -26,10 +26,10 @@ const GetLink = ({ link, onGetLink, onClose }: Props) => {
 
   return (
     <div>
-      <Button onClick={onGetLink}>
+      <PrimaryButton onClick={onGetLink}>
         <i className="fas fa-link" />
         &nbsp; Get Link
-      </Button>
+      </PrimaryButton>
       {link && <GetLinkPopup link={link} ref={popupElm} />}
     </div>
   );
