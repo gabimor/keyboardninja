@@ -19,6 +19,7 @@ describe("Auth Controller", () => {
   let app: INestApplication;
   const jwtSecret = "jwtSecret";
   let userModel: Model<User>;
+  let userService: UserService;
   let mongod: MongoMemoryServer;
   let authService: AuthService;
   let jwtService: JwtService;
@@ -54,6 +55,7 @@ describe("Auth Controller", () => {
     }).compile();
 
     userModel = module.get<Model<User>>(getModelToken(User.name));
+    userService = module.get<UserService>(UserService);
     authService = module.get<AuthService>(AuthService);
     jwtService = module.get<JwtService>(JwtService);
 
@@ -78,8 +80,9 @@ describe("Auth Controller", () => {
       const email = "user@email.com";
       const password = "password";
 
-      const user = await userModel.create({ email, password });
-      const token = authService.generateJwt(user.toJSON());
+      const user = await userService.signup(email, password);
+
+      const token = authService.generateJwt(user);
       const res = await request(app.getHttpServer())
         .post("/auth/login")
         .send({ email, password })

@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from "@nestjs/common";
 import { UserService } from "../user/user.service";
 import { JwtService } from "@nestjs/jwt";
 import { User } from "@server/user/User.schema";
+import { compare } from "bcrypt";
 
 @Injectable()
 export class AuthService {
@@ -13,7 +14,11 @@ export class AuthService {
   async validateUser(email: string, pass: string): Promise<Partial<User>> {
     const user = await this.userService.findOne(email);
 
-    if (user && user.password === pass) {
+    if (!user) return null;
+
+    const passwordMatch = await compare(pass, user.password);
+
+    if (passwordMatch) {
       const { password, ...result } = user;
       return result;
     }
@@ -21,7 +26,7 @@ export class AuthService {
   }
 
   generateJwt(user: Partial<User>) {
-    if (!user?._id) {
+    if (!user._id) {
       throw new BadRequestException("user doesn't include _id property");
     }
 

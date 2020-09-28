@@ -32,8 +32,6 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post("login")
   async login(@Request() req: RequestAuth, @Res() res: Response) {
-    console.log("login");
-
     const { user } = req;
 
     if (!user) throw new UnauthorizedException();
@@ -59,8 +57,6 @@ export class AuthController {
   @UseGuards(FacebookAuthGuard)
   @Get("facebook")
   async facebook(@Req() req: any, @Res() res: Response) {
-    console.log("facebook");
-
     const jwt = this.authService.generateJwt(req.user);
 
     res.cookie("jwt", jwt);

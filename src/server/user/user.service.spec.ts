@@ -4,6 +4,7 @@ import { User, UserSchema } from "./User.schema";
 import { getModelToken, MongooseModule } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
+import { compare } from "bcrypt";
 
 describe("UserService", () => {
   let userService: UserService;
@@ -24,6 +25,8 @@ describe("UserService", () => {
 
     userService = module.get<UserService>(UserService);
     userModel = module.get<Model<User>>(getModelToken(User.name));
+
+    process.env.BCRYPT_SALT_ROUNDS = "10";
   });
 
   beforeEach(async () => {
@@ -45,9 +48,16 @@ describe("UserService", () => {
       const email = "new@email.com";
       const password = "password";
 
-      const user = await userService.signup(email, password);
+      let user = await userService.signup(email, password);
 
       expect(user).toHaveProperty("email", email);
+
+      user = await userService.findOne(email);
+
+      expect(user).toHaveProperty("email", email);
+      const passwordMatch = await compare(password, user.password);
+
+      expect(passwordMatch).toBe(true);
     });
 
     it("should not find a user before sign up", async () => {
