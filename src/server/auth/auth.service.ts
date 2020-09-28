@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   generateJwt(user: Partial<User>) {
-    if (!user._id) {
+    if (!user?._id) {
       throw new BadRequestException("user doesn't include _id property");
     }
 

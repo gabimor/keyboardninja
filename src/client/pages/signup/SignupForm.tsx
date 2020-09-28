@@ -2,11 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 
-import Input from "@client/components/Input";
+import Input from "@client/components/TextInput";
 import { PrimaryButton } from "@client/components/Buttons";
 import { useForm } from "react-hook-form";
 import { emailRegex } from "@client/helpers";
 import { UserType } from "@src/types/User.type";
+import { FacebookButton, GoogleButton } from "@client/components/SocialButtons";
 
 type FormData = Pick<UserType, "email" | "password">;
 
@@ -50,7 +51,16 @@ export default function SignupForm({ onSubmit }: Props) {
         })}
       ></Input>
       {errors.password && <Error>{errors.password.message}</Error>}
-      <PrimaryButton style={{ marginTop: 20 }}>Sign Up</PrimaryButton>
+      <PrimaryButton style={{ marginTop: 20 }}>Sign up</PrimaryButton>
+      <OrSeperator> - or - </OrSeperator>
+      <a href="/auth/facebook" style={{ marginBottom: 20 }}>
+        <FacebookButton text="Sign up with Facebook" type="button" />
+      </a>
+
+      <a href="/auth/google">
+        <GoogleButton text="Sign up with Google" type="button" />
+      </a>
+
       <SignupWrapper>
         Already have an account ?<Link to="/login"> Log in</Link>
       </SignupWrapper>
@@ -61,6 +71,12 @@ export default function SignupForm({ onSubmit }: Props) {
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+`;
+
+const OrSeperator = styled.div`
+  color: #e9e5e5;
+  padding: 15px 0;
+  text-align: center;
 `;
 
 const Header = styled.h2`
@@ -80,7 +96,7 @@ const LabelWrapper = styled.div`
 
 const SignupWrapper = styled.div`
   text-align: center;
-  margin-top: 40px;
+  margin-top: 20px;
   color: #e9e5e5;
 `;
 

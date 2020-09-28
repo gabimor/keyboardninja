@@ -38,12 +38,12 @@ export class HomeController {
 
   @Get("login")
   async login() {
-    return renderPage("/login", "Login", "/login", {});
+    return renderPage("/login", "Log in", "/login", {});
   }
 
   @Get("signup")
   async signup() {
-    return renderPage("/signup", "Sign Up", "/signup", {});
+    return renderPage("/signup", "Sign up", "/signup", {});
   }
 
   @Get("contact")

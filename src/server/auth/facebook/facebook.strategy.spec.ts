@@ -70,7 +70,7 @@ describe("facebook strategy", () => {
     expect(user.firstName).toEqual(mockFBUser.name.givenName);
   });
 
-  it("should signup a new fb user", async () => {
+  it("should sign up a new fb user", async () => {
     await facebookStrategy.validate("", "", mockFBUser, null);
 
     const user = await userModel.findOne({ facebookId: mockFBUser.id });

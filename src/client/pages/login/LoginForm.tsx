@@ -4,9 +4,10 @@ import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 
 import { emailRegex } from "@client/helpers";
-import Input from "@client/components/Input";
+import Input from "@client/components/TextInput";
 import { PrimaryButton } from "@client/components/Buttons";
 import { UserType } from "@src/types/User.type";
+import { FacebookButton, GoogleButton } from "@client/components/SocialButtons";
 
 type FormData = Pick<UserType, "email" | "password">;
 
@@ -15,10 +16,7 @@ interface Props {
 }
 
 export default function LoginForm({ onSubmit }: Props) {
-  // TPDP: remove the defaults
-  const { register, handleSubmit, errors } = useForm<FormData>({
-    defaultValues: { email: "gabimor@gmail.com", password: "12345678" },
-  });
+  const { register, handleSubmit, errors } = useForm<FormData>();
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -46,9 +44,19 @@ export default function LoginForm({ onSubmit }: Props) {
         })}
       ></Input>
       {errors.password && <Error>{errors.password.message}</Error>}
+
       <PrimaryButton style={{ marginTop: 20 }}>Log in</PrimaryButton>
+      <OrSeperator> - or - </OrSeperator>
+      <a href="/auth/facebook" style={{ marginBottom: 20 }}>
+        <FacebookButton text="Log in with Facebook" type="button" />
+      </a>
+
+      <a href="/auth/google">
+        <GoogleButton text="Log in with Google" type="button" />
+      </a>
+
       <SignupWrapper>
-        Don't have an account ?<Link to="/signup"> Sign Up</Link>
+        Don't have an account ?<Link to="/signup"> Sign up</Link>
       </SignupWrapper>
     </Form>
   );
@@ -57,6 +65,12 @@ export default function LoginForm({ onSubmit }: Props) {
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+`;
+
+const OrSeperator = styled.div`
+  color: #e9e5e5;
+  padding: 15px 0;
+  text-align: center;
 `;
 
 const Header = styled.h2`
@@ -76,7 +90,7 @@ const LabelWrapper = styled.div`
 
 const SignupWrapper = styled.div`
   text-align: center;
-  margin-top: 40px;
+  margin-top: 20px;
   color: #e9e5e5;
 `;
 

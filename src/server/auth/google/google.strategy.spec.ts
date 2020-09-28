@@ -70,7 +70,7 @@ describe("google strategy", () => {
     expect(user.firstName).toEqual(mockGoogleUser.name.givenName);
   });
 
-  it("should signup a new fb user", async () => {
+  it("should sign up a new fb user", async () => {
     await googleStrategy.validate("", "", mockGoogleUser, null);
 
     const user = await userModel.findOne({ googleId: mockGoogleUser.id });

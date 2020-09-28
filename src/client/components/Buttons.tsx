@@ -17,10 +17,11 @@ export function SecondaryButton({ children, ...props }: Props) {
 }
 
 const btnStyle = `
-  display: inline-block;
+  display: block;
+  width:100%;
   cursor:pointer;
   color: #E9E5E5;
-  padding: 8px 15px;
+  padding: 9px 15px;
   border-radius: 4px;
   line-height: 100%;
 `;
@@ -44,6 +45,6 @@ const SecondaryButtonContainer = styled.button`
   border: 1px solid #a4a3a6;
 
   &:hover {
-    background: #9d8b8b;
+    background: #9d8b8b44;
   }
 `;

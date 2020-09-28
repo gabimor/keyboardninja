@@ -106,7 +106,7 @@ describe("Auth Controller", () => {
     });
   });
 
-  describe("signup", () => {
+  describe("sign up", () => {
     it("should return 400 for existing email", () => {
       const email = "existing@email.com";
       const password = "password";

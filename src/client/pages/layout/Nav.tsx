@@ -9,10 +9,10 @@ function Anonymous() {
   return (
     <>
       <li>
-        <Link to="/login">Login</Link>
+        <Link to="/login">Log in</Link>
       </li>
       <li>
-        <Link to="/signup">Sign Up</Link>
+        <Link to="/signup">Sign up</Link>
       </li>
       <li>
         <Link to="/contact">

@@ -34,14 +34,14 @@ describe("UserService", () => {
     await mongod.stop();
   });
 
-  describe("signup", () => {
-    it("should signup a valid user", async () => {
+  describe("sign up", () => {
+    it("should sign up a valid user", async () => {
       const user = await userService.signup("new@email.com", "password");
 
       expect(user).toHaveProperty("email", user.email);
     });
 
-    it("should signup a user and return it", async () => {
+    it("should sign up a user and return it", async () => {
       const email = "new@email.com";
       const password = "password";
 
@@ -50,7 +50,7 @@ describe("UserService", () => {
       expect(user).toHaveProperty("email", email);
     });
 
-    it("should not find a user before signup", async () => {
+    it("should not find a user before sign up", async () => {
       const user = await userService.findOne("new@email.com");
 
       expect(user).toBeUndefined();
@@ -67,7 +67,7 @@ describe("UserService", () => {
     });
   });
 
-  describe("signupFB", () => {
+  describe("sign up FB", () => {
     it("should create a facebook user", async () => {
       const email = "fb@email.com";
 
@@ -78,7 +78,7 @@ describe("UserService", () => {
       expect(foundUser.email).toEqual(email);
     });
 
-    it("should augment an existing user with facebook signup", async () => {
+    it("should augment an existing user with facebook sign up", async () => {
       const email = "regualr@email.com";
       const firstName = "Joe";
 
