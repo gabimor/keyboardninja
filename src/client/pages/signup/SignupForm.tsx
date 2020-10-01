@@ -38,6 +38,7 @@ export default function SignupForm({ onSubmit }: Props) {
       </LabelWrapper>
       <Input
         name="password"
+        type="password"
         ref={register({
           required: "Please choose a password",
           minLength: {
@@ -54,11 +55,11 @@ export default function SignupForm({ onSubmit }: Props) {
       <PrimaryButton style={{ marginTop: 20 }}>Sign up</PrimaryButton>
       <OrSeperator> - or - </OrSeperator>
       <a href="/auth/facebook" style={{ marginBottom: 20 }}>
-        <FacebookButton text="Sign up with Facebook" type="button" />
+        <FacebookButton />
       </a>
 
       <a href="/auth/google">
-        <GoogleButton text="Sign up with Google" type="button" />
+        <GoogleButton />
       </a>
 
       <SignupWrapper>
@@ -81,7 +82,7 @@ const OrSeperator = styled.div`
 
 const Header = styled.h2`
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `;
 
 const LabelWrapper = styled.div`

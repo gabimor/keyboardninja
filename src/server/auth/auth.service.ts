@@ -30,8 +30,15 @@ export class AuthService {
       throw new BadRequestException("user doesn't include _id property");
     }
 
-    const { _id, email, firstName, lastName } = user;
+    const { _id, email, firstName, lastName, facebookId, googleId } = user;
 
-    return this.jwtService.sign({ _id, email, firstName, lastName });
+    return this.jwtService.sign({
+      _id,
+      email,
+      firstName,
+      lastName,
+      facebookId,
+      googleId,
+    });
   }
 }

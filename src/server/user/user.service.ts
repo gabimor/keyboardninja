@@ -3,6 +3,7 @@ import { User } from "@server/user/User.schema";
 import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
 import { hash } from "bcrypt";
+import { bcryptSaltRound } from "@server/auth/consts";
 
 @Injectable()
 export class UserService {
@@ -19,10 +20,7 @@ export class UserService {
       throw new HttpException("user exists: " + email, HttpStatus.BAD_REQUEST);
     }
 
-    const hashedPassword = await hash(
-      password,
-      parseInt(process.env.BCRYPT_SALT_ROUNDS)
-    );
+    const hashedPassword = await hash(password, bcryptSaltRound);
 
     const user = await this.userModel.create({
       email,

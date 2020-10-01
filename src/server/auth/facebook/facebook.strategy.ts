@@ -30,6 +30,6 @@ export class FacebookStrategy extends PassportStrategy(Strategy) {
       firstName,
       lastName
     );
-    return { _id: user._id, email };
+    return user.toJSON();
   }
 }

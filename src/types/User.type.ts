@@ -9,5 +9,8 @@ export type UserType = {
 };
 
 export type JwtUser = Partial<
-  Pick<UserType, "_id" | "email" | "firstName" | "lastName">
+  Pick<
+    UserType,
+    "_id" | "email" | "firstName" | "lastName" | "facebookId" | "googleId"
+  >
 >;

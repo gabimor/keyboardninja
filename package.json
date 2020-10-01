@@ -37,9 +37,11 @@
     "razzle-heroku": "^3.0.0",
     "razzle-plugin-typescript": "^3.1.6",
     "react": "16.8.4",
+    "react-avatar": "^3.9.7",
     "react-dom": "16.8.4",
     "react-hook-form": "^6.4.1",
     "react-router-dom": "5.1.2",
+    "react-spinners": "^0.9.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.2",
     "swagger-ui-express": "^4.1.4"

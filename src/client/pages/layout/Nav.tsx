@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { PrimaryButton } from "../../components/Buttons";
 import { JwtUser } from "@src/types/User.type";
+import Avatar from "react-avatar";
 
 function Anonymous() {
   return (
@@ -37,6 +38,15 @@ function LoggedIn({ user, onLogout }: LoggedInProps) {
       </li>
       <li>
         <a onClick={onLogout}>Logout</a>
+      </li>
+      <li>
+        <Avatar
+          name={user.firstName + " " + user.lastName}
+          facebookId={user.facebookId}
+          googleId={user.googleId}
+          size="36"
+          round={true}
+        />
       </li>
     </>
   );

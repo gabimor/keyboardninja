@@ -21,7 +21,7 @@ export default function LoginForm({ onSubmit }: Props) {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Header>Log in</Header>
-      <Label>Email</Label>
+      {/* <Label>Email</Label>
       <Input
         name="email"
         ref={register({
@@ -39,20 +39,20 @@ export default function LoginForm({ onSubmit }: Props) {
       </LabelWrapper>
       <Input
         name="password"
+        type="password"
         ref={register({
           required: "Please enter your password",
         })}
       ></Input>
       {errors.password && <Error>{errors.password.message}</Error>}
-
       <PrimaryButton style={{ marginTop: 20 }}>Log in</PrimaryButton>
-      <OrSeperator> - or - </OrSeperator>
+      <OrSeperator> - or - </OrSeperator> */}
       <a href="/auth/facebook" style={{ marginBottom: 20 }}>
-        <FacebookButton text="Log in with Facebook" type="button" />
+        <FacebookButton />
       </a>
 
       <a href="/auth/google">
-        <GoogleButton text="Log in with Google" type="button" />
+        <GoogleButton />
       </a>
 
       <SignupWrapper>
@@ -75,7 +75,7 @@ const OrSeperator = styled.div`
 
 const Header = styled.h2`
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `;
 
 const LabelWrapper = styled.div`

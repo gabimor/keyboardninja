@@ -86,7 +86,7 @@ describe("Auth Controller", () => {
       const res = await request(app.getHttpServer())
         .post("/auth/login")
         .send({ email, password })
-        .expect(HttpStatus.CREATED);
+        .expect(HttpStatus.FOUND);
 
       expect(res.header["set-cookie"][0]).toContain(token);
     });

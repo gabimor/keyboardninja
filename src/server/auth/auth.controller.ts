@@ -39,7 +39,7 @@ export class AuthController {
     const jwt = this.authService.generateJwt(user);
 
     res.cookie("jwt", jwt);
-    res.sendStatus(HttpStatus.CREATED);
+    return res.redirect("/");
   }
 
   @Post("signup")
@@ -56,7 +56,7 @@ export class AuthController {
 
   @UseGuards(FacebookAuthGuard)
   @Get("facebook")
-  async facebook(@Req() req: any, @Res() res: Response) {
+  async facebook(@Req() req: RequestAuth, @Res() res: Response) {
     const jwt = this.authService.generateJwt(req.user);
 
     res.cookie("jwt", jwt);

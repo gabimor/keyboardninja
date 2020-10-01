@@ -14,10 +14,8 @@ export const Primary = (args: any) => (
 export const Secondary = (args: any) => (
   <SecondaryButton>Secondary Button</SecondaryButton>
 );
-export const Facebook = (args: any) => (
-  <FacebookButton text="Log in with Facebook" />
-);
-export const Google = (args: any) => <GoogleButton text="Log in with Google" />;
+export const Facebook = (args: any) => <FacebookButton />;
+export const Google = (args: any) => <GoogleButton />;
 
 export const InputField = () => <Input type="text" />;
 
@@ -25,8 +23,8 @@ export const Inline = () => (
   <div style={{ display: "flex" }}>
     <PrimaryButton>Primary Button</PrimaryButton>
     <SecondaryButton>Secondary Button</SecondaryButton>
-    <FacebookButton text="Log in with Facebook" />
-    <GoogleButton text="Log in with Google" />
+    <FacebookButton />
+    <GoogleButton />
     <Input type="text" />
   </div>
 );
@@ -36,10 +34,10 @@ export const Vertical = () => (
     <PrimaryButton>Primary Button</PrimaryButton>
     <SecondaryButton>Secondary Button</SecondaryButton>
     <a>
-      <FacebookButton text="Log in with Facebook" />
+      <FacebookButton />
     </a>
     <a>
-      <GoogleButton text="Log in with Google" />
+      <GoogleButton />
     </a>
     <Input type="text" />
   </div>

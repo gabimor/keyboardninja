@@ -1,42 +1,52 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { InterpolationWithTheme, jsx } from "@emotion/core";
+import { useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
 
-type Props = {
+type SocialButton = {
   text: string;
-  [x: string]: any;
+  icon: string;
+  css: InterpolationWithTheme<any>;
 };
 
-export const FacebookButton = ({ text, ...props }: Props) => (
-  <Button css={fbStyle} {...props}>
-    <img
-      src="/icons/facebook.svg"
-      style={{
-        width: "calc(1.1em + 9px)",
-      }}
-    />
-    <div> {text}</div>
-  </Button>
+const SocialButton: React.FC<SocialButton> = ({ text, icon, ...props }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  return (
+    <Button onClick={() => setIsLoading(true)} type="button" {...props}>
+      <img src={icon} />
+      <div>
+        {text}
+        <ClipLoader size={10} color={"#fff"} loading={isLoading} />
+      </div>
+    </Button>
+  );
+};
+
+export const FacebookButton = () => (
+  <SocialButton
+    text={"Continue with Facebook"}
+    icon={"icons/facebook.svg"}
+    css={fbStyle}
+  />
 );
 
-export const GoogleButton = ({ text, ...props }: Props) => (
-  <Button css={googleStyle} {...props}>
-    <img
-      src="/icons/google.svg"
-      style={{
-        background: "white",
-        borderRadius: "50%",
-        padding: 4,
-        width: "calc(1.1em + 9px)",
-      }}
-    />
-    <div> {text}</div>
-  </Button>
+export const GoogleButton = () => (
+  <SocialButton
+    text={"Continue with Google"}
+    icon={"icons/google.svg"}
+    css={googleStyle}
+  />
 );
 
 const fbStyle = css`
   background: #3a5696;
+
+  img {
+    width: calc(1.1em + 9px);
+  }
 
   &:hover {
     background: #526aa0;
@@ -45,6 +55,13 @@ const fbStyle = css`
 
 const googleStyle = css`
   background: #4285f4;
+
+  img {
+    background: white;
+    border-radius: 50%;
+    padding: 4;
+    width: calc(1.1em + 9px);
+  }
 
   &:hover {
     background: #669df9;

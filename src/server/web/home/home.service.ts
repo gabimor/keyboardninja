@@ -32,6 +32,9 @@ export class HomeService {
     return {
       firstName: jwtUser.firstName,
       lastName: jwtUser.lastName,
+      email: jwtUser.email,
+      facebookId: jwtUser.facebookId,
+      googleId: jwtUser.googleId,
     };
   }
 }
