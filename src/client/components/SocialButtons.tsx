@@ -59,7 +59,7 @@ const googleStyle = css`
   img {
     background: white;
     border-radius: 50%;
-    padding: 4;
+    padding: 4px;
     width: calc(1.1em + 9px);
   }
 

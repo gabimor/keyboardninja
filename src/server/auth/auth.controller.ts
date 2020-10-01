@@ -38,7 +38,7 @@ export class AuthController {
 
     const jwt = this.authService.generateJwt(user);
 
-    res.cookie("jwt", jwt);
+    setCookie(res, jwt);
     return res.redirect("/");
   }
 
@@ -50,7 +50,7 @@ export class AuthController {
     );
     const jwt = this.authService.generateJwt(user);
 
-    res.cookie("jwt", jwt);
+    setCookie(res, jwt);
     res.sendStatus(HttpStatus.CREATED);
   }
 
@@ -59,7 +59,8 @@ export class AuthController {
   async facebook(@Req() req: RequestAuth, @Res() res: Response) {
     const jwt = this.authService.generateJwt(req.user);
 
-    res.cookie("jwt", jwt);
+    setCookie(res, jwt);
+
     return res.redirect("/");
   }
 
@@ -75,7 +76,11 @@ export class AuthController {
   async google(@Req() req: any, @Res() res: Response) {
     const jwt = this.authService.generateJwt(req.user);
 
-    res.cookie("jwt", jwt);
+    setCookie(res, jwt);
     return res.redirect("/");
   }
+}
+
+function setCookie(res: Response, jwt: string) {
+  res.cookie("jwt", jwt, { sameSite: "strict" });
 }

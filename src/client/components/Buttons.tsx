@@ -21,7 +21,7 @@ const btnStyle = `
   width:100%;
   cursor:pointer;
   color: #E9E5E5;
-  padding: 9px 15px;
+  padding: 10px 15px;
   border-radius: 4px;
   line-height: 100%;
 `;

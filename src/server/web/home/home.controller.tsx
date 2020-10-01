@@ -20,7 +20,7 @@ export class HomeController {
   @Get()
   async home(@Req() req: Request) {
     const appCategories = await this.appsService.getAppCategory();
-    
+
     const dataContext: IDataContext = {
       user: this.homeService.getJwtUser(req.user),
       appCategories,

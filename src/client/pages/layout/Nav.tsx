@@ -10,14 +10,14 @@ function Anonymous() {
   return (
     <>
       <li>
+        <Link to="/contact">Wanna Help?</Link>
+      </li>
+      <li>
         <Link to="/login">Log in</Link>
       </li>
       <li>
-        <Link to="/signup">Sign up</Link>
-      </li>
-      <li>
-        <Link to="/contact">
-          <PrimaryButton>Wanna Help?</PrimaryButton>
+        <Link to="/signup">
+          <PrimaryButton>Sign up</PrimaryButton>
         </Link>
       </li>
     </>
