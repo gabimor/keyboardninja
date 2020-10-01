@@ -9,7 +9,7 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "ES2020",
+    "target": "ES2019",
     "sourceMap": true,
     "outDir": "./build",
     "baseUrl": "./",
@@ -19,7 +19,8 @@
     "typeRoots": ["node_modules/@types", "./typings"],
     "paths": {
       "@client/*": ["src/client/*"],
-      "@server/*": ["src/server/*"]
+      "@server/*": ["src/server/*"],
+      "@src/*": ["src/*"]
     }
   },
   "include": ["src/**/*", "./typings/**/*.d.ts"],

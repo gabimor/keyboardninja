@@ -2,15 +2,15 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import { encodeAppName } from "../../helpers";
-import AppItem, { IAppItemProps } from "./AppItem";
+import AppItem, { AppItemProps } from "./AppItem";
 
-interface Props {
+export interface AppListProps {
   name: string;
-  apps: IAppItemProps[];
+  apps: AppItemProps[];
   gridArea?: string;
 }
 
-export default function AppList({ name, apps, gridArea }: Props) {
+export default function AppList({ name, apps, gridArea }: AppListProps) {
   return (
     <Container gridArea={gridArea}>
       <Header>{name}</Header>

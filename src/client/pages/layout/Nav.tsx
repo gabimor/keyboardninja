@@ -2,27 +2,30 @@ import React from "react";
 
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import Button from "../../components/Button";
-import { IUser } from "../../../server/db/User.schema";
+import { PrimaryButton } from "../../components/Buttons";
+import { JwtUser } from "@src/types/User.type";
+import Avatar from "react-avatar";
 
 function Anonymous() {
   return (
     <>
       <li>
-        <Link to="/login">Login</Link>
+        <Link to="/login">Log in</Link>
       </li>
       <li>
-        <Link to="/signup">Sign Up</Link>
+        <Link to="/signup">Sign up</Link>
       </li>
       <li>
-        <Button to="/contact">Wanna Help?</Button>
+        <Link to="/contact">
+          <PrimaryButton>Wanna Help?</PrimaryButton>
+        </Link>
       </li>
     </>
   );
 }
 
 interface LoggedInProps {
-  user?: IUser;
+  user?: JwtUser;
   onLogout?: () => void;
 }
 
@@ -35,6 +38,15 @@ function LoggedIn({ user, onLogout }: LoggedInProps) {
       </li>
       <li>
         <a onClick={onLogout}>Logout</a>
+      </li>
+      <li>
+        <Avatar
+          name={user.firstName + " " + user.lastName}
+          facebookId={user.facebookId}
+          googleId={user.googleId}
+          size="36"
+          round={true}
+        />
       </li>
     </>
   );

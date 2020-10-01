@@ -1,8 +1,8 @@
 import { Prop, raw, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Schema as MongooseNativeSchema } from "mongoose";
-import { OSs } from "./OSs";
-import { ISection } from "./ISection";
-import { IShortcut } from "./IShortcut";
+import { OSs } from "@src/types/OSs.enum";
+import { Section } from "@src/types/Section.type";
+import { Shortcut } from "@src/types/Shortcut.type";
 
 @Schema({ collection: "apps" })
 export class App extends Document {
@@ -22,7 +22,7 @@ export class App extends Document {
       },
     ])
   )
-  sections: ISection[];
+  sections: Section[];
   oss: OSs[];
   @Prop(
     raw([
@@ -37,7 +37,7 @@ export class App extends Document {
       },
     ])
   )
-  shortcuts: IShortcut[];
+  shortcuts: Shortcut[];
 }
 
 export const AppSchema = SchemaFactory.createForClass(App);

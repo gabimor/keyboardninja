@@ -8,6 +8,7 @@ module.exports = {
     config.devtool = dev ? "eval-source-map" : "none";
     config.resolve.alias["@client"] = path.resolve("./src/client/");
     config.resolve.alias["@server"] = path.resolve("./src/server/");
+    config.resolve.alias["@src"] = path.resolve("./src/");
     return config;
   },
 };

@@ -4,16 +4,9 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-export function signup(email: string, password: string) {
-  return fetch("/api/signup", {
-    method: "POST",
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-    headers,
-  }).then((res) => res.json());
-}
+export const sendApiRequest: typeof fetch = async (url, options?) => {
+  return fetch(url, { ...options, headers });
+};
 
 export async function contactUs(name: string, email: string, message: string) {
   try {
@@ -33,26 +26,9 @@ export async function contactUs(name: string, email: string, message: string) {
   }
 }
 
-export function login(email: string, password: string) {
-  return fetch("/api/login", {
-    method: "POST",
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-    headers,
-  }).then((res) => res.json());
-}
 
 export function getOS(appId: string, os: string) {
   return fetch(`/api/apps/${appId}?os=${os}`).then((res) => res.json());
-}
-
-export function logout() {
-  return fetch("/api/logout", {
-    method: "POST",
-    headers,
-  });
 }
 
 export function pin(appId: string, shortcutId: string, isPinned: boolean) {

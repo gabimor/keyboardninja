@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
-import { App } from "@server/db/App.schema";
-import { OSs } from "@server/db/OSs";
+import { App } from "@server/app/App.schema";
+import { OSs } from "@src/types/OSs.enum";
+import { JwtUser } from "@src/types/User.type";
 import { Request } from "express";
 
 @Injectable()
@@ -21,5 +22,19 @@ export class HomeService {
     }
 
     return appOS;
+  }
+
+  getJwtUser(user: Express.User): JwtUser {
+    if (!user) return;
+
+    const jwtUser: JwtUser = user;
+
+    return {
+      firstName: jwtUser.firstName,
+      lastName: jwtUser.lastName,
+      email: jwtUser.email,
+      facebookId: jwtUser.facebookId,
+      googleId: jwtUser.googleId,
+    };
   }
 }

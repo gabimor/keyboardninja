@@ -1,9 +1,15 @@
 import React from "react";
 
-import { storiesOf } from "@storybook/react";
-
 import GetLinkPopup from "./GetLinkPopup";
 
-storiesOf("GetLinkPopup", module).add("default", () => (
-  <GetLinkPopup link="http://keyboardninja.me/photoshop/d1fcv3qaasc3421" />
-));
+export default {
+  title: "GetLinkPopup",
+  component: GetLinkPopup,
+};
+
+const Template = (args: any) => <GetLinkPopup {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {
+  link: "http://keyboardninja.me/photoshop/d1fcv3qaasc3421",
+};

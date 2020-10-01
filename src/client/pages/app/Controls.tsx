@@ -5,7 +5,7 @@ import { copyToClipboard } from "../../helpers";
 import { DataContext } from "../../DataContext";
 import OSSelect from "./OSSelect";
 import GetLink from "./GetLink";
-import { getLink } from "../../helpers/api";
+import { getLink } from "../../api";
 
 interface Props {
   icon: string;

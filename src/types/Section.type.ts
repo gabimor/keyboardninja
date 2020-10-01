@@ -1,4 +1,4 @@
-export interface ISection {
+export type Section = {
   _id: string;
   name: string;
-}
+};

@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 import { upperFirstLetter } from "../../helpers";
 
-interface ShortcutProps {
+export interface ShortcutProps {
   keys: string;
   isHtml?: boolean;
 }

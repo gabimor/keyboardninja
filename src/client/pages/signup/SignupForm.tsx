@@ -1,32 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import styled from "@emotion/styled";
 
-import Input from "../../components/Input";
-import Button from "../../components/Button";
+import Input from "@client/components/TextInput";
+import { PrimaryButton } from "@client/components/Buttons";
 import { useForm } from "react-hook-form";
 import { emailRegex } from "@client/helpers";
+import { UserType } from "@src/types/User.type";
+import { FacebookButton, GoogleButton } from "@client/components/SocialButtons";
+
+type FormData = Pick<UserType, "email" | "password">;
 
 interface Props {
-  onSubmit: (data: SignupFormData) => Promise<void>;
-}
-
-export interface SignupFormData {
-  email: string;
-  password: string;
+  onSubmit: (data: FormData) => Promise<void>;
 }
 
 export default function SignupForm({ onSubmit }: Props) {
-  // TODO: remove this
-  const defaultValues = {
-    email: `a${Math.floor(Math.random() * Math.floor(1000000))}@b.com`,
-    password: "123456",
-  };
-
-  const { register, handleSubmit, errors } = useForm<SignupFormData>({
-    defaultValues,
-  });
+  const { register, handleSubmit, errors } = useForm<FormData>();
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -48,6 +38,7 @@ export default function SignupForm({ onSubmit }: Props) {
       </LabelWrapper>
       <Input
         name="password"
+        type="password"
         ref={register({
           required: "Please choose a password",
           minLength: {
@@ -61,7 +52,16 @@ export default function SignupForm({ onSubmit }: Props) {
         })}
       ></Input>
       {errors.password && <Error>{errors.password.message}</Error>}
-      <Button style={{ marginTop: 20 }}>Sign Up</Button>
+      <PrimaryButton style={{ marginTop: 20 }}>Sign up</PrimaryButton>
+      <OrSeperator> - or - </OrSeperator>
+      <a href="/auth/facebook" style={{ marginBottom: 20 }}>
+        <FacebookButton />
+      </a>
+
+      <a href="/auth/google">
+        <GoogleButton />
+      </a>
+
       <SignupWrapper>
         Already have an account ?<Link to="/login"> Log in</Link>
       </SignupWrapper>
@@ -74,9 +74,15 @@ const Form = styled.form`
   flex-direction: column;
 `;
 
+const OrSeperator = styled.div`
+  color: #e9e5e5;
+  padding: 15px 0;
+  text-align: center;
+`;
+
 const Header = styled.h2`
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `;
 
 const LabelWrapper = styled.div`
@@ -91,7 +97,7 @@ const LabelWrapper = styled.div`
 
 const SignupWrapper = styled.div`
   text-align: center;
-  margin-top: 40px;
+  margin-top: 20px;
   color: #e9e5e5;
 `;
 

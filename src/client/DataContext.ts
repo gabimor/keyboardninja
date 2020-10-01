@@ -1,19 +1,17 @@
-import React from "react";
-import { OSs } from "../server/db/OSs";
-import { IUser } from "../server/db/User.schema";
-import { App } from "../server/db/App.schema";
-import { AppCategory } from "../server/db/AppCategory.schema";
-import { IDoPin, IDoSetOs } from "src/client";
+import React, { Dispatch, SetStateAction } from "react";
+import { OSs } from "@src/types/OSs.enum";
+import { JwtUser, UserType } from "@src/types/User.type";
+import { App } from "@server/app/App.schema";
+import { AppCategory } from "@server/app/AppCategory.schema";
+import { DoPin, DoSetOs } from "@src/client";
 
 export interface IDataContext {
   appCategories?: AppCategory[];
   app?: App;
   os?: OSs;
-  user?: IUser;
-  doLogin?: (user: IUser) => void;
-  doLogout?: () => void;
-  doPin?: IDoPin;
-  doSetOs?: IDoSetOs;
+  user?: JwtUser;
+  doPin?: DoPin;
+  doSetOs?: DoSetOs;
 }
 
 export const DataContext = React.createContext<IDataContext>(undefined);

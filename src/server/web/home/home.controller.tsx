@@ -5,21 +5,24 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import Layout from "@client/Layout";
 import { DataContext, IDataContext } from "@client/DataContext";
-import { DBService } from "@server/db/db.service";
 import { pageTemplate } from "@server/web/pageTemplate";
-import { OSs } from "@server/db/OSs";
 import { Request, Response } from "express";
 import { HomeService } from "./home.service";
+import { AppService } from "@server/app/app.service";
 
 @Controller("/")
 export class HomeController {
-  constructor(private dbService: DBService, private homeService: HomeService) {}
+  constructor(
+    private appsService: AppService,
+    private homeService: HomeService
+  ) {}
 
   @Get()
-  async home() {
-    const appCategories = await this.dbService.getAppCategory();
-
+  async home(@Req() req: Request) {
+    const appCategories = await this.appsService.getAppCategory();
+    
     const dataContext: IDataContext = {
+      user: this.homeService.getJwtUser(req.user),
       appCategories,
     };
 
@@ -35,12 +38,12 @@ export class HomeController {
 
   @Get("login")
   async login() {
-    return renderPage("/login", "Login", "/login", {});
+    return renderPage("/login", "Log in", "/login", {});
   }
 
   @Get("signup")
   async signup() {
-    return renderPage("/signup", "Sign Up", "/signup", {});
+    return renderPage("/signup", "Sign up", "/signup", {});
   }
 
   @Get("contact")
@@ -54,9 +57,9 @@ export class HomeController {
     @Req() req: Request,
     @Res() res: Response
   ) {
-    const app = await this.dbService.getAppByName(name);
+    const app = await this.appsService.getAppByName(name);
 
-    const appCategories = await this.dbService.getAppCategory();
+    const appCategories = await this.appsService.getAppCategory();
 
     if (!app) return res.redirect("/404");
 

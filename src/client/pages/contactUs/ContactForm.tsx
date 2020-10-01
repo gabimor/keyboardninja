@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { contactUs } from "../../helpers/api";
-import Button from "../../components/Button";
+import { contactUs } from "../../api";
+import { PrimaryButton } from "../../components/Buttons";
 import styled from "@emotion/styled";
 
 interface Props {
@@ -56,11 +56,11 @@ export default ({ onSend }: Props) => {
         rows={7}
         placeholder="How can we help?"
       ></Textarea>
-      <Button
+      <PrimaryButton
         style={{ display: "block", width: "100%", padding: 12, marginTop: 25 }}
       >
         Send
-      </Button>
+      </PrimaryButton>
     </Form>
   );
 };

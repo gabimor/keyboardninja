@@ -4,10 +4,11 @@ import { storiesOf } from "@storybook/react";
 
 import FirstTimeMessage from "./FirstTimeMessage";
 
-storiesOf("FirstTimeMessage", module).add("default", () => (
-  <FirstTimeMessage
-    onDismiss={() => {
-      alert();
-    }}
-  />
-));
+export default {
+  title: "FirstTimeMessage",
+  component: FirstTimeMessage,
+};
+
+const Template = () => <FirstTimeMessage onDismiss={null} />;
+
+export const Default = Template.bind({});

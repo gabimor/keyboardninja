@@ -1,4 +1,4 @@
-export interface IShortcut {
+export type Shortcut = {
   _id: string;
   action: string;
   sectionId: string;
@@ -8,4 +8,4 @@ export interface IShortcut {
   isHtml?: boolean;
   isPinned?: boolean;
   note?: string;
-}
+};
