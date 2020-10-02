@@ -48,7 +48,6 @@ export class HomeController {
 
   @Get("signup")
   async signup() {
-    throw new Error("testetstsds");
     return renderPage("/signup", "Sign up", "/signup", {});
   }
 
