@@ -4,18 +4,20 @@ import styled from "@emotion/styled";
 
 import Logo from "./Logo";
 import Nav from "./Nav";
-import { DataContext } from "@client/DataContext";
-import { logout } from "@client/api/auth";
+import { JwtUser } from "@src/types/User.type";
 
-function Header() {
-  const { user } = useContext(DataContext);
+type Props = {
+  user: JwtUser;
+  onLogout: () => void;
+};
 
+function Header({ user, onLogout }: Props) {
   return (
     <Container>
       <Link to="/">
         <Logo />
       </Link>
-      <Nav user={user} onLogout={logout} />
+      <Nav user={user} onLogout={onLogout} />
     </Container>
   );
 }

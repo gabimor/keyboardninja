@@ -21,7 +21,7 @@ export default function LoginForm({ onSubmit }: Props) {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Header>Log in</Header>
-      <Label>Email</Label>
+      {/* <Label>Email</Label>
       <Input
         name="email"
         ref={register({
@@ -46,7 +46,7 @@ export default function LoginForm({ onSubmit }: Props) {
       ></Input>
       {errors.password && <Error>{errors.password.message}</Error>}
       <PrimaryButton style={{ marginTop: 20 }}>Log in</PrimaryButton>
-      <OrSeperator> - or - </OrSeperator>
+      <OrSeperator> - or - </OrSeperator> */}
       <a href="/auth/facebook" style={{ marginBottom: 20 }}>
         <FacebookButton />
       </a>

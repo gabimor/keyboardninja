@@ -32,6 +32,10 @@ export function pageTemplate(
         href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet" />
       <style>${style}</style>
+      <link rel="icon" href="star.svg">
+      <link rel=”mask-icon” href=”star.svg” color=”#270505">
+      <link rel="apple-touch-icon" href="star.png">
+      <meta name="theme-color" content="#270505">
       <script src="${assets.client.js}" defer crossorigin></script>
     </head>
     <body>

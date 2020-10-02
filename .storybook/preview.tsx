@@ -10,9 +10,17 @@ export const parameters = {
 
 const contextData = { os: OSs.Mac, app: { oss: ["mac", "win"] } };
 
+const storyStyle = `
+  html {background-color:inherit;}
+  body { background:inherit; }
+`;
+
 const withContainer = (Story, context) => (
   <DataContext.Provider value={contextData}>
-    <style>{style}</style>
+    <style>
+      {style}
+      {storyStyle}
+    </style>
     <Story {...context} />
   </DataContext.Provider>
 );

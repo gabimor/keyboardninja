@@ -6,6 +6,10 @@ import { PrimaryButton } from "../../components/Buttons";
 import { JwtUser } from "@src/types/User.type";
 import Avatar from "react-avatar";
 
+export default (props: LoggedInProps) => (
+  <Container>{props.user ? <LoggedIn {...props} /> : <Anonymous />}</Container>
+);
+
 function Anonymous() {
   return (
     <>
@@ -51,10 +55,6 @@ function LoggedIn({ user, onLogout }: LoggedInProps) {
     </>
   );
 }
-
-export default (props: LoggedInProps) => (
-  <Container>{props.user ? <LoggedIn {...props} /> : <Anonymous />}</Container>
-);
 
 const Container = styled.ul`
   display: inline-block;

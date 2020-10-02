@@ -1,12 +1,12 @@
 import React from "react";
-import { Get, Param, Req, Res } from "@nestjs/common";
+import { Get, Next, Param, Req, Res } from "@nestjs/common";
 import { Controller } from "@nestjs/common";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import Layout from "@client/Layout";
 import { DataContext, IDataContext } from "@client/DataContext";
 import { pageTemplate } from "@server/web/pageTemplate";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { HomeService } from "./home.service";
 import { AppService } from "@server/app/app.service";
 
@@ -36,6 +36,11 @@ export class HomeController {
     return renderPage("/404", "Page Not found", "/404", {});
   }
 
+  @Get("500")
+  async error() {
+    return renderPage("/500", "Oops ... Something went wrong", "/500", {});
+  }
+
   @Get("login")
   async login() {
     return renderPage("/login", "Log in", "/login", {});
@@ -43,6 +48,7 @@ export class HomeController {
 
   @Get("signup")
   async signup() {
+    throw new Error("testetstsds");
     return renderPage("/signup", "Sign up", "/signup", {});
   }
 
@@ -55,13 +61,14 @@ export class HomeController {
   async app(
     @Param("name") name: string,
     @Req() req: Request,
-    @Res() res: Response
+    @Res() res: Response,
+    @Next() next: NextFunction
   ) {
     const app = await this.appsService.getAppByName(name);
 
     const appCategories = await this.appsService.getAppCategory();
 
-    if (!app) return res.redirect("/404");
+    if (!app) return next();
 
     const dataContext: IDataContext = {
       app,
