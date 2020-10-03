@@ -6,6 +6,7 @@ import {
   HttpStatus,
 } from "@nestjs/common";
 import { Response } from "express";
+import { page500 } from "./pageTemplate/page500";
 
 @Catch()
 export class ServeStaticExceptionFilter implements ExceptionFilter {
@@ -17,12 +18,12 @@ export class ServeStaticExceptionFilter implements ExceptionFilter {
       response.redirect("/404");
     } else {
       console.log(exception);
-      response.redirect("/500");
-      // const status =
-      //   exception instanceof HttpException
-      //     ? exception.getStatus()
-      //     : HttpStatus.INTERNAL_SERVER_ERROR;
-      // response.sendStatus(status);
+      const status =
+        exception instanceof HttpException
+          ? exception.getStatus()
+          : HttpStatus.INTERNAL_SERVER_ERROR;
+
+      response.send(page500()).sendStatus(status);
     }
   }
 }

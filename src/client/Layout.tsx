@@ -10,7 +10,6 @@ import Footer from "./pages/layout/Footer";
 import Signup from "./pages/Signup";
 import ContactUs from "./pages/ContactUs";
 import Page404 from "./pages/404";
-import Page500 from "./pages/500";
 import { DataContext } from "@client/DataContext";
 import { logout } from "@client/api/auth";
 
@@ -28,7 +27,6 @@ const Layout = () => {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/contact" component={ContactUs} />
           <Route path="/404" component={Page404} />
-          <Route path="/500" component={Page500} />
           <Route path="/:name" component={App} />
           <Route component={Page404} />
         </Switch>

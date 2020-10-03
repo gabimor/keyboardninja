@@ -26,7 +26,7 @@ export class HomeController {
       appCategories,
     };
 
-    const title = "Save your shortcuts - KeyboardNinja.me";
+    const title = "KeyboardNinja.me";
 
     return renderPage("/", title, "/", dataContext);
   }
@@ -75,7 +75,14 @@ export class HomeController {
       appCategories,
     };
 
-    return res.send(renderPage(req.url, app.name, app.url, dataContext));
+    return res.send(
+      renderPage(
+        req.url,
+        app.name + " | KeyboardNinja.me",
+        app.url,
+        dataContext
+      )
+    );
   }
 }
 

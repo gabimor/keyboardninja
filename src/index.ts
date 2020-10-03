@@ -13,7 +13,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe());
-  // TODO: find solution for static files
   app.useGlobalFilters(new ServeStaticExceptionFilter());
   // app.use(helmet());
   // TODO: configure csrf & helmet

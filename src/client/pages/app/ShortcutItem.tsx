@@ -90,7 +90,6 @@ const ActionContainer = styled.div`
 `;
 
 const PinContainer = styled.div`
-  // width: 1%;
   text-align: center;
   padding: 0 13px 0 15px;
   user-select: none;
