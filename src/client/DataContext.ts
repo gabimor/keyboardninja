@@ -7,11 +7,12 @@ import { DoPin, DoSetOs } from "@src/client";
 
 export interface IDataContext {
   appCategories?: AppCategory[];
-  app?: App;
+  app?: Partial<App>;
   os?: OSs;
   user?: JwtUser;
   doPin?: DoPin;
   doSetOs?: DoSetOs;
+  doLogout?: () => void;
 }
 
 export const DataContext = React.createContext<IDataContext>(undefined);

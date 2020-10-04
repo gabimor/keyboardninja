@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 
 import { encodeAppName } from "../../helpers";
 import AppItem, { AppItemProps } from "./AppItem";
+import { desktopBreakpoint, tabletBreakpoint } from "@client/consts";
 
 export interface AppListProps {
   name: string;
@@ -47,11 +48,11 @@ const Container = styled.div`
   grid-area: ${(props: ContainerProps) => props.gridArea};
   padding: 20px;
 
-  @media (max-width: 992px) {
+  @media (max-width: ${desktopBreakpoint}px) {
     padding: 15px 10px;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: ${tabletBreakpoint - 1}px) {
     padding: 10px 6px;
   }
 `;

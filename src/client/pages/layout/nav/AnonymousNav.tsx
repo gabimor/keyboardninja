@@ -4,7 +4,7 @@ import { PrimaryButton } from "../../../components/Buttons";
 
 export default function Anonymous() {
   return (
-    <>
+    <ul>
       <li>
         <Link to="/login">Log in</Link>
       </li>
@@ -13,6 +13,6 @@ export default function Anonymous() {
           <PrimaryButton>Sign up</PrimaryButton>
         </Link>
       </li>
-    </>
+    </ul>
   );
 }

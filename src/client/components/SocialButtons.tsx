@@ -1,8 +1,7 @@
 /** @jsx jsx */
-import { InterpolationWithTheme, jsx } from "@emotion/core";
-import { useState } from "react";
+import React, { useState } from "react";
+import { InterpolationWithTheme, jsx, css } from "@emotion/core";
 import styled from "@emotion/styled";
-import { css } from "@emotion/core";
 import ClipLoader from "react-spinners/ClipLoader";
 
 type SocialButton = {

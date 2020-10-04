@@ -13,6 +13,8 @@ import Page404 from "./pages/404";
 import { DataContext } from "@client/DataContext";
 import { logout } from "@client/api/auth";
 
+import { tabletBreakpoint, desktopBreakpoint, siteWidth } from "./consts";
+
 const Layout = () => {
   const { user } = useContext(DataContext);
 
@@ -37,15 +39,15 @@ const Layout = () => {
 };
 
 const Container = styled.div`
-  max-width: 1440px;
+  max-width: ${siteWidth}px;
   margin: 0 auto;
   padding: 0 30px;
 
-  @media (max-width: 992px) {
+  @media (max-width: ${desktopBreakpoint}px) {
     padding: 20px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${tabletBreakpoint}px) {
     padding: 10px;
   }
 `;

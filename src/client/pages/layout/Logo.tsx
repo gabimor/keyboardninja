@@ -1,6 +1,7 @@
 import React from "react";
 
 import styled from "@emotion/styled";
+import { desktopBreakpoint, tabletBreakpoint } from "@client/consts";
 
 export default function Logo() {
   return (
@@ -22,11 +23,11 @@ const H1 = styled.h1`
   font-weight: 300;
   position: relative;
 
-  @media (max-width: 992px) {
+  @media (max-width: ${desktopBreakpoint}px) {
     font-size: 25px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${tabletBreakpoint}px) {
     font-size: 20px;
   }
 `;

@@ -1,19 +1,16 @@
-import { JwtUser } from "@src/types/User.type";
+/** @jsx jsx */
 import { Meta, Story } from "@storybook/react";
-import React from "react";
 import Header from "./Header";
+import { jsx } from "@emotion/core";
 
 export default {
   title: "Header",
-  parameters: {
-    layout: "fullscreen",
-  },
   component: Header,
 } as Meta;
 
 const Template = (args: any) => <Header {...args} />;
 
-export const LoggedIn = Template.bind({});
+export const LoggedIn: Story = Template.bind({});
 LoggedIn.args = {
   user: {
     _id: "1",

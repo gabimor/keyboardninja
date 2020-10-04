@@ -9,12 +9,16 @@ export default (props: LoggedInProps) => (
   <Container>{props.user ? <LoggedIn {...props} /> : <Anonymous />}</Container>
 );
 
-const Container = styled.ul`
-  display: inline-block;
+const Container = styled.div`
   font-size: 14px;
   font-weight: 300;
-  list-style: none;
+
   margin-left: auto;
+
+  ul {
+    display: inline-block;
+    list-style: none;
+  }
 
   li {
     padding-left: 20px;

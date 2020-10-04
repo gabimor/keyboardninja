@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import ContactForm from "./contactUs/ContactForm";
+import { tabletBreakpoint } from "@client/consts";
 
 export default () => {
   const [messageSent, setMessageSent] = useState(false);
@@ -50,7 +51,7 @@ const Title = styled.h1`
   line-height: 1.3em;
   margin-bottom: 40px;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${tabletBreakpoint}px) {
     font-size: 40px;
   }
 `;

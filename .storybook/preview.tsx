@@ -1,7 +1,5 @@
 import React from "react";
-import { DataContext } from "../src/client/DataContext";
 import { style } from "../src/server/web/pageTemplate/style";
-import { OSs } from "../src/types/OSs.enum";
 import StoryRouter from "storybook-react-router";
 
 export const parameters = {
@@ -25,21 +23,19 @@ export const parameters = {
   },
 };
 
-const contextData = { os: OSs.Mac, app: { oss: ["mac", "win"] } };
-
 const storyStyle = `
   html {background-color:inherit;}
   body { background:inherit; }
 `;
 
-const withContainer = (Story, context) => (
-  <DataContext.Provider value={contextData}>
+const baseDecorator = (Story, context) => (
+  <>
     <style>
       {style}
       {storyStyle}
     </style>
     <Story {...context} />
-  </DataContext.Provider>
+  </>
 );
 
-export const decorators = [withContainer, StoryRouter()];
+export const decorators = [baseDecorator, StoryRouter()];

@@ -3,37 +3,44 @@ import React from "react";
 import ShortcutList from "./ShortcutList";
 import { Shortcut } from "@src/types/Shortcut.type";
 import { Meta } from "@storybook/react";
+import {
+  desktopBreakpoint,
+  mobileBreakpoint,
+  tabletBreakpoint,
+} from "@client/consts";
+import { DataContext } from "@client/DataContext";
+import { OSs } from "@src/types/OSs.enum";
 
 export default { title: "ShortcutList", component: ShortcutList } as Meta;
 
 export const Default = () => (
-  <div>
-    <div style={{ width: "992px" }}>
+  <DataContext.Provider value={{ os: OSs.Win }}>
+    <div style={{ width: `${desktopBreakpoint}px` }}>
       <ShortcutList title={"General"} shortcuts={shortcutList} />
     </div>
-    <div style={{ width: "768px" }}>
+    <div style={{ width: `${tabletBreakpoint}px` }}>
       <ShortcutList title={"General"} shortcuts={shortcutList} />
     </div>
-    <div style={{ width: "360px" }}>
+    <div style={{ width: `${mobileBreakpoint}px` }}>
       <ShortcutList title={"General"} shortcuts={shortcutList} />
     </div>
-  </div>
+  </DataContext.Provider>
 );
 
 const shortcutList: Shortcut[] = [
-  { _id: "1", sectionId: "1", action: "test", mac: "ctrl+s", pins: 0 },
+  { _id: "1", sectionId: "1", action: "test", win: "ctrl+s", pins: 0 },
   {
     _id: "2",
     sectionId: "1",
     action: "Lorem ipsum dolor sit amet",
-    mac: "ctrl+s or F12",
+    win: "ctrl+s or F12",
     pins: 4,
   },
   {
     _id: "3",
     sectionId: "1",
     action: "test",
-    mac:
+    win:
       "**Ctrl** then move two fingers on the trackpad to move the image around in the preview",
     isHtml: true,
     pins: 0,
@@ -43,7 +50,7 @@ const shortcutList: Shortcut[] = [
     sectionId: "1",
     action:
       "Start up from the built-in macOS Recovery system. Or use Option-Command-R or Shift-Option-Command-R to start up from macOS Recovery over the Internet. macOS Recovery installs different versions of macOS, depending on the key combination you use while starting up. If your Mac is using a firmware password, you're asked to enter the password.",
-    mac:
+    win:
       "**Ctrl** then move two fingers on the trackpad to move the image around in the preview",
     isHtml: true,
     pins: 0,
@@ -52,28 +59,28 @@ const shortcutList: Shortcut[] = [
     _id: "5",
     sectionId: "1",
     action: "psum dolor sit amet",
-    mac: "ctrl+arrows enter",
+    win: "ctrl+arrows enter",
     pins: 12,
   },
   {
     _id: "6",
     sectionId: "1",
     action: "psum dolor sit amet",
-    mac: "ctrl+arrows enter",
+    win: "ctrl+arrows enter",
     pins: 12,
   },
   {
     _id: "7",
     sectionId: "1",
     action: "dolor sit amet",
-    mac: "alt+s",
+    win: "alt+s",
     pins: 33,
   },
   {
     _id: "8",
     sectionId: "1",
     action: "ipsum dolor sit amet",
-    mac: "alt+shift+s",
+    win: "alt+shift+s",
     pins: 102,
     isPinned: true,
   },
