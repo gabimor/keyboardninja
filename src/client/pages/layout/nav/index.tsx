@@ -23,8 +23,8 @@ const Container = styled.div`
   }
 
   li {
-    padding-left: 20px;
     display: inline-block;
+    margin-left: 15px;
   }
 
   a {

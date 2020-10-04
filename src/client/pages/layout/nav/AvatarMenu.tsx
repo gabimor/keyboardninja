@@ -35,7 +35,8 @@ export function AvatarMenu({ visible }: Props) {
 }
 
 const DetailsContainer = styled.div`
-  padding-right: 50px;
+  padding: 0 50px 15px 0;
+  border-bottom: solid 1px #606060;
 `;
 
 const Container = styled.div`
@@ -51,10 +52,13 @@ const Container = styled.div`
 `;
 
 const ActionsContainer = styled.ul`
-  border-top: solid 1px #606060;
-  margin-top: 15px;
   padding-top: 10px;
   line-height: 2em;
+  li {
+    display: block;
+    margin-left: 0;
+  }
+
   span i {
     padding-right: 7px;
   }
