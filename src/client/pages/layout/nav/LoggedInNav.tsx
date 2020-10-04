@@ -1,59 +1,50 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { JwtUser } from "@src/types/User.type";
 import Avatar from "react-avatar";
 import { AvatarMenu } from "./AvatarMenu";
 import styled from "@emotion/styled";
 import useOnClickOutside from "use-onclickoutside";
 import MobileMenu from "./MobileMenu";
-import { desktopBreakpoint } from "@client/consts";
+import { enterMobileBreakpoint } from "@client/consts";
+import { useMediaQuery } from "react-responsive";
+import { DataContext } from "@client/DataContext";
 
-export interface LoggedInProps {
-  user?: JwtUser;
-  onSettings: () => void;
-  onLogout: () => void;
-}
-
-export default function LoggedInNav({
-  user,
-  onSettings,
-  onLogout,
-}: LoggedInProps) {
+export default function LoggedInNav() {
+  const isMobile = useMediaQuery({ maxWidth: enterMobileBreakpoint });
   const [avatarMenuVisible, setAvatarMenuVisible] = useState(false);
+  const { user } = useContext(DataContext);
   const ref = React.useRef(null);
   useOnClickOutside(ref, () => setAvatarMenuVisible(false));
 
   return (
     <>
-      <DesktopNavContainer>
-        <li>
-          <Link to="/apps">My apps</Link>
-        </li>
-        <AvatarContainer ref={ref}>
-          <StyledAvatar
-            name={user.firstName + " " + user.lastName}
-            facebookId={user.facebookId}
-            googleId={user.googleId}
-            size="36"
-            onClick={() => setAvatarMenuVisible(true)}
-            round={true}
-            visible={avatarMenuVisible}
-          />
-          <AvatarMenu
-            visible={avatarMenuVisible}
-            user={user}
-            onSettings={onSettings}
-            onLogout={onLogout}
-          />
-        </AvatarContainer>
-      </DesktopNavContainer>
-      <MobileMenu />
+      {isMobile ? (
+        <MobileMenu />
+      ) : (
+        <DesktopNavContainer>
+          <li>
+            <Link to="/apps">My apps</Link>
+          </li>
+          <AvatarContainer ref={ref}>
+            <StyledAvatar
+              name={user.firstName + " " + user.lastName}
+              facebookId={user.facebookId}
+              googleId={user.googleId}
+              size="36"
+              onClick={() => setAvatarMenuVisible(true)}
+              round={true}
+              visible={avatarMenuVisible}
+            />
+            <AvatarMenu visible={avatarMenuVisible} />
+          </AvatarContainer>
+        </DesktopNavContainer>
+      )}
     </>
   );
 }
 
 const DesktopNavContainer = styled.ul`
-  @media (max-width: ${desktopBreakpoint}px) {
+  @media (max-width: ${enterMobileBreakpoint}px) {
     display: none;
   }
 `;

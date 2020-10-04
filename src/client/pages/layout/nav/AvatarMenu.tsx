@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "@emotion/styled";
-import { JwtUser } from "@src/types/User.type";
+import { DataContext } from "@client/DataContext";
 
 type Props = {
   visible: boolean;
-  user: JwtUser;
-  onSettings: () => void;
-  onLogout: () => void;
 };
 
-export function AvatarMenu({ visible, user, onSettings, onLogout }: Props) {
+export function AvatarMenu({ visible }: Props) {
   const opacity = visible ? 1 : 0;
+  const { user, doLogout } = useContext(DataContext);
 
   return (
     <Container style={{ opacity }}>
@@ -22,12 +20,12 @@ export function AvatarMenu({ visible, user, onSettings, onLogout }: Props) {
       </DetailsContainer>
       <ActionsContainer>
         <li>
-          <span onClick={onSettings}>
+          <span>
             <i className="fas fa-cog"></i> Settings
           </span>
         </li>
         <li>
-          <span onClick={onLogout}>
+          <span onClick={doLogout}>
             <i className="fas fa-sign-out-alt"></i> Log out
           </span>
         </li>

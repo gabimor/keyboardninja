@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { Route, Switch } from "react-router-dom";
 
@@ -10,18 +10,14 @@ import Footer from "./pages/layout/Footer";
 import Signup from "./pages/Signup";
 import ContactUs from "./pages/ContactUs";
 import Page404 from "./pages/404";
-import { DataContext } from "@client/DataContext";
-import { logout } from "@client/api/auth";
 
 import { tabletBreakpoint, desktopBreakpoint, siteWidth } from "./consts";
 
 const Layout = () => {
-  const { user } = useContext(DataContext);
-
   return (
     <div>
       <Container>
-        <Header user={user} onLogout={logout} />
+        <Header />
 
         <Switch>
           <Route exact path="/" component={Home} />

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { OSs } from "../../../types/OSs.enum";
 import { DoSetOs } from "src/client";

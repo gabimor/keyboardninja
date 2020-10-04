@@ -8,7 +8,6 @@ import Controls from "./Controls";
 export default {
   title: "Controls",
   component: Controls,
-  decorators: [],
 } as Meta;
 
 const contextData: IDataContext = {

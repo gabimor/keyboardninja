@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import styled from "@emotion/styled";
-import LoggedIn from "./LoggedInNav";
-import Anonymous from "./AnonymousNav";
-import { LoggedInProps } from "./LoggedInNav";
+import LoggedInNav from "./LoggedInNav";
+import AnonymousNav from "./AnonymousNav";
+import { DataContext } from "@client/DataContext";
 
-export default (props: LoggedInProps) => (
-  <Container>{props.user ? <LoggedIn {...props} /> : <Anonymous />}</Container>
-);
+export default () => {
+  const { user } = useContext(DataContext);
+
+  return <Container>{user ? <LoggedInNav /> : <AnonymousNav />}</Container>;
+};
 
 const Container = styled.div`
   font-size: 14px;

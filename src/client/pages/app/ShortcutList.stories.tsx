@@ -3,11 +3,6 @@ import React from "react";
 import ShortcutList from "./ShortcutList";
 import { Shortcut } from "@src/types/Shortcut.type";
 import { Meta } from "@storybook/react";
-import {
-  desktopBreakpoint,
-  mobileBreakpoint,
-  tabletBreakpoint,
-} from "@client/consts";
 import { DataContext } from "@client/DataContext";
 import { OSs } from "@src/types/OSs.enum";
 
@@ -15,15 +10,7 @@ export default { title: "ShortcutList", component: ShortcutList } as Meta;
 
 export const Default = () => (
   <DataContext.Provider value={{ os: OSs.Win }}>
-    <div style={{ width: `${desktopBreakpoint}px` }}>
-      <ShortcutList title={"General"} shortcuts={shortcutList} />
-    </div>
-    <div style={{ width: `${tabletBreakpoint}px` }}>
-      <ShortcutList title={"General"} shortcuts={shortcutList} />
-    </div>
-    <div style={{ width: `${mobileBreakpoint}px` }}>
-      <ShortcutList title={"General"} shortcuts={shortcutList} />
-    </div>
+    <ShortcutList title={"General"} shortcuts={shortcutList} />
   </DataContext.Provider>
 );
 

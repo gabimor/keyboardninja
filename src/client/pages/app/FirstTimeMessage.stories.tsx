@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Meta, storiesOf } from "@storybook/react";
+import { Meta } from "@storybook/react";
 
 import FirstTimeMessage from "./FirstTimeMessage";
 

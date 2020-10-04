@@ -61,13 +61,6 @@ const TitleBold = styled.span`
   font-weight: bold;
 `;
 
-const Text = styled.div`
-  padding: 65px 0 20px 0;
-  font-size: 16px;
-  text-align: left;
-  color: #e9e5e5;
-`;
-
 const Error = styled.div`
   padding-top: 10px;
   font-size: 16px;

@@ -36,7 +36,7 @@ const sharedStyles = `
   }
 
   @media (max-width: ${tabletBreakpoint}px) {
-      font-size:12px;
+    font-size:12px;
   }
 
 `;

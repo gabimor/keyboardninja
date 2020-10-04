@@ -5,7 +5,7 @@ import { hydrate } from "react-dom";
 import * as osSelect from "@client/helpers/osSelect";
 import Layout from "@client/Layout";
 import { DataContext, IDataContext } from "@client/DataContext";
-import { JwtUser, UserType } from "@src/types/User.type";
+import { JwtUser } from "@src/types/User.type";
 import { OSs } from "@src/types/OSs.enum";
 
 declare global {

@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 
-import { DataContext } from "../DataContext";
 import { signup } from "@client/api/auth";
 import { UserType } from "@src/types/User.type";
 import SignupForm from "./signup/SignupForm";
