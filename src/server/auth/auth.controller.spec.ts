@@ -159,8 +159,11 @@ describe("Auth Controller", () => {
         .expect(HttpStatus.CREATED);
 
       const cookie: string = res.header["set-cookie"][0];
-      const regex = /(?<=jwt=)(.*)(?=;)/;
+      const regex = /(?<=jwt=)(.*?)(?=;)/;
+
       const jwt = cookie.match(regex)[0];
+
+      console.log(jwt);
 
       const user = jwtService.decode(jwt);
 

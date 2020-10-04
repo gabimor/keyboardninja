@@ -1,0 +1,14 @@
+{
+  "name": "KeyboardNinja.me",
+  "short_name": "KeyboardNinja.me",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#270505",
+  "display": "standalone"
+}

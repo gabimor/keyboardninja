@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 
 import AppList from "./app/AppList";
 import { DataContext } from "../DataContext";
+import { desktopBreakpoint, tabletBreakpoint } from "@client/consts";
 
 const Home = () => {
   const { appCategories } = useContext(DataContext);
@@ -38,7 +39,7 @@ const GridContainer = styled.div`
     "graphics graphics graphics"
     "office office office";
 
-  @media (max-width: 992px) {
+  @media (max-width: ${desktopBreakpoint}px) {
     grid-template-areas:
       "os"
       "browsers"
@@ -62,13 +63,13 @@ const Hero = styled.h1`
     font-weight: 500;
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: ${desktopBreakpoint}px) {
     margin-top: 75px;
     margin-bottom: 110px;
     font-size: 40px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${tabletBreakpoint}px) {
     margin-top: 50px;
     margin-bottom: 70px;
     font-size: 30px;

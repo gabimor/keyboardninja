@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { tabletBreakpoint } from "@client/consts";
 
 interface Props {
   onDismiss: () => void;
@@ -36,7 +37,7 @@ const Container = styled.div`
   position: relative;
   font-weight: 300;
 
-  @media (min-width: 768px) {
+  @media (min-width: ${tabletBreakpoint}px) {
     font-size: 20px;
     margin-top: -20px;
   }

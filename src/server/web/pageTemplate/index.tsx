@@ -7,14 +7,17 @@ export function pageTemplate(
   markup: string,
   title: string,
   dataContext: IDataContext,
-  canonicalUrl: string
+  canonicalUrl: string,
+  includeJSBundle = true
 ) {
+  const bundleScriptTag = `<script src="${assets.client.js}" defer crossorigin></script>`;
+
   return `<!doctype html>
     <html lang="">
     <head>
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta property="og:url"   content="https://www.keyboardninja.me${canonicalUrl}" />
-      <meta property="og:image" content="https://www.keyboardninja.me/social-preview.png" />
+      <meta property="og:image" content="https://www.keyboardninja.me/logo.png" />
       <meta property="og:description" content="Every app, every shortcut. The best ones first." />
       <meta property="og:type" content="website" />
       <meta property="fb:app_id" content="2286973354960672" />
@@ -32,7 +35,11 @@ export function pageTemplate(
         href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet" />
       <style>${style}</style>
-      <script src="${assets.client.js}" defer crossorigin></script>
+      <link rel="icon" href="logo.svg">
+      <link rel=”mask-icon” href=loggo.svg” color=”#270505">
+      <link rel="apple-touch-icon" href="logo.png">
+      <meta name="theme-color" content="#270505">
+      ${includeJSBundle ? bundleScriptTag : ""}
     </head>
     <body>
       <script>

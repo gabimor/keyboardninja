@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
-
 import { emailRegex } from "@client/helpers";
-import Input from "@client/components/TextInput";
-import { PrimaryButton } from "@client/components/Buttons";
+
 import { UserType } from "@src/types/User.type";
 import { FacebookButton, GoogleButton } from "@client/components/SocialButtons";
+import { PrimaryButton } from "@client/components/Buttons";
+import TextInput from "@client/components/TextInput";
 
 type FormData = Pick<UserType, "email" | "password">;
 
@@ -21,8 +21,8 @@ export default function LoginForm({ onSubmit }: Props) {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Header>Log in</Header>
-      {/* <Label>Email</Label>
-      <Input
+      <Label>Email</Label>
+      <TextInput
         name="email"
         ref={register({
           required: "Please enter your email",
@@ -31,22 +31,22 @@ export default function LoginForm({ onSubmit }: Props) {
             message: "Please enter a valid email",
           },
         })}
-      ></Input>
+      ></TextInput>
       {errors.email && <Error>{errors.email.message}</Error>}
       <LabelWrapper>
         <Label>Password</Label>
         <a>Forgot password ?</a>
       </LabelWrapper>
-      <Input
+      <TextInput
         name="password"
         type="password"
         ref={register({
           required: "Please enter your password",
         })}
-      ></Input>
+      ></TextInput>
       {errors.password && <Error>{errors.password.message}</Error>}
       <PrimaryButton style={{ marginTop: 20 }}>Log in</PrimaryButton>
-      <OrSeperator> - or - </OrSeperator> */}
+      <OrSeperator> - or - </OrSeperator>
       <a href="/auth/facebook" style={{ marginBottom: 20 }}>
         <FacebookButton />
       </a>
@@ -88,6 +88,13 @@ const LabelWrapper = styled.div`
   }
 `;
 
+const Error = styled.div`
+  padding-top: 10px;
+  font-size: 16px;
+  text-align: left;
+  color: #d1403d;
+`;
+
 const SignupWrapper = styled.div`
   text-align: center;
   margin-top: 20px;
@@ -98,10 +105,4 @@ const Label = styled.label`
   color: #9d8b8b;
   font-size: 14px;
   margin-bottom: 5px;
-`;
-
-const Error = styled.label`
-  margin-top: 5px;
-  color: #e86562;
-  font-size: 14px;
 `;

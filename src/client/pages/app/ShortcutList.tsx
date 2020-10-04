@@ -61,7 +61,8 @@ const Title = styled.header`
   color: #e9e5e5;
   background: #a12d2a;
   padding: 5px 10px 7px 15px;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 300;
 `;
 
 const Table = styled.div`
@@ -71,7 +72,7 @@ const Table = styled.div`
   padding: 8px 0;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
   background: #2e2424;
-  font-weight: 300;
+  font-weight: 200;
 
   > div {
     border-bottom: solid 1px #453a3a;

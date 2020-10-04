@@ -6,6 +6,7 @@ import { DataContext } from "../../DataContext";
 import OSSelect from "./OSSelect";
 import GetLink from "./GetLink";
 import { getLink } from "../../api";
+import { desktopBreakpoint, tabletBreakpoint } from "@client/consts";
 
 interface Props {
   icon: string;
@@ -67,7 +68,7 @@ const Container = styled.div`
   top: 0;
   background: linear-gradient(#3c1b1b, #371616) no-repeat;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${tabletBreakpoint}px) {
     margin: 30px 0 20px 0;
   }
 `;
@@ -76,7 +77,7 @@ const NameWrapper = styled.div`
   display: flex;
   flex-direction: row;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${tabletBreakpoint}px) {
     flex-direction: column;
     align-items: center;
   }
@@ -87,12 +88,12 @@ const Icon = styled.img`
   height: 50px;
   transition: all 0.5s;
 
-  @media (max-width: 992px) {
+  @media (max-width: ${desktopBreakpoint}px) {
     width: 35px;
     height: 35px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${tabletBreakpoint}px) {
     width: 25px;
     height: 25px;
     margin-bottom: 4px;
@@ -107,11 +108,11 @@ const Name = styled.h1`
 
   transition: all 0.5s;
 
-  @media (max-width: 992px) {
+  @media (max-width: ${desktopBreakpoint}px) {
     font-size: 25px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${tabletBreakpoint}px) {
     font-size: 12px;
     margin-left: 0;
   }

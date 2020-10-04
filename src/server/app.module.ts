@@ -7,7 +7,7 @@ import { AuthModule } from "./auth/auth.module";
 import { UsersModule } from "./user/user.module";
 import { AppsModule } from "./app/app.module";
 import { JwtMiddleware } from "./auth/jwt.middleware";
-import { JwtModule, JwtService } from "@nestjs/jwt";
+import { JwtModule } from "@nestjs/jwt";
 import { jwtConsts } from "./auth/consts";
 
 @Module({

@@ -30,7 +30,7 @@ export default ({ onSend }: Props) => {
     <Form onSubmit={handleSubmit}>
       <FormTop>
         <div style={{ marginRight: 5 }}>
-          <Label htmlFor="name">NAME</Label>
+          <Label htmlFor="name">Name</Label>
           <Input
             required
             value={name}
@@ -39,7 +39,7 @@ export default ({ onSend }: Props) => {
           />
         </div>
         <div style={{ marginLeft: 5 }}>
-          <Label htmlFor="email">EMAIL</Label>
+          <Label htmlFor="email">Email</Label>
           <Input
             required
             value={email}
@@ -48,7 +48,7 @@ export default ({ onSend }: Props) => {
           />
         </div>
       </FormTop>
-      <Label htmlFor="message">MESSAGE</Label>
+      <Label htmlFor="message">Message</Label>
       <Textarea
         required
         value={message}

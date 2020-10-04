@@ -1,8 +1,6 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "@server/app.module";
 import cookieParser from "cookie-parser";
-import * as helmet from "helmet";
-import * as csurf from "csurf";
 // @ts-ignore
 import expressListRoutes from "express-list-routes";
 import * as rateLimit from "express-rate-limit";
@@ -13,8 +11,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe());
-  // TODO: find solution for static files
-  // app.useGlobalFilters(new ServeStaticExceptionFilter());
+  app.useGlobalFilters(new ServeStaticExceptionFilter());
   // app.use(helmet());
   // TODO: configure csrf & helmet
   // app.use(csurf());

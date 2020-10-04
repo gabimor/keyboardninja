@@ -1,6 +1,7 @@
 import React from "react";
 
 import styled from "@emotion/styled";
+import { desktopBreakpoint, tabletBreakpoint } from "@client/consts";
 
 export interface AppItemProps {
   name: string;
@@ -30,12 +31,12 @@ const sharedStyles = `
   color: #d1b4b4;
   transition: all 0.5s;
 
-  @media (min-width: 992px) {
+  @media (min-width: ${desktopBreakpoint}px) {
     width: var(--appItemSize);
   }
 
-  @media (max-width: 768px) {
-      font-size:12px;
+  @media (max-width: ${tabletBreakpoint}px) {
+    font-size:12px;
   }
 
 `;

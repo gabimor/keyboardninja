@@ -1,7 +1,7 @@
 import { sendApiRequest } from ".";
 
 export async function signup(email: string, password: string) {
-  const res = await sendApiRequest("/auth/signup", {
+  await sendApiRequest("/auth/signup", {
     method: "POST",
     body: JSON.stringify({
       email,
@@ -13,7 +13,7 @@ export async function signup(email: string, password: string) {
 }
 
 export async function login(email: string, password: string) {
-  const res = await sendApiRequest("/auth/login", {
+  await sendApiRequest("/auth/login", {
     method: "POST",
     body: JSON.stringify({
       email,

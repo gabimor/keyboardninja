@@ -6,20 +6,24 @@ import {
   HttpStatus,
 } from "@nestjs/common";
 import { Response } from "express";
+import { page500 } from "./pageTemplate/page500";
 
 @Catch()
 export class ServeStaticExceptionFilter implements ExceptionFilter {
-  catch(exception: any, host: ArgumentsHost): any {
+  catch(exception: any, host: ArgumentsHost): void {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
-    const status =
-      exception instanceof HttpException
-        ? exception.getStatus()
-        : HttpStatus.INTERNAL_SERVER_ERROR;
 
     if (exception.code === "ENOENT") {
-      response.sendStatus(HttpStatus.NOT_FOUND);
+      response.redirect("/404");
+    } else {
+      console.log(exception);
+      const status =
+        exception instanceof HttpException
+          ? exception.getStatus()
+          : HttpStatus.INTERNAL_SERVER_ERROR;
+
+      response.send(page500()).sendStatus(status);
     }
-    response.sendStatus(status);
   }
 }
