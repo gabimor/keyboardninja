@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { PrimaryButton } from "../../../components/Buttons";
 
 export default function Anonymous() {
+  const a = 1;
+
   return (
     <ul>
       <li>
