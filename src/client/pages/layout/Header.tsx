@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 
 import Logo from "./Logo";
-import Nav from "./Nav";
+import Nav from "./nav";
 import { JwtUser } from "@src/types/User.type";
 
 type Props = {
   user: JwtUser;
-  onLogout: () => void;
+  onLogout?: () => void;
 };
 
-function Header({ user, onLogout }: Props) {
+export default function Header({ user, onLogout }: Props) {
   return (
     <Container>
       <Link to="/">
@@ -21,8 +21,6 @@ function Header({ user, onLogout }: Props) {
     </Container>
   );
 }
-
-export default Header;
 
 const Container = styled.header`
   display: flex;

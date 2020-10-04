@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Meta } from "@storybook/react";
 import React from "react";
 
 import Shortcut, { ShortcutProps } from "./Shortcut";
@@ -6,7 +7,7 @@ import Shortcut, { ShortcutProps } from "./Shortcut";
 export default {
   component: Shortcut,
   title: "Shortcut",
-};
+} as Meta;
 
 const data: ShortcutProps[] = [
   { keys: "ctrl+k" },

@@ -2,8 +2,9 @@ import React from "react";
 
 import ShortcutList from "./ShortcutList";
 import { Shortcut } from "@src/types/Shortcut.type";
+import { Meta } from "@storybook/react";
 
-export default { title: "ShortcutList", component: ShortcutList };
+export default { title: "ShortcutList", component: ShortcutList } as Meta;
 
 export const Default = () => (
   <div>

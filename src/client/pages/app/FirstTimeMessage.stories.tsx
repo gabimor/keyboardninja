@@ -1,13 +1,13 @@
 import React from "react";
 
-import { storiesOf } from "@storybook/react";
+import { Meta, storiesOf } from "@storybook/react";
 
 import FirstTimeMessage from "./FirstTimeMessage";
 
 export default {
   title: "FirstTimeMessage",
   component: FirstTimeMessage,
-};
+} as Meta;
 
 const Template = () => <FirstTimeMessage onDismiss={null} />;
 

@@ -6,6 +6,23 @@ import StoryRouter from "storybook-react-router";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
+  backgrounds: {
+    default: "background",
+    values: [
+      {
+        name: "background",
+        value: "linear-gradient(#442323, #270505) no-repeat",
+      },
+      {
+        name: "solid background",
+        value: "#2c0909",
+      },
+      {
+        name: "panel",
+        value: "#2d2424",
+      },
+    ],
+  },
 };
 
 const contextData = { os: OSs.Mac, app: { oss: ["mac", "win"] } };

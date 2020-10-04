@@ -1,22 +1,7 @@
 import React, { CSSProperties } from "react";
 import styled from "@emotion/styled";
 
-interface Props {
-  children: React.ReactNode;
-  secondary?: boolean;
-  [x: string]: any;
-}
-export function PrimaryButton({ children, ...props }: Props) {
-  return <PrimaryButtonContainer {...props}>{children}</PrimaryButtonContainer>;
-}
-
-export function SecondaryButton({ children, ...props }: Props) {
-  return (
-    <SecondaryButtonContainer {...props}>{children}</SecondaryButtonContainer>
-  );
-}
-
-const btnStyle = `
+const baseStyle = `
   display: block;
   width:100%;
   cursor:pointer;
@@ -26,8 +11,8 @@ const btnStyle = `
   line-height: 100%;
 `;
 
-const PrimaryButtonContainer = styled.button`
-  ${btnStyle}
+export const PrimaryButton = styled.button`
+  ${baseStyle}
 
   background-color: #D1403D;
   color: #ffffff;
@@ -38,8 +23,8 @@ const PrimaryButtonContainer = styled.button`
   }
 `;
 
-const SecondaryButtonContainer = styled.button`
-  ${btnStyle}
+export const SecondaryButton = styled.button`
+  ${baseStyle}
   background:transparent;
   color: #a4a3a6;
   border: 1px solid #a4a3a6;

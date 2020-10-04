@@ -1,4 +1,4 @@
-import { Story } from "@storybook/react";
+import { Meta, Story } from "@storybook/react";
 import React from "react";
 
 import AppList, { AppListProps } from "./AppList";
@@ -6,7 +6,7 @@ import AppList, { AppListProps } from "./AppList";
 export default {
   title: "AppList",
   component: AppList,
-};
+} as Meta;
 
 const Template: Story<AppListProps> = (args) => <AppList {...args} />;
 

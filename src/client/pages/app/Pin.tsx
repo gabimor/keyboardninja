@@ -7,7 +7,7 @@ interface Props {
   onClick: () => void;
 }
 
-export default function Shortcut({ pins, isPinned, onClick }: Props) {
+export default function Pin({ pins, isPinned, onClick }: Props) {
   return (
     <Container isPinned={isPinned} onClick={onClick}>
       <IconWrapper>

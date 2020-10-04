@@ -1,3 +1,4 @@
+import { Meta } from "@storybook/react";
 import React from "react";
 
 import Pin from "./Pin";
@@ -5,7 +6,7 @@ import Pin from "./Pin";
 export default {
   title: "Pin",
   component: Pin,
-};
+} as Meta;
 
 const Template = (args: any) => <Pin {...args} />;
 
