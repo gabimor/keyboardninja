@@ -2,10 +2,10 @@ export type Shortcut = {
   _id: string;
   action: string;
   sectionId: string;
-  pins: number;
+  stars: number;
   win?: string;
   mac?: string;
   isHtml?: boolean;
-  isPinned?: boolean;
+  isStarred?: boolean;
   note?: string;
 };

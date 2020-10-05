@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import styled from "@emotion/styled";
 
 import { DataContext } from "../../DataContext";
-import { pin } from "../../api";
+import { star } from "../../api";
 import { upperFirstLetter } from "../../helpers";
 import Keys from "./Keys";
 import StarButton from "./StarButton";
@@ -13,10 +13,10 @@ import { useMediaQuery } from "react-responsive";
 export interface Props {
   _id: string;
   action: string;
-  pins: number;
+  stars: number;
   keys: string;
   isHtml?: boolean;
-  isPinned?: boolean;
+  isStarred?: boolean;
   note?: string;
 }
 
@@ -24,35 +24,35 @@ function ShortcutItem({
   _id,
   action,
   keys,
-  pins,
-  isPinned,
+  stars,
+  isStarred,
   isHtml,
   note,
 }: Props) {
-  const { app, doPin } = useContext(DataContext);
+  const { app, doStar } = useContext(DataContext);
   const [infoVisible, setInfoVisible] = useState(false);
-  const [isPinnedState, setIsPinnedState] = useState(isPinned);
+  const [isStarredState, setIsStarredState] = useState(isStarred);
   const isMobile = useMediaQuery({ maxWidth: enterMobileBreakpoint });
 
-  async function handlePin() {
-    const newPins = isPinnedState ? pins : pins + 1;
-    const newIsPinned = !isPinnedState;
+  async function handleStar() {
+    const newStars = isStarredState ? stars : stars + 1;
+    const newIsStarred = !isStarredState;
 
-    setIsPinnedState(newIsPinned);
+    setIsStarredState(newIsStarred);
 
-    doPin(_id, newPins, newIsPinned);
-    await pin(app._id, _id, newIsPinned);
+    doStar(_id, newStars, newIsStarred);
+    await star(app._id, _id, newIsStarred);
   }
 
   return (
     <>
-      <StarButton isPinned={isPinnedState} onClick={handlePin} />
+      <StarButton isStarred={isStarredState} onClick={handleStar} />
       {!isMobile && (
-        <CellContainer isPinned={isPinnedState} pins={pins}>
-          <StarCount pins={pins} />
+        <CellContainer isStarred={isStarredState} stars={stars}>
+          <StarCount stars={stars} />
         </CellContainer>
       )}
-      <CellContainer isPinned={isPinnedState}>
+      <CellContainer isStarred={isStarredState}>
         <div>
           {upperFirstLetter(action)}
           {note && (
@@ -64,12 +64,12 @@ function ShortcutItem({
           {infoVisible && <InfoContainer>{note}</InfoContainer>}
           {isMobile && (
             <StarCountContainer>
-              <StarCount pins={pins} />
+              <StarCount stars={stars} />
             </StarCountContainer>
           )}
         </div>
       </CellContainer>
-      <CellContainer isPinned={isPinnedState}>
+      <CellContainer isStarred={isStarredState}>
         <div>
           <Keys keys={keys} isHtml={isHtml} />
         </div>
@@ -98,17 +98,17 @@ const InfoContainer = styled.div`
 `;
 
 interface ActionContainerProps {
-  isPinned: boolean;
-  pins?: number;
+  isStarred: boolean;
+  stars?: number;
 }
 
 const CellContainer = styled.div`
   background: ${(props: ActionContainerProps) =>
-    props.isPinned ? "#473838" : "inherit"};
+    props.isStarred ? "#473838" : "inherit"};
   user-select: none;
   border-bottom: solid 1px
-    ${({ isPinned }) => (isPinned ? "#604747" : "#453a3a")};
-  padding: ${({ pins }) => (pins === 0 ? 0 : "8px 12px")};
+    ${({ isStarred }) => (isStarred ? "#604747" : "#453a3a")};
+  padding: ${({ stars }) => (stars === 0 ? 0 : "8px 12px")};
   display: flex;
   align-items: center;
 `;

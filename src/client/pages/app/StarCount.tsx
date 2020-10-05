@@ -2,16 +2,16 @@ import React from "react";
 import styled from "@emotion/styled";
 
 interface Props {
-  pins: number;
+  stars: number;
 }
 
-export default function StarCount({ pins }: Props) {
-  if (pins === 0) return null;
+export default function StarCount({ stars }: Props) {
+  if (stars === 0) return null;
 
   return (
     <Container>
       <img src="/icons/star-on.svg" alt="" />
-      <Count>{pins}</Count>{" "}
+      <Count>{stars}</Count>{" "}
     </Container>
   );
 }

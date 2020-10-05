@@ -13,8 +13,8 @@ interface Shortcut {
   action: string;
   win?: string;
   mac?: string;
-  pins: number;
-  isPinned?: boolean;
+  stars: number;
+  isStarred?: boolean;
   isHtml?: boolean;
   note?: string;
 }
@@ -40,9 +40,9 @@ export default function ShortcutList({ title, shortcuts }: Props) {
               keys={shortcut[os]}
               action={shortcut.action}
               note={shortcut.note}
-              pins={shortcut.pins}
+              stars={shortcut.stars}
               isHtml={shortcut.isHtml}
-              isPinned={!!shortcut.isPinned}
+              isStarred={!!shortcut.isStarred}
             />
           );
         })}

@@ -29,7 +29,7 @@ export class App extends Document {
       {
         action: { type: String },
         sectionId: { type: MongooseNativeSchema.Types.ObjectId },
-        pins: { type: Number },
+        stars: { type: Number },
         win: { type: String },
         mac: { type: String },
         isHtml: { type: Boolean },
