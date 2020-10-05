@@ -12,8 +12,8 @@ const FirstTimeMessage = ({ onDismiss }: Props) => (
     <TextWrapper>
       <ul>
         <li>
-          1. Press the <Highlight>Pin</Highlight> button to select your favorite
-          shortcuts
+          1. Press the <Highlight>Star</Highlight> button to select your
+          favorite shortcuts
         </li>
         <li>
           2. Press <Highlight>Get Link</Highlight> to get a link with your saved

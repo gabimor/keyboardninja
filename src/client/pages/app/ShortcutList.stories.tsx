@@ -16,13 +16,13 @@ export const Default = () => (
 );
 
 const shortcutList1: Shortcut[] = [
-  { _id: "1", sectionId: "1", action: "test", win: "ctrl+s", pins: 0 },
+  { _id: "1", sectionId: "1", action: "test", win: "ctrl+s", stars: 0 },
   {
     _id: "2",
     sectionId: "1",
     action: "Lorem ipsum dolor sit amet",
     win: "ctrl+s or f12",
-    pins: 4,
+    stars: 4,
   },
   {
     _id: "3",
@@ -31,7 +31,7 @@ const shortcutList1: Shortcut[] = [
     win:
       "**Ctrl** then move two fingers on the trackpad to move the image around in the preview",
     isHtml: true,
-    pins: 0,
+    stars: 0,
   },
   {
     _id: "4",
@@ -41,47 +41,47 @@ const shortcutList1: Shortcut[] = [
     win:
       "**Ctrl** then move two fingers on the trackpad to move the image around in the preview",
     isHtml: true,
-    pins: 0,
+    stars: 0,
   },
   {
     _id: "5",
     sectionId: "1",
     action: "psum dolor sit amet",
     win: "ctrl+arrows enter",
-    pins: 12,
+    stars: 12,
   },
   {
     _id: "6",
     sectionId: "1",
     action: "psum dolor sit amet",
     win: "ctrl+arrows enter",
-    pins: 12,
+    stars: 12,
   },
   {
     _id: "7",
     sectionId: "1",
     action: "dolor sit amet",
     win: "alt+s",
-    pins: 33,
+    stars: 33,
   },
   {
     _id: "8",
     sectionId: "1",
     action: "ipsum dolor sit amet",
     win: "alt+shift+s",
-    pins: 102,
-    isPinned: true,
+    stars: 102,
+    isStarred: true,
   },
 ];
 
 const shortcutList2: Shortcut[] = [
-  { _id: "1", sectionId: "1", action: "test", win: "ctrl+s", pins: 0 },
+  { _id: "1", sectionId: "1", action: "test", win: "ctrl+s", stars: 0 },
   {
     _id: "2",
     sectionId: "1",
     action: "Lorem ipsum dolor sit amet",
     win: "ctrl+s or f12",
-    pins: 0,
+    stars: 0,
   },
   {
     _id: "3",
@@ -90,7 +90,7 @@ const shortcutList2: Shortcut[] = [
     win:
       "**Ctrl** then move two fingers on the trackpad to move the image around in the preview",
     isHtml: true,
-    pins: 0,
+    stars: 0,
   },
   {
     _id: "4",
@@ -100,6 +100,6 @@ const shortcutList2: Shortcut[] = [
     win:
       "**Ctrl** then move two fingers on the trackpad to move the image around in the preview",
     isHtml: true,
-    pins: 0,
+    stars: 0,
   },
 ];

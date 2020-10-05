@@ -19,7 +19,7 @@ const Controls = ({ icon, name }: Props) => {
 
   async function handleGetLink() {
     const shortcutIds = app.shortcuts
-      .filter((e) => e.isPinned)
+      .filter((e) => e.isStarred)
       .map((e) => e._id);
     const link = await getLink(app._id, shortcutIds).then((data) =>
       data.text()

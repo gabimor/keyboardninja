@@ -26,15 +26,14 @@ export async function contactUs(name: string, email: string, message: string) {
   }
 }
 
-
 export function getOS(appId: string, os: string) {
   return fetch(`/api/apps/${appId}?os=${os}`).then((res) => res.json());
 }
 
-export function pin(appId: string, shortcutId: string, isPinned: boolean) {
-  return fetch("/api/pin", {
+export function star(appId: string, shortcutId: string, isStarred: boolean) {
+  return fetch("/api/star", {
     method: "PATCH",
-    body: JSON.stringify({ appId, shortcutId, isPinned }),
+    body: JSON.stringify({ appId, shortcutId, isStarred }),
     headers,
   });
 }

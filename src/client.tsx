@@ -14,10 +14,10 @@ declare global {
   }
 }
 
-export type DoPin = (
+export type DoStar = (
   shortcutId: string,
-  pins: number,
-  isPinned: boolean
+  stars: number,
+  isStarred: boolean
 ) => void;
 
 export type DoSetOs = (os: OSs) => void;
@@ -28,12 +28,12 @@ const Client = () => {
     osSelect.setSelectedOS(osData);
   };
 
-  const doPin: DoPin = (shortcutId, pins, isPinned) => {
+  const doStar: DoStar = (shortcutId, stars, isStarred) => {
     const shortcut = app.shortcuts.find(
       (e) => e._id.toString() === shortcutId.toString()
     );
-    shortcut.pins = pins;
-    shortcut.isPinned = isPinned;
+    shortcut.stars = stars;
+    shortcut.isStarred = isStarred;
   };
 
   const { appCategories, app } = window.__KBN_DATA__;
@@ -46,7 +46,7 @@ const Client = () => {
     appCategories,
     user,
     os,
-    doPin,
+    doStar,
     doSetOs,
   };
 

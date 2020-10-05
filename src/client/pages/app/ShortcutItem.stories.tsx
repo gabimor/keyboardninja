@@ -13,6 +13,11 @@ const contextData: IDataContext = {
 
 export const Default = () => (
   <DataContext.Provider value={contextData}>
-    <ShortcutItem _id="1" action={"Select all text"} keys={"ctrl+k"} pins={0} />
+    <ShortcutItem
+      _id="1"
+      action={"Select all text"}
+      keys={"ctrl+k"}
+      stars={0}
+    />
   </DataContext.Provider>
 );

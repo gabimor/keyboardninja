@@ -22,12 +22,12 @@ const Template = (args: any) => (
 
 export const Stared = Template.bind({});
 Stared.args = {
-  isPinned: true,
+  isStarred: true,
 };
 
 export const Unstared = Template.bind({});
 Unstared.args = {
-  isPinned: false,
+  isStarred: false,
 };
 
 const NormalContainer = styled.div`

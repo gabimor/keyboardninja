@@ -10,10 +10,10 @@ export default {
 
 const Template = (args: any) => (
   <>
-    <StarCount pins={1} {...args} />
-    <StarCount pins={12} {...args} />
-    <StarCount pins={131} {...args} />
-    <StarCount pins={1321} {...args} />
+    <StarCount stars={1} {...args} />
+    <StarCount stars={12} {...args} />
+    <StarCount stars={131} {...args} />
+    <StarCount stars={1321} {...args} />
   </>
 );
 
