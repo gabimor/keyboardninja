@@ -5,7 +5,7 @@ import { jsx } from "@emotion/core";
 import { DataContext } from "@client/DataContext";
 
 export default {
-  title: "Header",
+  title: "Layout/Header",
   component: Header,
 } as Meta;
 
