@@ -106,7 +106,8 @@ const CellContainer = styled.div`
   background: ${(props: ActionContainerProps) =>
     props.isPinned ? "#473838" : "inherit"};
   user-select: none;
-  border-bottom: solid 1px #453a3a;
+  border-bottom: solid 1px
+    ${({ isPinned }) => (isPinned ? "#604747" : "#453a3a")};
   padding: ${({ pins }) => (pins === 0 ? 0 : "8px 12px")};
   display: flex;
   align-items: center;
