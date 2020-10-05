@@ -2,14 +2,14 @@ import styled from "@emotion/styled";
 import { Meta } from "@storybook/react";
 import React from "react";
 
-import Shortcut, { ShortcutProps } from "./Shortcut";
+import Keys, { KeysProps } from "./Keys";
 
 export default {
-  component: Shortcut,
-  title: "Shortcut",
+  component: Keys,
+  title: "Keys",
 } as Meta;
 
-const data: ShortcutProps[] = [
+const data: KeysProps[] = [
   { keys: "ctrl+k" },
   { keys: "ctrl+shift+k" },
   { keys: "ctrl+left|right|up|down" },
@@ -29,7 +29,7 @@ const data: ShortcutProps[] = [
 const Template = ({ items, ...args }: { items: typeof data }) =>
   items.map((item: any) => (
     <Wrapper>
-      <Shortcut {...item} />
+      <Keys {...item} />
     </Wrapper>
   ));
 

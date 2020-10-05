@@ -5,7 +5,7 @@ import { DataContext } from "@client/DataContext";
 import styled from "@emotion/styled";
 
 export default {
-  title: "Header/MobileMenu",
+  title: "Layout/MobileMenu",
   component: MobileMenu,
 } as Meta;
 

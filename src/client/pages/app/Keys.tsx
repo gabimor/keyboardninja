@@ -3,12 +3,12 @@ import styled from "@emotion/styled";
 
 import { upperFirstLetter } from "../../helpers";
 
-export interface ShortcutProps {
+export interface KeysProps {
   keys: string;
   isHtml?: boolean;
 }
 
-export default function Shortcut({ keys, isHtml }: ShortcutProps) {
+export default function Keys({ keys, isHtml }: KeysProps) {
   if (isHtml)
     return (
       <Container
@@ -23,7 +23,7 @@ export default function Shortcut({ keys, isHtml }: ShortcutProps) {
     <>
       {keysArr.map((e, index) => (
         <div key={index}>
-          <ShortcutOption keys={e} />{" "}
+          <KeysOption keys={e} />{" "}
         </div>
       ))}
     </>
@@ -41,11 +41,11 @@ function prepareHtml(html: string) {
   return upperFirstLetter(html);
 }
 
-interface ShortcutOptionProps {
+interface KeysOptionProps {
   keys: string;
 }
 
-function ShortcutOption({ keys }: ShortcutOptionProps) {
+function KeysOption({ keys }: KeysOptionProps) {
   let keysArr = split([keys], "+");
   keysArr = split(keysArr, "|");
   keysArr = split(keysArr, "..");
