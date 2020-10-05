@@ -10,17 +10,18 @@ export default { title: "ShortcutList", component: ShortcutList } as Meta;
 
 export const Default = () => (
   <DataContext.Provider value={{ os: OSs.Win }}>
-    <ShortcutList title={"General"} shortcuts={shortcutList} />
+    <ShortcutList title={"Edit"} shortcuts={shortcutList1} />
+    <ShortcutList title={"General"} shortcuts={shortcutList2} />
   </DataContext.Provider>
 );
 
-const shortcutList: Shortcut[] = [
+const shortcutList1: Shortcut[] = [
   { _id: "1", sectionId: "1", action: "test", win: "ctrl+s", pins: 0 },
   {
     _id: "2",
     sectionId: "1",
     action: "Lorem ipsum dolor sit amet",
-    win: "ctrl+s or F12",
+    win: "ctrl+s or f12",
     pins: 4,
   },
   {
@@ -70,5 +71,35 @@ const shortcutList: Shortcut[] = [
     win: "alt+shift+s",
     pins: 102,
     isPinned: true,
+  },
+];
+
+const shortcutList2: Shortcut[] = [
+  { _id: "1", sectionId: "1", action: "test", win: "ctrl+s", pins: 0 },
+  {
+    _id: "2",
+    sectionId: "1",
+    action: "Lorem ipsum dolor sit amet",
+    win: "ctrl+s or f12",
+    pins: 0,
+  },
+  {
+    _id: "3",
+    sectionId: "1",
+    action: "test",
+    win:
+      "**Ctrl** then move two fingers on the trackpad to move the image around in the preview",
+    isHtml: true,
+    pins: 0,
+  },
+  {
+    _id: "4",
+    sectionId: "1",
+    action:
+      "Start up from the built-in macOS Recovery system. Or use Option-Command-R or Shift-Option-Command-R to start up from macOS Recovery over the Internet. macOS Recovery installs different versions of macOS, depending on the key combination you use while starting up. If your Mac is using a firmware password, you're asked to enter the password.",
+    win:
+      "**Ctrl** then move two fingers on the trackpad to move the image around in the preview",
+    isHtml: true,
+    pins: 0,
   },
 ];

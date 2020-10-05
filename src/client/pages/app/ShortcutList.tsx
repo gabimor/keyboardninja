@@ -5,6 +5,8 @@ import styled from "@emotion/styled";
 import { DataContext } from "../../DataContext";
 
 import { upperFirstLetter } from "../../helpers";
+import { enterMobileBreakpoint } from "@client/consts";
+import { useMediaQuery } from "react-responsive";
 
 interface Shortcut {
   _id: string;
@@ -24,11 +26,12 @@ interface Props {
 
 export default function ShortcutList({ title, shortcuts }: Props) {
   const { os } = useContext(DataContext);
+  const isMobile = useMediaQuery({ maxWidth: enterMobileBreakpoint });
 
   return (
     <Container>
       <Title>{upperFirstLetter(title)}</Title>
-      <Table>
+      <Table isMobile={isMobile}>
         {shortcuts.map((shortcut) => {
           return (
             <ShortcutItem
@@ -65,17 +68,15 @@ const Title = styled.header`
   font-weight: 300;
 `;
 
+type TableProps = {
+  isMobile: boolean;
+};
+
 const Table = styled.div`
   display: grid;
-  grid-gap: 8px 0;
-  grid-template-columns: 80px 1fr 1fr;
-  padding: 8px 0;
+  grid-template-columns: ${({ isMobile }: TableProps) =>
+    isMobile ? "45px 2fr 1fr" : "45px auto 2fr 1fr"};
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
   background: #2e2424;
   font-weight: 200;
-
-  > div {
-    border-bottom: solid 1px #453a3a;
-    padding-bottom: 8px;
-  }
 `;

@@ -37,16 +37,15 @@ input {
 
 kbd {
   display: inline-block;
-  background-color: #635656;
+  background-color: #D1403D;
   color: #FFFFFF;
   font-family: inherit;
-
   font-size: 13px;
+  text-align: center;
+  padding: 1px 5px;
   border: solid 1px #442323;
   border-radius: 6px;
-  padding: 0 2px;
   min-width: 32px;
-  text-align: center;
   box-shadow: 0px 6px 1px 1px rgba(30,30,30,0.2);
 }
 

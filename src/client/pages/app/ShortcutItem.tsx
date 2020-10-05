@@ -4,8 +4,11 @@ import styled from "@emotion/styled";
 import { DataContext } from "../../DataContext";
 import { pin } from "../../api";
 import { upperFirstLetter } from "../../helpers";
-import Shortcut from "./Shortcut";
-import Pin from "./Pin";
+import Keys from "./Keys";
+import StarButton from "./StarButton";
+import StarCount from "./StarCount";
+import { enterMobileBreakpoint } from "@client/consts";
+import { useMediaQuery } from "react-responsive";
 
 export interface Props {
   _id: string;
@@ -27,14 +30,14 @@ function ShortcutItem({
   note,
 }: Props) {
   const { app, doPin } = useContext(DataContext);
-  const [pinsState, setPinsState] = useState(pins);
   const [infoVisible, setInfoVisible] = useState(false);
   const [isPinnedState, setIsPinnedState] = useState(isPinned);
+  const isMobile = useMediaQuery({ maxWidth: enterMobileBreakpoint });
 
   async function handlePin() {
     const newPins = isPinnedState ? pins : pins + 1;
     const newIsPinned = !isPinnedState;
-    setPinsState(newPins);
+
     setIsPinnedState(newIsPinned);
 
     doPin(_id, newPins, newIsPinned);
@@ -43,27 +46,43 @@ function ShortcutItem({
 
   return (
     <>
-      <PinContainer>
-        <Pin isPinned={isPinnedState} pins={pinsState} onClick={handlePin} />
-      </PinContainer>
-      <ActionContainer isPinned={isPinnedState}>
-        {upperFirstLetter(action)}
-        {note && (
-          <InfoIcon
-            className="fas fa-info"
-            onClick={() => setInfoVisible(!infoVisible)}
-          />
-        )}
-        {infoVisible && <InfoContainer>{note}</InfoContainer>}
-      </ActionContainer>
-      <KeysContainer>
-        <Shortcut keys={keys} isHtml={isHtml} />
-      </KeysContainer>
+      <StarButton isPinned={isPinnedState} onClick={handlePin} />
+      {!isMobile && (
+        <CellContainer isPinned={isPinnedState} pins={pins}>
+          <StarCount pins={pins} />
+        </CellContainer>
+      )}
+      <CellContainer isPinned={isPinnedState}>
+        <div>
+          {upperFirstLetter(action)}
+          {note && (
+            <InfoIcon
+              className="fas fa-info"
+              onClick={() => setInfoVisible(!infoVisible)}
+            />
+          )}
+          {infoVisible && <InfoContainer>{note}</InfoContainer>}
+          {isMobile && (
+            <StarCountContainer>
+              <StarCount pins={pins} />
+            </StarCountContainer>
+          )}
+        </div>
+      </CellContainer>
+      <CellContainer isPinned={isPinnedState}>
+        <div>
+          <Keys keys={keys} isHtml={isHtml} />
+        </div>
+      </CellContainer>
     </>
   );
 }
 
 export default ShortcutItem;
+
+const StarCountContainer = styled.div`
+  margin-top: 5px;
+`;
 
 const InfoIcon = styled.i`
   font-size: 13px;
@@ -80,21 +99,15 @@ const InfoContainer = styled.div`
 
 interface ActionContainerProps {
   isPinned: boolean;
+  pins?: number;
 }
 
-const ActionContainer = styled.div`
-  color: ${(props: ActionContainerProps) =>
-    props.isPinned ? "#ffe6ab" : "inherit"};
+const CellContainer = styled.div`
+  background: ${(props: ActionContainerProps) =>
+    props.isPinned ? "#473838" : "inherit"};
   user-select: none;
-  padding-right: 20px;
-`;
-
-const PinContainer = styled.div`
-  text-align: center;
-  padding: 0 13px 0 15px;
-  user-select: none;
-`;
-
-const KeysContainer = styled.div`
-  padding: 0 13px 0 0;
+  border-bottom: solid 1px #453a3a;
+  padding: ${({ pins }) => (pins === 0 ? 0 : "8px 12px")};
+  display: flex;
+  align-items: center;
 `;
