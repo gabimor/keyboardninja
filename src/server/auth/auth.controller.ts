@@ -11,7 +11,6 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { User } from "@server/user/User.schema";
-import { UserService } from "@server/user/user.service";
 import { Request as RequestExpress, Response } from "express";
 import { AuthService } from "./auth.service";
 import { JwtAuthGuard } from "./jwt/jwt-auth.guard";
@@ -24,10 +23,7 @@ type RequestAuth = RequestExpress & { user: Partial<User> };
 
 @Controller("auth")
 export class AuthController {
-  constructor(
-    private authService: AuthService,
-    private userService: UserService
-  ) {}
+  constructor(private authService: AuthService) {}
 
   @UseGuards(LocalAuthGuard)
   @Post("login")
@@ -44,7 +40,7 @@ export class AuthController {
 
   @Post("signup")
   async signup(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
-    const user = await this.userService.signup(
+    const user = await this.authService.signup(
       createUserDto.email,
       createUserDto.password
     );

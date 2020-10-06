@@ -1,13 +1,13 @@
 import { Strategy } from "passport-google-oauth20";
 import { Inject, Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
-import { UserService } from "@server/user/user.service";
+import { AuthService, SocialType } from "@server/auth/auth.service.ts";
 import { GoogleStrategyConfigToken } from "./google.strategy.config";
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy) {
   constructor(
-    private userService: UserService,
+    private authService: AuthService,
     @Inject(GoogleStrategyConfigToken) googleStrategyConfig: any
   ) {
     super(googleStrategyConfig);
@@ -24,8 +24,9 @@ export class GoogleStrategy extends PassportStrategy(Strategy) {
     const lastName = profile?.name?.familyName;
     const googleId = profile?.id;
 
-    const user = await this.userService.signupGoogle(
+    const user = await this.authService.signupSocial(
       googleId,
+      SocialType.Google,
       email,
       firstName,
       lastName

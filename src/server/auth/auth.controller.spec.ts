@@ -80,7 +80,7 @@ describe("Auth Controller", () => {
       const email = "user@email.com";
       const password = "password";
 
-      const user = await userService.signup(email, password);
+      const user = await authService.signup(email, password);
 
       const token = authService.generateJwt(user);
       const res = await request(app.getHttpServer())
@@ -162,8 +162,6 @@ describe("Auth Controller", () => {
       const regex = /(?<=jwt=)(.*?)(?=;)/;
 
       const jwt = cookie.match(regex)[0];
-
-      console.log(jwt);
 
       const user = jwtService.decode(jwt);
 

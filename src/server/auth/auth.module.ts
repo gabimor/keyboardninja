@@ -17,6 +17,8 @@ import {
   googleStrategyConfig,
   GoogleStrategyConfigToken,
 } from "./google/google.strategy.config";
+import { MongooseModule } from "@nestjs/mongoose";
+import { User, UserSchema } from "@server/user/User.schema";
 
 const jwtStrategy = {
   provide: JwtStrategy,
@@ -35,12 +37,12 @@ const googleStrategyConfigProvider = {
 
 @Module({
   imports: [
-    UsersModule,
     PassportModule.register({ defaultStrategy: "jwt" }),
     JwtModule.register({
       secret: jwtConsts.secret,
       signOptions: { expiresIn: jwtConsts.expiresIn },
     }),
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
   ],
   controllers: [AuthController],
   providers: [

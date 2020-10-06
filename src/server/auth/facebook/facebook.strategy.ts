@@ -1,13 +1,13 @@
 import { Strategy } from "passport-facebook";
 import { Inject, Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
-import { UserService } from "@server/user/user.service";
+import { AuthService, SocialType } from "@server/auth/auth.service";
 import { FacebookStrategyConfigToken } from "./facebook.strategy.config";
 
 @Injectable()
 export class FacebookStrategy extends PassportStrategy(Strategy) {
   constructor(
-    private userService: UserService,
+    private authService: AuthService,
     @Inject(FacebookStrategyConfigToken) facebookStrategyConfig: any
   ) {
     super(facebookStrategyConfig);
@@ -24,8 +24,9 @@ export class FacebookStrategy extends PassportStrategy(Strategy) {
     const lastName = profile?.name?.familyName;
     const facebookId = profile?.id;
 
-    const user = await this.userService.signupFB(
+    const user = await this.authService.signupSocial(
       facebookId,
+      SocialType.Facebook,
       email,
       firstName,
       lastName
