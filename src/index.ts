@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import expressListRoutes from "express-list-routes";
 import * as rateLimit from "express-rate-limit";
 import { ValidationPipe } from "@nestjs/common";
-import { ServeStaticExceptionFilter } from "@server/web/ServeStatic.exceptionFilter";
+import { ServeStaticExceptionFilter } from "@server/utils/ServeStatic.exceptionFilter";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

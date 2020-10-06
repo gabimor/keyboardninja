@@ -52,7 +52,7 @@ const App = () => {
 export default App;
 
 const ResultsContainer = styled.div`
-  columns: 2;
+  columns: 1;
   column-gap: 30px;
 
   @media (max-width: 1122px) {

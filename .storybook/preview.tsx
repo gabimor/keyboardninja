@@ -1,5 +1,5 @@
 import React from "react";
-import { style } from "../src/server/web/pageTemplate/style";
+import { style } from "../src/server/pageTemplate/style";
 import StoryRouter from "storybook-react-router";
 
 const backgrounds = {

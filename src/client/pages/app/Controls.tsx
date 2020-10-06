@@ -61,7 +61,7 @@ const Seperator = styled.div`
 const Container = styled.div`
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 10px 0;
   margin: 60px 0 40px 0;
   border-bottom: solid 1px #5a5a5a;
   position: sticky;

@@ -1,6 +1,6 @@
 import { MiddlewareConsumer, Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { WebModule } from "./web/web.module";
+import { HomeModule } from "./home/home.module";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
 import { AuthModule } from "./auth/auth.module";
@@ -12,7 +12,7 @@ import { jwtConsts } from "./auth/consts";
 
 @Module({
   imports: [
-    WebModule,
+    HomeModule,
     MongooseModule.forRoot(process.env.DB_CONNECTION_STRING),
     UsersModule,
     AuthModule,

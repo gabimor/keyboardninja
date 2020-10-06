@@ -6,7 +6,7 @@ import {
   HttpStatus,
 } from "@nestjs/common";
 import { Response } from "express";
-import { page500 } from "./pageTemplate/page500";
+import { page500 } from "../pageTemplate/page500";
 
 @Catch()
 export class ServeStaticExceptionFilter implements ExceptionFilter {

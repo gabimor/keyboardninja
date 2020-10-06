@@ -5,7 +5,7 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import Layout from "@client/Layout";
 import { DataContext, IDataContext } from "@client/DataContext";
-import { pageTemplate } from "@server/web/pageTemplate";
+import { pageTemplate } from "@server/pageTemplate";
 import { NextFunction, Request, Response } from "express";
 import { HomeService } from "./home.service";
 import { AppService } from "@server/app/app.service";
