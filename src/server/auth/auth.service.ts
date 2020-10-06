@@ -101,9 +101,8 @@ export class AuthService {
 }
 
 export function getJwtUser(user: Partial<User>) {
-  const { _id, email, firstName, lastName, facebookId, googleId } = user;
+  const { email, firstName, lastName, facebookId, googleId } = user;
   return {
-    _id,
     email,
     firstName,
     lastName,

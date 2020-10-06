@@ -162,7 +162,7 @@ describe("Auth Controller", () => {
 
       const user = jwtService.decode(jwt);
 
-      expect(user).toHaveProperty("_id");
+      expect(user).toHaveProperty("email");
     });
   });
 });

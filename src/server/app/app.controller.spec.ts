@@ -9,10 +9,7 @@ import { JwtStrategy } from "../auth/jwt/jwt.strategy";
 import { AppService } from "./app.service";
 import { AppController } from "./app.controller";
 import { AppSchema, App } from "../../types/schemas/App.schema";
-import {
-  UserShortcut,
-  UserShortcutSchema,
-} from "../../types/schemas/UserShortcut.schema";
+import { UserApps, UserAppsSchema } from "../../types/schemas/UserApps.schema";
 import { JwtAuthGuard } from "../auth/jwt/jwt-auth.guard";
 import { Model } from "mongoose";
 import { User, UserSchema } from "../../types/schemas/User.schema";
@@ -29,7 +26,7 @@ describe("app controller", () => {
   const jwtSecret = "jwtSecret";
   let mongod: MongoMemoryServer;
   let appModel: Model<App>;
-  let userShortcutModel: Model<UserShortcut>;
+  let userAppsModel: Model<UserApps>;
   let authService: AuthService;
 
   beforeAll(async () => {
@@ -49,7 +46,7 @@ describe("app controller", () => {
           { name: App.name, schema: AppSchema },
           { name: AppCategory.name, schema: AppCategorySchema },
           { name: User.name, schema: UserSchema },
-          { name: UserShortcut.name, schema: UserShortcutSchema },
+          { name: UserApps.name, schema: UserAppsSchema },
         ]),
         JwtModule.register({
           secret: jwtSecret,
@@ -61,9 +58,7 @@ describe("app controller", () => {
     }).compile();
 
     authService = module.get<AuthService>(AuthService);
-    userShortcutModel = module.get<Model<UserShortcut>>(
-      getModelToken(UserShortcut.name)
-    );
+    userAppsModel = module.get<Model<UserApps>>(getModelToken(UserApps.name));
     appModel = module.get<Model<App>>(getModelToken(App.name));
 
     app = module.createNestApplication();
@@ -75,7 +70,7 @@ describe("app controller", () => {
   });
 
   beforeEach(async () => {
-    await userShortcutModel.db.dropDatabase();
+    await userAppsModel.db.dropDatabase();
   });
 
   afterAll(async () => {
@@ -83,7 +78,7 @@ describe("app controller", () => {
     await app.close();
   });
 
-  it("should allow logged in user to star and update the stars count", async () => {
+  it("should allow logged in user to star", async () => {
     const email = "existing@email.com";
     const password = "password";
 
@@ -98,10 +93,11 @@ describe("app controller", () => {
     const jwt = jwtCookie.match(regex)[0];
 
     const shortcutId = "shortcutId";
+    const appId = "appId";
 
     return request(app.getHttpServer())
       .post("/api/star")
-      .send({ shortcutId })
+      .send({ appId, shortcutId })
       .set("Cookie", ["jwt=" + jwt])
       .expect(HttpStatus.CREATED);
   });
@@ -111,6 +107,4 @@ describe("app controller", () => {
       .post("/api/star")
       .expect(HttpStatus.UNAUTHORIZED);
   });
-
-  it.todo("should throw if user stars an non-existing shortcut");
 });

@@ -1,11 +1,9 @@
 import React from "react";
 import {
   Get,
-  HttpException,
   HttpStatus,
   Next,
   Param,
-  Post,
   Req,
   Res,
   UseGuards,
@@ -64,42 +62,31 @@ export class HomeController {
     return req.user;
   }
 
-  // this exists for testing purposes
-  @Get("error")
-  async error() {
-    throw new HttpException("test error", 500);
+  @Get(":name")
+  async app(
+    @Param("name") name: string,
+    @Req() req: Request,
+    @Res() res: Response,
+    @Next() next: NextFunction
+  ) {
+    const app = await this.appsService.getAppByName(name);
+
+    if (!app) return next();
+
+    const dataContext: IDataContext = {
+      app,
+      os: this.homeService.getAppOS(app, req),
+    };
+
+    return res.send(
+      await this.renderPage(
+        req,
+        app.name + " | KeyboardNinja.me",
+        app.url,
+        dataContext
+      )
+    );
   }
-
-  @Post("error")
-  async error2() {
-    throw new HttpException("test error post", 500);
-  }
-
-  // @Get(":name")
-  // async app(
-  //   @Param("name") name: string,
-  //   @Req() req: Request,
-  //   @Res() res: Response,
-  //   @Next() next: NextFunction
-  // ) {
-  //   const app = await this.appsService.getAppByName(name);
-
-  //   if (!app) return next();
-
-  //   const dataContext: IDataContext = {
-  //     app,
-  //     os: this.homeService.getAppOS(app, req),
-  //   };
-
-  //   return res.send(
-  //     await this.renderPage(
-  //       req,
-  //       app.name + " | KeyboardNinja.me",
-  //       app.url,
-  //       dataContext
-  //     )
-  //   );
-  // }
 
   async renderPage(
     req: RequestAuth,
