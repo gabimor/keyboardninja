@@ -4,22 +4,21 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { HttpStatus, INestApplication, ValidationPipe } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { JwtModule, JwtService } from "@nestjs/jwt";
-import { User, UserSchema } from "../user/User.schema";
+import { User, UserSchema } from "../../types/schemas/User.schema";
 import { LocalAuthGuard } from "./local/local-auth.guard";
 import { LocalStrategy } from "./local/local.strategy";
 import { JwtStrategy } from "./jwt/jwt.strategy";
-import { UserService } from "../user/user.service";
 import { JwtAuthGuard } from "./jwt/jwt-auth.guard";
 import { Model } from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { getModelToken, MongooseModule } from "@nestjs/mongoose";
 import * as cookieParser from "cookie-parser";
+import { GlobalExceptionFilter } from "../misc/filters/GlobalExceptionFilter";
 
 describe("Auth Controller", () => {
   let app: INestApplication;
   const jwtSecret = "jwtSecret";
   let userModel: Model<User>;
-  let userService: UserService;
   let mongod: MongoMemoryServer;
   let authService: AuthService;
   let jwtService: JwtService;
@@ -48,20 +47,19 @@ describe("Auth Controller", () => {
         AuthService,
         LocalAuthGuard,
         LocalStrategy,
-        UserService,
         jwtStrategy,
         JwtAuthGuard,
       ],
     }).compile();
 
     userModel = module.get<Model<User>>(getModelToken(User.name));
-    userService = module.get<UserService>(UserService);
     authService = module.get<AuthService>(AuthService);
     jwtService = module.get<JwtService>(JwtService);
 
     app = module.createNestApplication();
     app.use(cookieParser());
     app.useGlobalPipes(new ValidationPipe());
+    app.useGlobalFilters(new GlobalExceptionFilter());
 
     await app.init();
   });
@@ -160,39 +158,11 @@ describe("Auth Controller", () => {
 
       const cookie: string = res.header["set-cookie"][0];
       const regex = /(?<=jwt=)(.*?)(?=;)/;
-
       const jwt = cookie.match(regex)[0];
 
       const user = jwtService.decode(jwt);
 
       expect(user).toHaveProperty("_id");
-    });
-  });
-
-  describe("logged in user", () => {
-    it("should return 404 for non existing endpoint", () => {
-      return request(app.getHttpServer())
-        .get("/auth/login")
-        .expect(HttpStatus.NOT_FOUND);
-    });
-
-    it("should not be able to access profile if not logged it", () => {
-      return request(app.getHttpServer())
-        .get("/auth/profile")
-        .expect(HttpStatus.UNAUTHORIZED);
-    });
-    it("should allow access if logged it", async () => {
-      const email = "user@email.com";
-      const password = "123456";
-
-      const user = await userModel.create({ email, password });
-
-      const token = authService.generateJwt(user);
-
-      return request(app.getHttpServer())
-        .get("/auth/profile")
-        .set("Cookie", ["jwt=" + token])
-        .expect(HttpStatus.OK);
     });
   });
 });

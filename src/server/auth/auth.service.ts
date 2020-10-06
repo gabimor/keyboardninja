@@ -7,7 +7,7 @@ import {
 import { hash } from "bcrypt";
 import { bcryptSaltRound } from "@server/auth/consts";
 import { JwtService } from "@nestjs/jwt";
-import { User } from "@server/user/User.schema";
+import { User } from "@src/types/schemas/User.schema";
 import { compare } from "bcrypt";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
@@ -33,12 +33,13 @@ export class AuthService {
 
     if (passwordMatch) {
       const { password, ...result } = user;
+
       return result;
     }
     return null;
   }
 
-  async signup(email: string, password: string): Promise<Partial<User>> {
+  async signup(email: string, password: string): Promise<User> {
     if (await this.userModel.findOne({ email }).lean()) {
       throw new HttpException("user exists: " + email, HttpStatus.BAD_REQUEST);
     }
@@ -50,7 +51,7 @@ export class AuthService {
       password: hashedPassword,
     });
 
-    return { _id: user._id, email: user.email };
+    return user;
   }
 
   async signupSocial(
@@ -95,15 +96,18 @@ export class AuthService {
       throw new BadRequestException("user doesn't include _id property");
     }
 
-    const { _id, email, firstName, lastName, facebookId, googleId } = user;
-
-    return this.jwtService.sign({
-      _id,
-      email,
-      firstName,
-      lastName,
-      facebookId,
-      googleId,
-    });
+    return this.jwtService.sign(getJwtUser(user));
   }
+}
+
+export function getJwtUser(user: Partial<User>) {
+  const { _id, email, firstName, lastName, facebookId, googleId } = user;
+  return {
+    _id,
+    email,
+    firstName,
+    lastName,
+    facebookId,
+    googleId,
+  };
 }

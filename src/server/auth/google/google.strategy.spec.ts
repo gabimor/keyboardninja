@@ -3,7 +3,7 @@ import { getModelToken, MongooseModule } from "@nestjs/mongoose";
 import { Test, TestingModule } from "@nestjs/testing";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { Model } from "mongoose";
-import { User, UserSchema } from "../../user/User.schema";
+import { User, UserSchema } from "../../../types/schemas/User.schema";
 import { AuthService } from "../../auth/auth.service";
 import { GoogleStrategy } from "./google.strategy";
 import { JwtModule } from "@nestjs/jwt";

@@ -7,6 +7,7 @@ import Layout from "@client/Layout";
 import { DataContext, IDataContext } from "@client/DataContext";
 import { JwtUser } from "@src/types/User.type";
 import { OSs } from "@src/types/OSs.enum";
+import { logout } from "./client/api/auth";
 
 declare global {
   interface Window {
@@ -48,6 +49,7 @@ const Client = () => {
     os,
     doStar,
     doSetOs,
+    doLogout: logout,
   };
 
   return (

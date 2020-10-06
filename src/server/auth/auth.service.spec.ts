@@ -2,15 +2,13 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { AuthService, SocialType } from "./auth.service";
 import { JwtService } from "@nestjs/jwt";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import { User, UserSchema } from "../user/User.schema";
+import { User, UserSchema } from "../../types/schemas/User.schema";
 import { Model } from "mongoose";
 import { getModelToken, MongooseModule } from "@nestjs/mongoose";
-import { UserService } from "../user/user.service";
 import { compare } from "bcrypt";
 
 describe("AuthService", () => {
   let authService: AuthService;
-  let userService: UserService;
   let userModel: Model<User>;
   let mongod: MongoMemoryServer;
 
@@ -23,15 +21,10 @@ describe("AuthService", () => {
         MongooseModule.forRoot(uri),
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
       ],
-      providers: [
-        AuthService,
-        { provide: JwtService, useValue: {} },
-        UserService,
-      ],
+      providers: [AuthService, { provide: JwtService, useValue: {} }],
     }).compile();
 
     authService = module.get<AuthService>(AuthService);
-    userService = module.get<UserService>(UserService);
     userModel = module.get<Model<User>>(getModelToken(User.name));
   });
 

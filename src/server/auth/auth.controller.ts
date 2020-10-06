@@ -10,16 +10,13 @@ import {
   UnauthorizedException,
   UseGuards,
 } from "@nestjs/common";
-import { User } from "@server/user/User.schema";
-import { Request as RequestExpress, Response } from "express";
+import { Response } from "express";
 import { AuthService } from "./auth.service";
-import { JwtAuthGuard } from "./jwt/jwt-auth.guard";
 import { FacebookAuthGuard } from "./facebook/facebook-auth.guard";
 import { LocalAuthGuard } from "./local/local-auth.guard";
 import { GoogleAuthGuard } from "./google/google-auth.guard";
-import { CreateUserDto } from "@server/user/createUserDTO";
-
-type RequestAuth = RequestExpress & { user: Partial<User> };
+import { CreateUserDto } from "@src/types/DTOs/createUser.dto";
+import { RequestAuth } from "@src/types/RequestAuth";
 
 @Controller("auth")
 export class AuthController {
@@ -58,13 +55,6 @@ export class AuthController {
     setCookie(res, jwt);
 
     return res.redirect("/");
-  }
-
-  // TODO: remove this endpoint
-  @UseGuards(JwtAuthGuard)
-  @Get("profile")
-  getProfile(@Request() req: RequestAuth) {
-    return req.user;
   }
 
   @UseGuards(GoogleAuthGuard)

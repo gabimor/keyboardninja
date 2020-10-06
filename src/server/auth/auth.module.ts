@@ -1,7 +1,6 @@
 import { Module } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { LocalStrategy } from "./local/local.strategy";
-import { UsersModule } from "../user/user.module";
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
 import { jwtConsts } from "./consts";
@@ -18,7 +17,7 @@ import {
   GoogleStrategyConfigToken,
 } from "./google/google.strategy.config";
 import { MongooseModule } from "@nestjs/mongoose";
-import { User, UserSchema } from "@server/user/User.schema";
+import { User, UserSchema } from "@src/types/schemas/User.schema";
 
 const jwtStrategy = {
   provide: JwtStrategy,

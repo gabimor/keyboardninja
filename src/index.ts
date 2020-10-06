@@ -5,13 +5,13 @@ import cookieParser from "cookie-parser";
 import expressListRoutes from "express-list-routes";
 import * as rateLimit from "express-rate-limit";
 import { ValidationPipe } from "@nestjs/common";
-import { ServeStaticExceptionFilter } from "@server/utils/ServeStatic.exceptionFilter";
+import { GlobalExceptionFilter } from "@server/misc/filters/GlobalExceptionFilter";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe());
-  app.useGlobalFilters(new ServeStaticExceptionFilter());
+  app.useGlobalFilters(new GlobalExceptionFilter());
   // app.use(helmet());
   // TODO: configure csrf & helmet
   // app.use(csurf());
