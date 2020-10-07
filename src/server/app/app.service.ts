@@ -1,17 +1,19 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { App } from "@src/types/schemas/App.schema";
 import { AppCategory } from "@src/types/schemas/AppCategory.schema";
 import { UserApps } from "@src/types/schemas/UserApps.schema";
 import { Model } from "mongoose";
 import { ObjectId } from "mongodb";
+import { User } from "@src/types/schemas/User.schema";
 @Injectable()
 export class AppService {
   constructor(
     @InjectModel(AppCategory.name) private appCategoryModel: Model<AppCategory>,
     @InjectModel(UserApps.name)
     private userAppsModel: Model<UserApps>,
-    @InjectModel(App.name) private appModel: Model<App>
+    @InjectModel(App.name) private appModel: Model<App>,
+    @InjectModel(User.name) private userModel: Model<User>
   ) {}
 
   async getAppCategory(): Promise<AppCategory[]> {
@@ -22,40 +24,66 @@ export class AppService {
     return this.appModel.findOne({ url: name }).lean();
   }
 
-  async starShortcut(
+  async toggleStar(
     userId: ObjectId,
     appId: ObjectId,
     shortcutId: ObjectId
-  ): Promise<void> {
-    const userApps = await this.userAppsModel.findById(userId);
+  ): Promise<UserApps> {
+    const app = await this.appModel.findById(appId);
 
-    // const userApp = await this.userAppsModel.findByIdAndUpdate(userId,)
-    //   { _id: userId, apps: { $elemMatch: { _id: appId } } },
-    //   {
-    //     $addToSet: { "apps.$.shortcutIds": shortcutId },
-    //   },
-    //   { useFindAndModify: false, upsert: true }
-    // );
-
-    if (!userApps) {
-      await this.userAppsModel.create({
-        _id: userId,
-        apps: [
-          {
-            _id: appId,
-            shortcutIds: [shortcutId],
-          },
-        ],
-      });
-    } else {
-      const app = userApps.apps.find(
-        (app) => app._id.toHexString() === appId.toHexString()
-      );
-
-      if (!app.shortcutIds.includes(shortcutId)) {
-        app.shortcutIds.push(shortcutId);
-        await userApps.save();
-      }
+    if (!app) {
+      throw new BadRequestException("didn't find app with id:" + appId);
     }
+
+    const user = await this.userModel.findById(userId);
+
+    if (!user) {
+      throw new BadRequestException("didn't find user with id:" + userId);
+    }
+
+    const shortcut = app.shortcuts.find((s) => shortcutId.equals(s._id));
+
+    if (!shortcut) {
+      throw new BadRequestException(
+        `appId: ${appId} doesn't have shortcutId: ${shortcutId}`
+      );
+    }
+
+    const userApp = await this.userAppsModel.findOneAndUpdate(
+      { userId, appId },
+      {},
+      { upsert: true, new: true, useFindAndModify: false }
+    );
+
+    const shortcutIndex = userApp.shortcutIds.indexOf(shortcutId);
+
+    if (shortcutIndex > -1) {
+      userApp.shortcutIds.splice(shortcutIndex, 1);
+
+      shortcut.stars--;
+    } else {
+      userApp.shortcutIds.push(shortcutId);
+      shortcut.stars++;
+    }
+    await userApp.save();
+    await app.save();
+
+    return userApp;
+  }
+
+  async unstarShortcut(
+    userId: ObjectId,
+    appId: ObjectId,
+    shortcutId: ObjectId
+  ): Promise<UserApps> {
+    return this.userAppsModel.findOneAndUpdate(
+      { userId, appId },
+      {
+        userId,
+        appId,
+        $addToSet: { shortcutIds: shortcutId },
+      },
+      { upsert: true, useFindAndModify: false, new: true }
+    );
   }
 }

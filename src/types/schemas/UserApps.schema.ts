@@ -1,25 +1,16 @@
-import { Prop, raw, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 import { ObjectId } from "mongodb";
 
 @Schema({ collection: "user_apps" })
 export class UserApps extends Document {
   @Prop()
-  _id: ObjectId;
+  userId: ObjectId;
+  @Prop()
+  appId: ObjectId;
 
-  @Prop(
-    raw([
-      {
-        shortcutIds: [{ type: ObjectId }],
-      },
-    ])
-  )
-  apps: UserApp[];
-}
-
-type UserApp = {
-  _id: ObjectId;
+  @Prop()
   shortcutIds: ObjectId[];
-};
+}
 
 export const UserAppsSchema = SchemaFactory.createForClass(UserApps);
