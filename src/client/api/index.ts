@@ -36,17 +36,13 @@ export async function toggleStar(
   appId: string,
   shortcutId: string
 ): ToggleStarReturnType {
-  console.log(appId, shortcutId);
-
   const response = await fetch("/api/star", {
     method: "POST",
     body: JSON.stringify({ appId, shortcutId }),
     headers,
   });
 
-  console.log(response);
-
-  return { stars: 0, isStarred: true };
+  return response.json();
 }
 
 export function getLink(appId: string, shortcutIds: string[]) {

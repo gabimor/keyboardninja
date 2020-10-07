@@ -5,7 +5,6 @@ import {
   HttpStatus,
   Post,
   Req,
-  Request,
   Res,
   UnauthorizedException,
   UseGuards,
@@ -24,7 +23,7 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post("login")
-  async login(@Request() req: RequestAuth, @Res() res: Response) {
+  async login(@Req() req: RequestAuth, @Res() res: Response) {
     const { user } = req;
 
     if (!user) throw new UnauthorizedException();

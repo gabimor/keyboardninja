@@ -21,6 +21,7 @@ import { AuthController } from "../auth/auth.controller";
 import * as cookieParser from "cookie-parser";
 import { GlobalExceptionFilter } from "../misc/filters/GlobalExceptionFilter";
 import { ObjectId } from "mongodb";
+import { jwtConsts } from "../auth/consts";
 
 describe("app controller", () => {
   let app: INestApplication;
@@ -56,7 +57,7 @@ describe("app controller", () => {
         ]),
         JwtModule.register({
           secret: jwtSecret,
-          signOptions: { expiresIn: "60s" },
+          signOptions: { expiresIn: jwtConsts.expiresIn },
         }),
       ],
       controllers: [AppController, AuthController],

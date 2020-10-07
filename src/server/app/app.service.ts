@@ -67,6 +67,8 @@ export class AppService {
       userApp.shortcutIds.push(shortcutId);
       shortcut.stars++;
     }
+
+
     await userApp.save();
     await app.save();
 

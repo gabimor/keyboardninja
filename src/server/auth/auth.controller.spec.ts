@@ -14,6 +14,7 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import { getModelToken, MongooseModule } from "@nestjs/mongoose";
 import * as cookieParser from "cookie-parser";
 import { GlobalExceptionFilter } from "../misc/filters/GlobalExceptionFilter";
+import { jwtConsts } from "../auth/consts";
 
 describe("Auth Controller", () => {
   let app: INestApplication;
@@ -39,7 +40,7 @@ describe("Auth Controller", () => {
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
         JwtModule.register({
           secret: jwtSecret,
-          signOptions: { expiresIn: "60s" },
+          signOptions: { expiresIn: jwtConsts.expiresIn },
         }),
       ],
       controllers: [AuthController],

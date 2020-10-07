@@ -7,7 +7,7 @@ import { User, UserSchema } from "../../../types/schemas/User.schema";
 import { AuthService } from "../../auth/auth.service";
 import { GoogleStrategy } from "./google.strategy";
 import { JwtModule } from "@nestjs/jwt";
-const mongoose = require("mongoose");
+import { jwtConsts } from "../consts";
 
 describe("google strategy", () => {
   let app: INestApplication;
@@ -32,7 +32,7 @@ describe("google strategy", () => {
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
         JwtModule.register({
           secret: jwtSecret,
-          signOptions: { expiresIn: "60s" },
+          signOptions: { expiresIn: jwtConsts.expiresIn },
         }),
       ],
       providers: [AuthService],

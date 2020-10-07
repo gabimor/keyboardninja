@@ -9,6 +9,7 @@ import { JwtUser } from "@src/types/User.type";
 import { OSs } from "@src/types/OSs.enum";
 import { logout } from "./client/api/auth";
 import { toggleStar } from "@client/api";
+import { App } from "./types/schemas/App.schema";
 
 declare global {
   interface Window {
@@ -21,6 +22,12 @@ export type DoToggleStar = (appId: string, shortcutId: string) => void;
 export type DoSetOs = (os: OSs) => void;
 
 const Client = () => {
+  const { appCategories } = window.__KBN_DATA__;
+
+  const [app, setApp] = useState<Partial<App>>(window.__KBN_DATA__.app);
+  const [os, setOs] = useState<OSs>(window.__KBN_DATA__.os);
+  const [user] = useState<JwtUser>(window.__KBN_DATA__.user);
+
   const doSetOs: DoSetOs = (osData) => {
     setOs(osData);
     osSelect.setSelectedOS(osData);
@@ -28,18 +35,16 @@ const Client = () => {
 
   const doToggleStar: DoToggleStar = async (appId, shortcutId) => {
     const { isStarred, stars } = await toggleStar(appId, shortcutId);
+    console.log({ isStarred, stars });
 
     const shortcut = app.shortcuts.find(
       (e) => e._id.toString() === shortcutId.toString()
     );
     shortcut.stars = stars;
     shortcut.isStarred = isStarred;
+
+    setApp(app);
   };
-
-  const { appCategories, app } = window.__KBN_DATA__;
-
-  const [os, setOs] = useState<OSs>(window.__KBN_DATA__.os);
-  const [user] = useState<JwtUser>(window.__KBN_DATA__.user);
 
   const contextValue: IDataContext = {
     app,

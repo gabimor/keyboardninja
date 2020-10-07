@@ -3,7 +3,6 @@ import {
   Catch,
   ExceptionFilter,
   HttpException,
-  HttpStatus,
 } from "@nestjs/common";
 import { Response, Request } from "express";
 import { page500 } from "../pageTemplate/page500";
@@ -14,11 +13,12 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
-    let status;
+
+    let status: any = 500;
     if (exception instanceof HttpException) {
       status = exception.getStatus();
-    } else if (exception.code === "ENOENT") {
-      status = exception.code;
+    } else if (exception?.code === "ENOENT") {
+      return response.redirect("/404");
     }
 
     if (request.method !== "GET") {
@@ -27,10 +27,8 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         timestamp: new Date().toISOString(),
         path: request.url,
       });
-    } else if (status === HttpStatus.INTERNAL_SERVER_ERROR) {
-      response.send(page500()).sendStatus(status);
-    } else if (status === "ENOENT") {
-      response.redirect("/404");
+      return;
     }
+    response.send(page500()).sendStatus(500);
   }
 }

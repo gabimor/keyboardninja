@@ -36,7 +36,7 @@ function ShortcutItem({
     <>
       <StarButton
         isStarred={isStarred}
-        onClick={() => doToggleStar(_id, app._id)}
+        onClick={() => doToggleStar(app._id, _id)}
       />
       {!isMobile && (
         <CellContainer isStarred={isStarred} stars={stars}>

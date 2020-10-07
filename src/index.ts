@@ -4,13 +4,13 @@ import cookieParser from "cookie-parser";
 // @ts-ignore
 import expressListRoutes from "express-list-routes";
 import * as rateLimit from "express-rate-limit";
-import { ValidationPipe } from "@nestjs/common";
 import { GlobalExceptionFilter } from "@server/misc/filters/GlobalExceptionFilter";
+import { ClassValidationPipe } from "@server/misc/filters/ClassValidationPipe";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ClassValidationPipe());
   app.useGlobalFilters(new GlobalExceptionFilter());
   // app.use(helmet());
   // TODO: configure csrf & helmet
