@@ -11,7 +11,6 @@ import { UserApps, UserAppsSchema } from "../../types/schemas/UserApps.schema";
 import { AppService } from "./app.service";
 import { ObjectId } from "mongodb";
 import { User, UserSchema } from "../../types/schemas/User.schema";
-import { BadRequestException } from "@nestjs/common";
 
 describe("app service", () => {
   let mongod: MongoMemoryServer;
@@ -96,98 +95,139 @@ describe("app service", () => {
   });
 
   it("should add a shortcut to a non-existing user app", async () => {
-    const userApp = await appService.toggleStar(
+    const { isStarred, stars } = await appService.toggleStar(
       userId1,
       appId1,
       app1ShortcutId1
     );
 
-    const stars = await getStars(appId1, app1ShortcutId1);
+    const userApp = await userAppsModel.findOne({
+      userId: userId1,
+      appId: appId1,
+    });
 
     expect(userApp.userId).toEqual(userId1);
     expect(userApp.appId).toEqual(appId1);
     expect(userApp.shortcutIds).toHaveLength(1);
     expect(userApp.shortcutIds).toContainEqual(app1ShortcutId1);
     expect(stars).toEqual(1);
+    expect(isStarred).toEqual(true);
   });
 
   it("should toggle the same shortcut when running twice", async () => {
-    let userApp = await appService.toggleStar(userId1, appId1, app1ShortcutId1);
+    const { stars, isStarred } = await appService.toggleStar(
+      userId1,
+      appId1,
+      app1ShortcutId1
+    );
 
-    let stars = await getStars(appId1, app1ShortcutId1);
+    let userApp = await userAppsModel.findOne({
+      userId: userId1,
+      appId: appId1,
+    });
 
     expect(userApp.userId).toEqual(userId1);
     expect(userApp.appId).toEqual(appId1);
     expect(userApp.shortcutIds).toHaveLength(1);
     expect(userApp.shortcutIds).toContainEqual(app1ShortcutId1);
     expect(stars).toEqual(1);
+    expect(isStarred).toEqual(true);
 
-    userApp = await appService.toggleStar(userId1, appId1, app1ShortcutId1);
-    stars = await getStars(appId1, app1ShortcutId1);
+    const result2 = await appService.toggleStar(
+      userId1,
+      appId1,
+      app1ShortcutId1
+    );
+    userApp = await userAppsModel.findOne({
+      userId: userId1,
+      appId: appId1,
+    });
 
     expect(userApp.shortcutIds).toHaveLength(0);
-    expect(stars).toEqual(0);
+    expect(result2.isStarred).toEqual(false);
+    expect(result2.stars).toEqual(0);
   });
 
   it("should toggle multiple users, apps and shortcuts", async () => {
     // user1 & app1
-    let user1App = await appService.toggleStar(
+    const user1Shortcut1Result = await appService.toggleStar(
       userId1,
       appId1,
       app1ShortcutId1
     );
-    user1App = await appService.toggleStar(userId1, appId1, app1ShortcutId2);
-
-    let user1Stars1 = await getStars(appId1, app1ShortcutId1);
-    let user1Stars2 = await getStars(appId1, app1ShortcutId2);
+    const user1Shortcut2Result = await appService.toggleStar(
+      userId1,
+      appId1,
+      app1ShortcutId2
+    );
 
     // user2 & app2
-    let user2App = await appService.toggleStar(
+    const user2Shortcut1Result = await appService.toggleStar(
       userId2,
       appId2,
       app2ShortcutId1
     );
-    user2App = await appService.toggleStar(userId2, appId2, app2ShortcutId2);
+    const user2Shortcut2Result = await appService.toggleStar(
+      userId2,
+      appId2,
+      app2ShortcutId2
+    );
 
-    let user2Stars1 = await getStars(appId2, app2ShortcutId1);
-    let user2Stars2 = await getStars(appId2, app2ShortcutId2);
+    const user1App = await userAppsModel.findOne({
+      userId: userId1,
+      appId: appId1,
+    });
+
+    const user2App = await userAppsModel.findOne({
+      userId: userId2,
+      appId: appId2,
+    });
 
     expect(user1App.userId).toEqual(userId1);
     expect(user1App.appId).toEqual(appId1);
     expect(user1App.shortcutIds).toHaveLength(2);
     expect(user1App.shortcutIds).toContainEqual(app1ShortcutId1);
     expect(user1App.shortcutIds).toContainEqual(app1ShortcutId2);
-    expect(user1Stars1).toEqual(1);
-    expect(user1Stars2).toEqual(1);
+    expect(user1Shortcut1Result.stars).toEqual(1);
+    expect(user1Shortcut2Result.stars).toEqual(1);
 
     expect(user2App.userId).toEqual(userId2);
     expect(user2App.appId).toEqual(appId2);
     expect(user2App.shortcutIds).toHaveLength(2);
     expect(user2App.shortcutIds).toContainEqual(app2ShortcutId1);
     expect(user2App.shortcutIds).toContainEqual(app2ShortcutId2);
-    expect(user2Stars1).toEqual(1);
-    expect(user2Stars2).toEqual(1);
-
-    // userApp = await appService.toggleStar(userId1, appId1, app1ShortcutId1);
-    // stars = await getStars(appId1, app1ShortcutId1);
-
-    // expect(userApp.shortcutIds).toHaveLength(0);
-    // expect(stars).toEqual(0);
+    expect(user2Shortcut1Result.stars).toEqual(1);
+    expect(user2Shortcut1Result.isStarred).toEqual(true);
+    expect(user2Shortcut1Result.stars).toEqual(1);
+    expect(user2Shortcut1Result.isStarred).toEqual(true);
   });
 
   it("should add a shortcut to an existing user apps", async () => {
-    let userApp = await appService.toggleStar(userId1, appId1, app1ShortcutId1);
-    userApp = await appService.toggleStar(userId1, appId1, app1ShortcutId2);
-    const stars1 = await getStars(appId1, app1ShortcutId1);
-    const stars2 = await getStars(appId1, app1ShortcutId1);
+    const result1 = await appService.toggleStar(
+      userId1,
+      appId1,
+      app1ShortcutId1
+    );
+    const result2 = await appService.toggleStar(
+      userId1,
+      appId1,
+      app1ShortcutId2
+    );
+
+    const userApp = await userAppsModel.findOne({
+      userId: userId1,
+      appId: appId1,
+    });
 
     expect(userApp.userId).toEqual(userId1);
     expect(userApp.appId).toEqual(appId1);
     expect(userApp.shortcutIds).toHaveLength(2);
     expect(userApp.shortcutIds).toContainEqual(app1ShortcutId1);
     expect(userApp.shortcutIds).toContainEqual(app1ShortcutId2);
-    expect(stars1).toEqual(1);
-    expect(stars2).toEqual(1);
+    expect(result1.stars).toEqual(1);
+    expect(result1.isStarred).toEqual(true);
+    expect(result2.stars).toEqual(1);
+    expect(result2.isStarred).toEqual(true);
   });
   it("should throw for toggling for non existing shortcut from existing app and user", async () => {
     await expect(
@@ -206,16 +246,4 @@ describe("app service", () => {
       appService.toggleStar(userId1, new ObjectId(), app1ShortcutId1)
     ).rejects.toThrow();
   });
-
-  async function getStars(appId: ObjectId, shortcutId: ObjectId) {
-    const app = await appModel.findOne(
-      {
-        _id: appId,
-        "shortcuts._id": shortcutId,
-      },
-      { "shortcuts.$": 1 }
-    );
-
-    return app.shortcuts[0].stars;
-  }
 });

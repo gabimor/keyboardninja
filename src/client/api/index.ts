@@ -1,3 +1,5 @@
+import { ToggleStarReturnType } from "@src/types/misc";
+
 const headers = {
   Accept: "application/json",
   Cache: "no-cache",
@@ -30,12 +32,21 @@ export function getOS(appId: string, os: string) {
   return fetch(`/api/apps/${appId}?os=${os}`).then((res) => res.json());
 }
 
-export function star(appId: string, shortcutId: string, isStarred: boolean) {
-  return fetch("/api/star", {
-    method: "PATCH",
-    body: JSON.stringify({ appId, shortcutId, isStarred }),
+export async function toggleStar(
+  appId: string,
+  shortcutId: string
+): ToggleStarReturnType {
+  console.log(appId, shortcutId);
+
+  const response = await fetch("/api/star", {
+    method: "POST",
+    body: JSON.stringify({ appId, shortcutId }),
     headers,
   });
+
+  console.log(response);
+
+  return { stars: 0, isStarred: true };
 }
 
 export function getLink(appId: string, shortcutIds: string[]) {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
 import MobileMenu from "./MobileMenu";
-import { DataContext } from "@client/DataContext";
+import { DataContext, IDataContext } from "@client/DataContext";
 import styled from "@emotion/styled";
 
 export default {
@@ -9,8 +9,9 @@ export default {
   component: MobileMenu,
 } as Meta;
 
-const contextData = {
+const contextData: IDataContext = {
   user: {
+    _id: "1",
     email: "johna@email.com",
     firstName: "John",
     lastName: "Abercrombie",

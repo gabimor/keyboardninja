@@ -19,6 +19,7 @@ import { HomeService } from "./home.service";
 import { AppService } from "@server/app/app.service";
 import { RequestAuth } from "@src/types/RequestAuth";
 import { JwtAuthGuard } from "@server/auth/jwt/jwt-auth.guard";
+import { JwtUser } from "@src/types/User.type";
 
 @Controller("/")
 export class HomeController {
@@ -96,9 +97,9 @@ export class HomeController {
   ) {
     const appCategories = await this.appsService.getAppCategory();
 
-    const context = {
+    const context: IDataContext = {
       ...dataContext,
-      user: req.user,
+      user: req.user as JwtUser,
       appCategories,
     };
 

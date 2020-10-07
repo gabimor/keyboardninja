@@ -11,6 +11,7 @@ import { User } from "@src/types/schemas/User.schema";
 import { compare } from "bcrypt";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
+import { JwtUser } from "@src/types/User.type";
 
 export enum SocialType {
   Facebook = "facebook",
@@ -100,9 +101,10 @@ export class AuthService {
   }
 }
 
-export function getJwtUser(user: Partial<User>) {
-  const { email, firstName, lastName, facebookId, googleId } = user;
+export function getJwtUser(user: Partial<User>): JwtUser {
+  const { _id, email, firstName, lastName, facebookId, googleId } = user;
   return {
+    _id,
     email,
     firstName,
     lastName,

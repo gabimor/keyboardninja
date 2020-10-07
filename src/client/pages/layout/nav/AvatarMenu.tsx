@@ -42,11 +42,12 @@ const DetailsContainer = styled.div`
 const Container = styled.div`
   right: -15px;
   top: -15px;
+  z-index: 1000;
   position: absolute;
-  background: #424242;
+  background: #383838;
   padding: 15px;
   border-radius: 5px;
-  box-shadow: 0px 3px 17px 1px rgba(0, 0, 0, 0.36);
+  box-shadow: 0px 3px 17px 4px rgba(0, 0, 0, 0.46);
   white-space: nowrap;
   transition: all 0.1s ease-in-out;
 `;

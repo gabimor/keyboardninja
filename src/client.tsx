@@ -8,6 +8,7 @@ import { DataContext, IDataContext } from "@client/DataContext";
 import { JwtUser } from "@src/types/User.type";
 import { OSs } from "@src/types/OSs.enum";
 import { logout } from "./client/api/auth";
+import { toggleStar } from "@client/api";
 
 declare global {
   interface Window {
@@ -15,11 +16,7 @@ declare global {
   }
 }
 
-export type DoStar = (
-  shortcutId: string,
-  stars: number,
-  isStarred: boolean
-) => void;
+export type DoToggleStar = (appId: string, shortcutId: string) => void;
 
 export type DoSetOs = (os: OSs) => void;
 
@@ -29,7 +26,9 @@ const Client = () => {
     osSelect.setSelectedOS(osData);
   };
 
-  const doStar: DoStar = (shortcutId, stars, isStarred) => {
+  const doToggleStar: DoToggleStar = async (appId, shortcutId) => {
+    const { isStarred, stars } = await toggleStar(appId, shortcutId);
+
     const shortcut = app.shortcuts.find(
       (e) => e._id.toString() === shortcutId.toString()
     );
@@ -47,7 +46,7 @@ const Client = () => {
     appCategories,
     user,
     os,
-    doStar,
+    doToggleStar,
     doSetOs,
     doLogout: logout,
   };

@@ -8,6 +8,7 @@ import {
 import { AppService } from "./app.service";
 import { AppController } from "./app.controller";
 import { UserApps, UserAppsSchema } from "@src/types/schemas/UserApps.schema";
+import { User, UserSchema } from "@src/types/schemas/User.schema";
 
 @Module({
   imports: [
@@ -16,6 +17,10 @@ import { UserApps, UserAppsSchema } from "@src/types/schemas/UserApps.schema";
       { name: UserApps.name, schema: UserAppsSchema },
     ]),
     MongooseModule.forFeature([{ name: App.name, schema: AppSchema }]),
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    MongooseModule.forFeature([
+      { name: UserApps.name, schema: UserAppsSchema },
+    ]),
   ],
   controllers: [AppController],
   providers: [AppService],

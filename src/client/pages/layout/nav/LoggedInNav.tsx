@@ -60,7 +60,7 @@ type StyledAvatarProps = {
 
 const StyledAvatar = styled(Avatar)`
   position: relative;
-  z-index: 1000;
+  z-index: 1001;
   transition: all 0.2s ease-in-out;
   ${(props: StyledAvatarProps) => !props.visible && avatarHoverStyle};
 `;

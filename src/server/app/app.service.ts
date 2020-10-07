@@ -6,6 +6,7 @@ import { UserApps } from "@src/types/schemas/UserApps.schema";
 import { Model } from "mongoose";
 import { ObjectId } from "mongodb";
 import { User } from "@src/types/schemas/User.schema";
+import { ToggleStarReturnType } from "@src/types/misc";
 @Injectable()
 export class AppService {
   constructor(
@@ -28,7 +29,7 @@ export class AppService {
     userId: ObjectId,
     appId: ObjectId,
     shortcutId: ObjectId
-  ): Promise<UserApps> {
+  ): ToggleStarReturnType {
     const app = await this.appModel.findById(appId);
 
     if (!app) {
@@ -56,8 +57,9 @@ export class AppService {
     );
 
     const shortcutIndex = userApp.shortcutIds.indexOf(shortcutId);
+    const isStarred = shortcutIndex > -1;
 
-    if (shortcutIndex > -1) {
+    if (isStarred) {
       userApp.shortcutIds.splice(shortcutIndex, 1);
 
       shortcut.stars--;
@@ -68,7 +70,7 @@ export class AppService {
     await userApp.save();
     await app.save();
 
-    return userApp;
+    return { isStarred: !isStarred, stars: shortcut.stars };
   }
 
   async unstarShortcut(

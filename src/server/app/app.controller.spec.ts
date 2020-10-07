@@ -20,14 +20,20 @@ import {
 import { AuthController } from "../auth/auth.controller";
 import * as cookieParser from "cookie-parser";
 import { GlobalExceptionFilter } from "../misc/filters/GlobalExceptionFilter";
+import { ObjectId } from "mongodb";
 
 describe("app controller", () => {
   let app: INestApplication;
   const jwtSecret = "jwtSecret";
   let mongod: MongoMemoryServer;
   let appModel: Model<App>;
+  let userModel: Model<User>;
   let userAppsModel: Model<UserApps>;
   let authService: AuthService;
+
+  const userId = new ObjectId();
+  const appId = new ObjectId();
+  const shortcutId = new ObjectId();
 
   beforeAll(async () => {
     mongod = new MongoMemoryServer();
@@ -60,6 +66,7 @@ describe("app controller", () => {
     authService = module.get<AuthService>(AuthService);
     userAppsModel = module.get<Model<UserApps>>(getModelToken(UserApps.name));
     appModel = module.get<Model<App>>(getModelToken(App.name));
+    userModel = module.get<Model<User>>(getModelToken(User.name));
 
     app = module.createNestApplication();
     app.use(cookieParser());
@@ -71,6 +78,21 @@ describe("app controller", () => {
 
   beforeEach(async () => {
     await userAppsModel.db.dropDatabase();
+
+    await appModel.create({
+      _id: appId,
+      name: "TestApp 1",
+      icon: "icon",
+      oss: [],
+      sections: [],
+      url: "",
+      shortcuts: [{ _id: shortcutId, stars: 0 }],
+    });
+
+    await userModel.create({
+      _id: userId,
+      email: "email1@gmail.com",
+    });
   });
 
   afterAll(async () => {
@@ -92,14 +114,16 @@ describe("app controller", () => {
     const regex = /(?<=jwt=)(.*?)(?=;)/;
     const jwt = jwtCookie.match(regex)[0];
 
-    const shortcutId = "shortcutId";
-    const appId = "appId";
-
-    return request(app.getHttpServer())
+    const response = await request(app.getHttpServer())
       .post("/api/star")
       .send({ appId, shortcutId })
       .set("Cookie", ["jwt=" + jwt])
       .expect(HttpStatus.CREATED);
+
+    const { isStarred, stars } = response.body;
+
+    expect(isStarred).toBe(true);
+    expect(stars).toBe(1);
   });
 
   it("should not allow anonymous user to star", async () => {
