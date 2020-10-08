@@ -50,7 +50,6 @@ kbd {
 }
 
 label {
-  margin-right: 6px;
   color: #FFFFFF;
 }
 

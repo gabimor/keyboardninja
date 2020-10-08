@@ -3,22 +3,24 @@ import { getModelToken, MongooseModule } from "@nestjs/mongoose";
 import { Test, TestingModule } from "@nestjs/testing";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { Model } from "mongoose";
-import { User, UserSchema } from "../../user/User.schema";
-import { UserService } from "../../user/user.service";
+import { User, UserSchema } from "../../../types/schemas/User.schema";
+import { AuthService } from "../../auth/auth.service";
 import { GoogleStrategy } from "./google.strategy";
-const mongoose = require("mongoose");
+import { JwtModule } from "@nestjs/jwt";
+import { jwtConsts } from "../consts";
 
 describe("google strategy", () => {
   let app: INestApplication;
   let mongod: MongoMemoryServer;
-  let userService: UserService;
+  let authService: AuthService;
   let userModel: Model<User>;
   let googleStrategy: GoogleStrategy;
   const mockGoogleUser = {
     name: { givenName: "Joe", familyName: "Black" },
     id: "googleId",
-    emails: [{ value: "fb@email.com" }],
+    emails: [{ value: "google@email.com" }],
   };
+  const jwtSecret = "jwtSecret";
 
   beforeAll(async () => {
     mongod = new MongoMemoryServer();
@@ -28,14 +30,18 @@ describe("google strategy", () => {
       imports: [
         MongooseModule.forRoot(uri),
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+        JwtModule.register({
+          secret: jwtSecret,
+          signOptions: { expiresIn: jwtConsts.expiresIn },
+        }),
       ],
-      providers: [UserService],
+      providers: [AuthService],
     }).compile();
 
-    userService = module.get<UserService>(UserService);
+    authService = module.get<AuthService>(AuthService);
     userModel = module.get<Model<User>>(getModelToken(User.name));
 
-    googleStrategy = new GoogleStrategy(userService, {
+    googleStrategy = new GoogleStrategy(authService, {
       clientID: "testClientID",
       clientSecret: "testClientSecret",
     });
@@ -53,24 +59,24 @@ describe("google strategy", () => {
     await app.close();
   });
 
-  it("should augment an existing user with fb data", async () => {
+  it("should augment an existing user with google data", async () => {
     let originalUser = await userModel.create({
       email: mockGoogleUser.emails[0].value,
       password: "password",
     });
 
-    let user = await userModel.findById(originalUser._id);
+    let user = await userModel.findById(originalUser._id).lean();
 
     expect(user.firstName).toBeUndefined();
 
     await googleStrategy.validate("", "", mockGoogleUser, null);
 
-    user = await userModel.findById(originalUser._id);
+    user = await userModel.findById(originalUser._id).lean();
 
     expect(user.firstName).toEqual(mockGoogleUser.name.givenName);
   });
 
-  it("should sign up a new fb user", async () => {
+  it("should sign up a new google user", async () => {
     await googleStrategy.validate("", "", mockGoogleUser, null);
 
     const user = await userModel.findOne({ googleId: mockGoogleUser.id });

@@ -20,7 +20,7 @@ export default function Header() {
 const Container = styled.header`
   display: flex;
   align-items: baseline;
-  padding-top: 10px;
+  padding-top: 20px;
 
   @media (max-width: ${desktopBreakpoint}px) {
     padding-top: 0;

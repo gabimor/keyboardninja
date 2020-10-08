@@ -5,33 +5,25 @@ import {
   HttpStatus,
   Post,
   Req,
-  Request,
   Res,
   UnauthorizedException,
   UseGuards,
 } from "@nestjs/common";
-import { User } from "@server/user/User.schema";
-import { UserService } from "@server/user/user.service";
-import { Request as RequestExpress, Response } from "express";
+import { Response } from "express";
 import { AuthService } from "./auth.service";
-import { JwtAuthGuard } from "./jwt/jwt-auth.guard";
 import { FacebookAuthGuard } from "./facebook/facebook-auth.guard";
 import { LocalAuthGuard } from "./local/local-auth.guard";
 import { GoogleAuthGuard } from "./google/google-auth.guard";
-import { CreateUserDto } from "@server/user/createUserDTO";
-
-type RequestAuth = RequestExpress & { user: Partial<User> };
+import { CreateUserDto } from "@src/types/DTOs/createUser.dto";
+import { RequestAuth } from "@src/types/RequestAuth";
 
 @Controller("auth")
 export class AuthController {
-  constructor(
-    private authService: AuthService,
-    private userService: UserService
-  ) {}
+  constructor(private authService: AuthService) {}
 
   @UseGuards(LocalAuthGuard)
   @Post("login")
-  async login(@Request() req: RequestAuth, @Res() res: Response) {
+  async login(@Req() req: RequestAuth, @Res() res: Response) {
     const { user } = req;
 
     if (!user) throw new UnauthorizedException();
@@ -44,7 +36,7 @@ export class AuthController {
 
   @Post("signup")
   async signup(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
-    const user = await this.userService.signup(
+    const user = await this.authService.signup(
       createUserDto.email,
       createUserDto.password
     );
@@ -62,13 +54,6 @@ export class AuthController {
     setCookie(res, jwt);
 
     return res.redirect("/");
-  }
-
-  // TODO: remove this endpoint
-  @UseGuards(JwtAuthGuard)
-  @Get("profile")
-  getProfile(@Request() req: RequestAuth) {
-    return req.user;
   }
 
   @UseGuards(GoogleAuthGuard)

@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { OSs } from "../../../types/OSs.enum";
-import { DoSetOs } from "src/client";
+import { observer } from "mobx-react-lite";
 
 interface OSSelectProps {
   oss: OSs[];
   os: OSs;
-  onSelect: DoSetOs;
+  onSelect: (os: OSs) => void;
 }
 
 function OSSelect({ oss, os, onSelect }: OSSelectProps) {
@@ -32,7 +32,7 @@ interface OSButtonProps {
   buttonOS: OSs;
   selectedOS: OSs;
   supportedOSS: OSs[];
-  onClick: DoSetOs;
+  onClick: (os: OSs) => void;
 }
 
 const OSButton = ({
@@ -60,7 +60,7 @@ const OSButton = ({
     )
   );
 };
-export default OSSelect;
+export default observer(OSSelect);
 
 const Container = styled.span`
   font-size: 30px;

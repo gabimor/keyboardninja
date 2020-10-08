@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import styled from "@emotion/styled";
+import { observer } from "mobx-react-lite";
 
 import { copyToClipboard } from "../../helpers";
 import { DataContext } from "../../DataContext";
@@ -13,15 +14,16 @@ interface Props {
   name: string;
 }
 
-const Controls = ({ icon, name }: Props) => {
-  const { app, os, doSetOs } = useContext(DataContext);
+function Controls({ icon, name }: Props) {
+  const store = useContext(DataContext);
+
   const [publicLink, setPublicLink] = useState("");
 
   async function handleGetLink() {
-    const shortcutIds = app.shortcuts
+    const shortcutIds = store.app.shortcuts
       .filter((e) => e.isStarred)
       .map((e) => e._id);
-    const link = await getLink(app._id, shortcutIds).then((data) =>
+    const link = await getLink(store.app._id, shortcutIds).then((data) =>
       data.text()
     );
     setPublicLink(link);
@@ -39,7 +41,13 @@ const Controls = ({ icon, name }: Props) => {
         <Name>{name}</Name>
       </NameWrapper>
       <SearchWrapper />
-      <OSSelect onSelect={doSetOs} os={os} oss={app.oss} />
+      <OSSelect
+        onSelect={(os) => {
+          store.setOs(os);
+        }}
+        os={store.os}
+        oss={store.app.oss}
+      />
       <Seperator />
       <GetLink
         onGetLink={handleGetLink}
@@ -48,9 +56,9 @@ const Controls = ({ icon, name }: Props) => {
       />
     </Container>
   );
-};
+}
 
-export default Controls;
+export default observer(Controls);
 
 const Seperator = styled.div`
   height: 39px;
@@ -61,7 +69,7 @@ const Seperator = styled.div`
 const Container = styled.div`
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 10px 0;
   margin: 60px 0 40px 0;
   border-bottom: solid 1px #5a5a5a;
   position: sticky;

@@ -81,8 +81,3 @@ const InputWrapper = styled.div`
 const Text = styled.div`
   font-weight: 300;
 `;
-
-// const Seperator = styled.hr`
-//   border: 0;
-//   border-top: 1px solid #453a3a;
-// `

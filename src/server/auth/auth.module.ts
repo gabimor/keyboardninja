@@ -1,7 +1,6 @@
 import { Module } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { LocalStrategy } from "./local/local.strategy";
-import { UsersModule } from "../user/user.module";
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
 import { jwtConsts } from "./consts";
@@ -17,6 +16,8 @@ import {
   googleStrategyConfig,
   GoogleStrategyConfigToken,
 } from "./google/google.strategy.config";
+import { MongooseModule } from "@nestjs/mongoose";
+import { User, UserSchema } from "@src/types/schemas/User.schema";
 
 const jwtStrategy = {
   provide: JwtStrategy,
@@ -35,12 +36,12 @@ const googleStrategyConfigProvider = {
 
 @Module({
   imports: [
-    UsersModule,
     PassportModule.register({ defaultStrategy: "jwt" }),
     JwtModule.register({
       secret: jwtConsts.secret,
       signOptions: { expiresIn: jwtConsts.expiresIn },
     }),
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
   ],
   controllers: [AuthController],
   providers: [

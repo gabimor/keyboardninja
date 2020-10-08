@@ -3,15 +3,16 @@ import { getModelToken, MongooseModule } from "@nestjs/mongoose";
 import { Test, TestingModule } from "@nestjs/testing";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { Model } from "mongoose";
-import { User, UserSchema } from "../../user/User.schema";
-import { UserService } from "../../user/user.service";
+import { User, UserSchema } from "../../../types/schemas/User.schema";
+import { AuthService } from "../../auth/auth.service";
 import { FacebookStrategy } from "./facebook.strategy";
-const mongoose = require("mongoose");
+import { JwtModule } from "@nestjs/jwt";
+import { jwtConsts } from "../consts";
 
 describe("facebook strategy", () => {
   let app: INestApplication;
   let mongod: MongoMemoryServer;
-  let userService: UserService;
+  let authService: AuthService;
   let userModel: Model<User>;
   let facebookStrategy: FacebookStrategy;
   const mockFBUser = {
@@ -19,6 +20,7 @@ describe("facebook strategy", () => {
     id: "facebookId",
     emails: [{ value: "fb@email.com" }],
   };
+  const jwtSecret = "jwtSecret";
 
   beforeAll(async () => {
     mongod = new MongoMemoryServer();
@@ -28,14 +30,18 @@ describe("facebook strategy", () => {
       imports: [
         MongooseModule.forRoot(uri),
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+        JwtModule.register({
+          secret: jwtSecret,
+          signOptions: { expiresIn: jwtConsts.expiresIn },
+        }),
       ],
-      providers: [UserService],
+      providers: [AuthService],
     }).compile();
 
-    userService = module.get<UserService>(UserService);
+    authService = module.get<AuthService>(AuthService);
     userModel = module.get<Model<User>>(getModelToken(User.name));
 
-    facebookStrategy = new FacebookStrategy(userService, {
+    facebookStrategy = new FacebookStrategy(authService, {
       clientID: "testClientID",
       clientSecret: "testClientSecret",
     });

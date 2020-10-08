@@ -30,7 +30,7 @@ export default function LoggedInNav() {
               name={user.firstName + " " + user.lastName}
               facebookId={user.facebookId}
               googleId={user.googleId}
-              size="36"
+              size="40"
               onClick={() => setAvatarMenuVisible(true)}
               round={true}
               visible={avatarMenuVisible}
@@ -60,7 +60,7 @@ type StyledAvatarProps = {
 
 const StyledAvatar = styled(Avatar)`
   position: relative;
-  z-index: 1000;
+  z-index: 1001;
   transition: all 0.2s ease-in-out;
   ${(props: StyledAvatarProps) => !props.visible && avatarHoverStyle};
 `;

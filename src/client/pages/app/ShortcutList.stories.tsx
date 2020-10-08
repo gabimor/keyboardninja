@@ -5,11 +5,14 @@ import { Shortcut } from "@src/types/Shortcut.type";
 import { Meta } from "@storybook/react";
 import { DataContext } from "@client/DataContext";
 import { OSs } from "@src/types/OSs.enum";
+import { Store } from "@client/store";
 
 export default { title: "ShortcutList", component: ShortcutList } as Meta;
 
+const contextData = new Store({ os: OSs.Win });
+
 export const Default = () => (
-  <DataContext.Provider value={{ os: OSs.Win }}>
+  <DataContext.Provider value={contextData}>
     <ShortcutList title={"Edit"} shortcuts={shortcutList1} />
     <ShortcutList title={"General"} shortcuts={shortcutList2} />
   </DataContext.Provider>

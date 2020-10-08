@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { observer } from "mobx-react-lite";
 
 import { encodeAppName } from "../../helpers";
 import AppItem, { AppItemProps } from "./AppItem";
@@ -11,7 +12,7 @@ export interface AppListProps {
   gridArea?: string;
 }
 
-export default function AppList({ name, apps, gridArea }: AppListProps) {
+function AppList({ name, apps, gridArea }: AppListProps) {
   return (
     <Container gridArea={gridArea}>
       <Header>{name}</Header>
@@ -38,6 +39,7 @@ export default function AppList({ name, apps, gridArea }: AppListProps) {
     </Container>
   );
 }
+export default observer(AppList);
 
 interface ContainerProps {
   gridArea: string;

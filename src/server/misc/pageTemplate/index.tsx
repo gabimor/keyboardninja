@@ -1,12 +1,12 @@
+import { Store } from "@client/store";
 import { style } from "./style";
 import { tracking } from "./tracking";
-import { IDataContext } from "@client/DataContext";
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 export function pageTemplate(
   markup: string,
   title: string,
-  dataContext: IDataContext,
+  store: Store | undefined,
   canonicalUrl: string,
   includeJSBundle = true
 ) {
@@ -43,9 +43,7 @@ export function pageTemplate(
     </head>
     <body>
       <script>
-        window.__KBN_DATA__ = ${
-          dataContext ? JSON.stringify(dataContext) : undefined
-        };
+        window.__KBN_DATA__ = ${store ? JSON.stringify(store) : undefined};
       </script>
       <div id="root">${markup}</div>
       ${tracking}

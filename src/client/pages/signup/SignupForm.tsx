@@ -6,17 +6,25 @@ import Input from "@client/components/TextInput";
 import { PrimaryButton } from "@client/components/Buttons";
 import { useForm } from "react-hook-form";
 import { emailRegex } from "@client/helpers";
-import { UserType } from "@src/types/User.type";
 import { FacebookButton, GoogleButton } from "@client/components/SocialButtons";
+import { signup } from "@client/api/auth";
+import { UserType } from "@src/types/User.type";
+import ErrorLabel from "@client/components/ErrorLabel";
 
 type FormData = Pick<UserType, "email" | "password">;
 
-interface Props {
-  onSubmit: (data: FormData) => Promise<void>;
-}
+export default function SignupForm() {
+  const { register, handleSubmit, errors, setError } = useForm<FormData>();
 
-export default function SignupForm({ onSubmit }: Props) {
-  const { register, handleSubmit, errors } = useForm<FormData>();
+  async function onSubmit({ email, password }: FormData) {
+    const message = await signup(email, password);
+
+    if (!message) {
+      location.href = "/";
+    } else {
+      setError("email", { type: "validate", message });
+    }
+  }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -32,7 +40,7 @@ export default function SignupForm({ onSubmit }: Props) {
           },
         })}
       ></Input>
-      {errors.email && <Error>{errors.email.message}</Error>}
+      {errors.email && <ErrorLabel>{errors.email.message}</ErrorLabel>}
       <LabelWrapper>
         <Label>Password</Label>
       </LabelWrapper>
@@ -51,7 +59,7 @@ export default function SignupForm({ onSubmit }: Props) {
           },
         })}
       ></Input>
-      {errors.password && <Error>{errors.password.message}</Error>}
+      {errors.password && <ErrorLabel>{errors.password.message}</ErrorLabel>}
       <PrimaryButton style={{ marginTop: 20 }}>Sign up</PrimaryButton>
       <OrSeperator> - or - </OrSeperator>
       <a href="/auth/facebook" style={{ marginBottom: 20 }}>
@@ -105,10 +113,4 @@ const Label = styled.label`
   color: #9d8b8b;
   font-size: 14px;
   margin-bottom: 5px;
-`;
-
-const Error = styled.label`
-  margin-top: 5px;
-  color: #e86562;
-  font-size: 14px;
 `;

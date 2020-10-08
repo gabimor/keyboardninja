@@ -1,4 +1,5 @@
 import React from "react";
+import { observer } from "mobx-react-lite";
 
 import styled from "@emotion/styled";
 import { desktopBreakpoint, tabletBreakpoint } from "@client/consts";
@@ -9,7 +10,7 @@ export interface AppItemProps {
   disabled?: boolean;
 }
 
-export default function AppItem({ name, icon, disabled }: AppItemProps) {
+function AppItem({ name, icon, disabled }: AppItemProps) {
   const Container = disabled ? DisabledContainer : EnabledContainer;
   return (
     <Container>
@@ -19,6 +20,8 @@ export default function AppItem({ name, icon, disabled }: AppItemProps) {
     </Container>
   );
 }
+
+export default observer(AppItem);
 
 const sharedStyles = `
   display: flex;

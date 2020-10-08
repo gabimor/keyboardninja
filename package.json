@@ -27,6 +27,8 @@
     "express-rate-limit": "^5.1.3",
     "googleapis": "^27.0.0",
     "helmet": "^4.1.1",
+    "mobx": "^6.0.1",
+    "mobx-react-lite": "^3.0.0",
     "mongoose": "^5.10.0",
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
@@ -89,7 +91,7 @@
   },
   "scripts": {
     "start": "razzle start",
-    "dev": "razzle start -- --inspect-brk",
+    "dev": "razzle start --inspect",
     "build": "yarn version && razzle build",
     "test": "yarn jest --watch --runInBand --detectOpenHandles",
     "deploy": "git push heroku master",

@@ -1,8 +1,9 @@
 import { Prop, raw, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document, Schema as MongooseNativeSchema } from "mongoose";
+import { Document } from "mongoose";
 import { OSs } from "@src/types/OSs.enum";
 import { Section } from "@src/types/Section.type";
 import { Shortcut } from "@src/types/Shortcut.type";
+import { ObjectId } from "mongodb";
 
 @Schema({ collection: "apps" })
 export class App extends Document {
@@ -28,7 +29,7 @@ export class App extends Document {
     raw([
       {
         action: { type: String },
-        sectionId: { type: MongooseNativeSchema.Types.ObjectId },
+        sectionId: { type: ObjectId },
         stars: { type: Number },
         win: { type: String },
         mac: { type: String },

@@ -8,15 +8,35 @@ import { UserType } from "@src/types/User.type";
 import { FacebookButton, GoogleButton } from "@client/components/SocialButtons";
 import { PrimaryButton } from "@client/components/Buttons";
 import TextInput from "@client/components/TextInput";
+import { login } from "@client/api/auth";
+import ErrorLabel from "@client/components/ErrorLabel";
 
 type FormData = Pick<UserType, "email" | "password">;
 
-interface Props {
-  onSubmit: (data: FormData) => Promise<void>;
-}
+export default function LoginForm() {
+  const { register, handleSubmit, errors, setError } = useForm<FormData>();
 
-export default function LoginForm({ onSubmit }: Props) {
-  const { register, handleSubmit, errors } = useForm<FormData>();
+  async function onSubmit({ email, password }: FormData) {
+    const status = await login(email, password);
+
+    console.log(status);
+
+    if (status === 200) {
+      location.href = "/";
+    }
+    else if (status === 401){
+      setError("password", {
+        type: "validate",
+        message: "Incorrect email or password",
+      });
+    }
+    else {
+      setError("password", {
+        type: "validate",
+        message: "An Unexpected error occured, please try again later",
+      });
+    }
+  }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -32,7 +52,7 @@ export default function LoginForm({ onSubmit }: Props) {
           },
         })}
       ></TextInput>
-      {errors.email && <Error>{errors.email.message}</Error>}
+      {errors.email && <ErrorLabel>{errors.email.message}</ErrorLabel>}
       <LabelWrapper>
         <Label>Password</Label>
         <a>Forgot password ?</a>
@@ -44,7 +64,7 @@ export default function LoginForm({ onSubmit }: Props) {
           required: "Please enter your password",
         })}
       ></TextInput>
-      {errors.password && <Error>{errors.password.message}</Error>}
+      {errors.password && <ErrorLabel>{errors.password.message}</ErrorLabel>}
       <PrimaryButton style={{ marginTop: 20 }}>Log in</PrimaryButton>
       <OrSeperator> - or - </OrSeperator>
       <a href="/auth/facebook" style={{ marginBottom: 20 }}>
@@ -86,13 +106,6 @@ const LabelWrapper = styled.div`
   a {
     font-size: 13px;
   }
-`;
-
-const Error = styled.div`
-  padding-top: 10px;
-  font-size: 16px;
-  text-align: left;
-  color: #d1403d;
 `;
 
 const SignupWrapper = styled.div`

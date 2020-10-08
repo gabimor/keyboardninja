@@ -4,7 +4,6 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { pageTemplate } from ".";
 
 export function page500() {
-  // const markup =
   const markup = (
     <Container>
       <div>
@@ -20,7 +19,7 @@ export function page500() {
   return pageTemplate(
     renderToStaticMarkup(markup),
     "KeyboardNinja.me",
-    {},
+    undefined,
     "/",
     false
   );

@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import styled from "@emotion/styled";
+import { observer } from "mobx-react-lite";
 
 import { DataContext } from "../../DataContext";
-import { star } from "../../api";
 import { upperFirstLetter } from "../../helpers";
 import Keys from "./Keys";
 import StarButton from "./StarButton";
@@ -29,30 +29,19 @@ function ShortcutItem({
   isHtml,
   note,
 }: Props) {
-  const { app, doStar } = useContext(DataContext);
+  const store = useContext(DataContext);
   const [infoVisible, setInfoVisible] = useState(false);
-  const [isStarredState, setIsStarredState] = useState(isStarred);
   const isMobile = useMediaQuery({ maxWidth: enterMobileBreakpoint });
-
-  async function handleStar() {
-    const newStars = isStarredState ? stars : stars + 1;
-    const newIsStarred = !isStarredState;
-
-    setIsStarredState(newIsStarred);
-
-    doStar(_id, newStars, newIsStarred);
-    await star(app._id, _id, newIsStarred);
-  }
 
   return (
     <>
-      <StarButton isStarred={isStarredState} onClick={handleStar} />
+      <StarButton isStarred={isStarred} onClick={() => store.toggleStar(_id)} />
       {!isMobile && (
-        <CellContainer isStarred={isStarredState} stars={stars}>
+        <CellContainer isStarred={isStarred} stars={stars}>
           <StarCount stars={stars} />
         </CellContainer>
       )}
-      <CellContainer isStarred={isStarredState}>
+      <CellContainer isStarred={isStarred}>
         <div>
           {upperFirstLetter(action)}
           {note && (
@@ -69,7 +58,7 @@ function ShortcutItem({
           )}
         </div>
       </CellContainer>
-      <CellContainer isStarred={isStarredState}>
+      <CellContainer isStarred={isStarred}>
         <div>
           <Keys keys={keys} isHtml={isHtml} />
         </div>
@@ -78,7 +67,7 @@ function ShortcutItem({
   );
 }
 
-export default ShortcutItem;
+export default observer(ShortcutItem);
 
 const StarCountContainer = styled.div`
   margin-top: 5px;

@@ -1,7 +1,10 @@
 import { sendApiRequest } from ".";
 
-export async function signup(email: string, password: string) {
-  await sendApiRequest("/auth/signup", {
+export async function signup(
+  email: string,
+  password: string
+): Promise<string | undefined> {
+  const response = await sendApiRequest("/auth/signup", {
     method: "POST",
     body: JSON.stringify({
       email,
@@ -9,11 +12,13 @@ export async function signup(email: string, password: string) {
     }),
   });
 
-  location.href = "/";
+  const json = await response.json();
+
+  return json?.payload;
 }
 
-export async function login(email: string, password: string) {
-  await sendApiRequest("/auth/login", {
+export async function login(email: string, password: string): Promise<number> {
+  const response = await sendApiRequest("/auth/login", {
     method: "POST",
     body: JSON.stringify({
       email,
@@ -21,7 +26,7 @@ export async function login(email: string, password: string) {
     }),
   });
 
-  location.href = "/";
+  return response.status;
 }
 
 export function logout() {

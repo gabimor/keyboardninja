@@ -1,16 +1,28 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { App, AppSchema } from "@server/app/App.schema";
-import { AppCategory, AppCategorySchema } from "@server/app/AppCategory.schema";
+import { App, AppSchema } from "@src/types/schemas/App.schema";
+import {
+  AppCategory,
+  AppCategorySchema,
+} from "@src/types/schemas/AppCategory.schema";
 import { AppService } from "./app.service";
+import { AppController } from "./app.controller";
+import { UserApps, UserAppsSchema } from "@src/types/schemas/UserApps.schema";
+import { User, UserSchema } from "@src/types/schemas/User.schema";
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: AppCategory.name, schema: AppCategorySchema },
+      { name: UserApps.name, schema: UserAppsSchema },
     ]),
     MongooseModule.forFeature([{ name: App.name, schema: AppSchema }]),
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    MongooseModule.forFeature([
+      { name: UserApps.name, schema: UserAppsSchema },
+    ]),
   ],
+  controllers: [AppController],
   providers: [AppService],
   exports: [AppService],
 })

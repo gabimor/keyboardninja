@@ -2,6 +2,7 @@ import { DataContext } from "@client/DataContext";
 import styled from "@emotion/styled";
 import React, { useContext, useState } from "react";
 import Avatar from "react-avatar";
+import { logout } from "@client/api/auth";
 
 export default function MobileMenu() {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,15 +15,10 @@ export default function MobileMenu() {
   );
 }
 
-const Bars = styled.i`
-  font-size: 20px;
-`;
-
 type MenuProps = { onClose: () => void };
 
 const Menu = ({ onClose }: MenuProps) => {
-
-  const { user, doLogout } = useContext(DataContext);
+  const { user } = useContext(DataContext);
 
   return (
     <>
@@ -46,7 +42,7 @@ const Menu = ({ onClose }: MenuProps) => {
             </span>
           </li>
           <li>
-            <span onClick={doLogout}>
+            <span onClick={() => logout()}>
               <i className="fas fa-sign-out-alt"></i> Log out
             </span>
           </li>
@@ -56,6 +52,10 @@ const Menu = ({ onClose }: MenuProps) => {
     </>
   );
 };
+
+const Bars = styled.i`
+  font-size: 20px;
+`;
 
 const MenuContainer = styled.div`
   user-select: none;

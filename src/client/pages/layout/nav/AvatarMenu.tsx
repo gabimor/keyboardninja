@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "@emotion/styled";
 import { DataContext } from "@client/DataContext";
+import { logout } from "@client/api/auth";
 
 type Props = {
   visible: boolean;
@@ -8,7 +9,7 @@ type Props = {
 
 export function AvatarMenu({ visible }: Props) {
   const opacity = visible ? 1 : 0;
-  const { user, doLogout } = useContext(DataContext);
+  const { user } = useContext(DataContext);
 
   return (
     <Container style={{ opacity }}>
@@ -25,7 +26,7 @@ export function AvatarMenu({ visible }: Props) {
           </span>
         </li>
         <li>
-          <span onClick={doLogout}>
+          <span onClick={() => logout()}>
             <i className="fas fa-sign-out-alt"></i> Log out
           </span>
         </li>
@@ -42,11 +43,12 @@ const DetailsContainer = styled.div`
 const Container = styled.div`
   right: -15px;
   top: -15px;
+  z-index: 1000;
   position: absolute;
-  background: #424242;
+  background: #383838;
   padding: 15px;
   border-radius: 5px;
-  box-shadow: 0px 3px 17px 1px rgba(0, 0, 0, 0.36);
+  box-shadow: 0px 3px 17px 4px rgba(0, 0, 0, 0.46);
   white-space: nowrap;
   transition: all 0.1s ease-in-out;
 `;

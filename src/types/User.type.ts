@@ -8,9 +8,7 @@ export type UserType = {
   googleId?: string;
 };
 
-export type JwtUser = Partial<
-  Pick<
-    UserType,
-    "_id" | "email" | "firstName" | "lastName" | "facebookId" | "googleId"
-  >
+export type JwtUser = Pick<
+  UserType,
+  "_id" | "email" | "firstName" | "lastName" | "facebookId" | "googleId"
 >;

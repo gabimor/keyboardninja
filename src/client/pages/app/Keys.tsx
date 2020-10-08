@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import styled from "@emotion/styled";
+import { observer } from "mobx-react-lite";
 
 import { upperFirstLetter } from "../../helpers";
 
@@ -8,7 +9,7 @@ export interface KeysProps {
   isHtml?: boolean;
 }
 
-export default function Keys({ keys, isHtml }: KeysProps) {
+function Keys({ keys, isHtml }: KeysProps) {
   if (isHtml)
     return (
       <Container
@@ -29,6 +30,8 @@ export default function Keys({ keys, isHtml }: KeysProps) {
     </>
   );
 }
+
+export default observer(Keys);
 
 function prepareHtml(html: string) {
   let isEnding = false;
