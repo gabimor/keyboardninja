@@ -9,6 +9,14 @@ module.exports = {
     config.resolve.alias["@client"] = path.resolve("./src/client/");
     config.resolve.alias["@server"] = path.resolve("./src/server/");
     config.resolve.alias["@src"] = path.resolve("./src/");
+
+    if (config.target === "node") {
+      config.entry[2] += "/server";
+    }
+
     return config;
+  },
+  modifyPaths(asd) {
+    console.log(asd);
   },
 };
