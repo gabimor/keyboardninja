@@ -30,7 +30,7 @@ export default function LoggedInNav() {
               name={user.firstName + " " + user.lastName}
               facebookId={user.facebookId}
               googleId={user.googleId}
-              size="36"
+              size="40"
               onClick={() => setAvatarMenuVisible(true)}
               round={true}
               visible={avatarMenuVisible}

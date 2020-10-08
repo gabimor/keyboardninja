@@ -1,4 +1,4 @@
-export const siteWidth = 1440;
+export const siteWidth = 1240;
 
 export const mobileBreakpoint = 360;
 export const enterMobileBreakpoint = 440;

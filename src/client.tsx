@@ -35,7 +35,6 @@ const Client = () => {
 
   const doToggleStar: DoToggleStar = async (appId, shortcutId) => {
     const { isStarred, stars } = await toggleStar(appId, shortcutId);
-    console.log({ isStarred, stars });
 
     const shortcut = app.shortcuts.find(
       (e) => e._id.toString() === shortcutId.toString()
@@ -43,7 +42,7 @@ const Client = () => {
     shortcut.stars = stars;
     shortcut.isStarred = isStarred;
 
-    setApp(app);
+    setApp({ ...app });
   };
 
   const contextValue: IDataContext = {
