@@ -30,7 +30,7 @@ describe("app controller", () => {
   let appModel: Model<App>;
   let userModel: Model<User>;
   let userAppsModel: Model<UserApps>;
-  let authService: AuthService;
+
 
   const userId = new ObjectId();
   const appId = new ObjectId();
@@ -64,7 +64,6 @@ describe("app controller", () => {
       providers: [AuthService, AppService, jwtStrategy, JwtAuthGuard],
     }).compile();
 
-    authService = module.get<AuthService>(AuthService);
     userAppsModel = module.get<Model<UserApps>>(getModelToken(UserApps.name));
     appModel = module.get<Model<App>>(getModelToken(App.name));
     userModel = module.get<Model<User>>(getModelToken(User.name));

@@ -14,7 +14,7 @@ import { StaticRouter } from "react-router";
 import Layout from "@client/Layout";
 import { DataContext } from "@client/DataContext";
 import { pageTemplate } from "@server/misc/pageTemplate";
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response } from "express";
 import { HomeService } from "./home.service";
 import { AppService } from "@server/app/app.service";
 import { RequestAuth } from "@src/types/RequestAuth";
@@ -67,11 +67,11 @@ export class HomeController {
   @Get(":name")
   async app(
     @Param("name") name: string,
-    @Req() req: Request,
+    @Req() req: RequestAuth,
     @Res() res: Response,
     @Next() next: NextFunction
   ) {
-    const app = await this.appsService.getAppByName(name);
+    const app = await this.appsService.getAppByName(name, req?.user?._id);
 
     if (!app) return next();
 
@@ -96,13 +96,13 @@ export class HomeController {
     canonicalUrl: string,
     dataContext = {}
   ) {
-    const appCategories = await this.appsService.getAppCategory();
+    const appCategories = await this.appsService.getAppCategories();
 
-    const context: Partial<Store> = {
+    const context = new Store({
       ...dataContext,
       user: req.user as JwtUser,
       appCategories,
-    };
+    });
 
     const page = (
       <DataContext.Provider value={context}>

@@ -42,7 +42,7 @@ export class AuthService {
 
   async signup(email: string, password: string): Promise<User> {
     if (await this.userModel.findOne({ email }).lean()) {
-      throw new HttpException("user exists: " + email, HttpStatus.BAD_REQUEST);
+      throw new HttpException("Email already taken", HttpStatus.ACCEPTED);
     }
 
     const hashedPassword = await hash(password, bcryptSaltRound);

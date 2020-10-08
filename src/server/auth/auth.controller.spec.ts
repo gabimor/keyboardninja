@@ -95,6 +95,17 @@ describe("Auth Controller", () => {
         .send({ email: "missing@user.com", password: "1231232" })
         .expect(HttpStatus.UNAUTHORIZED);
     });
+
+    it("should return 401 for existing email and wrong password", async () => {
+      const email = "existing@user.com";
+      const password = "12345678";
+      const user = await authService.signup(email, password);
+
+      return request(app.getHttpServer())
+        .post("/auth/login")
+        .send({ email, password: "wrongpass" })
+        .expect(HttpStatus.UNAUTHORIZED);
+    });
     it("should return 401 for an empty request", () => {
       return request(app.getHttpServer())
         .post("/auth/login")
@@ -109,16 +120,18 @@ describe("Auth Controller", () => {
   });
 
   describe("sign up", () => {
-    it("should return 400 for existing email", () => {
+    it("should return 400 for existing email", async () => {
       const email = "existing@email.com";
       const password = "password";
 
       userModel.create({ email, password });
 
-      return request(app.getHttpServer())
+      const response = await request(app.getHttpServer())
         .post("/auth/signup")
         .send({ email, password })
-        .expect(HttpStatus.BAD_REQUEST);
+        .expect(HttpStatus.ACCEPTED);
+
+      expect(response.body.payload).toEqual("Email already taken");
     });
 
     it("should return 400 for short password", () => {

@@ -94,7 +94,7 @@ describe("AuthService", () => {
       await userModel.create({ email, password });
 
       await expect(authService.signup(email, password)).rejects.toThrow(
-        "user exists"
+        "Email already taken"
       );
     });
   });

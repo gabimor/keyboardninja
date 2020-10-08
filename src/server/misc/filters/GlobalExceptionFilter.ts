@@ -19,18 +19,16 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     let status: any = 500;
     if (exception instanceof HttpException) {
       status = exception.getStatus();
+      if (request.method !== "GET") {
+        response.status(status).json({
+          status,
+          payload: exception.getResponse(),
+        });
+      }
     } else if (exception?.code === "ENOENT") {
       return response.redirect("/404");
+    } else {
+      response.send(page500()).sendStatus(500);
     }
-
-    if (request.method !== "GET") {
-      response.status(status).json({
-        status,
-        timestamp: new Date().toISOString(),
-        path: request.url,
-      });
-      return;
-    }
-    response.send(page500()).sendStatus(500);
   }
 }

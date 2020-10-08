@@ -11,9 +11,7 @@ export default {
   component: Controls,
 } as Meta;
 
-const contextData: Partial<Store> = {
-  app: { oss: [OSs.Mac, OSs.Win] },
-};
+const contextData: Store = new Store({ app: { oss: [OSs.Mac, OSs.Win] } });
 
 export const Default = (args: any) => (
   <DataContext.Provider value={contextData}>

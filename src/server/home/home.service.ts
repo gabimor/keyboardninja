@@ -11,12 +11,12 @@ export class HomeService {
     let appOS: OSs = cookieOS;
 
     if (!appOS) {
-      appOS = req.headers["user-agent"].toLowerCase().includes("win")
+      appOS = req.headers["user-agent"]?.toLowerCase()?.includes("win")
         ? OSs.Win
         : OSs.Mac;
     }
 
-    if (!app.oss.includes(appOS)) {
+    if (!app?.oss?.includes(appOS)) {
       appOS = app.oss[0];
     }
 

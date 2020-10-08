@@ -10,14 +10,14 @@ export default {
   component: MobileMenu,
 } as Meta;
 
-const contextData: Partial<Store> = {
+const contextData = new Store({
   user: {
     _id: "1",
     email: "johna@email.com",
     firstName: "John",
     lastName: "Abercrombie",
   },
-};
+});
 
 const Template = (args: any) => (
   <DataContext.Provider value={contextData}>

@@ -8,9 +8,7 @@ import ShortcutItem from "./ShortcutItem";
 
 export default { title: "ShortcutItem", component: ShortcutItem } as Meta;
 
-const contextData: Partial<Store> = {
-  app: { oss: [OSs.Mac, OSs.Win] },
-};
+const contextData = new Store({ app: { oss: [OSs.Mac, OSs.Win] } });
 
 export const Default = () => (
   <DataContext.Provider value={contextData}>

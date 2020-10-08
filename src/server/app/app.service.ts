@@ -17,12 +17,19 @@ export class AppService {
     @InjectModel(User.name) private userModel: Model<User>
   ) {}
 
-  async getAppCategory(): Promise<AppCategory[]> {
+  async getAppCategories(): Promise<AppCategory[]> {
     return this.appCategoryModel.find().lean();
   }
 
-  async getAppByName(name: string): Promise<App> {
-    return this.appModel.findOne({ url: name }).lean();
+  async getAppByName(name: string, userId: string): Promise<App> {
+    const app = await this.appModel.findOne({ url: name }).lean();
+
+    let userApp;
+    if (userId) {
+      userApp = this.userAppsModel.find({ userId, appId: app._id });
+    }
+
+    return app;
   }
 
   async toggleStar(
@@ -67,7 +74,6 @@ export class AppService {
       userApp.shortcutIds.push(shortcutId);
       shortcut.stars++;
     }
-
 
     await userApp.save();
     await app.save();

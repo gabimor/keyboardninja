@@ -10,7 +10,7 @@ export class Store {
   os: OSs;
   user: JwtUser;
 
-  constructor({ app, os, appCategories, user }: Store) {
+  constructor({ app, os, appCategories, user }: Partial<Store>) {
     this.app = app;
     this.os = os;
     this.appCategories = appCategories;

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "@emotion/styled";
 import { DataContext } from "@client/DataContext";
+import { logout } from "@client/api/auth";
 
 type Props = {
   visible: boolean;
@@ -25,7 +26,7 @@ export function AvatarMenu({ visible }: Props) {
           </span>
         </li>
         <li>
-          <span onClick={() => console.log("// TODO doLogout")}>
+          <span onClick={() => logout()}>
             <i className="fas fa-sign-out-alt"></i> Log out
           </span>
         </li>
