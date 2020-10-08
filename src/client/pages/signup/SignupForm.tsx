@@ -59,7 +59,7 @@ export default function SignupForm() {
           },
         })}
       ></Input>
-      {errors.password && <Error>{errors.password.message}</Error>}
+      {errors.password && <ErrorLabel>{errors.password.message}</ErrorLabel>}
       <PrimaryButton style={{ marginTop: 20 }}>Sign up</PrimaryButton>
       <OrSeperator> - or - </OrSeperator>
       <a href="/auth/facebook" style={{ marginBottom: 20 }}>

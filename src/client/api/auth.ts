@@ -17,7 +17,7 @@ export async function signup(
   return json?.payload;
 }
 
-export async function login(email: string, password: string) {
+export async function login(email: string, password: string): Promise<number> {
   const response = await sendApiRequest("/auth/login", {
     method: "POST",
     body: JSON.stringify({
@@ -26,9 +26,7 @@ export async function login(email: string, password: string) {
     }),
   });
 
-  const json = await response.json();
-
-  return json?.payload;
+  return response.status;
 }
 
 export function logout() {

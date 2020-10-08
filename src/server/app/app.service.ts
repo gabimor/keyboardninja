@@ -24,12 +24,12 @@ export class AppService {
   async getAppByName(name: string, userId: string): Promise<App> {
     const app = await this.appModel.findOne({ url: name }).lean();
 
-    let userApp;
-    if (userId) {
-      userApp = this.userAppsModel.find({ userId, appId: app._id });
-    }
+    // let userApp;
+    // if (userId) {
+    //   userApp = this.userAppsModel.find({ userId, appId: app._id });
+    // }
 
-    return app;
+    return app as App;
   }
 
   async toggleStar(

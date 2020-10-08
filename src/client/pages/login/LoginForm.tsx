@@ -17,18 +17,25 @@ export default function LoginForm() {
   const { register, handleSubmit, errors, setError } = useForm<FormData>();
 
   async function onSubmit({ email, password }: FormData) {
-    const message = await login(email, password);
+    const status = await login(email, password);
 
-    console.log(message);
+    console.log(status);
 
-    // if (!message) {
-    //   location.href = "/";
-    // } else {
-    //   setError("email", {
-    //     type: "validate",
-    //     message: "Email or password are incorrect",
-    //   });
-    // }
+    if (status === 200) {
+      location.href = "/";
+    }
+    else if (status === 401){
+      setError("password", {
+        type: "validate",
+        message: "Incorrect email or password",
+      });
+    }
+    else {
+      setError("password", {
+        type: "validate",
+        message: "An Unexpected error occured, please try again later",
+      });
+    }
   }
 
   return (
@@ -45,7 +52,7 @@ export default function LoginForm() {
           },
         })}
       ></TextInput>
-      {errors.email && <Error>{errors.email.message}</Error>}
+      {errors.email && <ErrorLabel>{errors.email.message}</ErrorLabel>}
       <LabelWrapper>
         <Label>Password</Label>
         <a>Forgot password ?</a>
