@@ -20,7 +20,7 @@ export function page500() {
   return pageTemplate(
     renderToStaticMarkup(markup),
     "KeyboardNinja.me",
-    {},
+    undefined,
     "/",
     false
   );

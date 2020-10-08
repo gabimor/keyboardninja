@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { observer } from "mobx-react-lite";
 
 import ShortcutItem from "./ShortcutItem";
 import styled from "@emotion/styled";
@@ -24,7 +25,7 @@ interface Props {
   shortcuts: Shortcut[];
 }
 
-export default function ShortcutList({ title, shortcuts }: Props) {
+function ShortcutList({ title, shortcuts }: Props) {
   const { os } = useContext(DataContext);
   const isMobile = useMediaQuery({ maxWidth: enterMobileBreakpoint });
 
@@ -50,6 +51,8 @@ export default function ShortcutList({ title, shortcuts }: Props) {
     </Container>
   );
 }
+
+export default observer(ShortcutList);
 
 const Container = styled.div`
   display: inline-block;

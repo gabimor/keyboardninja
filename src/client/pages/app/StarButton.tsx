@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { observer } from "mobx-react-lite";
 
 interface Props {
   isStarred: boolean;
   onClick: () => void;
 }
 
-export default function StarButton({ isStarred, onClick }: Props) {
+function StarButton({ isStarred, onClick }: Props) {
   const iconName = isStarred ? "star-on" : "star-off";
 
   return (
@@ -16,6 +17,7 @@ export default function StarButton({ isStarred, onClick }: Props) {
   );
 }
 
+export default observer(StarButton);
 interface StarableProps {
   isStarred: boolean;
 }

@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { observer } from "mobx-react-lite";
 
 interface Props {
   stars: number;
 }
 
-export default function StarCount({ stars }: Props) {
+function StarCount({ stars }: Props) {
   if (stars === 0) return null;
 
   return (
@@ -15,6 +16,8 @@ export default function StarCount({ stars }: Props) {
     </Container>
   );
 }
+
+export default observer(StarCount)
 
 const Container = styled.div`
   display: inline-flex;

@@ -8,7 +8,7 @@ type Props = {
 
 export function AvatarMenu({ visible }: Props) {
   const opacity = visible ? 1 : 0;
-  const { user, doLogout } = useContext(DataContext);
+  const { user } = useContext(DataContext);
 
   return (
     <Container style={{ opacity }}>
@@ -25,7 +25,7 @@ export function AvatarMenu({ visible }: Props) {
           </span>
         </li>
         <li>
-          <span onClick={doLogout}>
+          <span onClick={() => console.log("// TODO doLogout")}>
             <i className="fas fa-sign-out-alt"></i> Log out
           </span>
         </li>

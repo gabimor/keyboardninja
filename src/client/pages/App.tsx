@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../DataContext";
+import { observer } from "mobx-react-lite";
 
 import styled from "@emotion/styled";
 
@@ -49,7 +50,7 @@ const App = () => {
   );
 };
 
-export default App;
+export default observer(App);
 
 const ResultsContainer = styled.div`
   columns: 1;

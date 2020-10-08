@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Route, Switch } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 
 import Home from "./pages/Home";
 import App from "./pages/App";
@@ -48,4 +49,4 @@ const Container = styled.div`
   }
 `;
 
-export default Layout;
+export default observer(Layout);

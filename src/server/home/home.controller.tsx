@@ -12,7 +12,7 @@ import { Controller } from "@nestjs/common";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import Layout from "@client/Layout";
-import { DataContext, IDataContext } from "@client/DataContext";
+import { DataContext } from "@client/DataContext";
 import { pageTemplate } from "@server/misc/pageTemplate";
 import { NextFunction, Request, Response } from "express";
 import { HomeService } from "./home.service";
@@ -20,6 +20,7 @@ import { AppService } from "@server/app/app.service";
 import { RequestAuth } from "@src/types/RequestAuth";
 import { JwtAuthGuard } from "@server/auth/jwt/jwt-auth.guard";
 import { JwtUser } from "@src/types/User.type";
+import { Store } from "@client/store";
 
 @Controller("/")
 export class HomeController {
@@ -74,7 +75,7 @@ export class HomeController {
 
     if (!app) return next();
 
-    const dataContext: IDataContext = {
+    const dataContext = {
       app,
       os: this.homeService.getAppOS(app, req),
     };
@@ -93,11 +94,11 @@ export class HomeController {
     req: RequestAuth,
     title: string,
     canonicalUrl: string,
-    dataContext: IDataContext = {}
+    dataContext = {}
   ) {
     const appCategories = await this.appsService.getAppCategory();
 
-    const context: IDataContext = {
+    const context: Partial<Store> = {
       ...dataContext,
       user: req.user as JwtUser,
       appCategories,
@@ -112,7 +113,12 @@ export class HomeController {
     );
 
     const markup = renderToString(page);
-    const pageMarkup = pageTemplate(markup, title, context, canonicalUrl);
+    const pageMarkup = pageTemplate(
+      markup,
+      title,
+      context as Store,
+      canonicalUrl
+    );
 
     return pageMarkup;
   }
