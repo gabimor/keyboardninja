@@ -21,15 +21,23 @@ export class AppService {
     return this.appCategoryModel.find().lean();
   }
 
-  async getAppByName(name: string, userId: string): Promise<App> {
-    const app = await this.appModel.findOne({ url: name }).lean();
+  async addUserApp(app: App, userId: string) {
+    const userApp = await this.userAppsModel
+      .findOne({ appId: app._id, userId: new ObjectId(userId) })
+      .lean();
 
-    // let userApp;
-    // if (userId) {
-    //   userApp = this.userAppsModel.find({ userId, appId: app._id });
-    // }
+    if (userApp) {
+      for (const shortcutId of userApp.shortcutIds) {
+        const shortcut = app.shortcuts.find(
+          (e) => e._id.toString() === shortcutId.toHexString()
+        );
+        shortcut.isStarred = true;
+      }
+    }
+  }
 
-    return app as App;
+  async getAppByName(name: string): Promise<App | undefined> {
+    return await this.appModel.findOne({ url: name }).lean();
   }
 
   async toggleStar(

@@ -91,7 +91,7 @@
   },
   "scripts": {
     "start": "razzle start",
-    "dev": "razzle start -- --inspect-brk",
+    "dev": "razzle start --inspect",
     "build": "yarn version && razzle build",
     "test": "yarn jest --watch --runInBand --detectOpenHandles",
     "deploy": "git push heroku master",

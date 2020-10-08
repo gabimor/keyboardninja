@@ -1,3 +1,4 @@
+import * as api from "@client/api";
 import { OSs } from "@src/types/OSs.enum";
 import { App } from "@src/types/schemas/App.schema";
 import { AppCategory } from "@src/types/schemas/AppCategory.schema";
@@ -30,11 +31,15 @@ export class Store {
     this.os = os;
   }
 
-  toggleStar(shortcutId: string) {
+  async toggleStar(shortcutId: string) {
     const shortcut = this.app.shortcuts.find(
       (e) => e._id.toString() === shortcutId.toString()
     );
 
+    shortcut.stars += shortcut.isStarred ? -1 : 1;
+
     shortcut.isStarred = !shortcut.isStarred;
+
+    await api.toggleStar(this.app._id, shortcutId);
   }
 }

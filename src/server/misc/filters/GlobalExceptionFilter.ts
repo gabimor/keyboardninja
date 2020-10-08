@@ -26,9 +26,10 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         });
       }
     } else if (exception?.code === "ENOENT") {
-      return response.redirect("/404");
+      response.redirect("/404");
     } else {
-      response.send(page500()).sendStatus(500);
+      // response.redirect("/404");
+      response.send(page500());
     }
   }
 }

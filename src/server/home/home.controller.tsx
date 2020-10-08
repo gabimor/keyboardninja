@@ -71,9 +71,11 @@ export class HomeController {
     @Res() res: Response,
     @Next() next: NextFunction
   ) {
-    const app = await this.appsService.getAppByName(name, req?.user?._id);
+    const app = await this.appsService.getAppByName(name);
 
     if (!app) return next();
+
+    if (req?.user?._id) this.appsService.addUserApp(app, req?.user?._id)
 
     const dataContext = {
       app,
