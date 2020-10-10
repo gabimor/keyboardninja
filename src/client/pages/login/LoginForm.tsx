@@ -39,7 +39,6 @@ export default function LoginForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Header>Log in</Header>
       <a href="/auth/facebook" style={{ marginBottom: 20 }}>
         <FacebookButton />
       </a>
@@ -98,11 +97,6 @@ const OrSeperator = styled.div`
   color: #e9e5e5;
   padding: 15px 0;
   text-align: center;
-`;
-
-const Header = styled.h2`
-  text-align: center;
-  margin-bottom: 40px;
 `;
 
 const LabelWrapper = styled.div`

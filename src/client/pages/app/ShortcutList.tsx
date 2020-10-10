@@ -7,9 +7,8 @@ import { DataContext } from "../../DataContext";
 import Modal from "@client/components/Modal";
 
 import { upperFirstLetter } from "../../helpers";
-import { enterMobileBreakpoint } from "@client/consts";
-import { useMediaQuery } from "react-responsive";
 import LoginForm from "../login/LoginForm";
+import Header from "@client/components/Header";
 
 interface Shortcut {
   _id: string;
@@ -29,7 +28,6 @@ interface Props {
 
 function ShortcutList({ title, shortcuts }: Props) {
   const { os } = useContext(DataContext);
-  const isMobile = useMediaQuery({ maxWidth: enterMobileBreakpoint });
   const store = useContext(DataContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -46,7 +44,7 @@ function ShortcutList({ title, shortcuts }: Props) {
   return (
     <Container>
       <Title>{upperFirstLetter(title)}</Title>
-      <Table isMobile={isMobile}>
+      <Table>
         {shortcuts.map((shortcut) => {
           return (
             <ShortcutItem
@@ -68,6 +66,8 @@ function ShortcutList({ title, shortcuts }: Props) {
         onRequestClose={modalClose}
         contentLabel="Example Modal"
       >
+        <Header>Log in</Header>
+        <LoginMessage>Log in to save your favorite shortcuts!</LoginMessage>
         <LoginForm />
       </Modal>
     </Container>
@@ -85,7 +85,6 @@ const Container = styled.div`
   width: 100%;
 `;
 
-
 const Title = styled.header`
   color: #e9e5e5;
   background: #a12d2a;
@@ -94,14 +93,15 @@ const Title = styled.header`
   font-weight: 300;
 `;
 
-type TableProps = {
-  isMobile: boolean;
-};
+const LoginMessage = styled.div`
+  font-weight: 300;
+  margin-bottom: 30px;
+  text-align: center;
+`;
 
 const Table = styled.div`
   display: grid;
-  grid-template-columns: ${({ isMobile }: TableProps) =>
-    isMobile ? "45px 2fr 1fr" : "45px auto 2fr 1fr"};
+  grid-template-columns: 45px auto 2fr 1fr;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
   background: #2e2424;
   font-weight: 200;

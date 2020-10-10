@@ -20,11 +20,11 @@ export function AvatarMenu({ visible }: Props) {
         <Email>{user.email}</Email>
       </DetailsContainer>
       <ActionsContainer>
-        <li>
+        {/* <li>
           <span>
             <i className="fas fa-cog"></i> Settings
           </span>
-        </li>
+        </li> */}
         <li>
           <span onClick={() => logout()}>
             <i className="fas fa-sign-out-alt"></i> Log out

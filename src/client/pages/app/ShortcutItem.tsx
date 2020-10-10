@@ -7,7 +7,6 @@ import Keys from "./Keys";
 import StarButton from "./StarButton";
 import StarCount from "./StarCount";
 import { enterMobileBreakpoint } from "@client/consts";
-import { useMediaQuery } from "react-responsive";
 
 export interface Props {
   _id: string;
@@ -31,18 +30,15 @@ function ShortcutItem({
   onStar,
 }: Props) {
   const [infoVisible, setInfoVisible] = useState(false);
-  const isMobile = useMediaQuery({ maxWidth: enterMobileBreakpoint });
 
   return (
     <>
       <StarButton isStarred={isStarred} onClick={() => onStar(_id)} />
-      {!isMobile && (
-        <CellContainer isStarred={isStarred} stars={stars}>
-          <StarCount stars={stars} />
-        </CellContainer>
-      )}
+      <CellContainer isStarred={isStarred} stars={stars}>
+        <ColumnStarCount stars={stars} />
+      </CellContainer>
       <CellContainer isStarred={isStarred}>
-        <div>
+        <div style={{ padding: "8px 12px" }}>
           {upperFirstLetter(action)}
           {note && (
             <InfoIcon
@@ -51,15 +47,11 @@ function ShortcutItem({
             />
           )}
           {infoVisible && <InfoContainer>{note}</InfoContainer>}
-          {isMobile && (
-            <StarCountContainer>
-              <StarCount stars={stars} />
-            </StarCountContainer>
-          )}
+          <TextStarCount stars={stars} />
         </div>
       </CellContainer>
       <CellContainer isStarred={isStarred}>
-        <div>
+        <div style={{ padding: "8px 12px" }}>
           <Keys keys={keys} isHtml={isHtml} />
         </div>
       </CellContainer>
@@ -69,8 +61,18 @@ function ShortcutItem({
 
 export default observer(ShortcutItem);
 
-const StarCountContainer = styled.div`
+const ColumnStarCount = styled(StarCount)`
+  padding: 8px 12px 8px 24px;
+  @media (max-width: ${enterMobileBreakpoint}px) {
+    display: none;
+  }
+`;
+
+const TextStarCount = styled(StarCount)`
   margin-top: 5px;
+  @media (min-width: ${enterMobileBreakpoint}px) {
+    display: none;
+  }
 `;
 
 const InfoIcon = styled.i`
@@ -97,7 +99,6 @@ const CellContainer = styled.div`
   user-select: none;
   border-bottom: solid 1px
     ${({ isStarred }) => (isStarred ? "#604747" : "#453a3a")};
-  padding: ${({ stars }) => (stars === 0 ? 0 : "8px 12px")};
   display: flex;
   align-items: center;
   transition: background 0.1s ease-in-out;

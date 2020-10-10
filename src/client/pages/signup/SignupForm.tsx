@@ -35,8 +35,6 @@ export default function SignupForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Header>Sign up</Header>
-
       <a href="/auth/facebook" style={{ marginBottom: 20 }}>
         <FacebookButton />
       </a>
@@ -142,11 +140,6 @@ const OrSeperator = styled.div`
   color: #e9e5e5;
   padding: 15px 0;
   text-align: center;
-`;
-
-const Header = styled.h2`
-  text-align: center;
-  margin-bottom: 40px;
 `;
 
 const Label = styled.div`

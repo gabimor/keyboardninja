@@ -36,11 +36,11 @@ const Menu = ({ onClose }: MenuProps) => {
         </Name>
         <Email>{user.email}</Email>
         <ActionsContainer>
-          <li>
+          {/* <li>
             <span>
               <i className="fas fa-cog"></i> Settings
             </span>
-          </li>
+          </li> */}
           <li>
             <span onClick={() => logout()}>
               <i className="fas fa-sign-out-alt"></i> Log out

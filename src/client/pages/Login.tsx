@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
+import Header from "@client/components/Header";
 
 import LoginForm from "./login/LoginForm";
 
 const Login = () => {
   return (
     <Container>
+      <Header>Log in</Header>
       <LoginForm />
     </Container>
   );
