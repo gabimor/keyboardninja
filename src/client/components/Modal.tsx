@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import ReactModal from "react-modal";
-import styled from "@emotion/styled";
+import CloseX from "./CloseX";
 
 const Modal: FC<ReactModal.Props> = (props) => (
   <ReactModal
@@ -10,10 +10,7 @@ const Modal: FC<ReactModal.Props> = (props) => (
     {...props}
   >
     {props.children}
-    <CloseButton
-      onClick={props.onRequestClose}
-      className="fas fa-times"
-    ></CloseButton>
+    <CloseX onClick={props.onRequestClose} className="fas fa-times"></CloseX>
   </ReactModal>
 );
 
@@ -29,7 +26,7 @@ export const modalStyle = `
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.65);
   transition: opacity 200ms ease-in-out;
   display:flex;
   justify-content:center;
@@ -57,13 +54,4 @@ export const modalStyle = `
   padding: 20px;
   min-width:330px;
 }
-`;
-
-const CloseButton = styled.i`
-  position: absolute;
-  cursor: pointer;
-  right: 13px;
-  top: 13px;
-  font-size: 20px;
-  color: #7a7a7a;
 `;

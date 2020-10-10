@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <Container>
       <Hero>
-        Every app, every shortcut, <b>the best ones first.</b>
+        Save. Vote, discover the best shortcuts<b> </b>
       </Hero>
       <GridContainer>
         {appCategories.map((appCategory) => (

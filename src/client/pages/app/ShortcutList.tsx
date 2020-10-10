@@ -67,7 +67,9 @@ function ShortcutList({ title, shortcuts }: Props) {
         contentLabel="Example Modal"
       >
         <Header>Log in</Header>
-        <LoginMessage>Log in to save your favorite shortcuts!</LoginMessage>
+        <LoginMessage>
+          Log in and save your favorite shortcuts! ⚡️
+        </LoginMessage>
         <LoginForm />
       </Modal>
     </Container>
@@ -88,7 +90,7 @@ const Container = styled.div`
 const Title = styled.header`
   color: #e9e5e5;
   background: #a12d2a;
-  padding: 5px 10px 7px 15px;
+  padding: 5px 10px 7px 10px;
   font-size: 14px;
   font-weight: 300;
 `;
@@ -97,6 +99,8 @@ const LoginMessage = styled.div`
   font-weight: 300;
   margin-bottom: 30px;
   text-align: center;
+  font-size: 16px;
+  color: #e9e5e5;
 `;
 
 const Table = styled.div`

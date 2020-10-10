@@ -14,10 +14,10 @@ export function AvatarMenu({ visible }: Props) {
   return (
     <Container style={{ opacity }}>
       <DetailsContainer>
-        <Name>
+        <NameLabel>
           {user.firstName} {user.lastName}
-        </Name>
-        <Email>{user.email}</Email>
+        </NameLabel>
+        <EmailLabel>{user.email}</EmailLabel>
       </DetailsContainer>
       <ActionsContainer>
         {/* <li>
@@ -78,12 +78,12 @@ const ActionsContainer = styled.ul`
   }
 `;
 
-const Name = styled.div`
+export const NameLabel = styled.div`
   font-weight: 500;
   font-size: 14px;
   flex-grow: 1;
 `;
-const Email = styled.div`
+export const EmailLabel = styled.div`
   margin-top: 3px;
   font-size: 13px;
   flex-grow: 1;
