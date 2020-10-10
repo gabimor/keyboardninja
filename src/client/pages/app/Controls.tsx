@@ -1,29 +1,62 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import { observer } from "mobx-react-lite";
 
-import { copyToClipboard } from "../../helpers";
-import { DataContext } from "../../DataContext";
+import { copyToClipboard } from "@client/helpers";
+import { DataContext } from "@client/DataContext";
 import OSSelect from "./OSSelect";
-import GetLink from "./GetLink";
-import { getLink } from "../../api";
+import Share from "./Share";
+import { getShareLink } from "@client/api";
 import { desktopBreakpoint, tabletBreakpoint } from "@client/consts";
+import { intermediateColor } from "@client/helpers/colors";
+import {
+  backgroundGradientStartColor,
+  backgroundGradientEndColor,
+} from "@server/misc/pageTemplate/style";
 
 interface Props {
   icon: string;
   name: string;
 }
 
+const changeEndY = 430;
+
 function Controls({ icon, name }: Props) {
   const store = useContext(DataContext);
+  const containerRef = useRef(null);
+
+  const setBackground = () => {
+    const containerTop = containerRef?.current?.offsetTop || 0;
+
+    const percentTransitioned = Math.min(containerTop / changeEndY, 1);
+    const bgColor = intermediateColor(
+      backgroundGradientStartColor,
+      backgroundGradientEndColor,
+      percentTransitioned
+    );
+
+    document?.documentElement.style.setProperty("--controls-bg", bgColor);
+  };
+
+  useEffect(setBackground, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", setBackground);
+    window.addEventListener("resize", setBackground);
+
+    return () => {
+      window.removeEventListener("scroll", setBackground);
+      window.removeEventListener("resize", setBackground);
+    };
+  });
 
   const [publicLink, setPublicLink] = useState("");
 
-  async function handleGetLink() {
+  async function handleShare() {
     const shortcutIds = store.app.shortcuts
       .filter((e) => e.isStarred)
       .map((e) => e._id);
-    const link = await getLink(store.app._id, shortcutIds).then((data) =>
+    const link = await getShareLink(store.app._id, shortcutIds).then((data) =>
       data.text()
     );
     setPublicLink(link);
@@ -35,7 +68,7 @@ function Controls({ icon, name }: Props) {
   }
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <NameWrapper>
         <Icon src={"/logos/" + icon} />
         <Name>{name}</Name>
@@ -49,8 +82,8 @@ function Controls({ icon, name }: Props) {
         oss={store.app.oss}
       />
       <Seperator />
-      <GetLink
-        onGetLink={handleGetLink}
+      <Share
+        onGetLink={handleShare}
         onClose={handleGetLinkClose}
         link={publicLink}
       />
@@ -60,12 +93,6 @@ function Controls({ icon, name }: Props) {
 
 export default observer(Controls);
 
-const Seperator = styled.div`
-  height: 39px;
-  border-left: solid 1px #5a5a5a;
-  margin: 0 20px;
-`;
-
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -74,11 +101,18 @@ const Container = styled.div`
   border-bottom: solid 1px #5a5a5a;
   position: sticky;
   top: 0;
-  background: linear-gradient(#3c1b1b, #371616) no-repeat;
+  /* transition: background 0.3s ease-in-out; */
+  background: var(--controls-bg);
 
   @media (max-width: ${tabletBreakpoint}px) {
     margin: 30px 0 20px 0;
   }
+`;
+
+const Seperator = styled.div`
+  height: 39px;
+  border-left: solid 1px #5a5a5a;
+  margin: 0 20px;
 `;
 
 const NameWrapper = styled.div`

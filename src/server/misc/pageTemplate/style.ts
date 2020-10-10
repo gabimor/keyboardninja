@@ -1,5 +1,8 @@
 import { modalStyle } from "@client/components/Modal";
 
+export const backgroundGradientStartColor = "#442323";
+export const backgroundGradientEndColor = "#270505";
+
 export const style = `
 * {
   box-sizing: border-box;
@@ -10,7 +13,7 @@ html {
 }
 
 body {
-  background: linear-gradient(#442323, #270505) no-repeat;
+  background: linear-gradient(${backgroundGradientStartColor}, ${backgroundGradientEndColor}) no-repeat;
   background-size: 100% 400px;
   color: #FFFFFF;
   margin: 0;

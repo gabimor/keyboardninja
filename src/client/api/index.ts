@@ -45,7 +45,7 @@ export async function toggleStar(
   return response.json();
 }
 
-export function getLink(appId: string, shortcutIds: string[]) {
+export function getShareLink(appId: string, shortcutIds: string[]) {
   return fetch("/api/getlink", {
     method: "POST",
     body: JSON.stringify({ appId, shortcutIds }),

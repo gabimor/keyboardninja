@@ -1,14 +1,14 @@
 import { Meta } from "@storybook/react";
 import React from "react";
 
-import GetLinkPopup from "./GetLinkPopup";
+import SharePopup from "./SharePopup";
 
 export default {
-  title: "GetLinkPopup",
-  component: GetLinkPopup,
+  title: "SharePopup",
+  component: SharePopup,
 } as Meta;
 
-const Template = (args: any) => <GetLinkPopup {...args} />;
+const Template = (args: any) => <SharePopup {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
 import { PrimaryButton } from "../../components/Buttons";
-import GetLinkPopup from "./GetLinkPopup";
+import GetLinkPopup from "./SharePopup";
 
 interface Props {
   link: string;
@@ -9,7 +9,7 @@ interface Props {
   onClose: () => void;
 }
 
-const GetLink = ({ link, onGetLink, onClose }: Props) => {
+const Share = ({ link, onGetLink, onClose }: Props) => {
   const popupElm = useRef(null);
 
   function handleClickAway(e: MouseEvent) {
@@ -28,11 +28,11 @@ const GetLink = ({ link, onGetLink, onClose }: Props) => {
     <div>
       <PrimaryButton onClick={onGetLink}>
         <i className="fas fa-link" />
-        &nbsp; Get Link
+        &nbsp; Share
       </PrimaryButton>
       {link && <GetLinkPopup link={link} ref={popupElm} />}
     </div>
   );
 };
 
-export default GetLink;
+export default Share;

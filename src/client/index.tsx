@@ -14,7 +14,6 @@ declare global {
 
 const store = new Store(window.__KBN_DATA__);
 
-
 const Client = () => (
   <DataContext.Provider value={store}>
     <BrowserRouter>

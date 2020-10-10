@@ -5,7 +5,7 @@ interface Props {
   link: string;
 }
 
-const GetLinkPopup = React.forwardRef(
+const SharePopup = React.forwardRef(
   (props: Props, ref: LegacyRef<HTMLDivElement>) => {
     return (
       <Container ref={ref}>
@@ -29,7 +29,7 @@ const GetLinkPopup = React.forwardRef(
   }
 );
 
-export default GetLinkPopup;
+export default SharePopup;
 
 const Container = styled.div`
   background: #2e2424;
