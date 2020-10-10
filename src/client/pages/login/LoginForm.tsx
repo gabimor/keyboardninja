@@ -11,6 +11,7 @@ import TextInput from "@client/components/TextInput";
 import { login } from "@client/api/auth";
 import ErrorLabel from "@client/components/ErrorLabel";
 import ClipLoader from "react-spinners/ClipLoader";
+import FormLabel from "@client/components/FormLabel";
 
 type FormData = Pick<UserType, "email" | "password">;
 
@@ -49,7 +50,7 @@ export default function LoginForm() {
 
       <OrSeperator> - or - </OrSeperator>
 
-      <Label>Email</Label>
+      <FormLabel htmlFor="email">Email</FormLabel>
       <TextInput
         name="email"
         ref={register({
@@ -61,9 +62,7 @@ export default function LoginForm() {
         })}
       ></TextInput>
       {errors.email && <ErrorLabel>{errors.email.message}</ErrorLabel>}
-      <LabelWrapper>
-        <Label>Password</Label>
-      </LabelWrapper>
+      <FormLabel htmlFor="password">Password</FormLabel>
       <TextInput
         name="password"
         type="password"
@@ -99,24 +98,8 @@ const OrSeperator = styled.div`
   text-align: center;
 `;
 
-const LabelWrapper = styled.div`
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-top: 10px;
-  a {
-    font-size: 13px;
-  }
-`;
-
 const SignupWrapper = styled.div`
   text-align: center;
   margin-top: 20px;
   color: #e9e5e5;
-`;
-
-const Label = styled.label`
-  color: #9d8b8b;
-  font-size: 14px;
-  margin-bottom: 5px;
 `;

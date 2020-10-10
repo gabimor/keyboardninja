@@ -11,7 +11,8 @@ const Home = () => {
   return (
     <Container>
       <Hero>
-        Save. Vote, discover the best shortcuts<b> </b>
+        Every app, every shortcut,
+        <br /> <b>the best ones first.</b>
       </Hero>
       <GridContainer>
         {appCategories.map((appCategory) => (
@@ -52,9 +53,8 @@ const GridContainer = styled.div`
 
 const Hero = styled.h1`
   color: #ffffff;
-  font-size: 50px;
-  margin-top: 150px;
-  margin-bottom: 190px;
+  font-size: 55px;
+  margin: 120px 0 140px;
   text-align: center;
   font-weight: 300;
   line-height: 1.5em;

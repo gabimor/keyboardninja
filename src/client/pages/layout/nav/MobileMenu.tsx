@@ -5,6 +5,7 @@ import Avatar from "react-avatar";
 import { logout } from "@client/api/auth";
 import CloseX from "@client/components/CloseX";
 import { EmailLabel, NameLabel } from "./AvatarMenu";
+import { Link } from "react-router-dom";
 
 export default function MobileMenu() {
   const [isVisible, setIsVisible] = useState(false);
@@ -38,6 +39,12 @@ const Menu = ({ onClose }: MenuProps) => {
         </NameLabel>
         <EmailLabel>{user.email}</EmailLabel>
         <ActionsContainer>
+          <li>
+            <Link to="/contact" onClick={onClose}>
+              <i className="fas fa-question"></i>
+              Wanna Help ?
+            </Link>
+          </li>
           {/* <li>
             <span>
               <i className="fas fa-cog"></i> Settings
@@ -45,7 +52,7 @@ const Menu = ({ onClose }: MenuProps) => {
           </li> */}
           <li>
             <span onClick={() => logout()}>
-              <i className="fas fa-sign-out-alt"></i> Log out
+              <i className="fas fa-sign-out-alt"></i>Log out
             </span>
           </li>
         </ActionsContainer>
@@ -91,7 +98,7 @@ const ActionsContainer = styled.ul`
   padding-top: 10px;
   line-height: 2em;
   text-align: left;
-  span i {
-    padding-right: 7px;
+  i {
+    width: 20px;
   }
 `;

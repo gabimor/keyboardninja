@@ -11,6 +11,7 @@ import { signup } from "@client/api/auth";
 import { UserType } from "@src/types/User.type";
 import ErrorLabel from "@client/components/ErrorLabel";
 import ClipLoader from "react-spinners/ClipLoader";
+import FormLabel from "@client/components/FormLabel";
 
 export type SignUpFormData = Pick<
   UserType,
@@ -49,7 +50,7 @@ export default function SignupForm() {
         <>
           <NameContainer>
             <div style={{ marginRight: 5 }}>
-              <Label>First name</Label>
+              <FormLabel htmlFor="firstName">First name</FormLabel>
               <Input
                 name="firstName"
                 autoFocus
@@ -59,7 +60,7 @@ export default function SignupForm() {
               ></Input>
             </div>
             <div style={{ marginLeft: 5 }}>
-              <Label>Last name</Label>
+              <FormLabel htmlFor="lastName">Last name</FormLabel>
               <Input
                 name="lastName"
                 ref={register({
@@ -74,7 +75,7 @@ export default function SignupForm() {
           {errors.lastName && (
             <ErrorLabel>{errors.lastName.message}</ErrorLabel>
           )}
-          <Label>Email</Label>
+          <FormLabel htmlFor="email">Email</FormLabel>
           <Input
             name="email"
             ref={register({
@@ -86,7 +87,7 @@ export default function SignupForm() {
             })}
           ></Input>
           {errors.email && <ErrorLabel>{errors.email.message}</ErrorLabel>}
-          <Label>Password</Label>
+          <FormLabel htmlFor="password">Password</FormLabel>
           <Input
             name="password"
             type="password"
@@ -140,20 +141,6 @@ const OrSeperator = styled.div`
   color: #e9e5e5;
   padding: 15px 0;
   text-align: center;
-`;
-
-const Label = styled.div`
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-top: 10px;
-  color: #9d8b8b;
-  font-size: 14px;
-  margin-bottom: 5px;
-
-  a {
-    font-size: 13px;
-  }
 `;
 
 const SignupWrapper = styled.div`

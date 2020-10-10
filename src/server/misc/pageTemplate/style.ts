@@ -60,10 +60,6 @@ kbd {
   box-shadow: 0px 6px 1px 1px rgba(30,30,30,0.2);
 }
 
-label {
-  color: #FFFFFF;
-}
-
 ul, ul li, ol, ol li {
   margin: 0;
   padding: 0;
