@@ -12,6 +12,7 @@ import { compare } from "bcrypt";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { JwtUser } from "@src/types/User.type";
+import { CreateUserDto as SignUpUserDto } from "../../types/DTOs/createUser.dto";
 
 export enum SocialType {
   Facebook = "facebook",
@@ -40,15 +41,17 @@ export class AuthService {
     return null;
   }
 
-  async signup(email: string, password: string): Promise<User> {
-    if (await this.userModel.findOne({ email }).lean()) {
+  async signup(signUpUserDto: SignUpUserDto): Promise<User> {
+    if (await this.userModel.findOne({ email: signUpUserDto.email }).lean()) {
       throw new HttpException("Email already taken", HttpStatus.ACCEPTED);
     }
 
-    const hashedPassword = await hash(password, bcryptSaltRound);
+    const hashedPassword = await hash(signUpUserDto.password, bcryptSaltRound);
 
     const user = await this.userModel.create({
-      email,
+      firstName: signUpUserDto.firstName,
+      lastName: signUpUserDto.lastName,
+      email: signUpUserDto.email,
       password: hashedPassword,
     });
 

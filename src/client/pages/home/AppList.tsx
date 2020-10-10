@@ -49,6 +49,8 @@ const Container = styled.div`
   background: #2c2525;
   grid-area: ${(props: ContainerProps) => props.gridArea};
   padding: 20px;
+  border-radius: 7px;
+  border: 1px solid #403535;
 
   @media (max-width: ${desktopBreakpoint}px) {
     padding: 15px 10px;
@@ -108,7 +110,7 @@ const InnerContainer = styled.div`
 
 const Header = styled.h2`
   color: #e9e5e5;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   margin-bottom: 15px;
   margin-left: 5px;

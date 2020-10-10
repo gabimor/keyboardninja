@@ -25,11 +25,13 @@ export default observer(AppItem);
 
 const sharedStyles = `
   display: flex;
+  border-radius: 7px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: var(--appItemSize);
   padding: 10px;
+  border: 1px solid #454040;
   background-color: #403434;
   color: #d1b4b4;
   transition: all 0.5s;

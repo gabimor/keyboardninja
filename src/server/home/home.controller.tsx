@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Get,
-  HttpStatus,
-  Next,
-  Param,
-  Req,
-  Res,
-  UseGuards,
-} from "@nestjs/common";
+import { Get, HttpStatus, Next, Param, Req, Res } from "@nestjs/common";
 import { Controller } from "@nestjs/common";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
@@ -18,7 +10,6 @@ import { NextFunction, Response } from "express";
 import { HomeService } from "./home.service";
 import { AppService } from "@server/app/app.service";
 import { RequestAuth } from "@src/types/RequestAuth";
-import { JwtAuthGuard } from "@server/auth/jwt/jwt-auth.guard";
 import { JwtUser } from "@src/types/User.type";
 import { Store } from "@client/store";
 
@@ -29,39 +20,39 @@ export class HomeController {
     private homeService: HomeService
   ) {}
 
-  @Get()
-  async home(@Req() req: RequestAuth) {
+  @Get(["/", "index.html"])
+  async home(@Req() req: RequestAuth, @Res() res: Response) {
     const title = "KeyboardNinja.me";
+    if (req.url.includes("index.html")) {
+      res.redirect("/");
+      return;
+    }
 
-    return this.renderPage(req, title, "/");
+    res.send(await this.renderPage(req.user, title, req.url, "/"));
   }
 
   @Get("404")
   async notFound(@Req() req: RequestAuth, @Res() res: Response) {
     res
       .status(HttpStatus.NOT_FOUND)
-      .send(await this.renderPage(req, "Page Not found", "/404"));
+      .send(await this.renderPage(req.user, "Page Not found", req.url, "/404"));
   }
 
   @Get("login")
-  async login(@Req() req: RequestAuth) {
-    return this.renderPage(req, "Log in", "/login");
+  async login(@Req() req: RequestAuth, @Res() res: Response) {
+    if (req.user) res.redirect("/");
+    res.send(await this.renderPage(req.user, "Log in", req.url, "/login"));
   }
 
   @Get("signup")
-  async signup(@Req() req: RequestAuth) {
-    return this.renderPage(req, "Sign up", "/signup");
+  async signup(@Req() req: RequestAuth, @Res() res: Response) {
+    if (req.user) res.redirect("/");
+    res.send(await this.renderPage(req.user, "Sign up", req.url, "/signup"));
   }
 
   @Get("contact")
   async contact(@Req() req: RequestAuth) {
-    return this.renderPage(req, "Wanna Help?", "/contact");
-  }
-
-  @Get("test")
-  @UseGuards(JwtAuthGuard)
-  async test(@Req() req: RequestAuth) {
-    return req.user;
+    return this.renderPage(req.user, "Wanna Help?", req.url, "/contact");
   }
 
   @Get(":name")
@@ -75,7 +66,7 @@ export class HomeController {
 
     if (!app) return next();
 
-    if (req?.user?._id) this.appsService.addUserApp(app, req?.user?._id)
+    if (req?.user?._id) this.appsService.addUserApp(app, req?.user?._id);
 
     const dataContext = {
       app,
@@ -84,8 +75,9 @@ export class HomeController {
 
     return res.send(
       await this.renderPage(
-        req,
+        req.user,
         app.name + " | KeyboardNinja.me",
+        req.url,
         app.url,
         dataContext
       )
@@ -93,8 +85,9 @@ export class HomeController {
   }
 
   async renderPage(
-    req: RequestAuth,
+    user: JwtUser,
     title: string,
+    url: string,
     canonicalUrl: string,
     dataContext = {}
   ) {
@@ -102,13 +95,13 @@ export class HomeController {
 
     const context = new Store({
       ...dataContext,
-      user: req.user as JwtUser,
+      user,
       appCategories,
     });
 
     const page = (
       <DataContext.Provider value={context}>
-        <StaticRouter context={{}} location={req.url}>
+        <StaticRouter context={{}} location={url}>
           <Layout />
         </StaticRouter>
       </DataContext.Provider>

@@ -1,20 +1,21 @@
 import { sendApiRequest } from ".";
+import { SignUpFormData } from "../pages/signup/SignupForm";
 
 export async function signup(
-  email: string,
-  password: string
+  signUpForm: SignUpFormData
 ): Promise<string | undefined> {
   const response = await sendApiRequest("/auth/signup", {
     method: "POST",
-    body: JSON.stringify({
-      email,
-      password,
-    }),
+    body: JSON.stringify(signUpForm),
   });
 
   const json = await response.json();
 
-  return json?.payload;
+  if (json.success) {
+    location.href = "/";
+  } else {
+    return json?.payload;
+  }
 }
 
 export async function login(email: string, password: string): Promise<number> {
@@ -32,5 +33,5 @@ export async function login(email: string, password: string): Promise<number> {
 export function logout() {
   document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 
-  location.href = "/";
+  location.href = location.origin + location.pathname;
 }

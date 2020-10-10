@@ -1,14 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { observer } from "mobx-react-lite";
 
-import { DataContext } from "../../DataContext";
 import { upperFirstLetter } from "../../helpers";
 import Keys from "./Keys";
 import StarButton from "./StarButton";
 import StarCount from "./StarCount";
 import { enterMobileBreakpoint } from "@client/consts";
-import { useMediaQuery } from "react-responsive";
 
 export interface Props {
   _id: string;
@@ -18,6 +16,7 @@ export interface Props {
   isHtml?: boolean;
   isStarred?: boolean;
   note?: string;
+  onStar: (shortcutId: string) => void;
 }
 
 function ShortcutItem({
@@ -28,21 +27,18 @@ function ShortcutItem({
   isStarred,
   isHtml,
   note,
+  onStar,
 }: Props) {
-  const store = useContext(DataContext);
   const [infoVisible, setInfoVisible] = useState(false);
-  const isMobile = useMediaQuery({ maxWidth: enterMobileBreakpoint });
 
   return (
     <>
-      <StarButton isStarred={isStarred} onClick={() => store.toggleStar(_id)} />
-      {!isMobile && (
-        <CellContainer isStarred={isStarred} stars={stars}>
-          <StarCount stars={stars} />
-        </CellContainer>
-      )}
+      <StarButton isStarred={isStarred} onClick={() => onStar(_id)} />
+      <CellContainer isStarred={isStarred} stars={stars}>
+        <ColumnStarCount stars={stars} />
+      </CellContainer>
       <CellContainer isStarred={isStarred}>
-        <div>
+        <div style={{ padding: "8px 12px" }}>
           {upperFirstLetter(action)}
           {note && (
             <InfoIcon
@@ -51,15 +47,11 @@ function ShortcutItem({
             />
           )}
           {infoVisible && <InfoContainer>{note}</InfoContainer>}
-          {isMobile && (
-            <StarCountContainer>
-              <StarCount stars={stars} />
-            </StarCountContainer>
-          )}
+          <TextStarCount stars={stars} />
         </div>
       </CellContainer>
       <CellContainer isStarred={isStarred}>
-        <div>
+        <div style={{ padding: "8px 12px" }}>
           <Keys keys={keys} isHtml={isHtml} />
         </div>
       </CellContainer>
@@ -69,8 +61,18 @@ function ShortcutItem({
 
 export default observer(ShortcutItem);
 
-const StarCountContainer = styled.div`
+const ColumnStarCount = styled(StarCount)`
+  padding: 8px 12px 8px 24px;
+  @media (max-width: ${enterMobileBreakpoint}px) {
+    display: none;
+  }
+`;
+
+const TextStarCount = styled(StarCount)`
   margin-top: 5px;
+  @media (min-width: ${enterMobileBreakpoint}px) {
+    display: none;
+  }
 `;
 
 const InfoIcon = styled.i`
@@ -97,7 +99,7 @@ const CellContainer = styled.div`
   user-select: none;
   border-bottom: solid 1px
     ${({ isStarred }) => (isStarred ? "#604747" : "#453a3a")};
-  padding: ${({ stars }) => (stars === 0 ? 0 : "8px 12px")};
   display: flex;
   align-items: center;
+  transition: background 0.1s ease-in-out;
 `;

@@ -17,6 +17,7 @@ export const Default = () => (
       action={"Select all text"}
       keys={"ctrl+k"}
       stars={0}
+      onStar={null}
     />
   </DataContext.Provider>
 );

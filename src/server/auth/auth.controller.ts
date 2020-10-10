@@ -2,7 +2,6 @@ import {
   Body,
   Controller,
   Get,
-  HttpStatus,
   Post,
   Req,
   Res,
@@ -36,14 +35,11 @@ export class AuthController {
 
   @Post("signup")
   async signup(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
-    const user = await this.authService.signup(
-      createUserDto.email,
-      createUserDto.password
-    );
+    const user = await this.authService.signup(createUserDto);
     const jwt = this.authService.generateJwt(user);
 
     setCookie(res, jwt);
-    res.sendStatus(HttpStatus.CREATED);
+    return res.json({ success: true });
   }
 
   @UseGuards(FacebookAuthGuard)

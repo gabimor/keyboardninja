@@ -23,7 +23,7 @@ export default function LoggedInNav() {
       ) : (
         <DesktopNavContainer>
           <li>
-            <Link to="/apps">My apps</Link>
+            <Link to="/contact">Wanna Help ?</Link>
           </li>
           <AvatarContainer ref={ref}>
             <StyledAvatar

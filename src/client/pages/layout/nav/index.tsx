@@ -17,14 +17,14 @@ const Container = styled.div`
 
   margin-left: auto;
 
-  ul {
+  > ul {
     display: inline-block;
     list-style: none;
-  }
 
-  li {
-    display: inline-block;
-    margin-left: 15px;
+    > li {
+      display: inline-block;
+      margin-left: 15px;
+    }
   }
 
   a {

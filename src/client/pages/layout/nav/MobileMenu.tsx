@@ -3,6 +3,9 @@ import styled from "@emotion/styled";
 import React, { useContext, useState } from "react";
 import Avatar from "react-avatar";
 import { logout } from "@client/api/auth";
+import CloseX from "@client/components/CloseX";
+import { EmailLabel, NameLabel } from "./AvatarMenu";
+import { Link } from "react-router-dom";
 
 export default function MobileMenu() {
   const [isVisible, setIsVisible] = useState(false);
@@ -23,7 +26,7 @@ const Menu = ({ onClose }: MenuProps) => {
   return (
     <>
       <MenuContainer>
-        <CloseButton onClick={onClose} className="fas fa-times"></CloseButton>
+        <CloseX onClick={onClose} className="fas fa-times"></CloseX>
         <Avatar
           name={user.firstName + " " + user.lastName}
           facebookId={user.facebookId}
@@ -31,19 +34,25 @@ const Menu = ({ onClose }: MenuProps) => {
           size="50"
           round={true}
         />
-        <Name>
+        <NameLabel style={{ marginTop: 10 }}>
           {user.firstName} {user.lastName}
-        </Name>
-        <Email>{user.email}</Email>
+        </NameLabel>
+        <EmailLabel>{user.email}</EmailLabel>
         <ActionsContainer>
           <li>
+            <Link to="/contact" onClick={onClose}>
+              <i className="fas fa-question"></i>
+              Wanna Help ?
+            </Link>
+          </li>
+          {/* <li>
             <span>
               <i className="fas fa-cog"></i> Settings
             </span>
-          </li>
+          </li> */}
           <li>
             <span onClick={() => logout()}>
-              <i className="fas fa-sign-out-alt"></i> Log out
+              <i className="fas fa-sign-out-alt"></i>Log out
             </span>
           </li>
         </ActionsContainer>
@@ -61,12 +70,14 @@ const MenuContainer = styled.div`
   user-select: none;
   text-align: center;
   position: fixed;
+  color: red;
   z-index: 1000;
   top: 10px;
   left: 10px;
   padding: 35px 15px 15px 15px;
   width: calc(100vw - 20px);
-  background: #424242;
+  color: #e9e5e5;
+  background: #261d1d;
 `;
 
 const Overlay = styled.div`
@@ -78,33 +89,16 @@ const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-`;
-
-const CloseButton = styled.i`
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.65);
 `;
 
 const ActionsContainer = styled.ul`
-  border-top: solid 1px #606060;
+  border-top: solid 1px #453a3a;
   margin-top: 15px;
   padding-top: 10px;
   line-height: 2em;
   text-align: left;
-  span i {
-    padding-right: 7px;
+  i {
+    width: 20px;
   }
-`;
-
-const Name = styled.div`
-  font-weight: 500;
-  font-size: 14px;
-  padding-top: 15px;
-`;
-const Email = styled.div`
-  margin-top: 3px;
-  font-size: 13px;
 `;

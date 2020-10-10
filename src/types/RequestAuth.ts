@@ -1,4 +1,4 @@
-import { User } from "@src/types/schemas/User.schema";
 import { Request } from "express";
+import { JwtUser } from "./User.type";
 
-export type RequestAuth = Request & { user?: Partial<User> };
+export type RequestAuth = Request & { user?: JwtUser };

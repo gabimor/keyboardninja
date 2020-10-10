@@ -6,18 +6,18 @@ interface Props {
   stars: number;
 }
 
-function StarCount({ stars }: Props) {
+function StarCount({ stars, ...props }: Props) {
   if (stars === 0) return null;
 
   return (
-    <Container>
+    <Container {...props}>
       <img src="/icons/star-on.svg" alt="" />
       <Count>{stars}</Count>{" "}
     </Container>
   );
 }
 
-export default observer(StarCount)
+export default observer(StarCount);
 
 const Container = styled.div`
   display: inline-flex;
