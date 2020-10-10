@@ -19,18 +19,14 @@ export default function LoginForm() {
   async function onSubmit({ email, password }: FormData) {
     const status = await login(email, password);
 
-    console.log(status);
-
     if (status === 200) {
-      location.href = "/";
-    }
-    else if (status === 401){
+      location.href = location.href;
+    } else if (status === 401) {
       setError("password", {
         type: "validate",
         message: "Incorrect email or password",
       });
-    }
-    else {
+    } else {
       setError("password", {
         type: "validate",
         message: "An Unexpected error occured, please try again later",

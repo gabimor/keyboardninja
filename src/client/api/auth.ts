@@ -32,5 +32,5 @@ export async function login(email: string, password: string): Promise<number> {
 export function logout() {
   document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 
-  location.href = "/";
+  location.href = location.origin + location.pathname;
 }

@@ -20,7 +20,7 @@ export default function SignupForm() {
     const message = await signup(email, password);
 
     if (!message) {
-      location.href = "/";
+      location.href = location.href;
     } else {
       setError("email", { type: "validate", message });
     }

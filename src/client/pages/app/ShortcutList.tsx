@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { observer } from "mobx-react-lite";
 
 import ShortcutItem from "./ShortcutItem";
 import styled from "@emotion/styled";
 import { DataContext } from "../../DataContext";
+import Modal from "@client/components/Modal";
 
 import { upperFirstLetter } from "../../helpers";
 import { enterMobileBreakpoint } from "@client/consts";
 import { useMediaQuery } from "react-responsive";
+import LoginForm from "../login/LoginForm";
 
 interface Shortcut {
   _id: string;
@@ -28,6 +30,18 @@ interface Props {
 function ShortcutList({ title, shortcuts }: Props) {
   const { os } = useContext(DataContext);
   const isMobile = useMediaQuery({ maxWidth: enterMobileBreakpoint });
+  const store = useContext(DataContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const onStar = (shortcutId: string) => {
+    if (store.user) {
+      store.toggleStar(shortcutId);
+    } else {
+      setIsModalOpen(true);
+    }
+  };
+
+  const modalClose = () => setIsModalOpen(false);
 
   return (
     <Container>
@@ -44,10 +58,18 @@ function ShortcutList({ title, shortcuts }: Props) {
               stars={shortcut.stars}
               isHtml={shortcut.isHtml}
               isStarred={!!shortcut.isStarred}
+              onStar={onStar}
             />
           );
         })}
       </Table>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={modalClose}
+        contentLabel="Example Modal"
+      >
+        <LoginForm />
+      </Modal>
     </Container>
   );
 }
@@ -62,6 +84,7 @@ const Container = styled.div`
   overflow: hidden;
   width: 100%;
 `;
+
 
 const Title = styled.header`
   color: #e9e5e5;

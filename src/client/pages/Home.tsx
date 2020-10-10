@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "@emotion/styled";
 
-import AppList from "./app/AppList";
+import AppList from "./home/AppList";
 import { DataContext } from "../DataContext";
 import { desktopBreakpoint, tabletBreakpoint } from "@client/consts";
 

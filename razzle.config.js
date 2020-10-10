@@ -5,6 +5,7 @@ module.exports = {
   // modify: require("razzle-heroku"),
   modify(baseConfig, { target, dev }, webpack) {
     const config = { ...baseConfig };
+
     config.devtool = dev ? "inline-source-map" : "none";
     config.resolve.alias["@client"] = path.resolve("./src/client/");
     config.resolve.alias["@server"] = path.resolve("./src/server/");

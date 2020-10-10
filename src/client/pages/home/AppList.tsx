@@ -49,6 +49,8 @@ const Container = styled.div`
   background: #2c2525;
   grid-area: ${(props: ContainerProps) => props.gridArea};
   padding: 20px;
+  border-radius: 7px;
+  border: 1px solid #403535;
 
   @media (max-width: ${desktopBreakpoint}px) {
     padding: 15px 10px;

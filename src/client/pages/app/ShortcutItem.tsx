@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { observer } from "mobx-react-lite";
 
-import { DataContext } from "../../DataContext";
 import { upperFirstLetter } from "../../helpers";
 import Keys from "./Keys";
 import StarButton from "./StarButton";
@@ -18,6 +17,7 @@ export interface Props {
   isHtml?: boolean;
   isStarred?: boolean;
   note?: string;
+  onStar: (shortcutId: string) => void;
 }
 
 function ShortcutItem({
@@ -28,14 +28,14 @@ function ShortcutItem({
   isStarred,
   isHtml,
   note,
+  onStar,
 }: Props) {
-  const store = useContext(DataContext);
   const [infoVisible, setInfoVisible] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: enterMobileBreakpoint });
 
   return (
     <>
-      <StarButton isStarred={isStarred} onClick={() => store.toggleStar(_id)} />
+      <StarButton isStarred={isStarred} onClick={() => onStar(_id)} />
       {!isMobile && (
         <CellContainer isStarred={isStarred} stars={stars}>
           <StarCount stars={stars} />
@@ -100,4 +100,5 @@ const CellContainer = styled.div`
   padding: ${({ stars }) => (stars === 0 ? 0 : "8px 12px")};
   display: flex;
   align-items: center;
+  transition: background 0.1s ease-in-out;
 `;

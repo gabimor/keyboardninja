@@ -36,8 +36,14 @@ export function AvatarMenu({ visible }: Props) {
 }
 
 const DetailsContainer = styled.div`
-  padding: 0 50px 15px 0;
-  border-bottom: solid 1px #606060;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 60px 15px 0;
+  color: #e9e5e5;
+  border-bottom: solid 1px #453a3a;
+  min-height: 50px;
 `;
 
 const Container = styled.div`
@@ -45,10 +51,10 @@ const Container = styled.div`
   top: -15px;
   z-index: 1000;
   position: absolute;
-  background: #383838;
+  background: #402022;
   padding: 15px;
   border-radius: 5px;
-  box-shadow: 0px 3px 17px 4px rgba(0, 0, 0, 0.46);
+  box-shadow: 0px 3px 17px 4px rgba(0, 0, 0, 0.26);
   white-space: nowrap;
   transition: all 0.1s ease-in-out;
 `;
@@ -63,6 +69,7 @@ const ActionsContainer = styled.ul`
 
   span i {
     padding-right: 7px;
+    color: #e9e5e5;
   }
 
   span:hover {
@@ -74,8 +81,11 @@ const ActionsContainer = styled.ul`
 const Name = styled.div`
   font-weight: 500;
   font-size: 14px;
+  flex-grow: 1;
 `;
 const Email = styled.div`
   margin-top: 3px;
   font-size: 13px;
+  flex-grow: 1;
+  color: #d1d0d4;
 `;

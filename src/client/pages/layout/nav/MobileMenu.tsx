@@ -66,7 +66,7 @@ const MenuContainer = styled.div`
   left: 10px;
   padding: 35px 15px 15px 15px;
   width: calc(100vw - 20px);
-  background: #424242;
+  background: #261d1d;
 `;
 
 const Overlay = styled.div`

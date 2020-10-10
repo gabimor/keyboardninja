@@ -1,3 +1,5 @@
+import { modalStyle } from "@client/components/Modal";
+
 export const style = `
 * {
   box-sizing: border-box;
@@ -29,10 +31,19 @@ input:active, textarea:active, select:active, div:active, button:active {
   outline: 0;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #261d1d inset !important;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: #e9e5e5 !important;
+}
+
 input {
   padding: 8px 10px 8px;
-  color: #FFFFFF;
-  background: #000000;
 }
 
 kbd {
@@ -75,4 +86,6 @@ h1,h2,h3,h4,h5,h6 {
   line-height:1em;
   font-weight: normal;
 }
+
+${modalStyle}
 `;
