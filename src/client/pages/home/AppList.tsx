@@ -110,7 +110,7 @@ const InnerContainer = styled.div`
 
 const Header = styled.h2`
   color: #e9e5e5;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   margin-bottom: 15px;
   margin-left: 5px;

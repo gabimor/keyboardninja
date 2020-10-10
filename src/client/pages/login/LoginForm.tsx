@@ -10,11 +10,14 @@ import { PrimaryButton } from "@client/components/Buttons";
 import TextInput from "@client/components/TextInput";
 import { login } from "@client/api/auth";
 import ErrorLabel from "@client/components/ErrorLabel";
+import ClipLoader from "react-spinners/ClipLoader";
 
 type FormData = Pick<UserType, "email" | "password">;
 
 export default function LoginForm() {
-  const { register, handleSubmit, errors, setError } = useForm<FormData>();
+  const { register, handleSubmit, errors, setError, formState } = useForm<
+    FormData
+  >();
 
   async function onSubmit({ email, password }: FormData) {
     const status = await login(email, password);
@@ -37,6 +40,16 @@ export default function LoginForm() {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Header>Log in</Header>
+      <a href="/auth/facebook" style={{ marginBottom: 20 }}>
+        <FacebookButton />
+      </a>
+
+      <a href="/auth/google">
+        <GoogleButton />
+      </a>
+
+      <OrSeperator> - or - </OrSeperator>
+
       <Label>Email</Label>
       <TextInput
         name="email"
@@ -51,7 +64,6 @@ export default function LoginForm() {
       {errors.email && <ErrorLabel>{errors.email.message}</ErrorLabel>}
       <LabelWrapper>
         <Label>Password</Label>
-        <a>Forgot password ?</a>
       </LabelWrapper>
       <TextInput
         name="password"
@@ -61,15 +73,14 @@ export default function LoginForm() {
         })}
       ></TextInput>
       {errors.password && <ErrorLabel>{errors.password.message}</ErrorLabel>}
-      <PrimaryButton style={{ marginTop: 20 }}>Log in</PrimaryButton>
-      <OrSeperator> - or - </OrSeperator>
-      <a href="/auth/facebook" style={{ marginBottom: 20 }}>
-        <FacebookButton />
-      </a>
-
-      <a href="/auth/google">
-        <GoogleButton />
-      </a>
+      <PrimaryButton style={{ marginTop: 20 }}>
+        Log in{" "}
+        <ClipLoader
+          size={10}
+          color={"#fff"}
+          loading={formState.isSubmitted || formState.isSubmitting}
+        />
+      </PrimaryButton>
 
       <SignupWrapper>
         Don't have an account ?<Link to="/signup"> Sign up</Link>

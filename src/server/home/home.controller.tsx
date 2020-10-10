@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Get,
-  HttpStatus,
-  Next,
-  Param,
-  Redirect,
-  Req,
-  Res,
-} from "@nestjs/common";
+import { Get, HttpStatus, Next, Param, Req, Res } from "@nestjs/common";
 import { Controller } from "@nestjs/common";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";

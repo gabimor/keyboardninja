@@ -17,8 +17,7 @@ const SocialButton: React.FC<SocialButton> = ({ text, icon, ...props }) => {
     <Button onClick={() => setIsLoading(true)} type="button" {...props}>
       <img src={icon} />
       <div>
-        {text}
-        <ClipLoader size={10} color={"#fff"} loading={isLoading} />
+        {text} <ClipLoader size={10} color={"#fff"} loading={isLoading} />
       </div>
     </Button>
   );
