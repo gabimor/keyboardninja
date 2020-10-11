@@ -1,12 +1,9 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import { observer } from "mobx-react-lite";
 
-import { copyToClipboard } from "@client/helpers";
 import { DataContext } from "@client/DataContext";
 import OSSelect from "./OSSelect";
-import Share from "./Share";
-import { getShareLink } from "@client/api";
 import { desktopBreakpoint, tabletBreakpoint } from "@client/consts";
 import { intermediateColor } from "@client/helpers/colors";
 import {
@@ -50,23 +47,6 @@ function Controls({ icon, name }: Props) {
     };
   });
 
-  const [publicLink, setPublicLink] = useState("");
-
-  async function handleShare() {
-    const shortcutIds = store.app.shortcuts
-      .filter((e) => e.isStarred)
-      .map((e) => e._id);
-    const link = await getShareLink(store.app._id, shortcutIds).then((data) =>
-      data.text()
-    );
-    setPublicLink(link);
-    copyToClipboard(link);
-  }
-
-  function handleGetLinkClose() {
-    setPublicLink(undefined);
-  }
-
   return (
     <Container ref={containerRef}>
       <NameWrapper>
@@ -81,12 +61,8 @@ function Controls({ icon, name }: Props) {
         os={store.os}
         oss={store.app.oss}
       />
-      <Seperator />
-      <Share
-        onGetLink={handleShare}
-        onClose={handleGetLinkClose}
-        link={publicLink}
-      />
+      {/* <Seperator />
+      <Share /> */}
     </Container>
   );
 }
@@ -96,12 +72,11 @@ export default observer(Controls);
 const Container = styled.div`
   display: flex;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px 3px;
   margin: 60px 0 40px 0;
   border-bottom: solid 1px #5a5a5a;
   position: sticky;
   top: 0;
-  /* transition: background 0.3s ease-in-out; */
   background: var(--controls-bg);
 
   @media (max-width: ${tabletBreakpoint}px) {
@@ -109,11 +84,11 @@ const Container = styled.div`
   }
 `;
 
-const Seperator = styled.div`
-  height: 39px;
-  border-left: solid 1px #5a5a5a;
-  margin: 0 20px;
-`;
+// const Seperator = styled.div`
+//   height: 39px;
+//   border-left: solid 1px #5a5a5a;
+//   margin: 0 20px;
+// `;
 
 const NameWrapper = styled.div`
   display: flex;

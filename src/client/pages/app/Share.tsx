@@ -1,36 +1,38 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useState, useContext } from "react";
+import { copyToClipboard } from "@client/helpers";
+import { getShareLink } from "@client/api";
 
-import { PrimaryButton } from "../../components/Buttons";
+import { PrimaryButton } from "@client/components/Buttons";
 import GetLinkPopup from "./SharePopup";
 
-interface Props {
-  link: string;
-  onGetLink: () => void;
-  onClose: () => void;
-}
+import { DataContext } from "@client/DataContext";
+import useOnClickOutside from "use-onclickoutside";
 
-const Share = ({ link, onGetLink, onClose }: Props) => {
-  const popupElm = useRef(null);
+const Share = () => {
+  const popupRef = useRef(null);
+  const store = useContext(DataContext);
+  useOnClickOutside(popupRef, () => setPublicLink(""));
 
-  function handleClickAway(e: MouseEvent) {
-    if (popupElm.current && !popupElm.current.contains(e.target)) onClose();
+  const [publicLink, setPublicLink] = useState("");
+
+  async function handleShare() {
+    const shortcutIds = store.app.shortcuts
+      .filter((e) => e.isStarred)
+      .map((e) => e._id);
+    const link = await getShareLink(store.app._id, shortcutIds).then((data) =>
+      data.text()
+    );
+    setPublicLink(link);
+    copyToClipboard(link);
   }
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickAway);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickAway);
-    };
-  }, []);
 
   return (
     <div>
-      <PrimaryButton onClick={onGetLink}>
+      <PrimaryButton onClick={handleShare}>
         <i className="fas fa-link" />
         &nbsp; Share
       </PrimaryButton>
-      {link && <GetLinkPopup link={link} ref={popupElm} />}
+      {publicLink && <GetLinkPopup link={publicLink} ref={popupRef} />}
     </div>
   );
 };
