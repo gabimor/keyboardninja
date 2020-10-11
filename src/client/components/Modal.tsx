@@ -10,7 +10,7 @@ const Modal: FC<ReactModal.Props> = (props) => (
     {...props}
   >
     {props.children}
-    <CloseX onClick={props.onRequestClose} className="fas fa-times"></CloseX>
+    <CloseX onClick={props.onRequestClose} />
   </ReactModal>
 );
 

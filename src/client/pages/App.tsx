@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 
 import styled from "@emotion/styled";
 
-import FirstTimeMessage from "./app/FirstTimeMessage";
+import SignupCTAMessage from "./app/SignupCTAMessage";
 import ShortcutList from "./app/ShortcutList";
 import Controls from "./app/Controls";
 import { encodeAppName } from "../helpers";
@@ -14,13 +14,13 @@ const App = () => {
   const { app, os } = useContext(DataContext);
   const [messageVisible, setMessageVisible] = useState(false);
 
-  const handleDismiss = () => {
-    localStorage.setItem("firstTimeMessage", "true");
+  const handleCloseSignupCTAMessage = () => {
+    localStorage.setItem("signupCTAMessage", "true");
     setMessageVisible(false);
   };
 
   useEffect(() => {
-    setMessageVisible(!localStorage.getItem("firstTimeMessage"));
+    setMessageVisible(!localStorage.getItem("signupCTAMessage"));
     osSelect.init();
   }, []);
 
@@ -28,7 +28,9 @@ const App = () => {
   return (
     <div>
       <Controls icon={encodedName + ".png"} name={app.name} />
-      {messageVisible && <FirstTimeMessage onDismiss={handleDismiss} />}
+      {messageVisible && (
+        <SignupCTAMessage onClose={handleCloseSignupCTAMessage} />
+      )}
       <ResultsContainer>
         {app.sections.map((section) => {
           const shortcuts = app.shortcuts.filter(

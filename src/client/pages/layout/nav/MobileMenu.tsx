@@ -26,7 +26,7 @@ const Menu = ({ onClose }: MenuProps) => {
   return (
     <>
       <MenuContainer>
-        <CloseX onClick={onClose} className="fas fa-times"></CloseX>
+        <CloseX onClick={onClose} />
         <Avatar
           name={user.firstName + " " + user.lastName}
           facebookId={user.facebookId}
