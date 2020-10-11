@@ -35,7 +35,7 @@ export default function LoggedInNav() {
               round={true}
               visible={avatarMenuVisible}
             />
-            <AvatarMenu visible={avatarMenuVisible} />
+            <AvatarMenu isVisible={avatarMenuVisible} />
           </AvatarContainer>
         </DesktopNavContainer>
       )}

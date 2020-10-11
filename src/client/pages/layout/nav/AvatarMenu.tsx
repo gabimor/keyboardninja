@@ -4,15 +4,14 @@ import { DataContext } from "@client/DataContext";
 import { logout } from "@client/api/auth";
 
 type Props = {
-  visible: boolean;
+  isVisible: boolean;
 };
 
-export function AvatarMenu({ visible }: Props) {
-  const opacity = visible ? 1 : 0;
+export function AvatarMenu({ isVisible }: Props) {
   const { user } = useContext(DataContext);
 
   return (
-    <Container style={{ opacity }}>
+    <Container className={isVisible && "visible"}>
       <DetailsContainer>
         <NameLabel>
           {user.firstName} {user.lastName}
@@ -35,18 +34,9 @@ export function AvatarMenu({ visible }: Props) {
   );
 }
 
-const DetailsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0 60px 15px 0;
-  color: #e9e5e5;
-  border-bottom: solid 1px #453a3a;
-  min-height: 50px;
-`;
-
 const Container = styled.div`
+  opacity: 0;
+  visibility: hidden;
   right: -15px;
   top: -15px;
   z-index: 1000;
@@ -57,6 +47,22 @@ const Container = styled.div`
   box-shadow: 0px 3px 17px 4px rgba(0, 0, 0, 0.26);
   white-space: nowrap;
   transition: all 0.1s ease-in-out;
+
+  &.visible {
+    visibility: visible;
+    opacity: 1;
+  }
+`;
+
+const DetailsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 60px 15px 0;
+  color: #e9e5e5;
+  border-bottom: solid 1px #453a3a;
+  min-height: 50px;
 `;
 
 const ActionsContainer = styled.ul`

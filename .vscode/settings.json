@@ -20,5 +20,6 @@
   },
   "search.exclude": {
     "build": true
-  }
+  },
+  "svg.preview.background": "black"
 }
