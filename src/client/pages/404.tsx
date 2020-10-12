@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
+import { getTitle } from "@src/shared/utils";
 
 const Page404 = () => {
+  useEffect(() => {
+    document.title = getTitle("/404");
+  }, []);
+
+
   return (
     <Container>
       <div>

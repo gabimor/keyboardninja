@@ -1,12 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "@emotion/styled";
 
 import AppList from "./home/AppList";
 import { DataContext } from "../DataContext";
 import { desktopBreakpoint, tabletBreakpoint } from "@client/consts";
+import { getTitle } from "@src/shared/utils";
 
 const Home = () => {
   const { appCategories } = useContext(DataContext);
+
+  useEffect(() => {
+    document.title = getTitle("/");
+  }, []);
 
   return (
     <Container>

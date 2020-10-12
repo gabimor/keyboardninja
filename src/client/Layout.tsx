@@ -21,7 +21,7 @@ const Layout = () => {
         <Header />
 
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Home}  />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/contact" component={ContactUs} />

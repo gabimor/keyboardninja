@@ -12,6 +12,7 @@ import { AppService } from "@server/app/app.service";
 import { RequestAuth } from "@src/types/RequestAuth";
 import { JwtUser } from "@src/types/User.type";
 import { Store } from "@client/store";
+import { getTitle } from "@src/shared/utils";
 
 @Controller("/")
 export class HomeController {
@@ -22,37 +23,42 @@ export class HomeController {
 
   @Get(["/", "index.html"])
   async home(@Req() req: RequestAuth, @Res() res: Response) {
-    const title = "KeyboardNinja.me";
     if (req.url.includes("index.html")) {
       res.redirect("/");
       return;
     }
 
-    res.send(await this.renderPage(req.user, title, req.url, "/"));
+    res.send(await this.renderPage(req.user, getTitle("/"), req.url, "/"));
   }
 
   @Get("404")
   async notFound(@Req() req: RequestAuth, @Res() res: Response) {
     res
       .status(HttpStatus.NOT_FOUND)
-      .send(await this.renderPage(req.user, "Page Not found", req.url, "/404"));
+      .send(
+        await this.renderPage(req.user, getTitle(req.url), req.url, "/404")
+      );
   }
 
   @Get("login")
   async login(@Req() req: RequestAuth, @Res() res: Response) {
     if (req.user) res.redirect("/");
-    res.send(await this.renderPage(req.user, "Log in", req.url, "/login"));
+    res.send(
+      await this.renderPage(req.user, getTitle(req.url), req.url, "/login")
+    );
   }
 
   @Get("signup")
   async signup(@Req() req: RequestAuth, @Res() res: Response) {
     if (req.user) res.redirect("/");
-    res.send(await this.renderPage(req.user, "Sign up", req.url, "/signup"));
+    res.send(
+      await this.renderPage(req.user, getTitle(req.url), req.url, "/signup")
+    );
   }
 
   @Get("contact")
   async contact(@Req() req: RequestAuth) {
-    return this.renderPage(req.user, "Wanna Help?", req.url, "/contact");
+    return this.renderPage(req.user, getTitle(req.url), req.url, "/contact");
   }
 
   @Get(":name")
@@ -76,7 +82,7 @@ export class HomeController {
     return res.send(
       await this.renderPage(
         req.user,
-        app.name + " | KeyboardNinja.me",
+        getTitle(req.url, app.name),
         req.url,
         app.url,
         dataContext
