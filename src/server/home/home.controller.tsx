@@ -82,7 +82,7 @@ export class HomeController {
     return res.send(
       await this.renderPage(
         req.user,
-        getTitle(req.url, app.name),
+        getTitle("/:app", app.name),
         req.url,
         app.url,
         dataContext

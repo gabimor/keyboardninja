@@ -8,8 +8,9 @@ export function getTitle(url: string, param?: string) {
   titles.set("/:app", "$param | Keyboard Ninja.Me");
 
   let title = titles.get(url);
+  if (!title) title = titles.get("/");
 
-  if (param) title.replace("$param", param);
+  if (param) title = title.replace("$param", param);
 
   return title;
 }
