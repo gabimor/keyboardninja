@@ -1,4 +1,4 @@
-import { OSs } from "../../types/OSs.enum";
+import { OSs } from "../../defs/OSs.enum";
 
 export function init() {
   if (!document.cookie.includes("os=")) {

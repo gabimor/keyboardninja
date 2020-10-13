@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { OSs } from "../../../types/OSs.enum";
+import { OSs } from "../../../defs/OSs.enum";
 import { observer } from "mobx-react-lite";
 
 interface OSSelectProps {

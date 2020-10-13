@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import ContactForm from "./contactUs/ContactForm";
 import { tabletBreakpoint } from "@client/consts";
-import { getTitle } from "@src/shared/utils";
+import { getTitle } from "@shared/utils";
 
 export default () => {
   const [messageSent, setMessageSent] = useState(false);

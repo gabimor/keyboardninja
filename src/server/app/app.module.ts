@@ -1,14 +1,14 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { App, AppSchema } from "@src/types/schemas/App.schema";
+import { App, AppSchema } from "@defs/schemas/App.schema";
 import {
   AppCategory,
   AppCategorySchema,
-} from "@src/types/schemas/AppCategory.schema";
+} from "@defs/schemas/AppCategory.schema";
 import { AppService } from "./app.service";
 import { AppController } from "./app.controller";
-import { UserApps, UserAppsSchema } from "@src/types/schemas/UserApps.schema";
-import { User, UserSchema } from "@src/types/schemas/User.schema";
+import { UserApps, UserAppsSchema } from "@defs/schemas/UserApps.schema";
+import { User, UserSchema } from "@defs/schemas/User.schema";
 
 @Module({
   imports: [

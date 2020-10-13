@@ -4,8 +4,8 @@ import cookieParser from "cookie-parser";
 // @ts-ignore
 import expressListRoutes from "express-list-routes";
 import * as rateLimit from "express-rate-limit";
-import { GlobalExceptionFilter } from "@server/misc/filters/GlobalExceptionFilter";
-import { ClassValidationPipe } from "@server/misc/filters/ClassValidationPipe";
+import { GlobalExceptionFilter } from "./misc/filters/GlobalExceptionFilter";
+import { ClassValidationPipe } from "./misc/filters/ClassValidationPipe";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

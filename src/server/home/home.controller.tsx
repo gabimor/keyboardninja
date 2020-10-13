@@ -9,10 +9,10 @@ import { pageTemplate } from "@server/misc/pageTemplate";
 import { NextFunction, Response } from "express";
 import { HomeService } from "./home.service";
 import { AppService } from "@server/app/app.service";
-import { RequestAuth } from "@src/types/RequestAuth";
-import { JwtUser } from "@src/types/User.type";
+import { RequestAuth } from "@defs/RequestAuth";
+import { JwtUser } from "@defs/User.type";
 import { Store } from "@client/store";
-import { getTitle } from "@src/shared/utils";
+import { getTitle } from "@shared/utils";
 
 @Controller("/")
 export class HomeController {

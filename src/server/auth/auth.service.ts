@@ -7,12 +7,12 @@ import {
 import { hash } from "bcrypt";
 import { bcryptSaltRound } from "@server/auth/consts";
 import { JwtService } from "@nestjs/jwt";
-import { User } from "@src/types/schemas/User.schema";
+import { User } from "@defs/schemas/User.schema";
 import { compare } from "bcrypt";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { JwtUser } from "@src/types/User.type";
-import { CreateUserDto as SignUpUserDto } from "../../types/DTOs/createUser.dto";
+import { JwtUser } from "@defs/User.type";
+import { CreateUserDto as SignUpUserDto } from "../../defs/DTOs/createUser.dto";
 
 export enum SocialType {
   Facebook = "facebook",

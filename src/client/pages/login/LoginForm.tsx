@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { emailRegex } from "@client/helpers";
 
-import { UserType } from "@src/types/User.type";
+import { UserType } from "@defs/User.type";
 import { FacebookButton, GoogleButton } from "@client/components/SocialButtons";
 import { PrimaryButton } from "@client/components/Buttons";
 import TextInput from "@client/components/TextInput";

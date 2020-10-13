@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import Header from "@client/components/Header";
 
 import SignupForm from "./signup/SignupForm";
-import { getTitle } from "@src/shared/utils";
+import { getTitle } from "@shared/utils";
 
 const Signup = () => {
   useEffect(() => {

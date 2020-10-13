@@ -1,4 +1,4 @@
-import { ToggleStarReturnType } from "@src/types/misc";
+import { ToggleStarReturnType } from "@defs/misc";
 
 const headers = {
   Accept: "application/json",

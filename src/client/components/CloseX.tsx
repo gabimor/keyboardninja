@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
-import { HTMLProps } from "@src/types/misc";
+import { HTMLProps } from "@defs/misc";
 
 type Props = {
   bright?: boolean;

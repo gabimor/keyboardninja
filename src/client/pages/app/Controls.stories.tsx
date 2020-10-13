@@ -1,7 +1,7 @@
 import { Meta } from "@storybook/react";
 import React from "react";
-import { DataContext } from "@src/client/DataContext";
-import { OSs } from "@src/types/OSs.enum";
+import { DataContext } from "@client/DataContext";
+import { OSs } from "@defs/OSs.enum";
 
 import Controls from "./Controls";
 import { Store } from "@client/store";

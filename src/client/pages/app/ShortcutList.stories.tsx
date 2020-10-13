@@ -1,10 +1,10 @@
 import React from "react";
 
 import ShortcutList from "./ShortcutList";
-import { Shortcut } from "@src/types/Shortcut.type";
+import { Shortcut } from "@defs/Shortcut.type";
 import { Meta } from "@storybook/react";
 import { DataContext } from "@client/DataContext";
-import { OSs } from "@src/types/OSs.enum";
+import { OSs } from "@defs/OSs.enum";
 import { Store } from "@client/store";
 
 export default { title: "ShortcutList", component: ShortcutList } as Meta;

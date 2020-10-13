@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { emailRegex } from "@client/helpers";
 import { FacebookButton, GoogleButton } from "@client/components/SocialButtons";
 import { signup } from "@client/api/auth";
-import { UserType } from "@src/types/User.type";
+import { UserType } from "@defs/User.type";
 import ErrorLabel from "@client/components/ErrorLabel";
 import ClipLoader from "react-spinners/ClipLoader";
 import FormLabel from "@client/components/FormLabel";

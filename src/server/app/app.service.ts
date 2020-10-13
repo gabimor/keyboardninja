@@ -1,12 +1,12 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { App } from "@src/types/schemas/App.schema";
-import { AppCategory } from "@src/types/schemas/AppCategory.schema";
-import { UserApps } from "@src/types/schemas/UserApps.schema";
+import { App } from "@defs/schemas/App.schema";
+import { AppCategory } from "@defs/schemas/AppCategory.schema";
+import { UserApps } from "@defs/schemas/UserApps.schema";
 import { Model } from "mongoose";
 import { ObjectId } from "mongodb";
-import { User } from "@src/types/schemas/User.schema";
-import { ToggleStarReturnType } from "@src/types/misc";
+import { User } from "@defs/schemas/User.schema";
+import { ToggleStarReturnType } from "@defs/misc";
 @Injectable()
 export class AppService {
   constructor(
