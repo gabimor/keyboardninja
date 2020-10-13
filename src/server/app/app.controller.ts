@@ -1,9 +1,9 @@
 import { Body, Controller, Post, Req, UseGuards } from "@nestjs/common";
 import { JwtAuthGuard } from "@server/auth/jwt/jwt-auth.guard";
-import { RequestAuth } from "@src/types/RequestAuth";
+import { RequestAuth } from "@defs/RequestAuth";
 import { AppService } from "./app.service";
 import { ObjectId } from "mongodb";
-import { ToggleStarDto } from "@src/types/DTOs/toggleStar.dto";
+import { ToggleStarDto } from "@defs/DTOs/toggleStar.dto";
 
 @Controller("api")
 export class AppController {

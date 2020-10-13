@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import AppList from "./home/AppList";
 import { DataContext } from "../DataContext";
 import { desktopBreakpoint, tabletBreakpoint } from "@client/consts";
-import { getTitle } from "@src/shared/utils";
+import { getTitle } from "@shared/utils";
 
 const Home = () => {
   const { appCategories } = useContext(DataContext);

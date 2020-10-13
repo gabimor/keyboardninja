@@ -2,6 +2,9 @@
   "name": "keyboardninja",
   "version": "0.3.0",
   "license": "MIT",
+  "engines": {
+    "node": "12.x"
+  },
   "dependencies": {
     "@emotion/core": "^10.0.9",
     "@emotion/styled": "^10.0.9",
@@ -35,9 +38,9 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "razzle": "3.0.0",
+    "razzle": "^3.3.5",
     "razzle-heroku": "^3.0.0",
-    "razzle-plugin-typescript": "^3.1.6",
+    "razzle-plugin-typescript": "^3.3.5",
     "react": "16.8.4",
     "react-avatar": "^3.9.7",
     "react-dom": "16.8.4",

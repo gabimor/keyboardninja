@@ -13,8 +13,8 @@ import { AuthService } from "./auth.service";
 import { FacebookAuthGuard } from "./facebook/facebook-auth.guard";
 import { LocalAuthGuard } from "./local/local-auth.guard";
 import { GoogleAuthGuard } from "./google/google-auth.guard";
-import { CreateUserDto } from "@src/types/DTOs/createUser.dto";
-import { RequestAuth } from "@src/types/RequestAuth";
+import { CreateUserDto } from "@defs/DTOs/createUser.dto";
+import { RequestAuth } from "@defs/RequestAuth";
 
 @Controller("auth")
 export class AuthController {

@@ -13,7 +13,8 @@ module.exports = {
   moduleNameMapper: {
     "@server(.*)": "<rootDir>/src/server$1",
     "@client(.*)": "<rootDir>/src/client$1",
-    "@src(.*)": "<rootDir>/src$1",
+    "@shared(.*)": "<rootDir>/src/shared$1",
+    "@types(.*)": "<rootDir>/src/types$1",
   },
   moduleFileExtensions: ["ts", "tsx", "js", "json"],
   collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}"],

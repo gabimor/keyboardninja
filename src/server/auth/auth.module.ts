@@ -17,7 +17,7 @@ import {
   GoogleStrategyConfigToken,
 } from "./google/google.strategy.config";
 import { MongooseModule } from "@nestjs/mongoose";
-import { User, UserSchema } from "@src/types/schemas/User.schema";
+import { User, UserSchema } from "@defs/schemas/User.schema";
 
 const jwtStrategy = {
   provide: JwtStrategy,

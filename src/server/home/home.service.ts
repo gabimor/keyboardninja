@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { App } from "@src/types/schemas/App.schema";
-import { OSs } from "@src/types/OSs.enum";
+import { App } from "@defs/schemas/App.schema";
+import { OSs } from "@defs/OSs.enum";
 import { Request } from "express";
 
 @Injectable()

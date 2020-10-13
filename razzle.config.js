@@ -1,23 +1,34 @@
 const path = require("path");
-// const heroku = require("razzle-heroku"),
-
 module.exports = {
   plugins: ["typescript"],
-  // modify: require("razzle-heroku"),
-  modify(baseConfig, { target, dev }, webpack) {
-    // const config = heroku(baseConfig, { target, dev }, webpack)
-
-    const config = { ...baseConfig };
-
-    config.devtool = dev ? "inline-source-map" : "none";
-    config.resolve.alias["@client"] = path.resolve("./src/client/");
-    config.resolve.alias["@server"] = path.resolve("./src/server/");
-    config.resolve.alias["@src"] = path.resolve("./src/");
-
-    if (config.target === "node") {
-      config.entry[2] += "/server";
+  modifyWebpackConfig({
+    env: {
+      target, // the target 'node' or 'web'
+      dev, // is this a development build? true or false
+    },
+    webpackConfig, // the created webpack config
+    webpackObject, // the imported webpack node module
+    options: {
+      pluginOptions, // the options passed to the plugin ({ name:'pluginname', options: { key: 'value'}})
+      razzleOptions, // the modified options passed to Razzle in the `options` key in `razzle.config.js` (options: { key: 'value'})
+      webpackOptions, // the modified options that was used to configure webpack/ webpack loaders and plugins
+    },
+    paths, // the modified paths that will be used by Razzle.
+  }) {
+    if (target === "web") {
+      // client only
+    }
+    if (target === "node") {
+      // server only
+    }
+    if (dev) {
+      // dev only
+    } else {
+      // prod only
     }
 
-    return config;
+    paths.appServerIndexJs = path.resolve(__dirname, "src/server");
+
+    return webpackConfig;
   },
 };

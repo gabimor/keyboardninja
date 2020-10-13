@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import Header from "@client/components/Header";
 
 import LoginForm from "./login/LoginForm";
-import { getTitle } from "@src/shared/utils";
+import { getTitle } from "@shared/utils";
 
 const Login = () => {
   useEffect(() => {

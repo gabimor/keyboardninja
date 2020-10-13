@@ -1,8 +1,8 @@
 import * as api from "@client/api";
-import { OSs } from "@src/types/OSs.enum";
-import { App } from "@src/types/schemas/App.schema";
-import { AppCategory } from "@src/types/schemas/AppCategory.schema";
-import { JwtUser } from "@src/types/User.type";
+import { OSs } from "@defs/OSs.enum";
+import { App } from "@defs/schemas/App.schema";
+import { AppCategory } from "@defs/schemas/AppCategory.schema";
+import { JwtUser } from "@defs/User.type";
 import { action, makeObservable, observable } from "mobx";
 
 export class Store {

@@ -1,8 +1,8 @@
 import { Prop, raw, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
-import { OSs } from "@src/types/OSs.enum";
-import { Section } from "@src/types/Section.type";
-import { Shortcut } from "@src/types/Shortcut.type";
+import { OSs } from "@defs/OSs.enum";
+import { Section } from "@defs/Section.type";
+import { Shortcut } from "@defs/Shortcut.type";
 import { ObjectId } from "mongodb";
 
 @Schema({ collection: "apps" })

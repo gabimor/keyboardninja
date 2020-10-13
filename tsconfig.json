@@ -12,18 +12,20 @@
     "experimentalDecorators": true,
     "target": "ES2019",
     "sourceMap": true,
-    "outDir": "./build",
-    "baseUrl": "./",
+    "outDir": "build",
+    "baseUrl": "src",
     "allowJs": true,
     "jsx": "react",
     "lib": ["es6", "es2015", "es2017", "dom"],
     "typeRoots": ["node_modules/@types", "./typings"],
     "paths": {
-      "@client/*": ["src/client/*"],
-      "@server/*": ["src/server/*"],
-      "@src/*": ["src/*"]
+      "@client/*": ["client/*"],
+      "@server/*": ["server/*"],
+      "@shared/*": ["shared/*"],
+      "@defs/*": ["defs/*"],
+
     }
   },
   "include": ["src/**/*", "./typings/**/*.d.ts"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": ["node_modules", "build", "**/*.spec.ts"]
 }

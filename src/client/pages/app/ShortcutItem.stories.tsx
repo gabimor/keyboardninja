@@ -1,6 +1,6 @@
 import { DataContext } from "@client/DataContext";
 import { Store } from "@client/store";
-import { OSs } from "@src/types/OSs.enum";
+import { OSs } from "@defs/OSs.enum";
 import { Meta } from "@storybook/react";
 import React from "react";
 
