@@ -23,12 +23,13 @@ async function bootstrap() {
     })
   );
 
-  await app.listen(process.env.PORT || 3000);
+  const port = process.env.PORT || 3000;
+  await app.listen(port);
 
   const server = app.getHttpServer();
   const router = server._events.request._router;
   console.log(expressListRoutes({}, "API:", router));
-  console.log("------------------");
+  console.log("Listening on port: " + port);
 
   if ((module as any).hot) {
     (module as any).hot.accept();

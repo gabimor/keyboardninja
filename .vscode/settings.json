@@ -15,11 +15,11 @@
   "peacock.affectActivityBar": true,
   "editor.tabSize": 2,
   "debug.node.autoAttach": "on",
-  "files.exclude": {
-    "build": true
-  },
   "search.exclude": {
     "build": true
   },
-  "svg.preview.background": "transparent"
+  "svg.preview.background": "transparent",
+  "files.watcherExclude": {
+    "build": true
+  }
 }
