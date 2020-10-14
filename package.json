@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "license": "MIT",
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "dependencies": {
     "@emotion/core": "^10.0.9",
