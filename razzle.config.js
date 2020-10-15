@@ -35,11 +35,15 @@ module.exports = {
 
     delete newDefs["process.env.PORT"];
 
-    webpackConfig.plugins[indexDefinePlugin] = new webpack.DefinePlugin(
-      newDefs
-    );
+    // webpackConfig.plugins[indexDefinePlugin] = new webpack.DefinePlugin(
+    //   newDefs
+    // );
 
-    console.log(JSON.stringify(webpackConfig.plugins), indexDefinePlugin);
+    console.log(
+      JSON.stringify(webpackConfig.plugins),
+      webpackConfig.plugins[indexDefinePlugin],
+      indexDefinePlugin
+    );
 
     paths.appServerIndexJs = path.resolve(__dirname, "src/server");
 
