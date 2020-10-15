@@ -1,13 +1,13 @@
 import React from "react";
-import { Get, HttpStatus, Next, Param, Req, Res } from "@nestjs/common";
+import { Get, HttpStatus, Req, Res } from "@nestjs/common";
 import { Controller } from "@nestjs/common";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import Layout from "@client/Layout";
 import { DataContext } from "@client/DataContext";
 import { pageTemplate } from "@server/misc/pageTemplate";
-import { NextFunction, Response } from "express";
-import { HomeService } from "./home.service";
+import { Response } from "express";
+// import { HomeService } from "./home.service";
 import { AppService } from "@server/app/app.service";
 import { RequestAuth } from "@defs/RequestAuth";
 import { JwtUser } from "@defs/User.type";
@@ -17,8 +17,7 @@ import { getTitle } from "@shared/utils";
 @Controller("/")
 export class HomeController {
   constructor(
-    private appsService: AppService,
-    private homeService: HomeService
+    private appsService: AppService // private homeService: HomeService
   ) {}
 
   @Get(["/", "index.html"])
