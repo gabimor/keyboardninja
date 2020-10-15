@@ -94,7 +94,7 @@ const Form = styled.form`
 
 const OrSeperator = styled.div`
   color: #e9e5e5;
-  padding: 15px 0;
+  padding-top: 20px;
   text-align: center;
 `;
 

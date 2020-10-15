@@ -27,8 +27,6 @@ async function bootstrap() {
 
   const getEnv = (c: string) => process.env[c];
   await app.listen(getEnv("PORT"));
-  // const port = process.env.PORT || 3000;
-  // await app.listen(port);
 
   const server = app.getHttpServer();
   const router = server._events.request._router;

@@ -27,24 +27,6 @@ module.exports = {
       // prod only
     }
 
-    // const indexDefinePlugin = webpackConfig.plugins.findIndex(
-    //   (plugin) => plugin.constructor.name === "DefinePlugin"
-    // );
-
-    // const newDefs = { ...webpackConfig.plugins[indexDefinePlugin] };
-
-    // delete newDefs["process.env.PORT"];
-
-    // // webpackConfig.plugins[indexDefinePlugin] = new webpack.DefinePlugin(
-    // //   newDefs
-    // // );
-
-    // console.log(
-    //   JSON.stringify(webpackConfig.plugins),
-    //   webpackConfig.plugins[indexDefinePlugin],
-    //   indexDefinePlugin
-    // );
-
     paths.appServerIndexJs = path.resolve(__dirname, "src/server");
 
     return webpackConfig;

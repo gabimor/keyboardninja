@@ -61,34 +61,34 @@ export class HomeController {
     return this.renderPage(req.user, getTitle(req.url), req.url, "/contact");
   }
 
-  @Get(":name")
-  async app(
-    @Param("name") name: string,
-    @Req() req: RequestAuth,
-    @Res() res: Response,
-    @Next() next: NextFunction
-  ) {
-    const app = await this.appsService.getAppByName(name);
+  // @Get(":name")
+  // async app(
+  //   @Param("name") name: string,
+  //   @Req() req: RequestAuth,
+  //   @Res() res: Response,
+  //   @Next() next: NextFunction
+  // ) {
+  //   const app = await this.appsService.getAppByName(name);
 
-    if (!app) return next();
+  //   if (!app) return next();
 
-    if (req?.user?._id) this.appsService.addUserApp(app, req?.user?._id);
+  //   if (req?.user?._id) this.appsService.addUserApp(app, req?.user?._id);
 
-    const dataContext = {
-      app,
-      os: this.homeService.getAppOS(app, req),
-    };
+  //   const dataContext = {
+  //     app,
+  //     os: this.homeService.getAppOS(app, req),
+  //   };
 
-    return res.send(
-      await this.renderPage(
-        req.user,
-        getTitle("/:app", app.name),
-        req.url,
-        app.url,
-        dataContext
-      )
-    );
-  }
+  //   return res.send(
+  //     await this.renderPage(
+  //       req.user,
+  //       getTitle("/:app", app.name),
+  //       req.url,
+  //       app.url,
+  //       dataContext
+  //     )
+  //   );
+  // }
 
   async renderPage(
     user: JwtUser,
