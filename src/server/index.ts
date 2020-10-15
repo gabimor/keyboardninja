@@ -25,13 +25,15 @@ async function bootstrap() {
 
   console.log("process.env.PORT: " + process.env.PORT);
 
-  const port = process.env.PORT || 3000;
-  await app.listen(port);
+  const getEnv = (c: string) => process.env[c];
+  await app.listen(getEnv("PORT"));
+  // const port = process.env.PORT || 3000;
+  // await app.listen(port);
 
   const server = app.getHttpServer();
   const router = server._events.request._router;
   console.log(expressListRoutes({}, "API:", router));
-  console.log("Listening on port: " + port);
+  console.log("Listening on port: " + getEnv("PORT"));
 
   if ((module as any).hot) {
     (module as any).hot.accept();
