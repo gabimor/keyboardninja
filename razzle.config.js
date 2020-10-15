@@ -27,6 +27,18 @@ module.exports = {
       // prod only
     }
 
+    const indexDefinePlugin = config.plugins.findIndex(
+      (plugin) => plugin.constructor.name === "DefinePlugin"
+    );
+
+    const newDefs = { ...config.plugins[indexDefinePlugin] };
+
+    delete newDefs["process.env.PORT"];
+
+    config.plugins[indexDefinePlugin] = new webpack.DefinePlugin(newDefs);
+
+    console.log(JSON.stringify(config.plugins), indexDefinePlugin);
+
     paths.appServerIndexJs = path.resolve(__dirname, "src/server");
 
     return webpackConfig;
