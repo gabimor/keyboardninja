@@ -1,13 +1,13 @@
 import React from "react";
-import { Get, HttpStatus, Req, Res } from "@nestjs/common";
+import { Get, HttpStatus, Next, Param, Req, Res } from "@nestjs/common";
 import { Controller } from "@nestjs/common";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import Layout from "@client/Layout";
 import { DataContext } from "@client/DataContext";
 import { pageTemplate } from "@server/misc/pageTemplate";
-import { Response } from "express";
-// import { HomeService } from "./home.service";
+import { NextFunction, Response } from "express";
+import { HomeService } from "./home.service";
 import { AppService } from "@server/app/app.service";
 import { RequestAuth } from "@defs/RequestAuth";
 import { JwtUser } from "@defs/User.type";
@@ -17,7 +17,8 @@ import { getTitle } from "@shared/utils";
 @Controller("/")
 export class HomeController {
   constructor(
-    private appsService: AppService // private homeService: HomeService
+    private appsService: AppService,
+    private homeService: HomeService
   ) {}
 
   @Get(["/", "index.html"])
@@ -60,34 +61,34 @@ export class HomeController {
     return this.renderPage(req.user, getTitle(req.url), req.url, "/contact");
   }
 
-  // @Get(":name")
-  // async app(
-  //   @Param("name") name: string,
-  //   @Req() req: RequestAuth,
-  //   @Res() res: Response,
-  //   @Next() next: NextFunction
-  // ) {
-  //   const app = await this.appsService.getAppByName(name);
+  @Get(":name")
+  async app(
+    @Param("name") name: string,
+    @Req() req: RequestAuth,
+    @Res() res: Response,
+    @Next() next: NextFunction
+  ) {
+    const app = await this.appsService.getAppByName(name);
 
-  //   if (!app) return next();
+    if (!app) return next();
 
-  //   if (req?.user?._id) this.appsService.addUserApp(app, req?.user?._id);
+    if (req?.user?._id) this.appsService.addUserApp(app, req?.user?._id);
 
-  //   const dataContext = {
-  //     app,
-  //     os: this.homeService.getAppOS(app, req),
-  //   };
+    const dataContext = {
+      app,
+      os: this.homeService.getAppOS(app, req),
+    };
 
-  //   return res.send(
-  //     await this.renderPage(
-  //       req.user,
-  //       getTitle("/:app", app.name),
-  //       req.url,
-  //       app.url,
-  //       dataContext
-  //     )
-  //   );
-  // }
+    return res.send(
+      await this.renderPage(
+        req.user,
+        getTitle("/:app", app.name),
+        req.url,
+        app.url,
+        dataContext
+      )
+    );
+  }
 
   async renderPage(
     user: JwtUser,
