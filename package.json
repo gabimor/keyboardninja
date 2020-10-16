@@ -1,6 +1,6 @@
 {
   "name": "keyboardninja",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "license": "MIT",
   "engines": {
     "node": "14.x"
@@ -27,6 +27,7 @@
     "csurf": "^1.11.0",
     "dotenv": "^7.0.0",
     "express": "4.16.4",
+    "express-list-routes": "^0.1.4",
     "express-rate-limit": "^5.1.3",
     "googleapis": "^27.0.0",
     "helmet": "^4.1.1",
@@ -53,8 +54,7 @@
     "rxjs": "^6.6.2",
     "swagger-ui-express": "^4.1.4",
     "tailwindcss": "^1.8.10",
-    "use-onclickoutside": "^0.3.1",
-    "express-list-routes": "^0.1.4"
+    "use-onclickoutside": "^0.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -97,7 +97,7 @@
   "scripts": {
     "start": "razzle start",
     "dev": "razzle start --inspect",
-    "build": "yarn version && razzle build",
+    "build": "razzle build",
     "test": "yarn jest --watch --runInBand --detectOpenHandles",
     "deploy": "git push heroku master",
     "start:prod": "NODE_ENV=production node build/server.js",
