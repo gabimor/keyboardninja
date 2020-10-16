@@ -2,7 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { AuthService, SocialType } from "./auth.service";
 import { JwtService } from "@nestjs/jwt";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import { User, UserSchema } from "../../types/schemas/User.schema";
+import { User, UserSchema } from "../../defs/schemas/User.schema";
 import { Model } from "mongoose";
 import { getModelToken, MongooseModule } from "@nestjs/mongoose";
 import { compare } from "bcrypt";

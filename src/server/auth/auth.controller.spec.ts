@@ -4,7 +4,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { HttpStatus, INestApplication, ValidationPipe } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { JwtModule, JwtService } from "@nestjs/jwt";
-import { User, UserSchema } from "../../types/schemas/User.schema";
+import { User, UserSchema } from "../../defs/schemas/User.schema";
 import { LocalAuthGuard } from "./local/local-auth.guard";
 import { LocalStrategy } from "./local/local.strategy";
 import { JwtStrategy } from "./jwt/jwt.strategy";

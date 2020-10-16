@@ -1,35 +1,41 @@
+import { renderPage } from "@server/misc/pageTemplate/renderPage";
 import {
   ArgumentsHost,
   Catch,
   ExceptionFilter,
   HttpException,
 } from "@nestjs/common";
-import { Response, Request } from "express";
+import { Response } from "express";
 import { page500 } from "../pageTemplate/page500";
+import { getTitle } from "@shared/utils";
+import { RequestAuth } from "@defs/RequestAuth";
 
-@Catch()
+@Catch(HttpException)
 export class GlobalExceptionFilter implements ExceptionFilter {
-  catch(exception: any, host: ArgumentsHost): void {
+  async catch(exception: HttpException, host: ArgumentsHost): Promise<void> {
     const ctx = host.switchToHttp();
-    const response = ctx.getResponse<Response>();
-    const request = ctx.getRequest<Request>();
+    const res = ctx.getResponse<Response>();
+    const req = ctx.getRequest<RequestAuth>();
 
     console.log(exception);
 
-    let status: any = 500;
-    if (exception instanceof HttpException) {
-      status = exception.getStatus();
-      if (request.method !== "GET") {
-        response.status(status).json({
-          status,
-          payload: exception.getResponse(),
-        });
-      }
-    } else if (exception?.code === "ENOENT") {
-      response.redirect("/404");
+    const status = exception.getStatus();
+    if (req.url.startsWith("/api") || req.url.startsWith("/auth")) {
+      res.status(status).json({
+        status,
+        payload: exception.getResponse(),
+      });
+      return;
     } else {
-      // response.redirect("/404");
-      response.send(page500());
+      if (status === 404) {
+        res
+          .status(status)
+          .send(await renderPage(req, getTitle(req.url), "/404"));
+        return;
+      } else {
+        res.send(page500());
+        return;
+      }
     }
   }
 }

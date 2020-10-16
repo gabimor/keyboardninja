@@ -8,15 +8,15 @@ import { AuthService } from "../auth/auth.service";
 import { JwtStrategy } from "../auth/jwt/jwt.strategy";
 import { AppService } from "./app.service";
 import { AppController } from "./app.controller";
-import { AppSchema, App } from "../../types/schemas/App.schema";
-import { UserApps, UserAppsSchema } from "../../types/schemas/UserApps.schema";
+import { AppSchema, App } from "../../defs/schemas/App.schema";
+import { UserApps, UserAppsSchema } from "../../defs/schemas/UserApps.schema";
 import { JwtAuthGuard } from "../auth/jwt/jwt-auth.guard";
 import { Model } from "mongoose";
-import { User, UserSchema } from "../../types/schemas/User.schema";
+import { User, UserSchema } from "../../defs/schemas/User.schema";
 import {
   AppCategory,
   AppCategorySchema,
-} from "../../types/schemas/AppCategory.schema";
+} from "../../defs/schemas/AppCategory.schema";
 import { AuthController } from "../auth/auth.controller";
 import * as cookieParser from "cookie-parser";
 import { GlobalExceptionFilter } from "../misc/filters/GlobalExceptionFilter";
@@ -30,7 +30,6 @@ describe("app controller", () => {
   let appModel: Model<App>;
   let userModel: Model<User>;
   let userAppsModel: Model<UserApps>;
-
 
   const userId = new ObjectId();
   const appId = new ObjectId();

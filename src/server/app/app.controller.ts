@@ -1,16 +1,53 @@
-import { Body, Controller, Post, Req, UseGuards } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Get,
+  Next,
+  Param,
+  Post,
+  Req,
+  Res,
+  UseGuards,
+} from "@nestjs/common";
 import { JwtAuthGuard } from "@server/auth/jwt/jwt-auth.guard";
 import { RequestAuth } from "@defs/RequestAuth";
 import { AppService } from "./app.service";
 import { ObjectId } from "mongodb";
 import { ToggleStarDto } from "@defs/DTOs/toggleStar.dto";
+import { NextFunction, Response } from "express";
+import { renderPage } from "@server/misc/pageTemplate/renderPage";
+import { getTitle } from "@shared/utils";
 
-@Controller("api")
+@Controller("")
 export class AppController {
   constructor(private appService: AppService) {}
 
+  @Get(":name")
+  async app(
+    @Param("name") name: string,
+    @Req() req: RequestAuth,
+    @Res() res: Response,
+    @Next() next: NextFunction
+  ) {
+    const app = await this.appService.getAppByName(name);
+
+    if (!app) return next();
+
+    if (req?.user?._id) this.appService.addUserApp(app, req?.user?._id);
+
+    req.context = {
+      ...req.context,
+      app,
+      os: this.appService.getAppOS(app, req),
+    };
+
+    return res.send(
+      await renderPage(req, getTitle("/:app", app.name), app.url)
+    );
+  }
+
   @UseGuards(JwtAuthGuard)
-  @Post("star")
+  @Post("api/star")
   async toggleStar(
     @Req() req: RequestAuth,
     @Body() toggleStarDto: ToggleStarDto

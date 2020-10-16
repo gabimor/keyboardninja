@@ -1,4 +1,5 @@
 import { NestFactory } from "@nestjs/core";
+import { NestExpressApplication } from "@nestjs/platform-express";
 import { AppModule } from "@server/app.module";
 import cookieParser from "cookie-parser";
 // @ts-ignore
@@ -6,9 +7,10 @@ import expressListRoutes from "express-list-routes";
 import * as rateLimit from "express-rate-limit";
 import { GlobalExceptionFilter } from "./misc/filters/GlobalExceptionFilter";
 import { ClassValidationPipe } from "./misc/filters/ClassValidationPipe";
+import { join } from "path";
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.use(cookieParser());
   app.useGlobalPipes(new ClassValidationPipe());
   app.useGlobalFilters(new GlobalExceptionFilter());
@@ -22,6 +24,8 @@ async function bootstrap() {
       max: 100,
     })
   );
+
+  app.useStaticAssets(join(__dirname, "public"));
 
   const getEnv = (c: string) => process.env[c];
   const port = getEnv("PORT") || 3000;

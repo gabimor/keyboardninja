@@ -2,15 +2,15 @@ import { getModelToken, MongooseModule } from "@nestjs/mongoose";
 import { Test, TestingModule } from "@nestjs/testing";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { Model } from "mongoose";
-import { App, AppSchema } from "../../types/schemas/App.schema";
+import { App, AppSchema } from "../../defs/schemas/App.schema";
 import {
   AppCategory,
   AppCategorySchema,
-} from "../../types/schemas/AppCategory.schema";
-import { UserApps, UserAppsSchema } from "../../types/schemas/UserApps.schema";
+} from "../../defs/schemas/AppCategory.schema";
+import { UserApps, UserAppsSchema } from "../../defs/schemas/UserApps.schema";
 import { AppService } from "./app.service";
 import { ObjectId } from "mongodb";
-import { User, UserSchema } from "../../types/schemas/User.schema";
+import { User, UserSchema } from "../../defs/schemas/User.schema";
 
 describe("app service", () => {
   let mongod: MongoMemoryServer;

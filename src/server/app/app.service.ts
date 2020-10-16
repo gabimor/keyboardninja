@@ -7,6 +7,9 @@ import { Model } from "mongoose";
 import { ObjectId } from "mongodb";
 import { User } from "@defs/schemas/User.schema";
 import { ToggleStarReturnType } from "@defs/misc";
+import { OSs } from "@defs/OSs.enum";
+import { Request } from "express";
+
 @Injectable()
 export class AppService {
   constructor(
@@ -34,6 +37,23 @@ export class AppService {
         shortcut.isStarred = true;
       }
     }
+  }
+  getAppOS(app: App, req: Request): OSs {
+    const { os: cookieOS } = req.cookies;
+
+    let appOS: OSs = cookieOS;
+
+    if (!appOS) {
+      appOS = req.headers["user-agent"]?.toLowerCase()?.includes("win")
+        ? OSs.Win
+        : OSs.Mac;
+    }
+
+    if (!app?.oss?.includes(appOS)) {
+      appOS = app.oss[0];
+    }
+
+    return appOS;
   }
 
   async getAppByName(name: string): Promise<App | undefined> {
