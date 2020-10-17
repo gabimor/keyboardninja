@@ -17,7 +17,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const res = ctx.getResponse<Response>();
     const req = ctx.getRequest<RequestAuth>();
 
-    console.log(exception);
+    // console.log(exception);
 
     const status = exception.getStatus();
     if (req.url.startsWith("/api") || req.url.startsWith("/auth")) {

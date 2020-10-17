@@ -6,11 +6,19 @@ import { User, UserSchema } from "../../defs/schemas/User.schema";
 import { Model } from "mongoose";
 import { getModelToken, MongooseModule } from "@nestjs/mongoose";
 import { compare } from "bcrypt";
+import { CreateUserDto } from "../../defs/DTOs/createUser.dto";
 
 describe("AuthService", () => {
   let authService: AuthService;
   let userModel: Model<User>;
   let mongod: MongoMemoryServer;
+
+  const createUserDto: CreateUserDto = {
+    firstName: "fName",
+    lastName: "lName",
+    email: "test@email.com",
+    password: "password",
+  };
 
   beforeAll(async () => {
     mongod = new MongoMemoryServer();
@@ -37,17 +45,18 @@ describe("AuthService", () => {
   });
 
   it("should validate existing user", async () => {
-    const email = "test@email.com";
-    const password = "password";
-    await authService.signup(email, password);
-    let user = await authService.validateUser(email, password);
+    await authService.signup(createUserDto);
+    let user = await authService.validateUser(
+      createUserDto.email,
+      createUserDto.password
+    );
 
-    expect(user).toHaveProperty("email", email);
+    expect(user).toHaveProperty("email", createUserDto.email);
 
-    user = await userModel.findOne({ email });
+    user = await userModel.findOne({ email: createUserDto.email });
 
-    expect(user).toHaveProperty("email", email);
-    const passwordMatch = await compare(password, user.password);
+    expect(user).toHaveProperty("email", createUserDto.email);
+    const passwordMatch = await compare(createUserDto.password, user.password);
 
     expect(passwordMatch).toBe(true);
   });
@@ -60,23 +69,23 @@ describe("AuthService", () => {
 
   describe("sign up", () => {
     it("should sign up a valid user", async () => {
-      const user = await authService.signup("new@email.com", "password");
+      const user = await authService.signup(createUserDto);
 
       expect(user).toHaveProperty("email", user.email);
     });
 
     it("should sign up a user and return it", async () => {
-      const email = "new@email.com";
-      const password = "password";
+      let user = await authService.signup(createUserDto);
 
-      let user = await authService.signup(email, password);
+      expect(user).toHaveProperty("email", createUserDto.email);
 
-      expect(user).toHaveProperty("email", email);
+      user = await userModel.findOne({ email: createUserDto.email });
 
-      user = await userModel.findOne({ email });
-
-      expect(user).toHaveProperty("email", email);
-      const passwordMatch = await compare(password, user.password);
+      expect(user).toHaveProperty("email", createUserDto.email);
+      const passwordMatch = await compare(
+        createUserDto.password,
+        user.password
+      );
 
       expect(passwordMatch).toBe(true);
     });
@@ -89,11 +98,9 @@ describe("AuthService", () => {
     });
 
     it("should not allow registering an existing email", async () => {
-      const email = "existing@email.com";
-      const password = "123456";
-      await userModel.create({ email, password });
+      await userModel.create(createUserDto);
 
-      await expect(authService.signup(email, password)).rejects.toThrow(
+      await expect(authService.signup(createUserDto)).rejects.toThrow(
         "Email already taken"
       );
     });
@@ -117,24 +124,18 @@ describe("AuthService", () => {
     });
 
     it("should augment an existing user with facebook sign up", async () => {
-      const email = "regualr@email.com";
-      const firstName = "Joe";
-
-      const originalUser = await userModel.create({
-        email,
-        password: "password",
-      });
+      const originalUser = await userModel.create(createUserDto);
       const fbUser = await authService.signupSocial(
         "12345",
         SocialType.Facebook,
-        email,
-        firstName,
-        "Black"
+        createUserDto.email,
+        createUserDto.firstName,
+        createUserDto.lastName
       );
 
       expect(originalUser._id).toBeTruthy();
       expect(originalUser._id).toEqual(fbUser._id);
-      expect(fbUser.firstName).toEqual(firstName);
+      expect(fbUser.firstName).toEqual(createUserDto.firstName);
     });
   });
 });

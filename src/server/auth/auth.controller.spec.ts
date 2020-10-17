@@ -15,6 +15,7 @@ import { getModelToken, MongooseModule } from "@nestjs/mongoose";
 import * as cookieParser from "cookie-parser";
 import { GlobalExceptionFilter } from "../misc/filters/GlobalExceptionFilter";
 import { jwtConsts } from "../auth/consts";
+import { CreateUserDto } from "../../defs/DTOs/createUser.dto";
 
 describe("Auth Controller", () => {
   let app: INestApplication;
@@ -23,6 +24,13 @@ describe("Auth Controller", () => {
   let mongod: MongoMemoryServer;
   let authService: AuthService;
   let jwtService: JwtService;
+
+  const createUserDto: CreateUserDto = {
+    firstName: "fName",
+    lastName: "lName",
+    email: "test@email.com",
+    password: "password",
+  };
 
   beforeAll(async () => {
     mongod = new MongoMemoryServer();
@@ -76,15 +84,12 @@ describe("Auth Controller", () => {
 
   describe("login", () => {
     it("should login existing user", async () => {
-      const email = "user@email.com";
-      const password = "password";
-
-      const user = await authService.signup(email, password);
+      const user = await authService.signup(createUserDto);
 
       const token = authService.generateJwt(user);
       const res = await request(app.getHttpServer())
         .post("/auth/login")
-        .send({ email, password })
+        .send({ email: createUserDto.email, password: createUserDto.password })
         .expect(HttpStatus.FOUND);
 
       expect(res.header["set-cookie"][0]).toContain(token);
@@ -97,13 +102,11 @@ describe("Auth Controller", () => {
     });
 
     it("should return 401 for existing email and wrong password", async () => {
-      const email = "existing@user.com";
-      const password = "12345678";
-      const user = await authService.signup(email, password);
+      await authService.signup(createUserDto);
 
       return request(app.getHttpServer())
         .post("/auth/login")
-        .send({ email, password: "wrongpass" })
+        .send({ email: createUserDto.email, password: "wrongpass" })
         .expect(HttpStatus.UNAUTHORIZED);
     });
     it("should return 401 for an empty request", () => {
@@ -120,15 +123,12 @@ describe("Auth Controller", () => {
   });
 
   describe("sign up", () => {
-    it("should return 400 for existing email", async () => {
-      const email = "existing@email.com";
-      const password = "password";
-
-      userModel.create({ email, password });
+    it("should return error for existing user", async () => {
+      userModel.create(createUserDto);
 
       const response = await request(app.getHttpServer())
         .post("/auth/signup")
-        .send({ email, password })
+        .send(createUserDto)
         .expect(HttpStatus.ACCEPTED);
 
       expect(response.body.payload).toEqual("Email already taken");
@@ -162,12 +162,9 @@ describe("Auth Controller", () => {
     });
 
     it("should return 201 for valid email and password", async () => {
-      const email = "new@email.com";
-      const password = "password";
-
       const res = await request(app.getHttpServer())
         .post("/auth/signup")
-        .send({ email, password })
+        .send(createUserDto)
         .expect(HttpStatus.CREATED);
 
       const cookie: string = res.header["set-cookie"][0];

@@ -22,6 +22,7 @@ import * as cookieParser from "cookie-parser";
 import { GlobalExceptionFilter } from "../misc/filters/GlobalExceptionFilter";
 import { ObjectId } from "mongodb";
 import { jwtConsts } from "../auth/consts";
+import { CreateUserDto } from "../../defs/DTOs/createUser.dto";
 
 describe("app controller", () => {
   let app: INestApplication;
@@ -30,6 +31,12 @@ describe("app controller", () => {
   let appModel: Model<App>;
   let userModel: Model<User>;
   let userAppsModel: Model<UserApps>;
+  const createUserDto: CreateUserDto = {
+    firstName: "fName",
+    lastName: "lName",
+    email: "test@email.com",
+    password: "password",
+  };
 
   const userId = new ObjectId();
   const appId = new ObjectId();
@@ -100,12 +107,9 @@ describe("app controller", () => {
   });
 
   it("should allow logged in user to star", async () => {
-    const email = "existing@email.com";
-    const password = "password";
-
     const res = await request(app.getHttpServer())
       .post("/auth/signup")
-      .send({ email, password })
+      .send(createUserDto)
       .expect(HttpStatus.CREATED);
 
     const jwtCookie: string = res.header["set-cookie"][0];
