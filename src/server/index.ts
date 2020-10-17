@@ -27,6 +27,8 @@ async function bootstrap() {
 
   app.useStaticAssets(join(__dirname, "public"));
 
+  console.log(join(__dirname, "public"));
+
   const getEnv = (c: string) => process.env[c];
   const port = getEnv("PORT") || 3000;
   await app.listen(port);
