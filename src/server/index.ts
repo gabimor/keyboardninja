@@ -25,9 +25,7 @@ async function bootstrap() {
     })
   );
 
-  app.useStaticAssets(join(__dirname, "public"));
-
-  console.log(join(__dirname, "public"));
+  app.useStaticAssets(getPublicPath());
 
   const getEnv = (c: string) => process.env[c];
   const port = getEnv("PORT") || 3000;
@@ -42,5 +40,11 @@ async function bootstrap() {
     (module as any).hot.accept();
     (module as any).hot.dispose(() => app.close());
   }
+}
+
+function getPublicPath() {
+  const publicUrl =
+    process.env.NODE_ENV === "production" ? "public" : "../public";
+  return join(__dirname, publicUrl);
 }
 bootstrap();

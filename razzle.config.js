@@ -1,4 +1,5 @@
 const path = require("path");
+
 module.exports = {
   plugins: ["typescript"],
   modifyWebpackConfig({
@@ -21,6 +22,7 @@ module.exports = {
     if (target === "node") {
       // server only
     }
+
     if (dev) {
       // dev only
     } else {
