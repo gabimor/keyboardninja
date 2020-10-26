@@ -3,7 +3,7 @@ import { AuthService } from "./auth.service";
 import { LocalStrategy } from "./local/local.strategy";
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
-import { jwtConsts } from "./consts";
+import { JWT_SECRET, JWT_EXPIRES_IN } from "@shared/consts";
 import { JwtStrategy } from "./jwt/jwt.strategy";
 import { AuthController } from "./auth.controller";
 import { FacebookStrategy } from "./facebook/facebook.strategy";
@@ -21,7 +21,7 @@ import { User, UserSchema } from "@defs/schemas/User.schema";
 
 const jwtStrategy = {
   provide: JwtStrategy,
-  useFactory: () => new JwtStrategy(jwtConsts.secret),
+  useFactory: () => new JwtStrategy(JWT_SECRET),
 };
 
 const facebookStrategyConfigProvider = {
@@ -38,8 +38,8 @@ const googleStrategyConfigProvider = {
   imports: [
     PassportModule.register({ defaultStrategy: "jwt" }),
     JwtModule.register({
-      secret: jwtConsts.secret,
-      signOptions: { expiresIn: jwtConsts.expiresIn },
+      secret: JWT_SECRET,
+      signOptions: { expiresIn: JWT_EXPIRES_IN },
     }),
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
   ],

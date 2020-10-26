@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/node";
 import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { AppModule } from "@server/app.module";
@@ -8,8 +9,17 @@ import * as rateLimit from "express-rate-limit";
 import { GlobalExceptionFilter } from "./misc/filters/GlobalExceptionFilter";
 import { ClassValidationPipe } from "./misc/filters/ClassValidationPipe";
 import { join } from "path";
+import * as consts from "@shared/consts";
 
 async function bootstrap() {
+  Sentry.init({
+    dsn: consts.SENTRY_BACK_END_DSN,
+
+    // We recommend adjusting this value in production, or using tracesSampler
+    // for finer control
+    tracesSampleRate: consts.SENTRY_TRACE_SAMPLE_RATE,
+  });
+
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.use(cookieParser());
   app.useGlobalPipes(new ClassValidationPipe());

@@ -5,7 +5,7 @@ import {
   Injectable,
 } from "@nestjs/common";
 import { hash } from "bcrypt";
-import { bcryptSaltRound } from "@server/auth/consts";
+import { BCRYPT_SALT_ROUNDS } from "@shared/consts";
 import { JwtService } from "@nestjs/jwt";
 import { User } from "@defs/schemas/User.schema";
 import { compare } from "bcrypt";
@@ -46,7 +46,10 @@ export class AuthService {
       throw new HttpException("Email already taken", HttpStatus.ACCEPTED);
     }
 
-    const hashedPassword = await hash(signUpUserDto.password, bcryptSaltRound);
+    const hashedPassword = await hash(
+      signUpUserDto.password,
+      BCRYPT_SALT_ROUNDS
+    );
 
     const user = await this.userModel.create({
       firstName: signUpUserDto.firstName,

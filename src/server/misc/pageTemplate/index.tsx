@@ -1,6 +1,6 @@
 import { Store } from "@client/store";
 import { style } from "./style";
-import { tracking } from "./tracking";
+import { snippets } from "./snippets";
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 export function pageTemplate(
@@ -46,7 +46,7 @@ export function pageTemplate(
         window.__KBN_DATA__ = ${store ? JSON.stringify(store) : undefined};
       </script>
       <div id="root">${markup}</div>
-      ${tracking}
+      ${snippets}
     </body>
     </html>`;
 }
