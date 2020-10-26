@@ -1,4 +1,4 @@
-const fullStory = `
+export const fullStory = `
 <script>
 <!-- Full Story -->
 window['_fs_debug'] = false;
@@ -25,7 +25,7 @@ window['_fs_namespace'] = 'FS';
 })(window,document,window['_fs_namespace'],'script','user');
 </script>`;
 
-const googleAnalytics = `
+export const googleAnalytics = `
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90675788-2"></script>
 <script>
@@ -35,8 +35,3 @@ const googleAnalytics = `
 
   gtag('config', 'UA-90675788-2');
 </script>`;
-
-export const snippets = `
-${fullStory}
-${googleAnalytics}
-`;

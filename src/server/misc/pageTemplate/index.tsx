@@ -1,6 +1,6 @@
 import { Store } from "@client/store";
 import { style } from "./style";
-import { snippets } from "./snippets";
+import { googleAnalytics, fullStory } from "./snippets";
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 export function pageTemplate(
@@ -40,13 +40,14 @@ export function pageTemplate(
       <link rel="apple-touch-icon" href="logo.png">
       <meta name="theme-color" content="#270505">
       ${includeJSBundle ? bundleScriptTag : ""}
+      ${fullStory}
     </head>
     <body>
       <script>
         window.__KBN_DATA__ = ${store ? JSON.stringify(store) : undefined};
       </script>
       <div id="root">${markup}</div>
-      ${snippets}
+      ${googleAnalytics}
     </body>
     </html>`;
 }
