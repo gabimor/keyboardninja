@@ -21,6 +21,7 @@ export function pageTemplate(
       <meta property="og:description" content="Every app, every shortcut. The best ones first." />
       <meta property="og:type" content="website" />
       <meta property="fb:app_id" content="2286973354960672" />
+      <meta name="google-site-verification" content="0FXKq3MWPfL7uFhgXZhtCIo3XSthhXFni2P2UPkgVE8" />
       <meta property="og:title"
         content="keyboardninja.me${title ? " - " + title : ""}" />
       <meta charset="utf-8" />
