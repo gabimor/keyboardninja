@@ -73,7 +73,7 @@ const Button = styled.button`
   align-items: center;
   border-radius: 5px;
   width: 100%;
-  height: 25px;
+  height: 36px;
   padding: 6px;
   div {
     text-align: middle;
