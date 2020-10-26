@@ -14,9 +14,6 @@ import * as consts from "@shared/consts";
 async function bootstrap() {
   Sentry.init({
     dsn: consts.SENTRY_BACK_END_DSN,
-
-    // We recommend adjusting this value in production, or using tracesSampler
-    // for finer control
     tracesSampleRate: consts.SENTRY_TRACE_SAMPLE_RATE,
   });
 

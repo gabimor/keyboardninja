@@ -9,6 +9,7 @@ import { Response } from "express";
 import { page500 } from "../pageTemplate/page500";
 import { getTitle } from "@shared/utils";
 import { RequestAuth } from "@defs/RequestAuth";
+import * as Sentry from "@sentry/node";
 
 @Catch(HttpException)
 export class GlobalExceptionFilter implements ExceptionFilter {
@@ -18,6 +19,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const req = ctx.getRequest<RequestAuth>();
 
     console.log(exception);
+    Sentry.captureException(exception);
 
     const status = exception.getStatus();
     if (req.url.startsWith("/api") || req.url.startsWith("/auth")) {
