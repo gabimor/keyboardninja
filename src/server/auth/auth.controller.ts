@@ -34,7 +34,7 @@ export class AuthController {
   }
 
   @Post("signup")
-  async signup(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
+  async signup(@Res() res: Response, @Body() createUserDto: CreateUserDto) {
     const user = await this.authService.signup(createUserDto);
     const jwt = this.authService.generateJwt(user);
 
@@ -54,7 +54,7 @@ export class AuthController {
 
   @UseGuards(GoogleAuthGuard)
   @Get("google")
-  async google(@Req() req: any, @Res() res: Response) {
+  async google(@Req() req: RequestAuth, @Res() res: Response) {
     const jwt = this.authService.generateJwt(req.user);
 
     setCookie(res, jwt);
@@ -63,5 +63,8 @@ export class AuthController {
 }
 
 function setCookie(res: Response, jwt: string) {
-  res.cookie("jwt", jwt, { sameSite: "strict" });
+  res.cookie("jwt", jwt, {
+    sameSite: "lax",
+    maxAge: 1000 * 60 * 60 * 24 * 365 * 10,
+  });
 }
