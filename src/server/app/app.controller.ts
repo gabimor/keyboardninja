@@ -33,7 +33,9 @@ export class AppController {
 
     if (!app) return next();
 
-    if (req?.user?._id) this.appService.addUserApp(app, req?.user?._id);
+    if (req?.user?._id) {
+      await this.appService.addUserApp(app, req?.user?._id);
+    }
 
     req.context = {
       ...req.context,

@@ -19,7 +19,9 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const req = ctx.getRequest<RequestAuth>();
 
     console.log(exception);
-    Sentry.captureException(exception);
+    if (process.env.NODE_ENV === "production") {
+      Sentry.captureException(exception);
+    }
 
     const status = exception.getStatus();
     if (req.url.startsWith("/api") || req.url.startsWith("/auth")) {

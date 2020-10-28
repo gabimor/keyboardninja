@@ -21,7 +21,7 @@ import { AuthController } from "../auth/auth.controller";
 import * as cookieParser from "cookie-parser";
 import { GlobalExceptionFilter } from "../misc/filters/GlobalExceptionFilter";
 import { ObjectId } from "mongodb";
-import { JWT_SECRET } from "../../shared/consts";
+import { JWT_SECRET, JWT_EXPIRES_IN } from "../../shared/consts";
 import { CreateUserDto } from "../../defs/DTOs/createUser.dto";
 
 describe("app controller", () => {
@@ -63,7 +63,7 @@ describe("app controller", () => {
         ]),
         JwtModule.register({
           secret: jwtSecret,
-          signOptions: { expiresIn: jwtConsts.expiresIn },
+          signOptions: { expiresIn: JWT_EXPIRES_IN },
         }),
       ],
       controllers: [AppController, AuthController],
