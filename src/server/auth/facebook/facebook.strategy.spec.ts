@@ -7,7 +7,7 @@ import { User, UserSchema } from "../../../defs/schemas/User.schema";
 import { AuthService } from "../../auth/auth.service";
 import { FacebookStrategy } from "./facebook.strategy";
 import { JwtModule } from "@nestjs/jwt";
-import { jwtConsts } from "../consts";
+import { JWT_EXPIRES_IN } from "../../../shared/consts";
 
 describe("facebook strategy", () => {
   let app: INestApplication;
@@ -32,7 +32,7 @@ describe("facebook strategy", () => {
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
         JwtModule.register({
           secret: jwtSecret,
-          signOptions: { expiresIn: jwtConsts.expiresIn },
+          signOptions: { expiresIn: JWT_EXPIRES_IN },
         }),
       ],
       providers: [AuthService],
