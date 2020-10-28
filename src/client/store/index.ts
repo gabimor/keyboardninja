@@ -4,6 +4,7 @@ import { App } from "@defs/schemas/App.schema";
 import { AppCategory } from "@defs/schemas/AppCategory.schema";
 import { JwtUser } from "@defs/User.type";
 import { action, makeObservable, observable } from "mobx";
+import { setSelectedOS } from "@client/helpers/osSelect";
 
 export class Store {
   app: Partial<App>;
@@ -33,6 +34,7 @@ export class Store {
 
   setOs(os: OSs) {
     this.os = os;
+    setSelectedOS(os);
   }
 
   setLoginModalVisible(isVisible: boolean) {

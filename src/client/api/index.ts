@@ -28,10 +28,6 @@ export async function contactUs(name: string, email: string, message: string) {
   }
 }
 
-export function getOS(appId: string, os: string) {
-  return fetch(`/api/apps/${appId}?os=${os}`).then((res) => res.json());
-}
-
 export async function toggleStar(
   appId: string,
   shortcutId: string

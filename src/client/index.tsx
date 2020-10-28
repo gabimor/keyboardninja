@@ -8,6 +8,7 @@ import Layout from "@client/pages/layout";
 import { DataContext } from "@client/DataContext";
 import { Store } from "@client/store";
 import * as consts from "@shared/consts";
+import * as osSelect from "@client/helpers/osSelect";
 
 declare global {
   interface Window {
@@ -18,13 +19,11 @@ declare global {
 Sentry.init({
   dsn: consts.SENTRY_FRONT_END_DSN,
   integrations: [new Integrations.BrowserTracing()],
-
-  // We recommend adjusting this value in production, or using tracesSampler
-  // for finer control
-  tracesSampleRate: 1.0,
+  tracesSampleRate: consts.SENTRY_TRACE_SAMPLE_RATE,
 });
 
 const store = new Store(window.__KBN_DATA__);
+osSelect.init();
 
 const Client = () => (
   <DataContext.Provider value={store}>
