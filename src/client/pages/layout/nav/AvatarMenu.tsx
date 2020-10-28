@@ -86,12 +86,12 @@ const ActionsContainer = styled.ul`
 
 export const NameLabel = styled.div`
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   flex-grow: 1;
 `;
 export const EmailLabel = styled.div`
   margin-top: 3px;
-  font-size: 13px;
+  font-size: 14px;
   flex-grow: 1;
   color: #d1d0d4;
 `;
