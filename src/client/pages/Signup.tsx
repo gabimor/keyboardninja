@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
-import Header from "@client/components/Header";
+import Title from "@client/components/Title";
 
 import SignupForm from "./signup/SignupForm";
 import { getTitle } from "@shared/utils";
@@ -12,7 +12,7 @@ const Signup = () => {
 
   return (
     <Container>
-      <Header>Sign up</Header>
+      <Title>Sign up</Title>
       <SignupForm />
     </Container>
   );

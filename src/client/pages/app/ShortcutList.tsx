@@ -1,14 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
 
 import ShortcutItem from "./ShortcutItem";
 import styled from "@emotion/styled";
 import { DataContext } from "../../DataContext";
-import Modal from "@client/components/Modal";
 
 import { upperFirstLetter } from "../../helpers";
-import LoginForm from "../login/LoginForm";
-import Header from "@client/components/Header";
 
 interface Shortcut {
   _id: string;
@@ -27,19 +24,15 @@ interface Props {
 }
 
 function ShortcutList({ title, shortcuts }: Props) {
-  const { os } = useContext(DataContext);
   const store = useContext(DataContext);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onStar = (shortcutId: string) => {
     if (store.user) {
       store.toggleStar(shortcutId);
     } else {
-      setIsModalOpen(true);
+      store.setLoginModalVisible(true);
     }
   };
-
-  const modalClose = () => setIsModalOpen(false);
 
   return (
     <Container>
@@ -50,7 +43,7 @@ function ShortcutList({ title, shortcuts }: Props) {
             <ShortcutItem
               key={shortcut._id}
               _id={shortcut._id}
-              keys={shortcut[os]}
+              keys={shortcut[store.os]}
               action={shortcut.action}
               note={shortcut.note}
               stars={shortcut.stars}
@@ -61,17 +54,6 @@ function ShortcutList({ title, shortcuts }: Props) {
           );
         })}
       </Table>
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={modalClose}
-        contentLabel="Example Modal"
-      >
-        <Header>Log in</Header>
-        <LoginMessage>
-          Log in and save your favorite shortcuts! ⚡️
-        </LoginMessage>
-        <LoginForm />
-      </Modal>
     </Container>
   );
 }
@@ -93,14 +75,6 @@ const Title = styled.header`
   padding: 5px 10px 7px 10px;
   font-size: 14px;
   font-weight: 300;
-`;
-
-const LoginMessage = styled.div`
-  font-weight: 300;
-  margin-bottom: 30px;
-  text-align: center;
-  font-size: 16px;
-  color: #e9e5e5;
 `;
 
 const Table = styled.div`

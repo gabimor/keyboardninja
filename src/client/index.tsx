@@ -4,7 +4,7 @@ import { Integrations } from "@sentry/tracing";
 import { BrowserRouter } from "react-router-dom";
 import { hydrate } from "react-dom";
 
-import Layout from "@client/Layout";
+import Layout from "@client/pages/layout";
 import { DataContext } from "@client/DataContext";
 import { Store } from "@client/store";
 import * as consts from "@shared/consts";

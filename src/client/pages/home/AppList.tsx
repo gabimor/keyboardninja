@@ -15,7 +15,7 @@ export interface AppListProps {
 function AppList({ name, apps, gridArea }: AppListProps) {
   return (
     <Container gridArea={gridArea}>
-      <Header>{name}</Header>
+      <Title>{name}</Title>
       <InnerContainer className={gridArea}>
         {apps.map((app) => {
           const encodedName = encodeAppName(app.name);
@@ -108,7 +108,7 @@ const InnerContainer = styled.div`
   }
 `;
 
-const Header = styled.h2`
+const Title = styled.h2`
   color: #e9e5e5;
   font-weight: 300;
   font-size: 16px;

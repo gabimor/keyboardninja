@@ -1,6 +1,6 @@
 import React from "react";
 import { DataContext } from "@client/DataContext";
-import Layout from "@client/Layout";
+import Layout from "@client/pages/layout";
 import { Store } from "@client/store";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";

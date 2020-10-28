@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
-import Header from "@client/components/Header";
+import Title from "@client/components/Title";
 
 import LoginForm from "./login/LoginForm";
 import { getTitle } from "@shared/utils";
@@ -12,7 +12,7 @@ const Login = () => {
 
   return (
     <Container>
-      <Header>Log in</Header>
+      <Title>Log in</Title>
       <LoginForm />
     </Container>
   );

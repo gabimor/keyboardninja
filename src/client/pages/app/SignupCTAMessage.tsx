@@ -13,10 +13,10 @@ const signupCTAMessage = ({ onClose }: Props) => (
   <Container>
     <CloseX onClick={onClose} />
 
-    <Header>
+    <Title>
       “Keyboard shortcuts make the interface go away till’ all that’s left is{" "}
       <b>pure creation…</b>”
-    </Header>
+    </Title>
     <Bullets>
       <li>
         <img src="/icons/star-on.svg" /> Save your facorite keyboard shortcuts
@@ -75,7 +75,7 @@ const Bullets = styled.ul`
   }
 `;
 
-const Header = styled.h2`
+const Title = styled.h2`
   text-align: center;
   margin: 0.5em 0;
   font-size: 20px;

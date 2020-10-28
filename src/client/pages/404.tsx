@@ -7,13 +7,12 @@ const Page404 = () => {
     document.title = getTitle("/404");
   }, []);
 
-
   return (
     <Container>
       <div>
-        <Header>
+        <Title>
           <Code>404 </Code>Oops...
-        </Header>
+        </Title>
         <Message>There's no one here</Message>
       </div>
     </Container>
@@ -22,7 +21,7 @@ const Page404 = () => {
 
 export default Page404;
 
-const Header = styled.h1`
+const Title = styled.h1`
   font-size: 40px;
   color: #e86562;
   margin: 100px 0 10px;

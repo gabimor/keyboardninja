@@ -10,25 +10,33 @@ export class Store {
   appCategories: AppCategory[];
   os: OSs;
   user: JwtUser;
+  loginModalVisible: boolean;
 
   constructor({ app, os, appCategories, user }: Partial<Store>) {
     this.app = app;
     this.os = os;
     this.appCategories = appCategories;
     this.user = user;
+    this.loginModalVisible = false;
 
     makeObservable(this, {
       app: observable,
       os: observable,
       appCategories: observable,
       user: observable,
+      loginModalVisible: observable,
       setOs: action,
+      setLoginModalVisible: action,
       toggleStar: action,
     });
   }
 
   setOs(os: OSs) {
     this.os = os;
+  }
+
+  setLoginModalVisible(isVisible: boolean) {
+    this.loginModalVisible = isVisible;
   }
 
   async toggleStar(shortcutId: string) {
