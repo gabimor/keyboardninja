@@ -17,10 +17,14 @@ async function bootstrap() {
     tracesSampleRate: consts.SENTRY_TRACE_SAMPLE_RATE,
   });
 
+  process.on("uncaughtException", (err) => {
+    console.log("Caught exception: " + err);
+  });
+
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.useGlobalFilters(new GlobalExceptionFilter());
   app.use(cookieParser());
   app.useGlobalPipes(new ClassValidationPipe());
-  app.useGlobalFilters(new GlobalExceptionFilter());
   // app.use(helmet());
   // TODO: configure csrf & helmet
   // app.use(csurf());

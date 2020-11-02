@@ -43,7 +43,3 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     }
   }
 }
-
-process.on("uncaughtException", (err) => {
-  console.log("Caught exception: " + err);
-});
