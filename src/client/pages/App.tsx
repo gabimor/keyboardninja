@@ -24,7 +24,7 @@ const App = () => {
     setMessageVisible(!localStorage.getItem("signupCTAMessage"));
     osSelect.init();
 
-    document.title = getTitle("/:app", app.name);
+    document.title = getTitle("/:app", app?.name);
   }, []);
 
   const encodedName = encodeAppName(app.name);
