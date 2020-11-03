@@ -43,9 +43,8 @@ export class AppController {
       os: this.appService.getAppOS(app, req),
     };
 
-    return res.send(
-      await renderPage(req, getTitle("/:app", app.name), app.url)
-    );
+    const page = await renderPage(req, getTitle("/:app", app.name), app.url);
+    return res.send(page);
   }
 
   @UseGuards(JwtAuthGuard)

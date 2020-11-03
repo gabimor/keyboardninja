@@ -11,7 +11,7 @@ export async function renderPage(
   req: RequestAuth,
   title: string,
   canonicalUrl: string
-) {
+): Promise<string> {
   const context = req.context as Store;
 
   const page = (
