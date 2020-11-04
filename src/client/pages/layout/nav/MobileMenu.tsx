@@ -1,22 +1,27 @@
 import { DataContext } from "@client/DataContext";
 import styled from "@emotion/styled";
-import React, { LegacyRef, useContext, useRef, useState } from "react";
+import React, { LegacyRef, useContext, useState } from "react";
 import Avatar from "react-avatar";
 import { logout } from "@client/api/auth";
-import CloseX from "@client/components/CloseX";
 import { EmailLabel, NameLabel } from "./AvatarMenu";
 import { Link } from "react-router-dom";
-import useOnClickOutside from "use-onclickoutside";
 
 export default function MobileMenu() {
-  const popupRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
-  useOnClickOutside(popupRef, () => setIsVisible(false));
+  const { user } = useContext(DataContext);
 
   return (
     <>
-      <Bars className="fas fa-bars" onClick={() => setIsVisible(true)} />
-      {isVisible && <Menu onClose={() => setIsVisible(false)} ref={popupRef} />}
+      <StyledAvatar
+        name={user.firstName + " " + user.lastName}
+        facebookId={user.facebookId}
+        googleId={user.googleId}
+        size="32"
+        onClick={() => setIsVisible(!isVisible)}
+        round={true}
+      />
+
+      {isVisible && <Menu onClose={() => setIsVisible(false)} />}
     </>
   );
 }
@@ -30,15 +35,7 @@ const Menu = React.forwardRef(
     return (
       <>
         <MenuContainer ref={ref}>
-          <CloseX onClick={onClose} />
-          <Avatar
-            name={user.firstName + " " + user.lastName}
-            facebookId={user.facebookId}
-            googleId={user.googleId}
-            size="50"
-            round={true}
-          />
-          <NameLabel style={{ marginTop: 20, marginBottom: 5 }}>
+          <NameLabel style={{ marginBottom: 5 }}>
             {user.firstName} {user.lastName}
           </NameLabel>
           <EmailLabel>{user.email}</EmailLabel>
@@ -61,27 +58,26 @@ const Menu = React.forwardRef(
             </li>
           </ActionsContainer>
         </MenuContainer>
-        <Overlay />
+        <Overlay onClick={onClose} />
       </>
     );
   }
 );
 
-const Bars = styled.i`
-  font-size: 20px;
+const StyledAvatar = styled(Avatar)`
+  position: relative;
+  z-index: 1000;
 `;
 
 const MenuContainer = styled.div`
   user-select: none;
-  text-align: center;
   position: fixed;
   color: red;
   z-index: 1000;
-  top: 10px;
+  top: 50px;
   font-size: 15px;
-  left: 10px;
-  padding: 35px 15px 15px 15px;
-  width: calc(100vw - 20px);
+  right: 10px;
+  padding: 25px;
   color: #e9e5e5;
   background: #261d1d;
   border-radius: 5px;
