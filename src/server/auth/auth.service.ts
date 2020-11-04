@@ -13,7 +13,6 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { JwtUser } from "@defs/User.type";
 import { CreateUserDto as SignUpUserDto } from "../../defs/DTOs/createUser.dto";
-import { useReducer } from "react";
 
 export enum SocialType {
   Facebook = "facebook",
