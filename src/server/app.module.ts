@@ -6,7 +6,6 @@ import { AppsModule } from "./app/app.module";
 import { JwtMiddleware } from "./auth/jwt.middleware";
 import { JwtModule } from "@nestjs/jwt";
 import { JWT_SECRET, JWT_EXPIRES_IN } from "@shared/consts";
-import { DataContextMiddleware } from "./misc/DataContext.middleware";
 import * as consts from "@shared/consts";
 
 @Module({
@@ -25,6 +24,5 @@ import * as consts from "@shared/consts";
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(JwtMiddleware).forRoutes("*");
-    consumer.apply(DataContextMiddleware).forRoutes("*");
   }
 }

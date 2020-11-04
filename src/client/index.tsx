@@ -16,11 +16,13 @@ declare global {
   }
 }
 
-Sentry.init({
-  dsn: consts.SENTRY_FRONT_END_DSN,
-  integrations: [new Integrations.BrowserTracing()],
-  tracesSampleRate: consts.SENTRY_TRACE_SAMPLE_RATE,
-});
+if (consts.NODE_ENV === consts.SENTRY_REPORT_ENV) {
+  Sentry.init({
+    dsn: consts.SENTRY_FRONT_END_DSN,
+    integrations: [new Integrations.BrowserTracing()],
+    tracesSampleRate: consts.SENTRY_TRACE_SAMPLE_RATE,
+  });
+}
 
 const store = new Store(window.__KBN_DATA__);
 osSelect.init();

@@ -38,7 +38,8 @@ export class AppController {
     }
 
     req.context = {
-      ...req.context,
+      appCategories: await this.appService.getAppCategories(),
+      user: req.user,
       app,
       os: this.appService.getAppOS(app, req),
     };

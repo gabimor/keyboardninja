@@ -4,16 +4,29 @@ import { Response } from "express";
 import { RequestAuth } from "@defs/RequestAuth";
 import { getTitle } from "@shared/utils";
 import { renderPage } from "@server/misc/pageTemplate/renderPage";
+import { AppService } from "@server/app/app.service";
 
 @Controller("/")
 export class HomeController {
+  constructor(private appService: AppService) {}
+
   @Get()
   async home(@Req() req: RequestAuth) {
+    req.context = {
+      appCategories: await this.appService.getAppCategories(),
+      user: req.user,
+    };
+
     return renderPage(req, getTitle("/"), "/");
   }
 
   @Get("login")
   async login(@Req() req: RequestAuth, @Res() res: Response) {
+    req.context = {
+      appCategories: await this.appService.getAppCategories(),
+      user: req.user,
+    };
+
     if (req.user) {
       res.redirect("/");
     } else {
@@ -23,6 +36,11 @@ export class HomeController {
 
   @Get("signup")
   async signup(@Req() req: RequestAuth, @Res() res: Response) {
+    req.context = {
+      appCategories: await this.appService.getAppCategories(),
+      user: req.user,
+    };
+
     if (req.user) {
       res.redirect("/");
     } else {
@@ -32,6 +50,11 @@ export class HomeController {
 
   @Get("contact")
   async contact(@Req() req: RequestAuth) {
+    req.context = {
+      appCategories: await this.appService.getAppCategories(),
+      user: req.user,
+    };
+
     return renderPage(req, getTitle(req.url), "/contact");
   }
 }

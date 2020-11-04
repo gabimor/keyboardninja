@@ -12,22 +12,17 @@ import { join } from "path";
 import * as consts from "@shared/consts";
 
 async function bootstrap() {
-  Sentry.init({
-    dsn: consts.SENTRY_BACK_END_DSN,
-    tracesSampleRate: consts.SENTRY_TRACE_SAMPLE_RATE,
-  });
-
-  process.on("uncaughtException", (err) => {
-    console.log("Caught exception: " + err);
-  });
+  if (consts.NODE_ENV === consts.SENTRY_REPORT_ENV) {
+    Sentry.init({
+      dsn: consts.SENTRY_BACK_END_DSN,
+      tracesSampleRate: consts.SENTRY_TRACE_SAMPLE_RATE,
+    });
+  }
 
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.useGlobalFilters(new GlobalExceptionFilter());
   app.use(cookieParser());
   app.useGlobalPipes(new ClassValidationPipe());
-  // app.use(helmet());
-  // TODO: configure csrf & helmet
-  // app.use(csurf());
   app.use(
     "/auth/",
     rateLimit({
@@ -54,8 +49,7 @@ async function bootstrap() {
 }
 
 function getPublicPath() {
-  const publicUrl =
-    process.env.NODE_ENV === "production" ? "public" : "../public";
+  const publicUrl = consts.NODE_ENV === "production" ? "public" : "../public";
   return join(__dirname, publicUrl);
 }
 bootstrap();

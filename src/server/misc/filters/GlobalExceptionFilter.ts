@@ -4,14 +4,16 @@ import {
   Catch,
   ExceptionFilter,
   HttpException,
+  HttpStatus,
 } from "@nestjs/common";
 import { Response } from "express";
 import { page500 } from "../pageTemplate/page500";
 import { getTitle } from "@shared/utils";
 import { RequestAuth } from "@defs/RequestAuth";
 import * as Sentry from "@sentry/node";
+import * as consts from "@shared/consts";
 
-@Catch(HttpException)
+@Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
   async catch(exception: HttpException, host: ArgumentsHost): Promise<void> {
     const ctx = host.switchToHttp();
@@ -19,27 +21,38 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const req = ctx.getRequest<RequestAuth>();
 
     console.log("GlobalExceptionFilter says:", exception);
-    if (process.env.NODE_ENV === "production") {
+
+    if (consts.NODE_ENV === consts.SENTRY_REPORT_ENV) {
       Sentry.captureException(exception);
     }
 
-    const status = exception.getStatus();
+    let status = HttpStatus.INTERNAL_SERVER_ERROR;
+    let payload;
+    if (exception instanceof HttpException) {
+      status = exception.getStatus();
+      payload = exception.getResponse();
+    }
+
     if (req.url.startsWith("/api") || req.url.startsWith("/auth")) {
       res.status(status).json({
         status,
-        payload: exception.getResponse(),
+        payload,
       });
       return;
     } else {
-      if (status === 404) {
+      if (status === HttpStatus.NOT_FOUND) {
         res
-          .status(status)
+          .status(HttpStatus.NOT_FOUND)
           .send(await renderPage(req, getTitle(req.url), "/404"));
         return;
       } else {
         res.send(page500());
-        return;
       }
     }
+
+    throw new HttpException(
+      "GlobalExceptionFilter, should not get here",
+      HttpStatus.INTERNAL_SERVER_ERROR
+    );
   }
 }

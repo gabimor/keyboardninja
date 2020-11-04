@@ -13,6 +13,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { JwtUser } from "@defs/User.type";
 import { CreateUserDto as SignUpUserDto } from "../../defs/DTOs/createUser.dto";
+import { useReducer } from "react";
 
 export enum SocialType {
   Facebook = "facebook",
@@ -29,9 +30,9 @@ export class AuthService {
   async validateUser(email: string, pass: string): Promise<Partial<User>> {
     const user = await this.userModel.findOne({ email }).lean();
 
-    if (!user) return null;
+    if (!user || !user?.password) return null;
 
-    const passwordMatch = await compare(pass, undefined);
+    const passwordMatch = await compare(pass, user.password);
 
     if (passwordMatch) {
       const { password, ...result } = user;
