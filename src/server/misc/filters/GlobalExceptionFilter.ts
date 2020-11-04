@@ -19,10 +19,6 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const res = ctx.getResponse<Response>();
     const req = ctx.getRequest<RequestAuth>();
 
-    if (consts.NODE_ENV === consts.SENTRY_REPORT_ENV) {
-      Sentry.captureException(exception);
-    }
-
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
     let payload;
     if (exception instanceof HttpException) {
@@ -32,9 +28,12 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
     if (status === HttpStatus.NOT_FOUND) {
       res.status(HttpStatus.NOT_FOUND).send(page404());
-
       return;
     } else {
+      if (consts.NODE_ENV === consts.SENTRY_REPORT_ENV) {
+        Sentry.captureException(exception);
+      }
+
       console.log("GlobalExceptionFilter says:", exception);
 
       if (req.url.startsWith("/api") || req.url.startsWith("/auth")) {
