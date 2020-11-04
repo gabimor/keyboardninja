@@ -12,7 +12,7 @@ export async function renderPage(
   title: string,
   canonicalUrl: string
 ): Promise<string> {
-  const context = req.context as Store;
+  const context = (req.context || {}) as Store;
 
   const page = (
     <DataContext.Provider value={context}>

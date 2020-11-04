@@ -1,7 +1,6 @@
 export function getTitle(url: string, param?: string) {
   const titles = new Map<string, string>();
   titles.set("/", "Keyboard Ninja.Me");
-  titles.set("/404", "Not found | Keyboard Ninja.Me");
   titles.set("/contact", "Wanna Help ? | Keyboard Ninja.Me");
   titles.set("/login", "Log in | Keyboard Ninja.Me");
   titles.set("/signup", "Sign up | Keyboard Ninja.Me");

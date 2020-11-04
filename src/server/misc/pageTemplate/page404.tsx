@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "@emotion/styled";
-import { getTitle } from "@shared/utils";
+import { renderToStaticMarkup } from "react-dom/server";
+import { pageTemplate } from ".";
 
-const Page404 = () => {
-  useEffect(() => {
-    document.title = getTitle("/404");
-  }, []);
-
-  return (
+export function page404() {
+  const markup = (
     <Container>
       <div>
         <Title>
@@ -17,9 +14,15 @@ const Page404 = () => {
       </div>
     </Container>
   );
-};
 
-export default Page404;
+  return pageTemplate(
+    renderToStaticMarkup(markup),
+    "KeyboardNinja.me",
+    undefined,
+    "/",
+    false
+  );
+}
 
 const Title = styled.h1`
   font-size: 40px;

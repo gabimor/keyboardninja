@@ -1,4 +1,3 @@
-import { renderPage } from "@server/misc/pageTemplate/renderPage";
 import {
   ArgumentsHost,
   Catch,
@@ -8,10 +7,10 @@ import {
 } from "@nestjs/common";
 import { Response } from "express";
 import { page500 } from "../pageTemplate/page500";
-import { getTitle } from "@shared/utils";
 import { RequestAuth } from "@defs/RequestAuth";
 import * as Sentry from "@sentry/node";
 import * as consts from "@shared/consts";
+import { page404 } from "../pageTemplate/page404";
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
@@ -19,8 +18,6 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const res = ctx.getResponse<Response>();
     const req = ctx.getRequest<RequestAuth>();
-
-    console.log("GlobalExceptionFilter says:", exception);
 
     if (consts.NODE_ENV === consts.SENTRY_REPORT_ENV) {
       Sentry.captureException(exception);
@@ -33,17 +30,18 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       payload = exception.getResponse();
     }
 
-    if (req.url.startsWith("/api") || req.url.startsWith("/auth")) {
-      res.status(status).json({
-        status,
-        payload,
-      });
+    if (status === HttpStatus.NOT_FOUND) {
+      res.status(HttpStatus.NOT_FOUND).send(page404());
+
       return;
     } else {
-      if (status === HttpStatus.NOT_FOUND) {
-        res
-          .status(HttpStatus.NOT_FOUND)
-          .send(await renderPage(req, getTitle(req.url), "/404"));
+      console.log("GlobalExceptionFilter says:", exception);
+
+      if (req.url.startsWith("/api") || req.url.startsWith("/auth")) {
+        res.status(status).json({
+          status,
+          payload,
+        });
         return;
       } else {
         res.send(page500());

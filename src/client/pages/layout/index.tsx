@@ -10,7 +10,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Signup from "../Signup";
 import ContactUs from "../ContactUs";
-import Page404 from "../404";
 import Modal from "@client/components/Modal";
 import LoginForm from "../login/LoginForm";
 import Title from "@client/components/Title";
@@ -31,9 +30,7 @@ const Layout = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/contact" component={ContactUs} />
-          <Route path="/404" component={Page404} />
           <Route path="/:name" component={App} />
-          <Route component={Page404} />
         </Switch>
         <Modal
           isOpen={store.loginModalVisible}
