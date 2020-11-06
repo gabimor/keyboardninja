@@ -86,5 +86,44 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: normal;
 }
 
+// *************************
+// Animation classes
+// *************************
+
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: all 200ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: all 200ms;
+}
+
+.slide-down-enter {
+  opacity: 0;
+  transform: translate(0, -10px)
+}
+.slide-down-enter-active {
+  opacity: 1;
+  transition: all 200ms;
+  transform: translate(0, 0px)
+}
+.slide-down-exit {
+  opacity: 1;
+  transform: translate(0, 0px)
+}
+.slide-down-exit-active {
+  opacity: 0;
+  transition: all 200ms;
+  transform: translate(0, -10px)
+}
+
+
 ${modalStyle}
 `;

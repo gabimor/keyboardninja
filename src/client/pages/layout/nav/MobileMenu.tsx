@@ -1,14 +1,15 @@
 import { DataContext } from "@client/DataContext";
 import styled from "@emotion/styled";
-import React, { LegacyRef, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import Avatar from "react-avatar";
 import { logout } from "@client/api/auth";
 import { EmailLabel, NameLabel } from "./AvatarMenu";
 import { Link } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
 
 export default function MobileMenu() {
-  const [isVisible, setIsVisible] = useState(false);
   const { user } = useContext(DataContext);
+  const [isVisible, setIsVisible] = useState(false);
 
   return (
     <>
@@ -20,21 +21,25 @@ export default function MobileMenu() {
         onClick={() => setIsVisible(!isVisible)}
         round={true}
       />
-
-      {isVisible && <Menu onClose={() => setIsVisible(false)} />}
+      <Menu isVisible={isVisible} onClose={() => setIsVisible(false)} />
     </>
   );
 }
 
-type MenuProps = { onClose: () => void };
+type MenuProps = { isVisible: boolean; onClose: () => void };
 
-const Menu = React.forwardRef(
-  ({ onClose }: MenuProps, ref: LegacyRef<HTMLDivElement>) => {
-    const { user } = useContext(DataContext);
+const Menu = ({ onClose, isVisible }: MenuProps) => {
+  const { user } = useContext(DataContext);
 
-    return (
-      <>
-        <MenuContainer ref={ref}>
+  return (
+    <>
+      <CSSTransition
+        in={isVisible}
+        timeout={200}
+        classNames="slide-down"
+        unmountOnExit
+      >
+        <MenuContainer>
           <NameLabel style={{ marginBottom: 5 }}>
             {user.firstName} {user.lastName}
           </NameLabel>
@@ -58,11 +63,18 @@ const Menu = React.forwardRef(
             </li>
           </ActionsContainer>
         </MenuContainer>
+      </CSSTransition>
+      <CSSTransition
+        in={isVisible}
+        timeout={200}
+        classNames="fade"
+        unmountOnExit
+      >
         <Overlay onClick={onClose} />
-      </>
-    );
-  }
-);
+      </CSSTransition>
+    </>
+  );
+};
 
 const StyledAvatar = styled(Avatar)`
   position: relative;
@@ -74,10 +86,10 @@ const MenuContainer = styled.div`
   position: fixed;
   color: red;
   z-index: 1000;
-  top: 50px;
+  top: 60px;
   font-size: 15px;
   right: 10px;
-  padding: 25px;
+  padding: 20px;
   color: #e9e5e5;
   background: #261d1d;
   border-radius: 5px;
