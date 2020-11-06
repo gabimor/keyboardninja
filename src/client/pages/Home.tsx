@@ -77,6 +77,6 @@ const Hero = styled.h1`
   @media (max-width: ${tabletBreakpoint}px) {
     margin-top: 50px;
     margin-bottom: 70px;
-    font-size: 30px;
+    font-size: 33px;
   }
 `;

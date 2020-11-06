@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { emailRegex } from "@client/helpers";
@@ -73,16 +72,8 @@ export default function LoginForm() {
       {errors.password && <ErrorLabel>{errors.password.message}</ErrorLabel>}
       <PrimaryButton style={{ marginTop: 20 }}>
         Log in{" "}
-        <ClipLoader
-          size={10}
-          color={"#fff"}
-          loading={formState.isSubmitted || formState.isSubmitting}
-        />
+        <ClipLoader size={10} color={"#fff"} loading={formState.isSubmitting} />
       </PrimaryButton>
-
-      <SignupWrapper>
-        Don't have an account ?<Link to="/signup"> Sign up</Link>
-      </SignupWrapper>
     </Form>
   );
 }
@@ -96,10 +87,4 @@ const OrSeperator = styled.div`
   color: #e9e5e5;
   padding-top: 20px;
   text-align: center;
-`;
-
-const SignupWrapper = styled.div`
-  text-align: center;
-  margin-top: 20px;
-  color: #e9e5e5;
 `;

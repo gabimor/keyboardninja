@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 
 import Input from "@client/components/TextInput";
@@ -12,6 +11,7 @@ import { UserType } from "@defs/User.type";
 import ErrorLabel from "@client/components/ErrorLabel";
 import ClipLoader from "react-spinners/ClipLoader";
 import FormLabel from "@client/components/FormLabel";
+import { CSSTransition } from "react-transition-group";
 
 export type SignUpFormData = Pick<
   UserType,
@@ -46,7 +46,12 @@ export default function SignupForm() {
 
       <OrSeperator> - or - </OrSeperator>
 
-      {isEmailSignupVisible ? (
+      <CSSTransition
+        in={isEmailSignupVisible}
+        timeout={1000}
+        classNames="delayed-fade"
+        unmountOnExit
+      >
         <>
           <NameContainer>
             <div style={{ marginRight: 5 }}>
@@ -111,19 +116,16 @@ export default function SignupForm() {
             <ClipLoader
               size={10}
               color={"#fff"}
-              loading={formState.isSubmitted || formState.isSubmitting}
+              loading={formState.isSubmitting}
             />
           </PrimaryButton>
         </>
-      ) : (
+      </CSSTransition>
+      {!isEmailSignupVisible && (
         <PrimaryButton onClick={() => setIsEmailSignupVisible(true)}>
           Sign up with email
         </PrimaryButton>
       )}
-
-      <SignupWrapper>
-        Already have an account ?<Link to="/login"> Log in</Link>
-      </SignupWrapper>
     </Form>
   );
 }
@@ -141,10 +143,4 @@ const OrSeperator = styled.div`
   color: #e9e5e5;
   padding: 15px 0;
   text-align: center;
-`;
-
-const SignupWrapper = styled.div`
-  text-align: center;
-  margin-top: 20px;
-  color: #e9e5e5;
 `;

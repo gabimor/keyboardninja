@@ -6,6 +6,7 @@ import styled from "@emotion/styled";
 import { DataContext } from "../../DataContext";
 
 import { upperFirstLetter } from "../../helpers";
+import { LoginModalState } from "@client/store";
 
 interface Shortcut {
   _id: string;
@@ -30,7 +31,7 @@ function ShortcutList({ title, shortcuts }: Props) {
     if (store.user) {
       store.toggleStar(shortcutId);
     } else {
-      store.setLoginModalVisible(true);
+      store.setLoginModalState(LoginModalState.Login);
     }
   };
 
