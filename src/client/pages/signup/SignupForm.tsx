@@ -92,7 +92,7 @@ export default function SignupForm() {
             })}
           ></Input>
           {errors.email && <ErrorLabel>{errors.email.message}</ErrorLabel>}
-          <FormLabel htmlFor="password">Password</FormLabel>
+          <FormLabel htmlFor="password">Choose Password</FormLabel>
           <Input
             name="password"
             type="password"
