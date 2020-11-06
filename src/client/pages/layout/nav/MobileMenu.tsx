@@ -115,5 +115,6 @@ const ActionsContainer = styled.ul`
   text-align: left;
   i {
     width: 30px;
+    color: #9d8b8b;
   }
 `;
