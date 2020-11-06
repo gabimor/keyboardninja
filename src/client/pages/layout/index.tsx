@@ -11,15 +11,15 @@ import Footer from "./Footer";
 import Signup from "../Signup";
 import ContactUs from "../ContactUs";
 import Modal from "@client/components/Modal";
-import LoginForm from "../login/LoginForm";
-import Title from "@client/components/Title";
 
 import { tabletBreakpoint, desktopBreakpoint, siteWidth } from "../../consts";
 import { DataContext } from "@client/DataContext";
+import LoginPanel from "./LoginPanel";
+import SignupPanel from "./SignupPanel";
+import { LoginModalState } from "@client/store";
 
 const Layout = () => {
   const store = useContext(DataContext);
-
   return (
     <div>
       <Container>
@@ -33,15 +33,14 @@ const Layout = () => {
           <Route path="/:name" component={App} />
         </Switch>
         <Modal
-          isOpen={store.loginModalVisible}
-          onRequestClose={() => store.setLoginModalVisible(false)}
-          contentLabel="Example Modal"
+          isOpen={store.loginModalState !== LoginModalState.None}
+          onRequestClose={() => store.setLoginModalState(LoginModalState.None)}
         >
-          <Title>Log in</Title>
-          <LoginMessage>
-            Log in and save your favorite shortcuts! ⚡️
-          </LoginMessage>
-          <LoginForm />
+          {store.loginModalState === LoginModalState.Login ? (
+            <LoginPanel />
+          ) : (
+            <SignupPanel />
+          )}
         </Modal>
 
         <Footer />
@@ -62,14 +61,6 @@ const Container = styled.div`
   @media (max-width: ${tabletBreakpoint}px) {
     padding: 10px;
   }
-`;
-
-const LoginMessage = styled.div`
-  font-weight: 300;
-  margin-bottom: 30px;
-  text-align: center;
-  font-size: 16px;
-  color: #e9e5e5;
 `;
 
 export default observer(Layout);

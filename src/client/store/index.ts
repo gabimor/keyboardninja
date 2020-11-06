@@ -6,28 +6,34 @@ import { JwtUser } from "@defs/User.type";
 import { action, makeObservable, observable } from "mobx";
 import { setSelectedOS } from "@client/helpers/osSelect";
 
+export enum LoginModalState {
+  None,
+  Login,
+  Signup,
+}
+
 export class Store {
   app: Partial<App>;
   appCategories: AppCategory[];
   os: OSs;
   user: JwtUser;
-  loginModalVisible: boolean;
+  loginModalState: LoginModalState;
 
   constructor({ app, os, appCategories, user }: Partial<Store>) {
     this.app = app;
     this.os = os;
     this.appCategories = appCategories;
     this.user = user;
-    this.loginModalVisible = false;
+    this.loginModalState = LoginModalState.None;
 
     makeObservable(this, {
       app: observable,
       os: observable,
       appCategories: observable,
       user: observable,
-      loginModalVisible: observable,
+      loginModalState: observable,
       setOs: action,
-      setLoginModalVisible: action,
+      setLoginModalState: action,
       toggleStar: action,
     });
   }
@@ -37,8 +43,8 @@ export class Store {
     setSelectedOS(os);
   }
 
-  setLoginModalVisible(isVisible: boolean) {
-    this.loginModalVisible = isVisible;
+  setLoginModalState(state: LoginModalState) {
+    this.loginModalState = state;
   }
 
   async toggleStar(shortcutId: string) {

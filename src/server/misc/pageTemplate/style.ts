@@ -53,7 +53,7 @@ kbd {
   display: inline-block;
   background-color: #D1403D;
   color: #FFFFFF;
-  font-family: inherit;
+  font-family: inherit;m
   font-size: 13px;
   text-align: center;
   padding: 1px 5px;
@@ -105,25 +105,42 @@ h1,h2,h3,h4,h5,h6 {
   transition: all 200ms;
 }
 
+
 .slide-down-enter {
   opacity: 0;
-  transform: translate(0, -10px)
+  transform: translate(0, -20px)
 }
 .slide-down-enter-active {
   opacity: 1;
-  transition: all 200ms;
+  transition: all 200ms ease-in-out;
   transform: translate(0, 0px)
 }
 .slide-down-exit {
-  opacity: 1;
-  transform: translate(0, 0px)
+  opacity: 0;
 }
 .slide-down-exit-active {
   opacity: 0;
-  transition: all 200ms;
-  transform: translate(0, -10px)
+  transition: all 200ms ease-in-out;
+  transform: translate(0, -20px)
 }
 
+
+.delayed-fade-enter {
+  opacity: 0;
+}
+.delayed-fade-enter-active {
+  opacity: 1;
+  transition-delay:300ms;
+  transition: all 1000ms;
+}
+.delayed-fade-exit {
+  opacity: 1;
+}
+.delayed-fade-exit-active {
+  opacity: 0;
+  transition-delay:300ms;
+  transition: all 1000ms;
+}
 
 ${modalStyle}
 `;

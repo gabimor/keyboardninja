@@ -35,7 +35,7 @@ const Menu = ({ onClose, isVisible }: MenuProps) => {
     <>
       <CSSTransition
         in={isVisible}
-        timeout={200}
+        timeout={400}
         classNames="slide-down"
         unmountOnExit
       >

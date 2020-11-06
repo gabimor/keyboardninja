@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { PrimaryButton } from "../../../components/Buttons";
 import { enterMobileBreakpoint } from "@client/consts";
+import { LoginModalState } from "@client/store";
 
 export default function Anonymous() {
   const store = useContext(DataContext);
@@ -14,14 +15,18 @@ export default function Anonymous() {
         <Link to="/contact">Wanna Help ?</Link>
       </ContactWrapper>
       <li>
-        <OptionWrapper onClick={() => store.setLoginModalVisible(true)}>
+        <OptionWrapper
+          onClick={() => store.setLoginModalState(LoginModalState.Login)}
+        >
           Log in
         </OptionWrapper>
       </li>
       <li>
-        <Link to="/signup">
+        <OptionWrapper
+          onClick={() => store.setLoginModalState(LoginModalState.Signup)}
+        >
           <PrimaryButton>Sign up</PrimaryButton>
-        </Link>
+        </OptionWrapper>
       </li>
     </ul>
   );
