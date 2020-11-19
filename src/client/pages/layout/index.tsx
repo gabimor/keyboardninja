@@ -9,7 +9,7 @@ import Login from "../Login";
 import Header from "./Header";
 import Footer from "./Footer";
 import Signup from "../Signup";
-import ContactUs from "../ContactUs";
+import About from "../About";
 import Modal from "@client/components/Modal";
 
 import { tabletBreakpoint, desktopBreakpoint, siteWidth } from "../../consts";
@@ -29,7 +29,7 @@ const Layout = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/contact" component={ContactUs} />
+          <Route exact path="/about" component={About} />
           <Route path="/:name" component={App} />
         </Switch>
         <Modal

@@ -12,7 +12,7 @@ export default function Anonymous() {
   return (
     <ul>
       <ContactWrapper>
-        <Link to="/contact">Add an App</Link>
+        <Link to="/about">About</Link>
       </ContactWrapper>
       <li>
         <OptionWrapper
