@@ -14,7 +14,7 @@ export default () => {
 const Container = styled.div`
   font-size: 14px;
   font-weight: 300;
-
+  min-height: 40px;
   margin-left: auto;
 
   > ul {

@@ -48,7 +48,7 @@ const Menu = ({ onClose, isVisible }: MenuProps) => {
             <li>
               <Link to="/contact" onClick={onClose}>
                 <i className="fas fa-users"></i>
-                Wanna Help ?
+                Add My App
               </Link>
             </li>
             {/* <li>

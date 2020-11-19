@@ -33,14 +33,17 @@ const Layout = () => {
           <Route path="/:name" component={App} />
         </Switch>
         <Modal
-          isOpen={store.loginModalState !== LoginModalState.None}
+          isOpen={store.loginModalState === LoginModalState.Login}
           onRequestClose={() => store.setLoginModalState(LoginModalState.None)}
         >
-          {store.loginModalState === LoginModalState.Login ? (
-            <LoginPanel />
-          ) : (
-            <SignupPanel />
-          )}
+          <LoginPanel />
+        </Modal>
+
+        <Modal
+          isOpen={store.loginModalState === LoginModalState.Signup}
+          onRequestClose={() => store.setLoginModalState(LoginModalState.None)}
+        >
+          <SignupPanel />
         </Modal>
 
         <Footer />
