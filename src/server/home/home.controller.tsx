@@ -1,4 +1,4 @@
-import { Body, Get, Post, Req, Res } from "@nestjs/common";
+import { Get, Req, Res } from "@nestjs/common";
 import { Controller } from "@nestjs/common";
 import { Response } from "express";
 import { RequestAuth } from "@defs/RequestAuth";
@@ -48,30 +48,13 @@ export class HomeController {
     }
   }
 
-  @Get("contact")
-  async contact(@Req() req: RequestAuth) {
+  @Get("wannahelp")
+  async wannahelp(@Req() req: RequestAuth) {
     req.context = {
       appCategories: await this.appService.getAppCategories(),
       user: req.user,
     };
 
-    return renderPage(req, getTitle(req.url), "/contact");
-  }
-
-  @Post("/api/contact")
-  async sendEmail(
-    @Body("name") name: string,
-    @Body("email") email: string,
-    @Body("message") message: string
-  ) {
-    // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    // const msg = {
-    //   to: process.env.CONTACT_EMAIL,
-    //   from: email,
-    //   subject: "KeyboardNinja - from " + name,
-    //   text: message,
-    // };
-    // sgMail.send(msg);
-    // res.sendStatus(200);
+    return renderPage(req, getTitle(req.url), "/wannahelp");
   }
 }

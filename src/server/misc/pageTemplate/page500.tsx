@@ -10,7 +10,7 @@ export function page500() {
         <Title>Oops ... an error has occured</Title>
         <div>
           Please try again, if this persists, please let us know{" "}
-          <a href="/contact">here</a>.
+          <a href="/wannahelp">here</a>.
         </div>
         <BackHome href="/">Back to home page</BackHome>
       </div>

@@ -4,11 +4,24 @@ import styled from "@emotion/styled";
 import LoggedInNav from "./LoggedInNav";
 import AnonymousNav from "./AnonymousNav";
 import { DataContext } from "@client/DataContext";
+import { Link } from "react-router-dom";
+import { enterMobileBreakpoint } from "@client/consts";
 
 export default () => {
   const { user } = useContext(DataContext);
 
-  return <Container>{user ? <LoggedInNav /> : <AnonymousNav />}</Container>;
+  return (
+    <Container>
+      <ul>
+        <WannaHelpWrapper>
+          <Link to="/wannahelp">Wanna Help?</Link>
+        </WannaHelpWrapper>
+
+        {user ? <LoggedInNav /> : <AnonymousNav />}
+      </ul>
+    </Container>
+  );
+
 };
 
 const Container = styled.div`
@@ -29,5 +42,13 @@ const Container = styled.div`
 
   a {
     color: #ffffff;
+  }
+`;
+
+const WannaHelpWrapper = styled.li`
+  padding-right: 15px;
+  border-right: solid 1px #8a8a8a;
+  @media (max-width: ${enterMobileBreakpoint + 40}px) {
+    display: none !important;
   }
 `;
