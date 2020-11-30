@@ -11,12 +11,17 @@ import { UserApps, UserAppsSchema } from "../../defs/schemas/UserApps.schema";
 import { AppService } from "./app.service";
 import { ObjectId } from "mongodb";
 import { User, UserSchema } from "../../defs/schemas/User.schema";
+import {
+  AppRequest,
+  AppRequestSchema,
+} from "../../defs/schemas/AppRequest.schema";
 
 describe("app service", () => {
   let mongod: MongoMemoryServer;
   let userAppsModel: Model<UserApps>;
   let appModel: Model<App>;
   let userModel: Model<User>;
+  let userRequestModel: Model<AppRequest>;
   let appService: AppService;
 
   const userId1 = new ObjectId();
@@ -36,10 +41,11 @@ describe("app service", () => {
       imports: [
         MongooseModule.forRoot(uri),
         MongooseModule.forFeature([
-          { name: AppCategory.name, schema: AppCategorySchema },
-          { name: UserApps.name, schema: UserAppsSchema },
           { name: App.name, schema: AppSchema },
+          { name: AppRequest.name, schema: AppRequestSchema },
+          { name: AppCategory.name, schema: AppCategorySchema },
           { name: User.name, schema: UserSchema },
+          { name: UserApps.name, schema: UserAppsSchema },
         ]),
       ],
       providers: [AppService],
@@ -229,6 +235,20 @@ describe("app service", () => {
     expect(result2.stars).toEqual(1);
     expect(result2.isStarred).toEqual(true);
   });
+
+  // it("should add an app request", async () => {
+  //   const appName = "appName";
+
+  //   const result = await appService.appRequest(appName);
+
+  //   const appRequest = await userRequestModel.findOne({
+  //     appName,
+  //   });
+
+  //   expect(appRequest.appName).toEqual(appName);
+  //   expect(appRequest.votes).toEqual(1);
+  // });
+
   it("should throw for toggling for non existing shortcut from existing app and user", async () => {
     await expect(
       appService.toggleStar(userId1, appId1, new ObjectId())

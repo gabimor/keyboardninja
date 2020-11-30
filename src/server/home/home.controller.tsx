@@ -48,13 +48,13 @@ export class HomeController {
     }
   }
 
-  @Get("wannahelp")
-  async wannahelp(@Req() req: RequestAuth) {
+  @Get("addanapp")
+  async addanapp(@Req() req: RequestAuth) {
     req.context = {
       appCategories: await this.appService.getAppCategories(),
       user: req.user,
     };
 
-    return renderPage(req, getTitle(req.url), "/wannahelp");
+    return renderPage(req, getTitle(req.url), "/addanapp");
   }
 }

@@ -23,10 +23,13 @@ import { GlobalExceptionFilter } from "../misc/filters/GlobalExceptionFilter";
 import { ObjectId } from "mongodb";
 import { JWT_SECRET, JWT_EXPIRES_IN } from "../../shared/consts";
 import { CreateUserDto } from "../../defs/DTOs/createUser.dto";
+import {
+  AppRequest,
+  AppRequestSchema,
+} from "../../defs/schemas/AppRequest.schema";
 
 describe("app controller", () => {
   let app: INestApplication;
-  const jwtSecret = "jwtSecret";
   let mongod: MongoMemoryServer;
   let appModel: Model<App>;
   let userModel: Model<User>;
@@ -57,12 +60,13 @@ describe("app controller", () => {
         MongooseModule.forRoot(uri),
         MongooseModule.forFeature([
           { name: App.name, schema: AppSchema },
+          { name: AppRequest.name, schema: AppRequestSchema },
           { name: AppCategory.name, schema: AppCategorySchema },
           { name: User.name, schema: UserSchema },
           { name: UserApps.name, schema: UserAppsSchema },
         ]),
         JwtModule.register({
-          secret: jwtSecret,
+          secret: JWT_SECRET,
           signOptions: { expiresIn: JWT_EXPIRES_IN },
         }),
       ],

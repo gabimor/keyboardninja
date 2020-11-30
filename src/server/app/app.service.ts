@@ -9,6 +9,7 @@ import { User } from "@defs/schemas/User.schema";
 import { ToggleStarReturnType } from "@defs/misc";
 import { OSs } from "@defs/OSs.enum";
 import { Request } from "express";
+import { AppRequest } from "@defs/schemas/AppRequest.schema";
 
 @Injectable()
 export class AppService {
@@ -17,7 +18,8 @@ export class AppService {
     @InjectModel(UserApps.name)
     private userAppsModel: Model<UserApps>,
     @InjectModel(App.name) private appModel: Model<App>,
-    @InjectModel(User.name) private userModel: Model<User>
+    @InjectModel(User.name) private userModel: Model<User>,
+    @InjectModel(AppRequest.name) private appRequesstModel: Model<AppRequest>
   ) {}
 
   async getAppCategories(): Promise<AppCategory[]> {
@@ -123,5 +125,17 @@ export class AppService {
       },
       { upsert: true, useFindAndModify: false, new: true }
     );
+  }
+
+  async appRequest(appName: string) {
+    const appRequestResult = await this.appRequesstModel.findOne({ appName });
+
+    if (appRequestResult) {
+      appRequestResult.votes++;
+    } else {
+      throw new Error();
+    }
+
+    appRequestResult.save();
   }
 }

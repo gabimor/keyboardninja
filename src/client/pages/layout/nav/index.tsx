@@ -13,9 +13,9 @@ export default () => {
   return (
     <Container>
       <ul>
-        <WannaHelpWrapper>
-          <Link to="/wannahelp">Wanna Help?</Link>
-        </WannaHelpWrapper>
+        <OptionHelpWrapper>
+          <Link to="/addanapp">Add an App</Link>
+        </OptionHelpWrapper>
 
         {user ? <LoggedInNav /> : <AnonymousNav />}
       </ul>
@@ -45,7 +45,7 @@ const Container = styled.div`
   }
 `;
 
-const WannaHelpWrapper = styled.li`
+const OptionHelpWrapper = styled.li`
   padding-right: 15px;
   border-right: solid 1px #8a8a8a;
   @media (max-width: ${enterMobileBreakpoint + 40}px) {

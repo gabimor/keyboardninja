@@ -9,7 +9,7 @@ import Login from "../Login";
 import Header from "./Header";
 import Footer from "./Footer";
 import Signup from "../Signup";
-import WannaHelp from "../WannaHelp";
+import AddAnApp from "../AddAnApp";
 import Modal from "@client/components/Modal";
 
 import { tabletBreakpoint, desktopBreakpoint, siteWidth } from "../../consts";
@@ -29,7 +29,7 @@ const Layout = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/wannahelp" component={WannaHelp} />
+          <Route exact path="/addanapp" component={AddAnApp} />
           <Route path="/:name" component={App} />
         </Switch>
         <Modal
