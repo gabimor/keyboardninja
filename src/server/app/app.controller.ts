@@ -63,17 +63,8 @@ export class AppController {
     return { isStarred, stars };
   }
 
-  // @Post("api/addanapp")
-  // async addAnApp(
-  //   @Req() req: RequestAuth,
-  //   @Body() toggleStarDto: ToggleStarDto
-  // ) {
-  //   const { isStarred, stars } = await this.appService.toggleStar(
-  //     new ObjectId(toggleStarDto.appId),
-  //     new ObjectId(toggleStarDto.shortcutId)
-  //   );
-
-  //   return { isStarred, stars };
-  // }
-
+  @Post("api/apprequest")
+  async appRequest(@Body() appName: string) {
+    await this.appService.addAppRequest(appName);
+  }
 }

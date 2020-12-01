@@ -19,7 +19,7 @@ export class AppService {
     private userAppsModel: Model<UserApps>,
     @InjectModel(App.name) private appModel: Model<App>,
     @InjectModel(User.name) private userModel: Model<User>,
-    @InjectModel(AppRequest.name) private appRequesstModel: Model<AppRequest>
+    @InjectModel(AppRequest.name) private appRequestModel: Model<AppRequest>
   ) {}
 
   async getAppCategories(): Promise<AppCategory[]> {
@@ -127,15 +127,21 @@ export class AppService {
     );
   }
 
-  async appRequest(appName: string) {
-    const appRequestResult = await this.appRequesstModel.findOne({ appName });
+  async addAppRequest(appName: string): Promise<AppRequest> {
+    // const appRequestResult = await this.appRequesstModel.findOne({ appName });
 
-    if (appRequestResult) {
-      appRequestResult.votes++;
-    } else {
-      throw new Error();
-    }
+    return this.appRequestModel.findOneAndUpdate(
+      { appName },
+      { $inc: { votes: 1 } },
+      { upsert: true, new: true, useFindAndModify: false }
+    );
 
-    appRequestResult.save();
+    // if (appRequestResult) {
+    //   appRequestResult.votes++;
+    // } else {
+    //   appRequestResult.votes = 1;
+    // }
+
+    // appRequestResult.save();
   }
 }

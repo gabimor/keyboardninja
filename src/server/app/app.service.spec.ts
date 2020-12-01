@@ -21,7 +21,7 @@ describe("app service", () => {
   let userAppsModel: Model<UserApps>;
   let appModel: Model<App>;
   let userModel: Model<User>;
-  let userRequestModel: Model<AppRequest>;
+  let appRequestModel: Model<AppRequest>;
   let appService: AppService;
 
   const userId1 = new ObjectId();
@@ -236,18 +236,24 @@ describe("app service", () => {
     expect(result2.isStarred).toEqual(true);
   });
 
-  // it("should add an app request", async () => {
-  //   const appName = "appName";
+  it("should add an app request", async () => {
+    const appName = "appName";
 
-  //   const result = await appService.appRequest(appName);
+    const result = await appService.addAppRequest(appName);
 
-  //   const appRequest = await userRequestModel.findOne({
-  //     appName,
-  //   });
+    expect(result.appName).toEqual(appName);
+    expect(result.votes).toEqual(1);
+  });
 
-  //   expect(appRequest.appName).toEqual(appName);
-  //   expect(appRequest.votes).toEqual(1);
-  // });
+  it("should increase vote for existing app request", async () => {
+    const appName = "appName";
+
+    await appService.addAppRequest(appName);
+    const result = await appService.addAppRequest(appName);
+
+    expect(result.appName).toEqual(appName);
+    expect(result.votes).toEqual(2);
+  });
 
   it("should throw for toggling for non existing shortcut from existing app and user", async () => {
     await expect(
