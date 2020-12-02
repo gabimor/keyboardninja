@@ -21,3 +21,6 @@ export const APP_URL = process.env.APP_URL;
 export const JWT_SECRET = process.env.JWT_SECRET;
 export const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
 export const BCRYPT_SALT_ROUNDS = parseInt(process.env.BCRYPT_SALT_ROUNDS, 10);
+
+export const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+export const CONTACT_EMAIL = process.env.CONTACT_EMAIL;
