@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import ContactForm from "./contactUs/ContactForm";
+import ContactForm from "./contact/ContactForm";
 import { getTitle } from "@shared/utils";
 
 export default () => {
@@ -13,6 +13,15 @@ export default () => {
     <Container>
       <div style={{ minWidth: 500 }}>
         <Title>About</Title>
+        KeyboardNinja.me allows you to discover the most useful shortcuts in
+        your favorite apps. You can save your prefered shortcuts so you don't
+        forget them, see what others saved, share your cheetheet with friends
+        Starting to use a new app ? Discover its most popular shortcuts An
+        expert of your tool ? expand your shortcut prowes and send your
+        cheetsheet to friends
+        <Title>Missing Your App?</Title>
+        I'd love to hear any feedback you have, especialy which apps you want me
+        to add.
         <Text>
           Which app should I add next? <br /> Which feature would be cool ?
           <br /> Found a bug ?<b> Let me know!</b>

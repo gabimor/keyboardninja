@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { contactUs } from "../../api";
+import { contact } from "../../api";
 import { PrimaryButton } from "../../components/Buttons";
 import styled from "@emotion/styled";
 import TextInput from "@client/components/TextInput";
@@ -19,7 +19,7 @@ export default ({ onSend }: Props) => {
     event.preventDefault();
 
     try {
-      await contactUs(name, email, message);
+      await contact(name, email, message);
       setName("");
       setEmail("");
       setMessage("");

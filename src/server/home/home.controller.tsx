@@ -53,7 +53,7 @@ export class HomeController {
   }
 
   @Get("contact")
-  async addanapp(@Req() req: RequestAuth) {
+  async contact(@Req() req: RequestAuth) {
     req.context = {
       appCategories: await this.appService.getAppCategories(),
       user: req.user,
