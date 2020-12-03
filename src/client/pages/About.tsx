@@ -15,14 +15,21 @@ export default () => {
         <Title>About</Title>
         <p>There’s a line I read somewhere:</p>
         <p>
-          “Keyboard shortcuts make the UI disappear until all that’s left is
-          pure creation” It stuck.
+          <i>
+            “Keyboard shortcuts make the UI disappear until all that’s left is
+            pure creation”
+          </i>
+          <br />
+          It stuck.
         </p>
         <p>
           KeyboardNinja.me is my geeky attempt to document all those shortcuts,
           display them beautifully and help you remember and use them.
           <br /> You can save your favorite shortcuts for future reference,
           share them with friends and see what others are using.
+          <CreditContainer>
+            Created by <a href="https://www.facebook.com/gabimor">Gabi Mor</a>
+          </CreditContainer>
         </p>
         <Title>Missing Your App?</Title>
         <p style={{ marginBottom: 0 }}>
@@ -49,7 +56,7 @@ const Container = styled.div`
   justify-content: center;
   font-weight: 300;
   background: #2c252599;
-  padding: 20px 10px 0 10px;
+  padding: 20px 10px;
   border-radius: 7px;
   min-height: calc(100vh - 90px);
 
@@ -61,6 +68,11 @@ const Container = styled.div`
 const InnerContainer = styled.div`
   max-width: 600px;
   color: #e9e5e5;
+`;
+
+const CreditContainer = styled.div`
+  text-align: right;
+  margin-top: 20px;
 `;
 
 const Title = styled.h1`
