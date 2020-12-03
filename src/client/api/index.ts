@@ -11,21 +11,15 @@ export const sendApiRequest: typeof fetch = async (url, options?) => {
 };
 
 export async function contactUs(name: string, email: string, message: string) {
-  try {
-    const res = await fetch("/api/contactus", {
-      method: "POST",
-      body: JSON.stringify({
-        name,
-        email,
-        message,
-      }),
-      headers,
-    });
-
-    if (res.status !== 200) throw new Error();
-  } catch (e) {
-    throw e;
-  }
+  await fetch("/api/contact", {
+    method: "POST",
+    body: JSON.stringify({
+      name,
+      email,
+      message,
+    }),
+    headers,
+  });
 }
 
 export async function toggleStar(

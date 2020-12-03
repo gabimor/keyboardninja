@@ -9,7 +9,6 @@ import { AppService } from "./app.service";
 import { AppController } from "./app.controller";
 import { UserApps, UserAppsSchema } from "@defs/schemas/UserApps.schema";
 import { User, UserSchema } from "@defs/schemas/User.schema";
-
 @Module({
   imports: [
     MongooseModule.forFeature([

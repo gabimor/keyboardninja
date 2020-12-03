@@ -6,19 +6,10 @@ import { getTitle } from "@shared/utils";
 
 export default () => {
   const [messageSent, setMessageSent] = useState(false);
-  const [error, setError] = useState("");
   useEffect(() => {
     document.title = getTitle("/contact");
   }, []);
 
-  const onSend = (err: Error) => {
-    if (err) {
-      setError("Sorry... something went wrong. Please try again later");
-    } else {
-      setError("");
-      setMessageSent(true);
-    }
-  };
   return (
     <Container>
       <div>
@@ -28,14 +19,13 @@ export default () => {
         </Title>
 
         {!messageSent ? (
-          <ContactForm onSend={onSend} />
+          <ContactForm onSend={() => setMessageSent(true)} />
         ) : (
           <ThankYou>
             <h2>Thank You!</h2>
-            <span>Promise to get back to you ASAP</span>
+            <span>Your message was sent successfully</span>
           </ThankYou>
         )}
-        {error && <Error>{error}</Error>}
       </div>
     </Container>
   );
@@ -65,20 +55,12 @@ const TitleBold = styled.span`
   font-weight: bold;
 `;
 
-const Error = styled.div`
-  padding-top: 10px;
-  font-size: 16px;
-  text-align: left;
-  color: #d1403d;
-`;
-
 const ThankYou = styled.div`
-  border-top: solid 1px #4f4242;
   color: #d1d0d4;
   margin: auto;
   padding: 40px;
   text-align: center;
-  width: 300px;
+  width: 320px;
   h2 {
     font-size: 30px;
     font-weight: bold;

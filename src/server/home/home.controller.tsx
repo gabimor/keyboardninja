@@ -5,10 +5,14 @@ import { RequestAuth } from "@defs/RequestAuth";
 import { getTitle } from "@shared/utils";
 import { renderPage } from "@server/misc/pageTemplate/renderPage";
 import { AppService } from "@server/app/app.service";
+import { HomeService } from "./home.service";
 
 @Controller("/")
 export class HomeController {
-  constructor(private appService: AppService) {}
+  constructor(
+    private appService: AppService,
+    private homeService: HomeService
+  ) {}
 
   @Get()
   async home(@Req() req: RequestAuth) {
@@ -64,14 +68,6 @@ export class HomeController {
     @Body("email") email: string,
     @Body("message") message: string
   ) {
-    // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    // const msg = {
-    //   to: process.env.CONTACT_EMAIL,
-    //   from: email,
-    //   subject: "KeyboardNinja - from " + name,
-    //   text: message,
-    // };
-    // sgMail.send(msg);
-    // res.sendStatus(200);
+    return this.homeService.sendEmail(email, "Message from " + name, message);
   }
 }

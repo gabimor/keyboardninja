@@ -7,7 +7,7 @@ import TextArea from "@client/components/TextArea";
 import FormLabel from "@client/components/FormLabel";
 
 interface Props {
-  onSend: (error: Error) => void;
+  onSend: () => void;
 }
 
 export default ({ onSend }: Props) => {
@@ -23,9 +23,9 @@ export default ({ onSend }: Props) => {
       setName("");
       setEmail("");
       setMessage("");
-      onSend(undefined);
+      onSend();
     } catch (e) {
-      onSend(e);
+      alert(e.toString());
     }
   }
 
