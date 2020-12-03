@@ -14,7 +14,7 @@ export default () => {
     <Container>
       <ul>
         <OptionHelpWrapper>
-          <Link to="/contact">Contact</Link>
+          <Link to="/about">About</Link>
         </OptionHelpWrapper>
 
         {user ? <LoggedInNav /> : <AnonymousNav />}

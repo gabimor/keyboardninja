@@ -9,7 +9,8 @@ import ShortcutList from "./app/ShortcutList";
 import Controls from "./app/Controls";
 import { encodeAppName } from "../helpers";
 import * as osSelect from "../helpers/osSelect";
-import { getTitle } from '../../shared/utils';
+import { getTitle } from "../../shared/utils";
+import { ContactCTA } from "./Home";
 
 const App = () => {
   const { app, os } = useContext(DataContext);
@@ -51,6 +52,9 @@ const App = () => {
           );
         })}
       </ResultsContainer>
+      <ContactCTA>
+        Which app should I add next? <a href="/about">Let me know</a>
+      </ContactCTA>
     </div>
   );
 };

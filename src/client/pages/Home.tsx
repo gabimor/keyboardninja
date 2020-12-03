@@ -28,6 +28,9 @@ const Home = () => {
           <AppList key={appCategory.gridArea} {...appCategory} />
         ))}
       </GridContainer>
+      <ContactCTA>
+        Which app should I add next? <a href="/about">Let me know</a>
+      </ContactCTA>
     </Container>
   );
 };
@@ -66,16 +69,16 @@ const HeroSub = styled.div`
 
   @media (max-width: ${tabletBreakpoint}px) {
     font-size: 16px;
-    margin-top:10px;
-    line-height:1.5em;
+    margin-top: 10px;
+    line-height: 1.5em;
   }
 `;
 
 const Hero = styled.h1`
   color: #ffffff;
   font-size: 55px;
-  text-align:   center;
-  margin: 120px 0 140px;
+  text-align: center;
+  margin: 120px 0 90px;
   font-weight: 500;
   line-height: 1.25em;
 
@@ -94,4 +97,9 @@ const Hero = styled.h1`
     margin-bottom: 70px;
     font-size: 30px;
   }
+`;
+
+export const ContactCTA = styled.div`
+  text-align: center;
+  margin: 30px 0;
 `;

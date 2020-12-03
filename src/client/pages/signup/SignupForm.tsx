@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 
-import Input from "@client/components/TextInput";
+import { TextInput } from "@client/components/TextInput";
 import { PrimaryButton } from "@client/components/Buttons";
 import { useForm } from "react-hook-form";
 import { emailRegex } from "@client/helpers";
@@ -56,22 +56,22 @@ export default function SignupForm() {
           <NameContainer>
             <div style={{ marginRight: 5 }}>
               <FormLabel htmlFor="firstName">First name</FormLabel>
-              <Input
+              <TextInput
                 name="firstName"
                 autoFocus
                 ref={register({
                   required: "Please enter your first name",
                 })}
-              ></Input>
+              ></TextInput>
             </div>
             <div style={{ marginLeft: 5 }}>
               <FormLabel htmlFor="lastName">Last name</FormLabel>
-              <Input
+              <TextInput
                 name="lastName"
                 ref={register({
                   required: "Please enter your last name",
                 })}
-              ></Input>
+              ></TextInput>
             </div>
           </NameContainer>
           {errors.firstName && (
@@ -81,7 +81,7 @@ export default function SignupForm() {
             <ErrorLabel>{errors.lastName.message}</ErrorLabel>
           )}
           <FormLabel htmlFor="email">Email</FormLabel>
-          <Input
+          <TextInput
             name="email"
             ref={register({
               required: "Please enter your email",
@@ -90,10 +90,10 @@ export default function SignupForm() {
                 message: "Please enter a valid email",
               },
             })}
-          ></Input>
+          ></TextInput>
           {errors.email && <ErrorLabel>{errors.email.message}</ErrorLabel>}
           <FormLabel htmlFor="password">Choose Password</FormLabel>
-          <Input
+          <TextInput
             name="password"
             type="password"
             ref={register({
@@ -107,7 +107,7 @@ export default function SignupForm() {
                 message: "Please choose a password of 6-12 charecters",
               },
             })}
-          ></Input>
+          ></TextInput>
           {errors.password && (
             <ErrorLabel>{errors.password.message}</ErrorLabel>
           )}

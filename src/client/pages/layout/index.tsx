@@ -7,7 +7,6 @@ import Home from "../Home";
 import App from "../App";
 import Login from "../Login";
 import Header from "./Header";
-import Footer from "./Footer";
 import Signup from "../Signup";
 import Modal from "@client/components/Modal";
 
@@ -16,7 +15,7 @@ import { DataContext } from "@client/DataContext";
 import LoginPanel from "./LoginPanel";
 import SignupPanel from "./SignupPanel";
 import { LoginModalState } from "@client/store";
-import Contact from "../Contact";
+import About from "../About";
 
 const Layout = () => {
   const store = useContext(DataContext);
@@ -29,7 +28,7 @@ const Layout = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/about" component={About} />
           <Route path="/:name" component={App} />
         </Switch>
         <Modal
@@ -45,8 +44,6 @@ const Layout = () => {
         >
           <SignupPanel />
         </Modal>
-
-        <Footer />
       </Container>
     </div>
   );

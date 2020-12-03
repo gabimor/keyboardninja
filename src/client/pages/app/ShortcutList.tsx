@@ -63,11 +63,13 @@ export default observer(ShortcutList);
 
 const Container = styled.div`
   display: inline-block;
-  margin-bottom: 40px;
   font-size: 14px;
   border-radius: 5px;
   overflow: hidden;
   width: 100%;
+  &:not(:last-child) {
+    margin-bottom: 40px;
+  }
 `;
 
 const Title = styled.header`

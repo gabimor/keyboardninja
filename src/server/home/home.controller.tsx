@@ -52,14 +52,14 @@ export class HomeController {
     }
   }
 
-  @Get("contact")
-  async contact(@Req() req: RequestAuth) {
+  @Get("about")
+  async about(@Req() req: RequestAuth) {
     req.context = {
       appCategories: await this.appService.getAppCategories(),
       user: req.user,
     };
 
-    return renderPage(req, getTitle(req.url), "/contact");
+    return renderPage(req, getTitle(req.url), "/about");
   }
 
   @Post("/api/contact")

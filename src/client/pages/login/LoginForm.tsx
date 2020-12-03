@@ -6,7 +6,7 @@ import { emailRegex } from "@client/helpers";
 import { UserType } from "@defs/User.type";
 import { FacebookButton, GoogleButton } from "@client/components/SocialButtons";
 import { PrimaryButton } from "@client/components/Buttons";
-import TextInput from "@client/components/TextInput";
+import { TextInput } from "@client/components/TextInput";
 import { login } from "@client/api/auth";
 import ErrorLabel from "@client/components/ErrorLabel";
 import ClipLoader from "react-spinners/ClipLoader";
