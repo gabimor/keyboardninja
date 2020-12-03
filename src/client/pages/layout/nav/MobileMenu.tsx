@@ -46,9 +46,9 @@ const Menu = ({ onClose, isVisible }: MenuProps) => {
           <EmailLabel>{user.email}</EmailLabel>
           <ActionsContainer>
             <li>
-              <Link to="/addanapp" onClick={onClose}>
+              <Link to="/contact" onClick={onClose}>
                 <i className="fas fa-users"></i>
-                Add an App
+                Contact
               </Link>
             </li>
             {/* <li>

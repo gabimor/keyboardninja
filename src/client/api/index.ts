@@ -10,6 +10,18 @@ export const sendApiRequest: typeof fetch = async (url, options?) => {
   return fetch(url, { ...options, headers });
 };
 
+export async function contactUs(name: string, email: string, message: string) {
+  await fetch("/api/contact", {
+    method: "POST",
+    body: JSON.stringify({
+      name,
+      email,
+      message,
+    }),
+    headers,
+  });
+}
+
 export async function toggleStar(
   appId: string,
   shortcutId: string

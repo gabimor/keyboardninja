@@ -14,14 +14,13 @@ export default () => {
     <Container>
       <ul>
         <OptionHelpWrapper>
-          <Link to="/addanapp">Add an App</Link>
+          <Link to="/contact">Contact</Link>
         </OptionHelpWrapper>
 
         {user ? <LoggedInNav /> : <AnonymousNav />}
       </ul>
     </Container>
   );
-
 };
 
 const Container = styled.div`
