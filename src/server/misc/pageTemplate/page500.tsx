@@ -9,8 +9,8 @@ export function page500() {
       <div>
         <Title>Oops ... an error has occured</Title>
         <div>
-          Please try again, if this persists, please let us know{" "}
-          <a href="/contact">here</a>.
+          Please try again, if this persists, please{" "}
+          <a href="https://www.facebook.com/gabimor">let my know</a>
         </div>
         <BackHome href="/">Back to home page</BackHome>
       </div>

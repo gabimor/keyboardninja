@@ -3,11 +3,11 @@ import { Meta } from "@storybook/react";
 
 import { PrimaryButton, SecondaryButton } from "./Buttons";
 import { FacebookButton, GoogleButton } from "./SocialButtons";
-import Input from "./TextInput";
+import { TextInput } from "./TextInput";
 
 export default {
   title: "Buttons",
-  component: Input,
+  component: TextInput,
 } as Meta;
 
 const Template = (args: any) => <PrimaryButton {...args} />;
@@ -25,7 +25,7 @@ Secondary.args = {
 export const Facebook = (args: any) => <FacebookButton {...args} />;
 export const Google = (args: any) => <GoogleButton {...args} />;
 
-export const InputField = (args: any) => <Input type="text" {...args} />;
+export const InputField = (args: any) => <TextInput type="text" {...args} />;
 
 export const Inline = () => (
   <div style={{ display: "flex" }}>
@@ -33,7 +33,7 @@ export const Inline = () => (
     <SecondaryButton>Secondary Button</SecondaryButton>
     <FacebookButton />
     <GoogleButton />
-    <Input type="text" />
+    <TextInput type="text" />
   </div>
 );
 
@@ -47,6 +47,6 @@ export const Vertical = () => (
     <a>
       <GoogleButton />
     </a>
-    <Input type="text" />
+    <TextInput type="text" />
   </div>
 );

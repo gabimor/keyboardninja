@@ -62,4 +62,9 @@ export class AppController {
 
     return { isStarred, stars };
   }
+
+  @Post("api/apprequest")
+  async appRequest(@Body() appName: string) {
+    await this.appService.addAppRequest(appName);
+  }
 }

@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 
 const baseStyle = `
-  display: block;
   width:100%;
   cursor:pointer;
   color: #E9E5E5;

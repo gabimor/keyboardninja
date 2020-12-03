@@ -9,15 +9,15 @@ import { AppService } from "./app.service";
 import { AppController } from "./app.controller";
 import { UserApps, UserAppsSchema } from "@defs/schemas/UserApps.schema";
 import { User, UserSchema } from "@defs/schemas/User.schema";
+import { AppRequest, AppRequestSchema } from "@defs/schemas/AppRequest.schema";
+
 @Module({
   imports: [
     MongooseModule.forFeature([
+      { name: App.name, schema: AppSchema },
+      { name: AppRequest.name, schema: AppRequestSchema },
       { name: AppCategory.name, schema: AppCategorySchema },
-      { name: UserApps.name, schema: UserAppsSchema },
-    ]),
-    MongooseModule.forFeature([{ name: App.name, schema: AppSchema }]),
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-    MongooseModule.forFeature([
+      { name: User.name, schema: UserSchema },
       { name: UserApps.name, schema: UserAppsSchema },
     ]),
   ],

@@ -17,13 +17,20 @@ const Home = () => {
     <Container>
       <Hero>
         Every app, every shortcut,
-        <br /> <b>the best ones first.</b>
+        <br /> the best ones first
+        <HeroSub>
+          Find your app's best keyboard shortcuts, see what everybody else is
+          using
+        </HeroSub>
       </Hero>
       <GridContainer>
         {appCategories.map((appCategory) => (
           <AppList key={appCategory.gridArea} {...appCategory} />
         ))}
       </GridContainer>
+      <ContactCTA>
+        Which app should I add next? <a href="/about">Let me know</a>
+      </ContactCTA>
     </Container>
   );
 };
@@ -56,13 +63,24 @@ const GridContainer = styled.div`
   }
 `;
 
+const HeroSub = styled.div`
+  font-size: 22px;
+  font-weight: 200;
+
+  @media (max-width: ${tabletBreakpoint}px) {
+    font-size: 16px;
+    margin-top: 10px;
+    line-height: 1.5em;
+  }
+`;
+
 const Hero = styled.h1`
   color: #ffffff;
   font-size: 55px;
-  margin: 120px 0 140px;
   text-align: center;
-  font-weight: 300;
-  line-height: 1.5em;
+  margin: 120px 0 90px;
+  font-weight: 500;
+  line-height: 1.25em;
 
   & b {
     font-weight: 500;
@@ -77,6 +95,11 @@ const Hero = styled.h1`
   @media (max-width: ${tabletBreakpoint}px) {
     margin-top: 50px;
     margin-bottom: 70px;
-    font-size: 33px;
+    font-size: 30px;
   }
+`;
+
+export const ContactCTA = styled.div`
+  text-align: center;
+  margin: 30px 0;
 `;

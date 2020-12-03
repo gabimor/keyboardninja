@@ -10,7 +10,7 @@ export const sendApiRequest: typeof fetch = async (url, options?) => {
   return fetch(url, { ...options, headers });
 };
 
-export async function contactUs(name: string, email: string, message: string) {
+export async function contact(name: string, email: string, message: string) {
   await fetch("/api/contact", {
     method: "POST",
     body: JSON.stringify({

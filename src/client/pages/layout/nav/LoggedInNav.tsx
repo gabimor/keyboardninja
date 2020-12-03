@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import Avatar from "react-avatar";
 import { AvatarMenu } from "./AvatarMenu";
 import styled from "@emotion/styled";
@@ -21,10 +20,6 @@ export default function LoggedInNav() {
       {isMobile ? (
         <MobileMenu />
       ) : (
-        <DesktopNavContainer>
-          <li>
-            <Link to="/contact">Add an App</Link>
-          </li>
           <AvatarContainer ref={ref}>
             <StyledAvatar
               name={user.firstName + " " + user.lastName}
@@ -37,17 +32,10 @@ export default function LoggedInNav() {
             />
             <AvatarMenu isVisible={avatarMenuVisible} />
           </AvatarContainer>
-        </DesktopNavContainer>
       )}
     </>
   );
 }
-
-const DesktopNavContainer = styled.ul`
-  @media (max-width: ${enterMobileBreakpoint}px) {
-    display: none;
-  }
-`;
 
 const AvatarContainer = styled.li`
   position: relative;

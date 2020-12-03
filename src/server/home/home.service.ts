@@ -8,11 +8,11 @@ export class HomeService {
 
   async sendEmail(from: string, subject: string, message: string) {
     return this.sendGrid.send({
-      from,
-      to: consts.CONTACT_EMAIL,
+      from: consts.CONTACT_EMAIL_FROM,
+      to: consts.CONTACT_EMAIL_TO,
       subject,
-      text: message,
-      html: message,
+      text: message + `From: ${from}`,
+      html: message + `<div>From: ${from}</div>`,
     });
   }
 }

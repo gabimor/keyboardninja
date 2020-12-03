@@ -34,7 +34,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         Sentry.captureException(exception);
       }
 
-      console.log("GlobalExceptionFilter says:", exception);
+      // console.log("GlobalExceptionFilter says:", exception);
 
       if (req.url.startsWith("/api") || req.url.startsWith("/auth")) {
         res.status(status).json({

@@ -9,7 +9,7 @@ interface Props {
   onClose: () => void;
 }
 
-const signupCTAMessage = ({ onClose }: Props) => (
+const SignupCTAMessage = ({ onClose }: Props) => (
   <Container>
     <CloseX onClick={onClose} />
 
@@ -34,7 +34,7 @@ const signupCTAMessage = ({ onClose }: Props) => (
   </Container>
 );
 
-export default signupCTAMessage;
+export default SignupCTAMessage;
 
 const Container = styled.div`
   background: #324e4e;
