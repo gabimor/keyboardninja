@@ -57,7 +57,6 @@ export default ({ onSend }: Props) => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         rows={7}
-        placeholder="How can we help?"
       ></TextArea>
       <PrimaryButton
         style={{ display: "block", width: "100%", padding: 12, marginTop: 25 }}
