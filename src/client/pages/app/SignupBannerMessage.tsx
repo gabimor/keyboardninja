@@ -11,11 +11,11 @@ const VotePopover = () => {
       <Image src="/logo.svg" height="30" />
       <span>
         <a onClick={() => store.setLoginModalState(LoginModalState.Login)}>
-          Login
+          Log in
         </a>{" "}
         or{" "}
-        <a onClick={() => store.setLoginModalState(LoginModalState.Login)}>
-          Signup
+        <a onClick={() => store.setLoginModalState(LoginModalState.Signup)}>
+          Sign up
         </a>{" "}
         to save your favorite shortcuts by clicking the ninja star
       </span>
@@ -26,7 +26,7 @@ const VotePopover = () => {
 export default VotePopover;
 
 const Container = styled.div`
-  background-color: #533a75;
+  background-color: #17679e;
   padding: 15px 10px;
   font-weight: 200;
   display: flex;
@@ -35,6 +35,7 @@ const Container = styled.div`
 
   a {
     font-weight: 300;
+    color: #f0fd3a;
   }
 `;
 
