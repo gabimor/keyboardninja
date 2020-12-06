@@ -17,9 +17,9 @@ export function pageTemplate(
     <head>
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta property="og:url" content="https://www.keyboardninja.me${canonicalUrl}" />
-      <meta property="og:title" content="${title}" />
+      <meta property="og:title" content="KeyboardNinja.me - Save your favorite keyboard shortcuts, see what everybody else is using!" />
+      <meta property="og:description" content="All your keyboard shortcuts beautifully displayed in one place." />
       <meta property="og:image" content="https://www.keyboardninja.me/social-preview.png" />
-      <meta property="og:description" content="Save your favorite keyboard shortcuts, see what everybody else is using!" />
       <meta property="og:type" content="website" />
       <meta property="fb:app_id" content="2286973354960672" />
       <meta name="google-site-verification" content="0FXKq3MWPfL7uFhgXZhtCIo3XSthhXFni2P2UPkgVE8" />
