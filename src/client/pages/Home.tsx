@@ -16,12 +16,8 @@ const Home = () => {
   return (
     <Container>
       <Hero>
-        Every app, every shortcut,
-        <br /> the best ones first
-        <HeroSub>
-          Save your favorite keyboard shortcuts and see what everybody else is
-          using
-        </HeroSub>
+        Save your favorite keyboard shortcuts, <br />
+        see what everybody else is using!
       </Hero>
       <GridContainer>
         {appCategories.map((appCategory) => (
@@ -60,17 +56,6 @@ const GridContainer = styled.div`
       "casual"
       "graphics"
       "office";
-  }
-`;
-
-const HeroSub = styled.div`
-  font-size: 22px;
-  font-weight: 200;
-
-  @media (max-width: ${tabletBreakpoint}px) {
-    font-size: 16px;
-    margin-top: 10px;
-    line-height: 1.5em;
   }
 `;
 

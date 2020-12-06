@@ -1,28 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { DataContext } from "../DataContext";
 import { observer } from "mobx-react-lite";
 
 import styled from "@emotion/styled";
 
-import Popover from "@client/components/Popover";
+import SignupBannerMessage from "./app/SignupBannerMessage";
 import ShortcutList from "./app/ShortcutList";
 import Controls from "./app/Controls";
 import { encodeAppName } from "../helpers";
 import * as osSelect from "../helpers/osSelect";
 import { getTitle } from "@shared/utils";
 import { ContactCTA } from "./Home";
+import { tabletBreakpoint } from "@client/consts";
 
 const App = () => {
-  const { app, os } = useContext(DataContext);
-  const [messageVisible, setMessageVisible] = useState(false);
-
-  const handleClosePopover = () => {
-    localStorage.setItem("signupCTAMessage", "true");
-    setMessageVisible(false);
-  };
+  const { app, os, user } = useContext(DataContext);
 
   useEffect(() => {
-    setMessageVisible(!localStorage.getItem("signupCTAMessage"));
     osSelect.init();
 
     document.title = getTitle("/:app", app.name);
@@ -32,12 +26,8 @@ const App = () => {
   return (
     <div>
       <Controls icon={encodedName + ".png"} name={app.name} />
+      {!user && <SignupBannerMessage />}
       <ResultsContainer>
-        {messageVisible && (
-          <Popover onClose={handleClosePopover}>
-            Click the ninja star to save your favorite shortcuts!
-          </Popover>
-        )}
         {app.sections.map((section) => {
           const shortcuts = app.shortcuts.filter(
             (e) => e.sectionId.toString() === section._id.toString() && e[os]
@@ -63,10 +53,6 @@ const App = () => {
 
 export default observer(App);
 
-// const Container = styled.div`
-//   position: relative;
-// `;
-
 const ResultsContainer = styled.div`
   columns: 1;
   column-gap: 30px;
@@ -74,5 +60,11 @@ const ResultsContainer = styled.div`
 
   @media (max-width: 1122px) {
     columns: 1;
+  }
+
+  margin-top: 10px;
+
+  @media (min-width: ${tabletBreakpoint}px) {
+    margin-top: 20px;
   }
 `;

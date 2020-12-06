@@ -67,6 +67,7 @@ const Container = styled.div`
   border-radius: 5px;
   overflow: hidden;
   width: 100%;
+
   &:not(:last-child) {
     margin-bottom: 40px;
   }

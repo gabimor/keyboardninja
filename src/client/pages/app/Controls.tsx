@@ -73,7 +73,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   padding: 10px 3px;
-  margin: 60px 0 40px 0;
+  margin: 60px 0 20px 0;
   border-bottom: solid 1px #5a5a5a;
   position: sticky;
   top: 0;
@@ -81,7 +81,7 @@ const Container = styled.div`
   z-index: 10;
 
   @media (max-width: ${tabletBreakpoint}px) {
-    margin: 30px 0 20px 0;
+    margin: 30px 0 10px 0;
   }
 `;
 
