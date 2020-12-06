@@ -6,7 +6,7 @@ import { FacebookButton, GoogleButton } from "./SocialButtons";
 import { TextInput } from "./TextInput";
 
 export default {
-  title: "Buttons",
+  title: "shared/Buttons",
   component: TextInput,
 } as Meta;
 

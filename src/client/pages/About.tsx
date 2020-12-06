@@ -31,7 +31,7 @@ export default () => {
             Created by <a href="https://www.facebook.com/gabimor">Gabi Mor</a>
           </CreditContainer>
         </p>
-        <Title>Missing Your App?</Title>
+        <Title style={{ marginTop: 45 }}>Missing Your App?</Title>
         <p style={{ marginBottom: 0 }}>
           Wanna see your favorite app in here? missing a feature? found a bug?
           <br />
@@ -55,11 +55,11 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   font-weight: 300;
-  background: #2c252599;
+  background: #3c38383b;
   padding: 20px 10px;
   border-radius: 7px;
-  min-height: calc(100vh - 90px);
-
+  min-height: calc(100vh - 110px);
+  margin-top: 20px;
   p {
     font-size: 1.1em;
   }
@@ -76,7 +76,7 @@ const CreditContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  padding: 35px 0 15px;
+  padding: 15px 0 15px;
   font-size: 25px;
   text-align: center;
   font-weight: 400;

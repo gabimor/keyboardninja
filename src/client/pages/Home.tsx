@@ -19,7 +19,7 @@ const Home = () => {
         Every app, every shortcut,
         <br /> the best ones first
         <HeroSub>
-          Find your app's best keyboard shortcuts, see what everybody else is
+          Save your favorite keyboard shortcuts and see what everybody else is
           using
         </HeroSub>
       </Hero>

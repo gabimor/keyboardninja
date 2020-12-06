@@ -78,6 +78,7 @@ const Container = styled.div`
   position: sticky;
   top: 0;
   background: var(--controls-bg);
+  z-index: 10;
 
   @media (max-width: ${tabletBreakpoint}px) {
     margin: 30px 0 20px 0;

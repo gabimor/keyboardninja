@@ -107,7 +107,7 @@
     "test": "yarn jest --watch --runInBand --detectOpenHandles",
     "deploy": "git push heroku master",
     "start:prod": "NODE_ENV=production node build/server.js",
-    "storybook": "start-storybook -p 6006 -s public",
+    "sb": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook"
   }
 }
