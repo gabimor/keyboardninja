@@ -35,7 +35,7 @@ const Container = styled.div`
 
   a {
     font-weight: 300;
-    color: #f0fd3a;
+    color: #ecf393;
   }
 `;
 
