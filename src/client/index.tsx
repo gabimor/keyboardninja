@@ -9,6 +9,7 @@ import { DataContext } from "@client/DataContext";
 import { Store } from "@client/store";
 import * as consts from "@shared/consts";
 import * as osSelect from "@client/helpers/osSelect";
+import "tailwindcss/tailwind.css";
 
 declare global {
   interface Window {

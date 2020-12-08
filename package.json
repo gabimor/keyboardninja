@@ -23,6 +23,7 @@
     "@sentry/react": "^5.27.2",
     "@sentry/tracing": "^5.27.1",
     "@types/react-transition-group": "^4.4.0",
+    "autoprefixer": "^9",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
     "class-transformer": "^0.3.1",
@@ -44,6 +45,7 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "postcss": "^7",
     "razzle": "^3.3.5",
     "razzle-heroku": "^3.0.0",
     "razzle-plugin-typescript": "^3.3.5",
@@ -59,6 +61,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.2",
     "swagger-ui-express": "^4.1.4",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "use-onclickoutside": "^0.3.1"
   },
   "devDependencies": {
